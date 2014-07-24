@@ -1,0 +1,211 @@
+@CHARSET "UTF-8";
+body {
+    background: #fff;
+    line-height: 14px;
+    font-size: 12px;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    margin: 0pt;
+    cursor: default;
+	
+    
+}
+
+html, body {
+    height: 100%;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+	
+}
+
+strong {
+    font-weight: 700;
+}
+
+h1 {
+       border-bottom: 3px double #000099;
+    color: #F00;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.2em;
+    margin-bottom: 1em;
+	text-align:center
+}
+h2 {
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 1.2em;
+    border-bottom: 5px double #F00;
+    color: #009;
+    margin-bottom: 1em;
+}
+#productDetail 
+{
+    width: 20px;
+padding: 0 10px 10px;
+
+}
+
+#container {
+    width: 600px;
+    margin: 20px auto;
+    text-align: left;
+	box-shadow: 5px 8px 15px 0px #878787;
+	border-radius: 5px 5px 5px 5px;
+	background-image:url(images/bground.png);
+}
+
+#container_error{
+    width: 400px;
+	height:50px;
+    margin: 20px auto;
+    text-align: left;
+	box-shadow: 5px 8px 15px 0px #878787;
+	border-radius: 5px 5px 5px 5px;
+	background-image:url(images/bground.png);
+}
+
+#inner_container{
+  margin: 0 auto;
+    padding-bottom: 5px;
+    padding-top: 1px;
+    width: 580px;
+	}
+
+#productDetail label {
+    display: block;
+    color: #797979;
+    font-weight: 700;
+    line-height: 1.4em;
+}
+
+#productDetail input {
+    width: 220px;
+    padding: 6px;
+    color: #949494;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 11px;
+    border: 1px solid #cecece;
+}
+
+#productDetail input.error {
+    background: #f8dbdb;
+    border-color: #e77776;
+}
+
+#productDetail textarea {
+    width: 550px;
+    height: 80px;
+    padding: 6px;
+    color: #949494;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-style: italic;
+    font-size: 12px;
+    border: 1px solid #cecece;
+}
+
+#productDetail div {
+    margin-bottom: 15px;
+}
+
+#productDetail div span {
+    margin-left: 10px;
+    color: green;
+    font-size: 11px;
+    font-style: italic;
+}
+
+#productDetail div 
+{
+    margin-right: 0px;
+    font-style: normal;
+	width:100px;
+}
+
+#productDetail #add {
+    background: #6f9ff1;
+    color: #fff;
+    font-weight: 700;
+    font-style: normal;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+#productDetail #add:hover {
+    background: #008b8b;
+}
+
+
+ 
+#container table.listing_table tr td
+{
+    width: 10px;
+}
+tr.heading{
+font-size:16px;
+}
+
+td{
+	border-bottom: 1px dashed #6b9ef1;
+	font-size:14px
+	}
+	
+	#result {
+	height:20px;
+	font-size:16px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#333;
+	padding:5px;
+	margin-bottom:10px;
+	background-color:#FFFF99;
+}
+#product{
+	padding:3px;
+	border:1px #CCC solid;
+	font-size:17px;
+}
+.suggestionsBox {
+	position: absolute;
+	left: 0px;
+	top:40px;
+	margin: 26px 0px 0px 0px;
+	width: 200px;
+	padding:0px;
+	background-color: #000;
+	border-top: 3px solid #000;
+	color: #fff;
+}
+.suggestionList {
+	margin: 0px;
+	padding: 0px;
+}
+.suggestionList ul li {
+	list-style:none;
+	margin: 0px;
+	padding: 6px;
+	border-bottom:1px dotted #666;
+	cursor: pointer;
+}
+.suggestionList ul li:hover {
+	background-color: #FC3;
+	color:#000;
+}
+ul {
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#FFF;
+	padding:0;
+	margin:0;
+}
+
+.load{
+background-image:url(images/loader.gif);
+background-position:right;
+background-repeat:no-repeat;
+}
+
+#suggest {
+	position:relative;
+}
