@@ -33,8 +33,7 @@ class products{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else{
-			die("<div> <style='line-height: 4.0em; align='center'>
-            	<font style='color:red; font-size:20px'> '". $Search ."'</font> could not be found.</strong></div></ br></br>");
+			die("<div class='alert alert-danger' role='alert'>The Product '".$Search."' Coule not be found. please click <a href='?action=products&search=".$Search."'>here</a> to add it to the database!</div></div></ br></br>");
 			}
 	}
 	
@@ -56,7 +55,7 @@ class products{
 			$stmt = $pdo->prepare('Select * 
 		from products
 		left join location on location.product_id=products.product_id 
-		where notes like :stmt');
+		where description like :stmt');
 		$stmt->bindValue(':stmt', "%".$Search."%");
 		$stmt->execute();
 		if($stmt->rowCount()>0){
@@ -125,7 +124,8 @@ class products{
 		id = :id');
 		$stmt->bindValue(':stmt', $location);
 		$stmt->bindValue(':id', $location_id);
-		$stmt->execute();		
+		$stmt->execute();
+		echo '<div class="alert alert-success" role="alert">Product Successfully updated to Location</div>';		
 		}
 		
 	public function GetAisleSort($Aisle){
@@ -157,6 +157,37 @@ class products{
 			return $row;
 		}
 	}
+	
+	public function GetProductsId($id){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('Select *
+			from products
+			where product_id = :stmt');
+		$stmt->bindValue(':stmt', $id);
+		$stmt->execute();				
+		while($row = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+			return $row;
+		}
+	}
+	
+	public function fetchProductbyId($id){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('Select *
+			from location
+			where product_id = :stmt
+			order by location ASC');
+		$stmt->bindValue(':stmt', $id);
+		$stmt->execute();
+		if($stmt->rowCount()>0){				
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else
+		{
+		
+		}
+	}
+	
 	public function GetProductsLocation($id){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('select *
@@ -239,15 +270,14 @@ class products{
 			$pdo = Database::DB();
 			try{
 			$stmt = $pdo->prepare('insert into
-			location(location)
-			values (:stmt)');
+			location(location, product_id)
+			values (:stmt, null)');
 			$stmt->execute(array(
 			":stmt" => $location));
-			echo "Location Add!";
+			echo "<div class='alert alert-success'>Location Added!</div>";
 			}
 			catch (PDOException $e){
-				echo "<div> <style='line-height: 4.0em; align='center'>
-            	<strong style='color:#00F'>LOCATION ALREADY EXISTS</strong></div></ br></br>";
+				echo "<div class='alert alert-danger' role='alert'> <button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>LOCATION ALREADY EXISTS</div>";
 				}
 			}
 			
@@ -271,12 +301,12 @@ class products{
 			$stmt->bindValue(2, $notes);
 			$stmt->bindValue(3, $quantity);
 			$stmt->bindValue(4, $description);
-			$stmt->execute();	
-			echo "Product ". $product." Has been added successfully";		
-			}
+			$stmt->execute();
+				
+			echo '<div class="alert alert-success" role="alert">The product '.$product . ' has been sucessfully added!</div>';	}	
+			
 			catch (PDOException $e){
-				echo "<div> <style='line-height: 4.0em; align='center'>
-            	<strong style='color:#00F'>PRODUCT ALREADY EXISTS</strong></div></ br></br>";
+				echo '<div class="alert alert-danger" role="alert">the product '.$product . ' appears to have been entered already</div>';
 			
 				}			
 		}
@@ -300,6 +330,35 @@ class products{
 			$stmt->bindValue(':stmt', $product);
 			$stmt->execute();
 			}
+			
+			public function order_history($id, $today){
+				$pdo = Database::DB();
+				$stmt = $pdo->prepare('insert
+				into order_history
+				(product_id, date)
+				values(?,?)');				
+				$stmt->bindValue(1, $id);
+				$stmt->bindValue(2, $today);
+				$stmt->execute();
+				}
+				
+		public function get_history($id){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select *
+			from order_history
+			where product_id
+			like :stmt
+			order by date desc limit 6');
+			$stmt->bindValue(':stmt', $id);
+			$stmt->execute();
+			if($stmt->rowCount()>0) {
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			}
+			else{
+			die("<div class='alert alert-danger' role='alert'>No History</div>");
+			}
+		}
+		
 			
 		public function autoselect($Search){
 		$pdo = Database::DB();
@@ -347,6 +406,29 @@ class products{
 		while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
 		{
 			return $results;
+		}
+	}
+	
+	public function exportLocation($loc){
+		$d = date("d-m-y");
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare("select 'Location', 'Product'
+	union
+	select location, product
+	from location
+	left join products
+	on location.product_id=products.product_id
+	where location like :stmt
+	into outfile 'c:/tmp/Aisle_" .$loc ."_". $d . ".csv'
+	fields terminated by ','
+	");
+	$stmt->bindValue(':stmt', $loc."%");
+	$stmt->execute();
+	while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+	{
+		return $results;
+		echo "Success";
+		
 		}
 	}
 }

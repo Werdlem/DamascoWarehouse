@@ -1,5 +1,4 @@
-<?php include 'menu_bar.html';
-
+<?php 
 include_once('DAL/PDOConnection.php');
 
 $productDal = new products();
@@ -47,49 +46,47 @@ foreach($id as $productDetail);
 	}
 ?>
 
-    <title>Product Update</title>
-    </head>
-<body>
-<div id="container">
-<div id="inner_container">
-    <h1>Product Update Centre</h1>
+   <div class="panel panel-primary" style="width:49%; float:left">
+<div class="panel-heading" style="text-align:center;"><h3>Product Details</h3></div>
+<div class="panel-body">
 <form method="post" id="productDetail"
-          action="product_detail.php<?php echo ($isEditing ? "?id=$id" : ""); ?>">
+          action="?action=product_detail<?php echo ($isEditing ? "?id=$id" : ""); ?>">
         <div>
             <label for="location">Location</label><?php if($id = (isset($_GET['l_id']) ? $_GET['l_id'] : null)){?>
-				<select name="Select"><?php $lst = $productDal->EmptyLocations();
+				<select name="Select" class='form-control' style="width:50%"><?php $lst = $productDal->EmptyLocations();
 				foreach ($lst as $list){
-      			echo '<option>'.
+      			echo "<option>".
 		 		$list['location'];}?>
         </select>
 				<?php }else { echo "
-            <input id='location' name='location' type='text' readonly  value=" . $productDetail['location']; }?>
+            <input id='location' name='location' class='form-control' type='text' readonly  value=" . $productDetail['location']; }?>
             <span id="productInfo"></span>
         </div>
         <div>
             <label for="product">Product</label>
-            <input id="product" name="product" type="text" value="<?php echo $productDetail['product']; ?>"/>
+            <input id="product" name="product" type="text" class="form-control" value="<?php echo $productDetail['product']; ?>"/>
             <span id="notesInfo"></span>
         </div>
-            <input id="product_id" name="product_id"  type="hidden" value="<?php echo $productDetail['product_id']; ?>"/>
+            <input id="product_id" name="product_id"  type="hidden" class="form-control" value="<?php echo $productDetail['product_id']; ?>"/>
             <span id="notesInfo"></span>
         
         <div>
             <label for="notes">Notes</label>
-            <input id="notes" name="notes" type="text" value="<?php echo $productDetail['notes']; ?>"/>
+            <input id="notes" name="notes" type="text" class="form-control" value="<?php echo $productDetail['notes']; ?>"/>
         </div>
         <div>
             <label for="quantity">Quantity</label>
-            <input id="quantity" name="quantity" type="text" value="<?php echo $productDetail['quantity']; ?>"/>
+            <input id="quantity" name="quantity" type="text" class="form-control" value="<?php echo $productDetail['quantity']; ?>"/>
              </div>
              <div>
             <label for="description">Description</label>
-            <input id="description" name="description" type="text" value="<?php echo $productDetail['description']; ?>"/>
+            <input id="description" name="description" type="text" class="form-control" value="<?php echo $productDetail['description']; ?>"/>
             </div>
-        <input id="add" name="add" type="submit" value="<?php echo ($isEditing ? "Update" : "Add"); ?>"/>
+            <br />
+       <button id="add" class="btn btn-large btn-success" name="add" type="submit"> <?php echo ($isEditing ? "Update" : "Add"); ?></button>
         </form>
   </div>
-        </div>
+  </div>
+  
         
-</body>
-</html>
+       <?php include 'templates/order_history.php';?>

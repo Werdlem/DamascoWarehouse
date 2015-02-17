@@ -19,5 +19,5 @@ if(isset($_GET['term'])){
 			$matches[] = $result;
 			}
 }
-		$matches = array_slice($matches, 0, 5);
+		$matches = array_slice($matches, 0, 10);
 		print json_encode($matches);

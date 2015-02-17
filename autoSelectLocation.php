@@ -8,14 +8,14 @@ if(isset($_GET['term'])){
 	
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('select *
-		from products
-		where product
+		from location
+		where location
 		like :term');
 		$stmt->execute(array('term' => '%'.$_GET['term'].'%'));
 		foreach ($stmt as $result)
 		{
-			$result['value'] = $result['product'];
-			$result['label'] = "{$result['product']}";
+			$result['value'] = $result['location'];
+			$result['label'] = "{$result['location']}";
 			$matches[] = $result;
 			}
 }

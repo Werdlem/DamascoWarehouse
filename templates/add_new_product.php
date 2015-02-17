@@ -2,8 +2,7 @@
     <title>Add New Product</title>
     </head>
 <body>
-<?php include 'menu_bar.html';
-include_once('DAL/PDOConnection.php');
+<?php include_once('DAL/PDOConnection.php');
 
 
 
@@ -30,7 +29,7 @@ include_once('DAL/PDOConnection.php');
             <label for="description">Description</label>
             <input id="description" name="description" type="text" />
             </div>
-        <input id="add" name="add" type="submit" value="Add"/>
+        <a href="?action=update" id="add" name="add" class="btn btn-large btn-primary" >Add</a>
         </form>
         </div>
         </div>
