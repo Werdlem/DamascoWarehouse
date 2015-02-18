@@ -33,7 +33,7 @@ class products{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else{
-			die("<div class='alert alert-danger' role='alert'>The Product '".$Search."' Coule not be found. please click <a href='?action=update&search=".$Search."'>here</a> to add it to the database!</div></div></ br></br>");
+			die("<div class='alert alert-danger' role='alert'>The Product '".$Search."' Could not be found. please click <a href='?action=update&search=".$Search."'>here</a> to add it to the database!</div></div></ br></br>");
 			}
 	}
 	
