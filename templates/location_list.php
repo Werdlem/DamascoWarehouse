@@ -27,8 +27,7 @@ $p_id = $productsDal->fetchProductbyId($p_id);
      
      <?php
    
- if (isset($_POST['X'])){
-	
+ if (isset($_POST['X'])){	
    		$product = $_POST['product'];
 		$product_id = $_POST['product_id'];
 		$id = $_POST['X'];

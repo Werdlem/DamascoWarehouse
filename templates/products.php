@@ -24,16 +24,17 @@ else
             <span id="notesInfo"></span>
         </div>
         <div>
-            <label for="notes">Notes</label>
-            <input id="notes" class="form-control" name="notes" type="text" />
-        </div>
+            <label for="description">Description</label>
+            <textarea id="description" class="form-control" name="description" rows="1" type="text"></textarea>
         <div>
             <label for="quantity">Quantity</label>
             <input id="quantity" class="form-control" name="quantity" type="text" />
              </div>
              <div>
-            <label for="description">Description</label>
-            <input id="description" class="form-control" name="description" type="text" />
+            
+            <label for="notes">Notes</label>
+            <textarea id="notes" class="form-control" name="notes" rows="7" type="text"> </textarea>
+        </div>
             </div>
             <br/>
             <button type="submit" class="btn btn-primary" name="add" >Add</button>
@@ -45,9 +46,9 @@ else
      <?php   if(isset($_POST['add'])){
 	
 $product = strtoupper($_POST['product']);
-$notes = $_POST['notes'];
+$notes = nl2br($_POST['notes']);
 $quantity = $_POST['quantity'];
-$description = $_POST['description'];
+$description = nl2br($_POST['description']);
 
 $productDal = new products();  
 
