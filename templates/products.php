@@ -52,7 +52,6 @@ $description = $_POST['description'];
 $productDal = new products();  
 
 $add_product = $productDal->AddProduct($product, $notes, $quantity, $description);
-//header("location: index.php");
 }?>
 
 </body>

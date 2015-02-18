@@ -33,7 +33,7 @@ class products{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else{
-			die("<div class='alert alert-danger' role='alert'>The Product '".$Search."' Coule not be found. please click <a href='?action=products&search=".$Search."'>here</a> to add it to the database!</div></div></ br></br>");
+			die("<div class='alert alert-danger' role='alert'>The Product '".$Search."' Coule not be found. please click <a href='?action=update&search=".$Search."'>here</a> to add it to the database!</div></div></ br></br>");
 			}
 	}
 	
@@ -302,7 +302,6 @@ class products{
 			$stmt->bindValue(3, $quantity);
 			$stmt->bindValue(4, $description);
 			$stmt->execute();
-				
 			echo '<div class="alert alert-success" role="alert">The product '.$product . ' has been sucessfully added!</div>';	}	
 			
 			catch (PDOException $e){

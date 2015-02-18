@@ -1,12 +1,6 @@
 <?php
 
-//require_once('./DAL/PDOconnection.php');
-
-
 $productsDal = new products;
-
-//$id= $_GET['id'];
-//$p_id = $_GET['p_id'];
 
 $p_id = $productsDal->fetchProductbyId($p_id);
 ?>
@@ -15,7 +9,7 @@ $p_id = $productsDal->fetchProductbyId($p_id);
 <div class="panel-heading" style="text-align:center"><h3>List of Locations</h3></div>
 <div class="panel-body">
 
-<form method="post" id="update_location">
+<form method="post" action="?action=delete&deleteLocation&product=<?php echo $productDetail['product'];?>&product_id=<?php echo $productDetail['product_id'];?>">
 <table class="table" style="margin-bottom:0px">
 <?php if (!$p_id) {echo"<div class='alert alert-danger' role='alert'>No Locations</div>";} else { foreach ($p_id as $results){?>
 <tr><td style="vertical-align:middle"><?php echo $results['location']; ?></td>
@@ -38,8 +32,6 @@ $p_id = $productsDal->fetchProductbyId($p_id);
    		$product = $_POST['product'];
 		$product_id = $_POST['product_id'];
 		$id = $_POST['X'];
-	$productDal->Delete($id);
-	header("Location: ?action=update_product&id=".$product."&p_id=".$product_id."&l_id=".$id);
 	}
 
   ?>

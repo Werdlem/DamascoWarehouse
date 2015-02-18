@@ -56,7 +56,7 @@ if(isset($_POST['doSearch'])){
 			$Search = $_POST['search_product'];
 			$Search = $productDal->search($Search);
 			foreach($Search as $Result){
-				
+			
 				$id = $Result['product'];
 				$p_id = $Result['product_id'];
 			
