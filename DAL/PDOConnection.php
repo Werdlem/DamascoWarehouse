@@ -305,7 +305,7 @@ class products{
 			echo '<div class="alert alert-success" role="alert">The product '.$product . ' has been sucessfully added!</div>';	}	
 			
 			catch (PDOException $e){
-				echo '<div class="alert alert-danger" role="alert">the product '.$product . ' appears to have been entered already'. $e</div>';
+				echo '<div class="alert alert-danger" role="alert">the product '.$product . ' appears to have been entered already'. $e';
 			
 				}			
 		}
