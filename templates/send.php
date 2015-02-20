@@ -4,7 +4,17 @@
  require_once 'DAL/PDOConnection.php';
  $productDal = new products();
  
+ if ($_GET['id']==''){
+	 $id = $_GET['product'];
+	 $p_id = $productDal->GetProducts($id);
+	 	 foreach ($p_id as $id){	 
+	 $id = $id['product_id'];
+		 }
+	 }
+	 else{
+ 
  $id = $_GET['id'];
+	 }
  
  // Sets Date Ordered Field
  if(isset($_GET['product'])){
@@ -14,9 +24,9 @@
 		$productDal->order_history($id, $today);	
     
 	//Create the transport
-			$transport = Swift_MailTransport::newInstance(SMTP_HOST, SMTP_PORT);	
-			$mailer = Swift_Mailer::newInstance($transport);
-			
+			$transport = Swift_MailTransport::newInstance(SMTP_HOST, SMTP_PORT);
+				
+			$mailer = Swift_Mailer::newInstance($transport);			
 			$message = Swift_Message::newInstance('Please Order')
 			->setSubject('Product Order: ' .$_GET['product'])
 			->setFrom($EMAIL_ORDERS_FROM)
@@ -28,7 +38,7 @@
 			->setBody('<html>'.
                 '<head>Hello<br /><br /></head>'.
                 '<body>'.
-                'Please will you kindly order '.$_GET['quantity']." of " .$_GET['product'] .
+                'Please will you kindly order ' .$_GET['product'] .
                 '<br /><br />Kind Regards<br /><br />'.
                 'PostPack'.
                 '</body>' .
