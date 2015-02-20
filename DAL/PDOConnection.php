@@ -306,7 +306,7 @@ class products{
 			
 			catch (PDOException $e){
 
-				echo '<div class="alert alert-danger" role="alert">the product '.$product . ' appears to have been entered already'. $e;
+				echo '<div class="alert alert-danger" role="alert">the product '.$product . ' appears to have been entered already'. $e .'</div>';
 			
 				}			
 		}
