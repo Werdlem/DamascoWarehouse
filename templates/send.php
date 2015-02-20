@@ -4,6 +4,8 @@
  require_once 'DAL/PDOConnection.php';
  $productDal = new products();
  
+ $id = $_GET['id'];
+ 
  // Sets Date Ordered Field
  if(isset($_GET['product'])){
 	date_default_timezone_set('UTC');
