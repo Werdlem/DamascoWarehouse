@@ -31,6 +31,11 @@ else
             <input id="quantity" class="form-control" name="quantity" type="text" />
              </div>
              <div>
+             <div>
+            
+            
+            <input id="last_ordered" class="form-control" name="last_ordered" rows="1" value=" " type="hidden"/>
+        </div>
             
             <label for="notes">Notes</label>
             <textarea id="notes" class="form-control" name="notes" rows="7" type="text"> </textarea>
@@ -49,10 +54,11 @@ $product = strtoupper($_POST['product']);
 $notes = nl2br($_POST['notes']);
 $quantity = $_POST['quantity'];
 $description = nl2br($_POST['description']);
+$last_ordered = $_POST['last_ordered'];
 
 $productDal = new products();  
 
-$add_product = $productDal->AddProduct($product, $notes, $quantity, $description);
+$add_product = $productDal->AddProduct($product, $notes, $quantity, $description, $last_ordered);
 }?>
 
 </body>

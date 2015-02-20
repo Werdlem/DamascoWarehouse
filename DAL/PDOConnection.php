@@ -290,17 +290,18 @@ class products{
 			$stmt->execute();				
 				}
 				
-		public function AddProduct($product, $notes, $quantity, $description){
+		public function AddProduct($product, $notes, $quantity, $description, $last_ordered){
 			$pdo = Database::DB();
 		try{
 			$stmt = $pdo->prepare('insert
 			into products
-			(product, notes, quantity, description)
-			values (?, ?, ?, ?)');
+			(product, notes, quantity, description, last_ordered)
+			values (?, ?, ?, ?, ?)');
 			$stmt->bindValue(1, $product);
 			$stmt->bindValue(2, $notes);
 			$stmt->bindValue(3, $quantity);
 			$stmt->bindValue(4, $description);
+			$stmt->bindValue(5, $last_ordered);
 			$stmt->execute();
 			echo '<div class="alert alert-success" role="alert">The product '.$product . ' has been sucessfully added!</div>';	}	
 			
