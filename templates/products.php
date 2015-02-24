@@ -59,6 +59,7 @@ $last_ordered = $_POST['last_ordered'];
 $productDal = new products();  
 
 $add_product = $productDal->AddProduct($product, $notes, $quantity, $description, $last_ordered);
+header('location:?action=update_product&id='.$product.'&p_id=');
 }?>
 
 </body>

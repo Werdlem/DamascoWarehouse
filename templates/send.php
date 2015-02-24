@@ -25,7 +25,6 @@
     
 	//Create the transport
 			$transport = Swift_MailTransport::newInstance(SMTP_HOST, SMTP_PORT);
-				
 			$mailer = Swift_Mailer::newInstance($transport);			
 			$message = Swift_Message::newInstance('Please Order')
 			->setSubject('Product Order: ' .$_GET['product'])
