@@ -35,6 +35,23 @@ class products{
 			}
 	}
 	
+	public function GetAllProducts($products){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('
+			Select *
+			from production_stock
+			order by product asc
+		');
+		$stmt->bindValue(':stmt', $products);
+		$stmt->execute();
+		if($stmt->rowCount()>0) {
+		while ($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+		return $results;
+	}
+		}
+	}
+	
 	public function GetCustomer($id){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('Select * 
@@ -49,7 +66,6 @@ class products{
 		}
 	}
 	}
-	
 	public function GetCustomerID($id){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('Select customer_id 
