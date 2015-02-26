@@ -89,7 +89,7 @@ class products{
 		from stock_movment
 		where product_id
 		like :stmt
-		order by id desc limit 10
+		order by id desc limit 5
 		');
 		$stmt->bindValue(':stmt',$product);
 		$stmt->execute();
@@ -167,6 +167,20 @@ class products{
 		}
 	}
 	
-	
-	
+	public function Total($total){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('select 
+		(sum(qty_in) - sum(qty_out)) as total
+		from stock_movment
+		group by product_id
+		having product_id = ?');
+		$stmt->bindValue(1, $total);
+		$stmt->execute();
+		//if($stmt->rowCount()>0){
+		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		{
+			return $results;		
+		}
+		
+	}
 }

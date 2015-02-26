@@ -62,7 +62,7 @@ else {
 	$product = $_GET['product'];
 	}
 	
-	$product = $productDal->GetProductDetails($product)
+	$product = $productDal->GetProductDetails($product);
 ?>
 
 
@@ -71,12 +71,18 @@ else {
 <div>
      <label for="product">Product</label>
         <input id="product" name="product" type="text" disabled="disabled" class="form-control" value="<?php echo $Result['product']; ?>"/>
+     <br />
         <span id="notesInfo"></span> </div>
      
       <div>
    
       
-<?php }?>
+<?php }
+$total = $Result['product_id'];
+$total = $productDal->Total($total);
+?>
+
+ <label for="amount" id="amount" name="amount" type="text" />Total In Stock: <?php if ($total){foreach ($total as $amt){echo $amt;}}else{echo '0';}?>
 </div>
 
 <?php include 'updateStock.php';?>

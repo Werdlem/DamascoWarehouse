@@ -2,26 +2,6 @@
 
 $productDal = new products();
 
-if (isset($_POST['post'])){
-if ($_POST['add'] > 0){
-	$id = $_POST['add'];
-	$date = date('d-m-Y');
-	$product_id = $_GET['product'];
-	$qty = $_POST['add'];
-	$id = $productDal->stock_In($date, $product_id, $qty);
-	}
-	else{
-		if($_POST['subtract']> 0){
-		$id_out = $_POST['subtract'];
-	$date = date('d-m-Y');
-	$product_id = $_GET['product'];
-	$qty_out = $_POST['subtract'];
-	$id_out = $productDal->stock_Out($date, $product_id, $qty_out);
-		}
-	} 
-}
-
-
 if (!isset($_GET['product'])){
 	
 	die('please select a product');
@@ -31,15 +11,15 @@ else {
 	$product = $_GET['product'];
 	}
 	
-	$product = $productDal->GetProductDetails($product)
+	$product = $productDal->GetProductDetails($product);
 ?>
 
 
 
 <?php foreach ($product as $Result){?>
-<form  method="post">
+<form  method="post" action="?action=action&update_production&customer_id=<?php echo $Result ['customer_id']?>&product=<?php echo $Result['product_id']?>">
         <input id="product_id" name="product_id" type="hidden" value="<?php echo $Result['product_id'];?>" />
-        
+        <br />
         <div style="width:49%; float:left; text-align:center">
      <label for="add">Add</label>
         <input id="add" name="add" type="text" autocomplete="off" class="form-control"/> 
@@ -53,5 +33,5 @@ else {
        
 <?php }?>
 <br />
-<button type="submit" id="post" name="post" class="btn btn-primary">Post</button>
+<button type="submit" id="update_production" name="update_production" class="btn btn-primary" style="margin-top:10px">Post</button>
 </form>

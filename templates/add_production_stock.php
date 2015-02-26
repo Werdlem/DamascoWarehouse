@@ -3,9 +3,10 @@
     </head>
 <body>
 <?php include_once('DAL/Production_PDOConnection.php');
-$productDal = new products(); 
+$productDal = new products();
+include 'add_customer.php'; 
 	   ?>
-<div class="panel panel-primary" style="width:35%; float:left">
+<div class="panel panel-primary" style="width:35%; float:left; margin-left:13px">
 <div class="panel-heading" style="text-align:center;"><h3>Add Product</h3></div>
 <div class="panel-body">
     <form method="post" id="add">
@@ -56,7 +57,7 @@ $add_product = $productDal->AddProduct($product, $customer, $details);
 
 }
 
-include 'add_customer.php';?>
+?>
 
 </body>
 </html>
