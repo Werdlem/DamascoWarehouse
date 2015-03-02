@@ -102,7 +102,8 @@ if(isset($_POST['doSearch'])){
 				}
 				?>
 </p>
-<p>Last Ordered: <?php echo $result['last_ordered']?></p>
+
+<p>Last Ordered: <?php echo $result['last_ordered']?> &nbsp | &nbsp Quantity: <?php echo $result['quantity'] ?></p>
 <p>Notes: <?php echo $result['description']?></p>
 
 <?php 

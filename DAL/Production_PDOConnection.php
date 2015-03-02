@@ -199,4 +199,14 @@ class products{
 		}
 		
 	}
+	public function deleteTotal($delete){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('delete
+		from stock_movment
+		where
+		id like :stmt');
+		$stmt->bindValue(':stmt', $delete);
+			$stmt->execute();
+		
+	}
 }

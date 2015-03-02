@@ -28,7 +28,7 @@ else
             <textarea id="description" class="form-control" name="description" rows="1" type="text"></textarea>
         <div>
             <label for="quantity">Quantity</label>
-            <input id="quantity" class="form-control" name="quantity" type="text" />
+            <input id="quantity" class="form-control" name="quantity" type="text" value="0"/>
              </div>
              <div>
              <div>

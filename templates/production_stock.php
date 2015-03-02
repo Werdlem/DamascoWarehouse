@@ -112,12 +112,16 @@ else
     <td>Qty In</td>
     <td>Qty Out</td>
     <td>Date</td>
+	 <td>Delete</td>
     </tr>
     <tr>
-     <?php foreach ($product as $Result){?>
+     <?php $product_id = $_GET['product'];
+	 $customer_id = $_GET['id'];
+	 foreach ($product as $Result){?>
        <td><?php echo $Result['qty_in']?></td>
        <td><?php echo $Result['qty_out']?></td>
        <td><?php echo $Result['date']?></td>
+	   <td style="text-align:center"><a href="?action=action&delete_total&product=<?php echo $product_id ?>&id=<?php echo $customer_id ?>&line_id=<?php echo $Result['id']?>"><strong style="color: red;">-</strong></a></td>
        </tr>
         <span id="notesInfo"></span> </div>
       

@@ -25,7 +25,7 @@ $products = '';
          </tbody>
          
                       
-<?php }?>
+		 <?php }?>
 </table>
 </div>
 </div>
