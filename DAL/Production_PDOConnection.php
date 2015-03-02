@@ -186,7 +186,7 @@ class products{
 	public function Total($total){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('select 
-		(sum(qty_in) - sum(qty_out)) as total
+		coalesce(sum(qty_in),0) - coalesce(sum(qty_out),0) as total
 		from stock_movment
 		group by product_id
 		having product_id = ?');

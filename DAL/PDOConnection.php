@@ -356,7 +356,7 @@ class products{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			}
 			else{
-			die("<div class='alert alert-danger' role='alert'>No History</div>");
+			die("<div class='alert alert-danger' role='alert'>No History</div><br/>");
 			}
 		}
 		
