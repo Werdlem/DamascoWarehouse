@@ -209,4 +209,15 @@ class products{
 			$stmt->execute();
 		
 	}
+	
+	public function deleteProduct($delete){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('delete
+		from production_stock
+		where
+		product_id like :stmt');
+		$stmt->bindValue(':stmt', $delete);
+			$stmt->execute();
+		
+	}
 }

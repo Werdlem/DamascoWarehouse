@@ -1,4 +1,5 @@
-
+</div>
+<div style="width:1100px; margin-left:auto; margin-right:auto">
 <?php
 //include 'search.php';
 require_once('DAL/Production_PDOConnection.php');
@@ -10,7 +11,7 @@ $id = '';
 $select = $productDal->GetCustomer($id);
 ?>
 
-<div class="panel panel-primary" style="width:35%; float:left">
+<div class="panel panel-primary" style="width:30%; float:left">
 <div class="panel-heading" style="text-align:center;"><h3>Customer</h3></div>
 <div class="panel-body">
 
@@ -20,7 +21,7 @@ $select = $productDal->GetCustomer($id);
 </div>
 </div>
 
-<div class="panel panel-primary" style="width:20%; float:left; margin-left:13px">
+<div class="panel panel-primary" style="width:30%; float:left; margin-left:13px">
 <div class="panel-heading" style="text-align:center;"><h3>Product</h3></div>
 <div class="panel-body">
 
@@ -37,9 +38,12 @@ else {
 	$id = $productDal->GetProduct($id)
 ?>
 
-<?php foreach ($id as $Result){?>
+<?php $customer_id = $_GET['id'];
+	 foreach ($id as $Result){?>
 
-     <p><a href="?action=production_stock&id=<?php echo $Result['customer_id'];?>&product=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary"><?php echo $Result['product']; ?></a></p>
+     <p><a href="?action=production_stock&id=<?php echo $Result['customer_id'];?>&product=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary"><?php echo $Result['product']; ?></a>
+	 <a href="?action=action&delete_product&id=<?php echo $customer_id?>&p_id=<?php echo $Result['product_id']?>" style="color: red; float:right"><strong>X</a></strong>
+	 </p>
     
 <?php }?>
 </div>
@@ -47,7 +51,7 @@ else {
 
 
 
-<div class="panel panel-primary" style="width:40%; float:left; margin-left:13px">
+<div class="panel panel-primary" style="width:37%; float:left; margin-left:13px">
 <div class="panel-heading" style="text-align:center;"><h3>Product Details</h3></div>
 <div class="panel-body">
 
@@ -121,12 +125,13 @@ else
        <td><?php echo $Result['qty_in']?></td>
        <td><?php echo $Result['qty_out']?></td>
        <td><?php echo $Result['date']?></td>
-	   <td style="text-align:center"><a href="?action=action&delete_total&product=<?php echo $product_id ?>&id=<?php echo $customer_id ?>&line_id=<?php echo $Result['id']?>"><strong style="color: red;">-</strong></a></td>
+	   <td style="text-align:center"><a href="?action=action&delete_total&product=<?php echo $product_id ?>&id=<?php echo $customer_id ?>&line_id=<?php echo $Result['id']?>"><strong style="color: red;">X</strong></a></td>
        </tr>
         <span id="notesInfo"></span> </div>
       
       
-<?php }?>
+<?php }?></div>
+
 
 
 

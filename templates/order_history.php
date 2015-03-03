@@ -1,5 +1,5 @@
 <?php 
-//include_once('DAL/PDOConnection.php');
+//include_once('../DAL/PDOConnection.php');
 
 $productDal = new products();
 if ($_GET['p_id'] == ''){

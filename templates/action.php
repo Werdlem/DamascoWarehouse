@@ -36,8 +36,6 @@ if ($_POST['add'] > 0){
 
 $customer = strtoupper($_POST['customer']);
 
-//$productDal = new products();  
-
 $add_customer = $productDal->AddCustomer($customer);
 
 header("Location: ?action=add_production_stock");
@@ -54,3 +52,13 @@ header("Location: ?action=add_production_stock");
 		$delete = $productDal->deleteTotal($delete);
 		header('location: ?action=production_stock&id='.$id."&product=".$product);
 	 }
+	 
+	 if (isset($_GET['delete_product'])){
+		  $id = $_GET['id'];
+		 $delete = $_GET['p_id'];
+		 
+		 echo $id; 
+		 echo $delete;
+		 $delete = $productDal->deleteProduct($delete);
+		 header('location: ?action=production_stock&id='.$id);		
+		 }
