@@ -1,4 +1,6 @@
+<?php include 'om_menu.php'; ?>
 </div>
+<h1>Production Stock Adjustment</h1>
 <div style="width:1100px; margin-left:auto; margin-right:auto">
 <?php
 //include 'search.php';
@@ -127,10 +129,10 @@ else
        <td><?php echo $Result['date']?></td>
 	   <td style="text-align:center"><a href="?action=action&delete_total&product=<?php echo $product_id ?>&id=<?php echo $customer_id ?>&line_id=<?php echo $Result['id']?>"><strong style="color: red;">X</strong></a></td>
        </tr>
-        <span id="notesInfo"></span> </div>
-      
-      
+        <span id="notesInfo"></span> </div><br />
+           
 <?php }?></div>
+
 
 
 
