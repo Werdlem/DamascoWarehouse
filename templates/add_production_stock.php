@@ -1,4 +1,3 @@
-<?php include 'om_menu.php'; ?>
 <h1>Add Customer / Product</h1>
 <?php include_once('DAL/Production_PDOConnection.php');
 $productDal = new products();

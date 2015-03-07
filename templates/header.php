@@ -25,13 +25,18 @@
           <li><a href="?action=search">Home</a></li>
           <li><a href="?action=update">Add</a></li>
           <li><a href="?action=aisles&Aisle=2">Aisles</a></li>
-          <li role="presentation" class="dropdown" style="display:none"><a class="dropdown-toggle" data-toggle="dropdown" href="?action=production_stock&id=">Production Stock</a>
+          <?php 
+		  if (!isset($_COOKIE['password'])){ 
+		  }
+		  else{
+		  ?>
+          <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="?action=production_stock&id=">Production Stock</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="?action=production_stock_totals&id=">Produced Stock Totals</a></li>
               <li><a href="?action=add_production_stock">Add Product / Customer</a></li>
             </ul>
           </li>
-         
+         <?php }?>
         </ul>
       </div>
     </ul>

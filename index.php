@@ -1,6 +1,11 @@
 <?php
-include("templates/header.php");
+$pass = 'ops';
 
+if (!isset($_COOKIE['password'])){ 
+      include ("templates/login.html");
+    } 
+	
+include("templates/header.php");
 // Set the default name
 
 $action = 'search';

@@ -1,5 +1,4 @@
 <?php require_once('./DAL/Production_PDOConnection.php'); 
-include 'om_menu.php';
 $productDal = new products;
 $id = '';
 

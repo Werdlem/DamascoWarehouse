@@ -1,4 +1,3 @@
-<?php include 'om_menu.php'; ?>
 </div>
 <h1>Production Stock Adjustment</h1>
 <div style="width:1100px; margin-left:auto; margin-right:auto">
