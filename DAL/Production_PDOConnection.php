@@ -25,7 +25,7 @@ class products{
 			from production_stock
 			where customer_id like :stmt
 		');
-		$stmt->bindValue(':stmt', "%".$id."%");
+		$stmt->bindValue(':stmt', $id);
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
