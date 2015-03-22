@@ -32,7 +32,7 @@ else {
        <span id="notesInfo"></span> 
        
 <?php }?>
-<br />
+
 <button type="submit" id="update_production" name="update_production" class="btn btn-primary" style="margin-top:10px">Post</button>
 </form>
-<br/>
+

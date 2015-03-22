@@ -86,7 +86,7 @@ else {
 $total = $Result['product_id'];
 $total = $productDal->Total($total);
 ?>
-
+	
  <label for="amount" id="amount" name="amount" type="text" />Total In Stock: <?php if ($total){foreach ($total as $amt){echo $amt;}}else{echo '0';}?>
 </div>
 
@@ -106,10 +106,6 @@ else
 	
 	$product = $productDal->GetStockMovment($product)
 ?>
-
-
-
-
 <div>
     <table class="table">
     <h4 style="text-align:center">Movment</h4>
@@ -128,12 +124,7 @@ else
        <td><?php echo $Result['date']?></td>
 	   <td style="text-align:center"><a href="?action=action&delete_total&product=<?php echo $product_id ?>&id=<?php echo $customer_id ?>&line_id=<?php echo $Result['id']?>"><strong style="color: red;">X</strong></a></td>
        </tr>
-        <span id="notesInfo"></span> </div><br />
+        <span id="notesInfo"></span> </div>
            
-<?php }?></div>
-
-
-
-
-
+<?php }?></div></table>
 
