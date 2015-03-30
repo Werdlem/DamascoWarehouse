@@ -24,6 +24,7 @@ class products{
 			Select *
 			from production_stock
 			where customer_id like :stmt
+			order by product ASC
 		');
 		$stmt->bindValue(':stmt', $id);
 		$stmt->execute();

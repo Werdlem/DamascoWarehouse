@@ -17,7 +17,7 @@ $select = $productDal->GetCustomer($id);
 <div class="panel-body">
 
 <?php foreach ($select as $Result){?>
-    <p> <a href="?action=production_stock&id=<?php echo $Result['customer_id'];?>" class="btn btn-large btn-primary"><?php echo $Result['customer_name']; ?></a></p>
+    <p> <a href="?action=production_stock&id=<?php echo $Result['customer_id'];?>"><?php echo $Result['customer_name']; ?></a></p>
 <?php }?>
 </div>
 </div>
@@ -42,7 +42,7 @@ else {
 <?php $customer_id = $_GET['id'];
 	 foreach ($id as $Result){?>
 
-     <p><a href="?action=production_stock&id=<?php echo $Result['customer_id'];?>&product=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary"><?php echo $Result['product']; ?></a>
+     <p><a href="?action=production_stock&id=<?php echo $Result['customer_id'];?>&product=<?php echo $Result['product_id'];?>"><?php echo $Result['product']; ?></a>
 	 <a href="?action=action&delete_product&id=<?php echo $customer_id?>&p_id=<?php echo $Result['product_id']?>" style="color: red; float:right"><strong>X</a></strong>
 	 </p>
     
