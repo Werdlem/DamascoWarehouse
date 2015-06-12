@@ -190,10 +190,11 @@ class products{
 		coalesce(sum(qty_in),0) - coalesce(sum(qty_out),0) as total
 		from stock_movment
 		group by product_id
-		having product_id = ?');
+		having product_id = ?
+		');
 		$stmt->bindValue(1, $total);
 		$stmt->execute();
-		//if($stmt->rowCount()>0){
+		
 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
 		{
 			return $results;		

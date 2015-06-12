@@ -46,7 +46,8 @@ else {
     <td><?php echo $Result['product']?></td>
     <td><?php $total = $Result['product_id'];
 	$total = $productDal->Total($total);
-	if ($total){foreach ($total as $amt){echo $amt;}}else{echo '0';}?></td>
+	if ($total){foreach ($total as $amt);{echo $amt;}}else{echo '0';}
+	?><a href="?action=send&product=<?php echo $Result['product'];?>&id=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary" style="float:right">Order</a></td>
     </tr>
     <?php }?>
     </table>
