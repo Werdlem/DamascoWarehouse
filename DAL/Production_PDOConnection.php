@@ -106,7 +106,7 @@ class products{
 		from stock_movment
 		where product_id
 		like :stmt
-		order by id desc limit 5
+		order by id desc limit 10
 		');
 		$stmt->bindValue(':stmt',$product);
 		$stmt->execute();
