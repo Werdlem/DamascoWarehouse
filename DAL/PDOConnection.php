@@ -432,4 +432,29 @@ class products{
 		
 		}
 	}
+	
+	public function select($supplier_name, $dateFrom, $dateTo){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('
+	select *
+	from supplier_details
+	where name like (?)
+	and next_due > (?)
+	and next_due < (?)
+	');
+	$stmt->bindValue(1 , "%".$supplier_name."%");
+	$stmt->bindValue(2 ,$dateFrom);
+	$stmt->bindValue(3 ,$dateTo);
+	$stmt->execute();
+	if($stmt->rowCount()> 'null')
+	{
+			while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+			return $results;
+		}
+			}
+		else{
+			die ("No Results");
+			}		
+		}
 }
