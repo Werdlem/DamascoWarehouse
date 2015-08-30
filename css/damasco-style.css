@@ -34,8 +34,22 @@ h3{margin-bottom: 5px;
     font-size: 11px;
     padding: 6px;
     width: 220px;
-}
+	}
 
 .container{width:900px}
 
 h1{text-align:center; color:#337ab7; margin-top:-30px}
+
+select {
+    width: 220px;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+	height:30px;
+	line-height: 30px;
+}
+
+input.suppliers{
+	width: 220px;
+	line-height:30px;
+	height:30px
+	}

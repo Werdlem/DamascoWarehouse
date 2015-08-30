@@ -4,6 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="css/damasco-style.css"  type="text/css"/>
 <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/dateInput.css" />
+
 <title>Damasco Warehouse Control</title>
 </head>
 
@@ -36,6 +38,7 @@
               <li><a href="?action=add_production_stock">Add Product / Customer</a></li>
             </ul>
           </li>
+           <li><a href="?action=suppliers">Suppliers</a></li>
          <?php }?>
         </ul>
       </div>
