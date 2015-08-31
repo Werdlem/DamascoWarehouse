@@ -13,6 +13,8 @@ require_once './DAL/PDOConnection.php';
         <option>John Roberts</option>
         <option>Krystals</option>
         <option>Weedon</option>
+        <option>Antalis</option>
+        <option>DS Smith</option>
       </select>
       <input class="suppliers" name="date-from" placeholder=" date from" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" placeholder=" date to" type="text" onfocus="(this.type='date')" />
@@ -31,7 +33,7 @@ require_once './DAL/PDOConnection.php';
  
  $supplier_name = $_POST['taskOption'];
  ?>
-    <br /><p><?php echo $supplier_name .  ' supply performance between dates ' . $dateFrom . ' & '. $dateTo;?>
+    <br /><p><?php echo $supplier_name .  ' supply performance between ' . $dateFrom . ' & '. $dateTo;?>
     <br />
     <table width="100%" class="listing_table" >
       <thead>
@@ -86,9 +88,9 @@ require_once './DAL/PDOConnection.php';
       </tr>
       <?php }
 	  echo $count . " Records found! <br /><br />";
-	  echo '<p>'. $onTime . " <span class='label label-success'> On Time</span> deliveries";
-	  echo '<p>'. $early . " <span class='label label-warning'> Early</span> Deliveries<br />";
-	  echo '<p>'. $late . " <span class='label label-danger'> Late</span> Deliveries<br />";
+	  echo '<p>'. $onTime . " <span class='label label-success'> On Time</span> Deliveries";
+	  echo '<p>'. $early . " <span class='label label-warning'> Early</span> Deliveries";
+	  echo '<p>'. $late . " <span class='label label-danger'> Late</span> Deliveries";
 	 
   }}?>
       </tbody>

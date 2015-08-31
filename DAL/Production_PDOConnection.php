@@ -100,6 +100,17 @@ class products{
 		}
 	}
 	
+	public function updateProduct($product, $today){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('update 
+		production_stock
+		set details = :today
+		where product = :stmt');
+		$stmt->bindValue(':today', $today);
+		$stmt->bindValue(':stmt', $product);
+		$stmt->execute();
+		}
+	
 	public function GetStockMovment($product){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('Select * 

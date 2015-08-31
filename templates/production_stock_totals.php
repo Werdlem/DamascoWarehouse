@@ -35,11 +35,13 @@ else {
 <?php $customer_id = $_GET['id'];
 	 ?>
 
-    <table class="table">
+    <table class="table" style="border-top: none">
     <h4 style="text-align:center"></h4>
     <tr class="heading">
     <td><strong style="font-size:18px">Product</strong></td>
-    <td><strong style="font-size:18px">Quantity</strong></td>
+    <td><strong style="font-size:18px">Qty</strong></td>
+    <td><strong style="font-size:18px">Ordered</strong></td>
+    <td><strong style="font-size:18px">Order</strong></td>
     </tr>
     <tr>
     <?php foreach ($id as $Result){?>
@@ -47,7 +49,9 @@ else {
     <td><?php $total = $Result['product_id'];
 	$total = $productDal->Total($total);
 	if ($total){foreach ($total as $amt);{echo $amt;}}else{echo '0';}
-	?><a href="?action=send&product=<?php echo $Result['product'];?>&id=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary" style="float:right">Order</a></td>
+	?>
+     <td><?php echo $Result['details'];?></td>
+    <td><a href="?action=send&production_product=<?php echo $Result['product'];?>&id=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary" style="float:right; height:30px">Order</a></td>
     </tr>
     <?php }?>
     </table>
