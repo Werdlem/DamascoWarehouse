@@ -1,6 +1,8 @@
 <?php 
 require_once './DAL/PDOConnection.php';
 ?>
+
+
 <div class="panel panel-primary">
   <div class="panel-heading" style="text-align:center;">
     <h3>Supplier Performance Monitor</h3>
@@ -18,8 +20,7 @@ require_once './DAL/PDOConnection.php';
       </select>
       <input class="suppliers" name="date-from" placeholder=" date from" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" placeholder=" date to" type="text" onfocus="(this.type='date')" />
-      
-    <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
+      <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
       <input type="hidden" name="doSearch" value="1"  />
     </form>
     <?php
@@ -33,8 +34,8 @@ require_once './DAL/PDOConnection.php';
  
  $supplier_name = $_POST['taskOption'];
  ?>
-    <br /><p><?php echo $supplier_name .  ' supply performance between ' . $dateFrom . ' & '. $dateTo;?>
     <br />
+    <p><?php echo $supplier_name .  ' supply performance between ' . $dateFrom . ' & '. $dateTo;?> <br />
     <table width="100%" class="listing_table" >
       <thead>
         <tr class="heading" style="text-align:center">
@@ -67,7 +68,7 @@ require_once './DAL/PDOConnection.php';
 			$date3 = date_create($due);
 			$strip = $date2->format('Y-m-d');
 			?>
-      <td><?php echo $result['next_due']; ?></td>
+   <td><?php echo $result['next_due']; ?></td>
         <td><?php echo $result['schedule_date']; ?></td>
         <td><?php echo $result['delivery_date']; ?></td>
         <td><?php if ($due == $strip){
@@ -92,8 +93,10 @@ require_once './DAL/PDOConnection.php';
 	  echo '<p>'. $early . " <span class='label label-warning'> Early</span> Deliveries";
 	  echo '<p>'. $late . " <span class='label label-danger'> Late</span> Deliveries";
 	 
-  }}?>
-      </tbody>
+}?>
+      <div class="alert alert-info" role="alert" style="width:75%; float: right; margin-top: -102px; font-size:13px; padding:10px"><strong>On Time/Late/Early</strong> deliveries is the difference between the initial agreed <strong>Due Date</strong> & actual <strong>Delivery Date</strong>. The <strong>Margin</strong> it the difference between the <strong>Scheduled Date & Time</strong> and actual <strong> Delivery Date & Time</strong>. This result is then compared to a 90minute delivery grace period, going green if within the 90minutes or red if later.</div>
+      <?php }?>
+        </tbody>
       
     </table>
   </div>

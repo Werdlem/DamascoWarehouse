@@ -77,6 +77,7 @@ else {
      <label for="product">Product</label>
         <input id="product" name="product" type="text" disabled="disabled" class="form-control" value="<?php echo $Result['product']; ?>"/>
      <br />
+     <label for="ordered"> Last Ordered: <?php echo $Result['details']; ?></label>
         <span id="notesInfo"></span> </div>
      
       <div>
