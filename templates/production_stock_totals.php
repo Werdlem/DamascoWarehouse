@@ -10,7 +10,7 @@ $select = $productDal->GetCustomer($id);
 <div class="panel-body">
 
 <?php foreach ($select as $Result){?>
-    <p> <a href="?action=production_stock_totals&id=<?php echo $Result['customer_id'];?>" class="btn btn-large btn-primary"><?php echo $Result['customer_name']; ?></a></p>
+    <p> <a href="?action=production_stock_totals&id=<?php echo $Result['customer_id'];?>"><?php echo $Result['customer_name']; ?></a></p>
 <?php }?>
 </div>
 </div>

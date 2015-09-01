@@ -94,7 +94,7 @@ require_once './DAL/PDOConnection.php';
 	  echo '<p>'. $late . " <span class='label label-danger'> Late</span> Deliveries";
 	 
 }?>
-      <div class="alert alert-info" role="alert" style="width:75%; float: right; margin-top: -102px; font-size:13px; padding:10px"><strong>On Time/Late/Early</strong> deliveries is the difference between the initial agreed <strong>Due Date</strong> & actual <strong>Delivery Date</strong>. The <strong>Margin</strong> it the difference between the <strong>Scheduled Date & Time</strong> and actual <strong> Delivery Date & Time</strong>. This result is then compared to a 90minute delivery grace period, going green if within the 90minutes or red if later.</div>
+      <div class="alert alert-info" role="alert" style="width:75%; float: right; margin-top: -102px; font-size:13px; padding:10px"><strong>On Time/Late/Early</strong> deliveries is the difference between the initial agreed <strong>Due Date</strong> & actual <strong>Delivery Date</strong>. The <strong>Margin</strong> is the difference of delivery time between the <strong>Scheduled Date & Time</strong> and actual <strong> Delivery Date & Time</strong>. This result is then compared to a 90minute delivery grace period, going green if within the 90minutes or red if later.</div>
       <?php }?>
         </tbody>
       
