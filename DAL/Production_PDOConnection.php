@@ -92,7 +92,7 @@ class products{
 		where product_id
 		like :stmt
 		');
-		$stmt->bindValue(':stmt', "%".$product."%");
+		$stmt->bindValue(':stmt', $product);
 		$stmt->execute();
 		while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
 		{
