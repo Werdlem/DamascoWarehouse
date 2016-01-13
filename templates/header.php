@@ -36,6 +36,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="?action=production_stock_totals&id=">Produced Stock Totals</a></li>
               <li><a href="?action=add_production_stock">Add Product / Customer</a></li>
+              <li><a href="?action=sheetboard">Sheetboard</a></li>
             </ul>
           </li>
            <li><a href="?action=suppliers">Suppliers</a></li>
