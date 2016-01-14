@@ -1,5 +1,6 @@
 <?php 
-require_once './DAL/PDOConnection.php';
+require_once './DAL/sheetboard_PDOConnection.php';
+//require_once '../DAL/sheetboard_PDOConnection.php';
 ?>
 <style>
 .home {
@@ -18,7 +19,7 @@ require_once './DAL/PDOConnection.php';
       <h3 style="text-align:center">Sheetboard Select</h3>
     </div>
     <div class="panel-body">
-      <form action="sheetboard.php" method="post" id="Search">
+      <form action="?action=sheetboard" method="post" id="Search">
         <div id="search" style="text-align:center">
           <input type="text" style="margin-bottom:10px" class="txt_box" name="search_board" tabindex="1"/>
           <br />
@@ -37,82 +38,24 @@ if(isset($_POST['doSearch'])){
 		{
 			if ($_POST['search_board'] == ""){ die ('<div class="alert alert-danger" role="alert" style="float:left; width:100%; text-align: center">Oops, it would appear you have not entered a product to searh for!! <br />Please try again!</div>');}else{
 			$productDal = new sheetboard;
-			$Search = $_POST['search_board'];
-			$Search = $productDal->Get_Sheetboard($sku);
-			foreach($Search as $Result){
+			$sku = $_POST['search_board'];
+			$sku = $productDal->Get_Sheetboard($sku);
+			foreach($sku as $Result){
 			
-				$id = $Result['product'];
-				$p_id = $Result['product_id'];
+				$id = $Result['sku'];
 			
 		}
 		}
 		}
-	elseif($_POST['doSearch']==2)
-		{
-			$productDal = new products;			
-			$Search = $_POST['search_location'];	
-			$Search = $productDal->SearchLocation($Search);
-}
-
-
-
 ?>
 <?php if (!isset($_POST['doSearch']) || $_POST['doSearch']) { ?>
 <div class="panel panel-primary" style="width:100%; float:left">
 <div class="panel panel-heading"><h3>Search Results</h3></div>
 <div class="panel-body" style="margin-top:-20px">
-<?php foreach ($Search as $result){ 
-	  echo "<div style='border-bottom: 1px dashed #777; padding-bottom:5px; margin-bottom:10px; width:100%; float:left'> "?>
-      
-      <div class="alert alert-info" role="alert" style="width:40%; float:right; height:85px; font-size:46px; color:#C00; text-align:center"><?php echo $result['location'];?></strong></div>
- 
-
-<p>Product: <a href="?action=update_product&id=<?php echo $result['product']; ?>&p_id=<?php echo $result['product_id']; ?>"><?php echo $result['product'];?></a>
-
-  <?php 
-				//PRODUCT EDIT AND LOCATION ASSIGN				
-				if ($result['product'] == null){ echo("<a href='?action=add_product&id=".$result['id']."'>Add</a>");}				
-				elseif ($result['location']<0){ 
-				echo "<a href='?action=product_detail&l_id=".$result['product']."'style='color:red'>assign</a>";}				
-				?>
-  &nbsp; | &nbsp;
-  Location: <?php echo $result['location'];?></strong>
-  <?php 
-				// lOCATION ADD PRODUCT AND ASSIGN PRODUCT
-				if ($result['id']>0){ 
-				echo "<a href='?action=add_product&id=".$result['id']."'>Assign</a>";}
-				else{ 
-				//echo "<a href='?action=product_detail&l_id=".$result['product']."'style='color:red'>assign</a> ";
-				}
-				?>
-</p>
-
-<p>Last Ordered: <?php echo $result['last_ordered']?> &nbsp | &nbsp Quantity: <?php echo $result['quantity'] ?></p>
-<p>Notes: <?php echo $result['description']?></p>
-
-<?php 
-if(!$result['product']){
-	die;
-	}
- 
-if (!$result['location']){
-	echo "<a href='?action=delete&delete_product=".$result['product']."'>Delete Product</a>";
-	}
-else
-
-echo '<a href="?action=delete&delete='.$result['id'].'">Delete</a>';?>
-| <a href="?action=send&product=<?php echo $id;?>&id=<?php echo $p_id;?>">Order</a>
-<?php if ($result['product']>0){ 
-  echo "| <a href='?action=update_product&id=".$result['product']."&p_id=". $result['product_id']."'>Details</a>";}
-  
-  else{
-	 
-	 
- }
-			echo '</div>';		
-		}
-	
+<?php foreach ($sku as $result){
+	echo $result['sku'] . '<br/>';
+}
+echo '<a href="?action=sheetboard_details?">White</a> <a href="#">Brown</a>';
 }
 }
-
 ?>

@@ -18,13 +18,13 @@ class Database
 
 class sheetboard{	
 	
-	public function GetSheetboard($sku){
+	public function Get_Sheetboard($sku){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('
 			Select *
 			from goods_in
 			where sku like :stmt
-			order by sku ASC
+			group by sku
 		');
 		$stmt->bindValue(':stmt', $sku);
 		$stmt->execute();
