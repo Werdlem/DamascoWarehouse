@@ -17,6 +17,20 @@ class Database
 }
 
 class sheetboard{	
+
+public function sku(){
+	$pdo = Database::DB();
+	$stmt = $pdo->query('select *
+	from goods_in
+	group by sku');
+	$stmt->execute();
+	if ($stmt->rowCount()> 'null'){
+		while ($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+			return $results;
+			}
+		}
+	}
 	
 	public function Get_Sheetboard($sku){
 		$pdo = Database::DB();
@@ -24,7 +38,7 @@ class sheetboard{
 			Select *
 			from goods_in
 			where sku like :stmt
-			group by sku
+			group by sku, description
 		');
 		$stmt->bindValue(':stmt', $sku);
 		$stmt->execute();
