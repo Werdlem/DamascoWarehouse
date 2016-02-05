@@ -459,6 +459,7 @@ class products{
 	where name like (?)
 	and next_due > (?)
 	and next_due < (?)
+	order by next_due DESC
 	');
 	$stmt->bindValue(1 , "%".$supplier_name."%");
 	$stmt->bindValue(2 ,$dateFrom);

@@ -33,6 +33,8 @@ $suppliers = new products;
       <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
       <input type="hidden" name="doSearch" value="1"  />
     </form>
+    </div>
+    
      
     <?php
   if(isset($_POST['doSearch'])){
@@ -79,9 +81,9 @@ $suppliers = new products;
 			$date3 = date_create($due);
 			$strip = $date2->format('Y-m-d');
 			?>
-   <td><?php echo $result['next_due']; ?></td>
-        <td><?php echo $result['schedule_date']; ?></td>
-        <td><?php echo $result['delivery_date']; ?></td>
+   <td><?php echo date('d-m-Y', strtotime($result['next_due'])); ?></td>
+        <td><?php echo date('d-m-Y H:i:s', strtotime($result['schedule_date'])); ?></td>
+        <td><?php echo date('d-m-Y H:i:s', strtotime($result['delivery_date'])); ?></td>
         <td><?php if ($due == $strip){
 		  $onTime++;
 				  echo '<span class="label label-success">On Time</span>';
