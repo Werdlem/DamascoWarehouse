@@ -433,6 +433,24 @@ class products{
 		}
 	}
 	
+	public function Suppliers(){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('select
+		distinct name
+		from
+		supplier_details
+		order by name ASC
+		');
+		$stmt->execute();
+		if($stmt->rowCount()> 'null')
+		{
+			while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+			return $results;
+		}
+}
+	}
+	
 	public function select($supplier_name, $dateFrom, $dateTo){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('

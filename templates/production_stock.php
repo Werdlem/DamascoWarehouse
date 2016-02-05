@@ -4,6 +4,7 @@
 <?php
 //include 'search.php';
 require_once('DAL/Production_PDOConnection.php');
+//require_once('../DAL/Production_PDOConnection.php');
 
 $productDal = new products();
 

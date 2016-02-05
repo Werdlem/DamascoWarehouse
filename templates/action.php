@@ -1,8 +1,10 @@
 <?php 
 
 require_once('DAL/Production_PDOConnection.php');
+require_once('DAL/sheetboard_PDOConnection.php');
 
 $productDal = new products();
+$sheetboardDAL = new sheetboard();
 
 
 if (isset($_GET['update_production'])){
@@ -62,3 +64,28 @@ header("Location: ?action=add_production_stock");
 		 $delete = $productDal->deleteProduct($delete);
 		 header('location: ?action=production_stock&id='.$id);		
 		 }
+		 
+		 
+	if (isset($_GET['update_sheetboard'])) {
+		$sku = $_GET['sku'];
+		$description = $_GET['description'];
+		
+		if ($_POST['add'] > 0){
+	$add = $_POST['add'];
+	$date = date('y-m-d');
+	$qty_in = $_POST['add'];
+	$add = $sheetboardDAL->qty_In($sku, $description, $qty_in, $date);
+	}
+	else{
+		if($_POST['subtract']> 0){
+		$subtract = $_POST['subtract'];
+	$date = date('y-m-d');
+	$qty_out = $_POST['subtract'];
+	$subtract = $sheetboardDAL->qty_Out($sku, $description, $qty_out, $date);
+		}
+	} 
+   		
+	header("Location: ?action=sheetboard_details&sku=".$sku."&description=".$description);
+	}
+		
+			 

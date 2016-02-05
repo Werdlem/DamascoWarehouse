@@ -1,5 +1,7 @@
 <?php 
 require_once './DAL/PDOConnection.php';
+//require_once '../DAL/PDOConnection.php';
+$suppliers = new products; 
 ?>
 
 
@@ -9,26 +11,35 @@ require_once './DAL/PDOConnection.php';
   </div>
   <div class="panel-body">
     <form method="post" action="" id="Search">
-      <select name="taskOption">
-        <option value="dnu">Select supplier</option>
-        <option>Manchester Paper box</option>
-        <option>John Roberts</option>
-        <option>Krystals</option>
-        <option>Weedon</option>
-        <option>Antalis</option>
-        <option>DS Smith</option>
-      </select>
+     <div id="search" style="text-align:center">
+        <?php $supplier = $suppliers->Suppliers();
+	  $dropdown = "<select name='taskOption' id='mySelect' onchange='select()'>";
+	  foreach ($supplier as $result){
+		  $dropdown .="\r\n<option value='{$result['name']}'>{$result['name']}</option>";
+		  }
+		  $dropdown .="\r\n</select>";
+		  echo $dropdown;
+	   ?>
+        <script>
+       function select(){
+		   var x = document.getElementById("mySelect").value;
+		   
+		   }
+       </script> 
+        <br />
+        <br />     
       <input class="suppliers" name="date-from" placeholder=" date from" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" placeholder=" date to" type="text" onfocus="(this.type='date')" />
       <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
       <input type="hidden" name="doSearch" value="1"  />
     </form>
+     
     <?php
   if(isset($_POST['doSearch'])){
 	  
 	  if ($_POST['taskOption'] == "dnu") {die ("please select a supplier");} else{
   
- $suppliers = new products; 
+ 
  $dateFrom = $_POST['date-from'];
  $dateTo = $_POST['date-to'];
  
