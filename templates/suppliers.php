@@ -14,6 +14,7 @@ $suppliers = new products;
      <div id="search" style="text-align:center">
         <?php $supplier = $suppliers->Suppliers();
 	  $dropdown = "<select name='taskOption' id='mySelect' onchange='select()'>";
+	  $dropdown .="<option value=''> </option>";
 	  foreach ($supplier as $result){
 		  $dropdown .="\r\n<option value='{$result['name']}'>{$result['name']}</option>";
 		  }
