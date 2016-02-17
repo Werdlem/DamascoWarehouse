@@ -11,24 +11,19 @@ $suppliers = new products;
   </div>
   <div class="panel-body">
     <form method="post" action="" id="Search">
-     <div id="search" style="text-align:center">
-        <?php $supplier = $suppliers->Suppliers();
-	  $dropdown = "<select name='taskOption' id='mySelect' onchange='select()'>";
-	  $dropdown .="<option value=''> </option>";
-	  foreach ($supplier as $result){
-		  $dropdown .="\r\n<option value='{$result['name']}'>{$result['name']}</option>";
-		  }
-		  $dropdown .="\r\n</select>";
-		  echo $dropdown;
-	   ?>
-        <script>
-       function select(){
-		   var x = document.getElementById("mySelect").value;
-		   
-		   }
-       </script> 
-        <br />
-        <br />     
+      <select name="taskOption">
+ -        <option value="dnu">Select supplier</option>
+ -        <option>Manchester Paper box</option>
+ -        <option>John Roberts</option>
+ -        <option>Krystals</option>
+ -        <option>Weedon</option>
+ -        <option>Antalis</option>
+ -        <option>DS Smith</option>
+ 	  <option>Currans</option>
+  	  <option>DS Smith</option>
+  	  <option>Drayton</option>
+  	  <option>Sansetsu</option>
+ -      </select>
       <input class="suppliers" name="date-from" placeholder=" date from" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" placeholder=" date to" type="text" onfocus="(this.type='date')" />
       <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
