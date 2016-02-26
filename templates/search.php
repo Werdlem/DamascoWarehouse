@@ -51,7 +51,7 @@ if(isset($_POST['doSearch'])){
 	
 	if($_POST['doSearch']==1)
 		{
-			if ($_POST['search_product'] == ""){ die ('<div class="alert alert-danger" role="alert" style="float:left; width:100%; text-align: center">Oops, it would appear you have not entered a product to searh for!! <br />Please try again!</div>');}else{
+			if ($_POST['search_product'] == ""){ die ('<div class="alert alert-danger" role="alert" style="float:left; width:100%; text-align: center">Oops, it would appear you have not entered a product to search for!! <br />Please try again!</div>');}else{
 			$productDal = new products;
 			$Search = $_POST['search_product'];
 			$Search = $productDal->search($Search);

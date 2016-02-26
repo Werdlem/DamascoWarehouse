@@ -4,7 +4,6 @@ require_once './DAL/PDOConnection.php';
 $suppliers = new products; 
 ?>
 
-
 <div class="panel panel-primary">
   <div class="panel-heading" style="text-align:center;">
     <h3>Supplier Performance Monitor</h3>
@@ -12,26 +11,23 @@ $suppliers = new products;
   <div class="panel-body">
     <form method="post" action="" id="Search">
       <select name="taskOption">
- -        <option value="dnu">Select supplier</option>
- -        <option>Manchester Paper box</option>
- -        <option>John Roberts</option>
- -        <option>Krystals</option>
- -        <option>Weedon</option>
- -        <option>Antalis</option>
- -        <option>DS Smith</option>
- 	  <option>Currans</option>
-  	  <option>DS Smith</option>
-  	  <option>Drayton</option>
-  	  <option>Sansetsu</option>
- -      </select>
+        <option value="dnu">Select supplier</option>
+        <option>Manchester Paper box</option>
+        <option>John Roberts</option>
+        <option>Krystals</option>
+        <option>Weedon</option>
+        <option>Antalis</option>
+        <option>DS Smith</option>
+        <option>Curran</option>
+        <option>DS Smith</option>
+        <option>Drayton</option>
+        <option>Sansetsu</option>
+      </select>
       <input class="suppliers" name="date-from" placeholder=" date from" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" placeholder=" date to" type="text" onfocus="(this.type='date')" />
       <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
       <input type="hidden" name="doSearch" value="1"  />
     </form>
-    </div>
-    
-     
     <?php
   if(isset($_POST['doSearch'])){
 	  
@@ -77,7 +73,7 @@ $suppliers = new products;
 			$date3 = date_create($due);
 			$strip = $date2->format('Y-m-d');
 			?>
-   <td><?php echo date('d-m-Y', strtotime($result['next_due'])); ?></td>
+      <td><?php echo date('d-m-Y', strtotime($result['next_due'])); ?></td>
         <td><?php echo date('d-m-Y H:i:s', strtotime($result['schedule_date'])); ?></td>
         <td><?php echo date('d-m-Y H:i:s', strtotime($result['delivery_date'])); ?></td>
         <td><?php if ($due == $strip){

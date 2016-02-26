@@ -2,9 +2,7 @@
 <h1>Production Stock Adjustment</h1>
 <div style="width:1100px; margin-left:auto; margin-right:auto">
 <?php
-//include 'search.php';
 require_once('DAL/Production_PDOConnection.php');
-//require_once('../DAL/Production_PDOConnection.php');
 
 $productDal = new products();
 

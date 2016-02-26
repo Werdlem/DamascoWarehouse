@@ -1,5 +1,4 @@
 <?php 
-
 require_once('DAL/Production_PDOConnection.php');
 require_once('DAL/sheetboard_PDOConnection.php');
 
@@ -68,24 +67,38 @@ header("Location: ?action=add_production_stock");
 		 
 	if (isset($_GET['update_sheetboard'])) {
 		$sku = $_GET['sku'];
-		$description = $_GET['description'];
 		
 		if ($_POST['add'] > 0){
 	$add = $_POST['add'];
 	$date = date('y-m-d');
+	
 	$qty_in = $_POST['add'];
-	$add = $sheetboardDAL->qty_In($sku, $description, $qty_in, $date);
+	$add = $sheetboardDAL->qty_In($sku, $qty_in, $date);
 	}
 	else{
 		if($_POST['subtract']> 0){
 		$subtract = $_POST['subtract'];
 	$date = date('y-m-d');
+
 	$qty_out = $_POST['subtract'];
-	$subtract = $sheetboardDAL->qty_Out($sku, $description, $qty_out, $date);
+	$subtract = $sheetboardDAL->qty_Out($sku, $qty_out, $date);
 		}
-	} 
-   		
-	header("Location: ?action=sheetboard_details&sku=".$sku."&description=".$description);
+	
 	}
+	$dosearch = '1';
+	header('Location: ?action=sheetboard_details&sku=' .$sku);
+	}
+		
+		if (isset($_GET['delete_line'])){
+			$id = $_GET['id'];
+			$sku = $_GET['sku'];
+			
+			$delete_line = $sheetboardDAL->delete_line($id);
+			header('location:? action=sheetboard_detials&sku='.$sku);
+			}
+		
+		header('Location: ?action=sheetboard_details&sku=' .$sku);
+	
+	
 		
 			 

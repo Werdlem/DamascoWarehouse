@@ -17,7 +17,7 @@ else {
 
 
 <?php foreach ($product as $Result){?>
-<form  method="post" action="?action=action&update_production&customer_id=<?php echo $Result ['customer_id']?>&product=<?php echo $Result['product_id']?>">
+<form method="post" action="?action=action&update_production&customer_id=<?php echo $Result ['customer_id']?>&product=<?php echo $Result['product_id']?>">
         <input id="product_id" name="product_id" type="hidden" value="<?php echo $Result['product_id'];?>" />
         <br />
         <div style="width:49%; float:left; text-align:center">
