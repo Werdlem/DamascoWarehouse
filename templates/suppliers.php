@@ -28,6 +28,12 @@ $suppliers = new products;
       <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
       <input type="hidden" name="doSearch" value="1"  />
     </form>
+<<<<<<< HEAD
+=======
+ 
+    
+     
+>>>>>>> origin/master
     <?php
   if(isset($_POST['doSearch'])){
 	  
