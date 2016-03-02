@@ -186,6 +186,7 @@ public function get_sku(){
 		from goods_in
 		group by sku
 		having sku = ?
+		order by delivery_date DESC
 		');
 		$stmt->bindValue(1, $sku);
 		$stmt->execute();
