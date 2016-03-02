@@ -31,6 +31,10 @@ else
             <input id="quantity" class="form-control" name="quantity" type="text" value="0"/>
              </div>
              <div>
+            <label for="quantity">Buffer Quantity</label>
+            <input id="buffer_quantity" class="form-control" name="buffer_quantity" type="text" value="0"/>
+             </div>
+             <div>
              <div>
             
             
@@ -53,12 +57,13 @@ else
 $product = strtoupper($_POST['product']);
 $notes = nl2br($_POST['notes']);
 $quantity = $_POST['quantity'];
+$buffer_quantity = $_POST['buffer_quantity'];
 $description = nl2br($_POST['description']);
 $last_ordered = $_POST['last_ordered'];
 
 $productDal = new products();  
 
-$add_product = $productDal->AddProduct($product, $notes, $quantity, $description, $last_ordered);
+$add_product = $productDal->AddProduct($product, $notes, $quantity,$buffer_quantity, $description, $last_ordered);
 header('location:?action=update_product&id='.$product.'&p_id=');
 }?>
 

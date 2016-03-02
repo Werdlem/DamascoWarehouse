@@ -9,7 +9,7 @@ if (isset($_GET['sku'])){
 	$sku = $_GET['sku'];
 	}
 	else{
-	die ('Please enter search');	
+	$sku = $_POST['search_board'];	
 	}
 				
 		$goods_in = $productDal->get_Sheetboard($sku);

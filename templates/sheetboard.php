@@ -22,7 +22,7 @@ $productDal = new sheetboard;
     <h3 style="text-align:center">Stock Search</h3>
   </div>
   <div class="panel-body">
-    <form  method="post" id="Search">
+    <form  method="post" id="Search" action="?action=sheetboard_details">
       <div id="search" style="text-align:center">
         <?php $product = $productDal->goods_in_sku();
 	  $dropdown = "<select name='search_board' id='mySelect' onchange='select()'>";
@@ -46,19 +46,3 @@ $productDal = new sheetboard;
     </form>
   </div>
 </div>
-<?php
-
-if(isset($_POST['doSearch'])){
-	
-	if($_POST['doSearch']==1)
-		{
-			if ($_POST['search_board'] == ""){ die ('<div class="alert alert-danger" role="alert" style="float:left; width:100%; text-align: center">Oops, it would appear you have not entered a product to searh for!! <br />Please try again!</div>');}
-			
-			else{
-			
-			$sku = $_POST['search_board'];
-			
-			header("Location: ?action=sheetboard_details&sku=".$sku);
-			}
-		}
-}

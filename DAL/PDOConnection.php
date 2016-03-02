@@ -202,14 +202,15 @@ class products{
 		}
 	}
 	
-	public function UpdateProduct($id, $product, $notes, $quantity, $description){
+	public function UpdateProduct($id, $product, $notes, $quantity, $buffer_quantity, $description){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set product = :product, notes = :notes, quantity = :quantity, description = :description
+		set product = :product, notes = :notes, quantity = :quantity, buffer_quantity = :buffer_quantity, description = :description
 		where product = :id');		
 		$stmt->bindValue(':product', $product);
 		$stmt->bindValue(':notes', $notes);
 		$stmt->bindValue(':quantity', $quantity);
+		$stmt->bindValue(':buffer_quantity', $buffer_quantity);
 		$stmt->bindValue(':description', $description);
 		$stmt->bindValue(':id', $id);
 		$stmt->execute();
@@ -229,11 +230,12 @@ class products{
 		public function InsertProduct($id, $product, $notes, $quantity, $description){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set product :product, notes = :notes, quantity = :quantity, description = :description
+		set product :product, notes = :notes, quantity = :quantity, buffer_quantity = :buffer_quantity, description = :description
 		where product_id = :id');		
 		$stmt->bindValue(':product', $product);
 		$stmt->bindValue(':notes', $notes);
 		$stmt->bindValue(':quantity', $quantity);
+		$stmt->bindValue(':buffer_quantity', $buffer_quantity);
 		$stmt->bindValue(':description', $description);
 		$stmt->bindValue(':id', $id);
 		
@@ -290,18 +292,19 @@ class products{
 			$stmt->execute();				
 				}
 				
-		public function AddProduct($product, $notes, $quantity, $description, $last_ordered){
+		public function AddProduct($product, $notes, $quantity,$buffer_quantity, $description, $last_ordered){
 			$pdo = Database::DB();
 		try{
 			$stmt = $pdo->prepare('insert
 			into products
-			(product, notes, quantity, description, last_ordered)
-			values (?, ?, ?, ?, ?)');
+			(product, notes, quantity, buffer_quantity, description, last_ordered)
+			values (?, ?, ?, ?, ?, ?)');
 			$stmt->bindValue(1, $product);
 			$stmt->bindValue(2, $notes);
 			$stmt->bindValue(3, $quantity);
-			$stmt->bindValue(4, $description);
-			$stmt->bindValue(5, $last_ordered);
+			$stmt->bindValue(4, $buffer_quantity);
+			$stmt->bindValue(5, $description);
+			$stmt->bindValue(6, $last_ordered);
 			$stmt->execute();
 			echo '<div class="alert alert-success" role="alert">The product '.$product . ' has been sucessfully added!</div>';	}	
 			
@@ -476,4 +479,47 @@ class products{
 			die ("No Results");
 			}		
 		}
+		
+		public function select_stock($productDetail){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select sum(qty_received) as total_received
+			from goods_in 
+			where sku in(select product from products where product like (?))');
+			$stmt->bindValue(1, $productDetail);
+			$stmt->execute();
+		while($row = $stmt->fetchALL(PDO::FETCH_ASSOC))
+		{
+			return $row;
+		}
+		}
+		
+		public function select_stock_qty(){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select *, sum(qty_received) as total_received
+			from goods_in 
+			where sku in(select product from products where description like "%co-op stock%") group by sku');
+			//$stmt->bindValue(1, $productDetail);
+			$stmt->execute();
+		while($row = $stmt->fetchALL(PDO::FETCH_ASSOC))
+		{
+			return $row;
+		}
+		}
+		
+		public function qty_instock($sku){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select
+				sum(qty_received) - (select sum(qty) 
+				from goods_out
+ 				where sku like (?)) as total 
+				from goods_in 
+				where sku like (?)');
+				$stmt->bindValue(1, $sku);
+				$stmt->bindValue(2, $sku);
+				$stmt->execute();
+				while($row = $stmt->fetchALL(PDO::FETCH_ASSOC))
+		{
+			return $row;
+		}
+			}
 }
