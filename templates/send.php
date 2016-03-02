@@ -2,6 +2,17 @@
  require_once "DAL/settings.php";
  require_once 'lib/swift_required.php';
  
+ if (isset($_GET['sku'])){
+	 require_once 'DAL/sheetboard_PDOConnection.php';
+	 $sheetboardOrder = new sheetboard();
+	 $product = $_GET['sku'];
+	 //date_default_timezone_set('UTC');
+	$today = date('Y-m-d');
+				
+				$sheetboardOrder->sku_order($product, $today);
+	 
+	 }
+  
  if (isset($_GET['production_product'])){
 	 require_once 'DAL/Production_PDOConnection.php';
 	 $productionDal = new products();
@@ -15,7 +26,7 @@
 	 }
 	 else
 	 {
- 
+		 if(isset($_GET['product'])){
  require_once 'DAL/PDOConnection.php'; 
  $productDal = new products();
  
@@ -28,7 +39,9 @@
     $productDal->order($_GET['product'], $today);
 		$productDal->order_history($id, $today);
 	 }
- 
+	 }
+		
+
     
 	//Create the transport
 			$transport = Swift_MailTransport::newInstance(SMTP_HOST, SMTP_PORT);
@@ -58,10 +71,10 @@
 			$result = $mailer->send($message);
 			if ($result > 0)
 			{
-				echo "<div class='panel panel-primary'>
-<div class='panel-heading' style='text-align:center;'><h3>Product Details</h3></div>
+				echo "<div class='panel panel-success'>
+<div class='panel-heading' style='text-align:center;'><h3>Order Success!</h3></div>
 <div class='panel-body'>
-				<p>Your order of <strong style='red'>".$product,"</strong> has been sent, please check the dispatch inbox for a copy of the email.</p>
+				Your order of ".$product . " has been successfully sent, have a nice day :-D
 				</div></div>";
 			}
 			else{

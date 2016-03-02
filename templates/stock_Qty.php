@@ -44,7 +44,7 @@ $sku = $result['sku'];
 	
 	echo $Total_stock;
 	?></td>
-    <td style="text-align:center"><a href="?action=test_send&sku=<?php echo $result['sku'];?>" class="btn btn-large btn-primary">Order</a></td>
+    <td style="text-align:center"><a href="?action=send&sku=<?php echo $result['sku'];?>" class="btn btn-large btn-primary">Order</a></td>
     <?php
 }
 }
