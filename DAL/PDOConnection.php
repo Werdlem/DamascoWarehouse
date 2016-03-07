@@ -202,15 +202,15 @@ class products{
 		}
 	}
 	
-	public function UpdateProduct($id, $product, $notes, $quantity, $buffer_quantity, $description){
+	public function UpdateProduct($id, $product, $notes, $quantity, $description){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set product = :product, notes = :notes, quantity = :quantity, buffer_quantity = :buffer_quantity, description = :description
+	set product = :product, notes = :notes, quantity = :quantity, description = :description
 		where product = :id');		
 		$stmt->bindValue(':product', $product);
+		$stmt->bindValue(':customer', $customer);
 		$stmt->bindValue(':notes', $notes);
 		$stmt->bindValue(':quantity', $quantity);
-		$stmt->bindValue(':buffer_quantity', $buffer_quantity);
 		$stmt->bindValue(':description', $description);
 		$stmt->bindValue(':id', $id);
 		$stmt->execute();
@@ -292,19 +292,18 @@ class products{
 			$stmt->execute();				
 				}
 				
-		public function AddProduct($product, $notes, $quantity,$buffer_quantity, $description, $last_ordered){
+	public function AddProduct($product, $notes, $quantity, $description, $last_ordered){
 			$pdo = Database::DB();
 		try{
 			$stmt = $pdo->prepare('insert
 			into products
-			(product, notes, quantity, buffer_quantity, description, last_ordered)
-			values (?, ?, ?, ?, ?, ?)');
+			(product, notes, quantity, description, last_ordered)
+			values (?, ?, ?, ?, ?)');
 			$stmt->bindValue(1, $product);
 			$stmt->bindValue(2, $notes);
 			$stmt->bindValue(3, $quantity);
-			$stmt->bindValue(4, $buffer_quantity);
-			$stmt->bindValue(5, $description);
-			$stmt->bindValue(6, $last_ordered);
+			$stmt->bindValue(4, $description);
+			$stmt->bindValue(5, $last_ordered);
 			$stmt->execute();
 			echo '<div class="alert alert-success" role="alert">The product '.$product . ' has been sucessfully added!</div>';	}	
 			
@@ -493,12 +492,12 @@ class products{
 		}
 		}
 		
-		public function select_stock_qty(){
+		public function select_stock_qty($selection){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select *, sum(qty_received) as total_received
 			from goods_in 
-			where sku in(select product from products where description like "%co-op stock%") group by sku');
-			//$stmt->bindValue(1, $productDetail);
+			where sku in(select product from products where customer like (?)) group by sku');
+			$stmt->bindValue(1, '%'.$selection.'%');
 			$stmt->execute();
 		while($row = $stmt->fetchALL(PDO::FETCH_ASSOC))
 		{
@@ -506,20 +505,51 @@ class products{
 		}
 		}
 		
-		public function qty_instock($sku){
+		public function qty_instock($selection){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
-				sum(qty_received) - (select sum(qty) 
+				sum(qty_received) - (select sum(qty_delivered) 
 				from goods_out
- 				where sku like (?)) as total 
+ 				where sku like (?)) as total
 				from goods_in 
 				where sku like (?)');
-				$stmt->bindValue(1, $sku);
-				$stmt->bindValue(2, $sku);
+				$stmt->bindValue(1, '%'.$selection.'%');
+				$stmt->bindValue(2, '%'.$selection.'%');
 				$stmt->execute();
 				while($row = $stmt->fetchALL(PDO::FETCH_ASSOC))
 		{
 			return $row;
 		}
 			}
+			
+			public function stock_ammend($selection){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select
+			coalesce(sum(qty_in),0)-(select coalesce(sum(qty_out),0) 
+			from stock_out 
+			where product in(select product from products where product like (?))) as total
+			from stock_in where product in(select product from products where product like (?))
+			');
+				$stmt->bindValue(1, $selection);
+				$stmt->bindValue(2, $selection);
+				$stmt->execute();
+				while($row = $stmt->fetchALL(PDO::FETCH_ASSOC))
+		{
+			return $row;
+		}
+			}
+			
+	public function select_customer(){		
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('Select * 
+		from products
+		where customer > ""
+		group by customer
+		');
+		$stmt->execute();
+		while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+			return $results;
+		}
+	}
 }
