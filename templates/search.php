@@ -121,7 +121,7 @@ if(isset($_POST['doSearch'])){
 				else				
 						echo '<a href="?action=action&clear_location&location_id='.$result['location_id'].'">Delete</a>';
 				?>
-                | <a href="?action=test_send&sku=<?php echo $result['sku'];?>&location_id=<?php echo $result['location_id'];?>">Order</a>
+                | <a href="?action=send&sku=<?php echo $result['sku'];?>&location_id=<?php echo $result['location_id'];?>">Order</a>
 				<?php if ($result['sku']>0){
 					echo "| <a href='?action=update_product&sku=".$result['sku']."&sku_id=". $result['sku_id']."'>Details</a>";
 					}
