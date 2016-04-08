@@ -22,16 +22,14 @@ $productDal = new products()
         <?php foreach ($getEmptyLocations as $result)
     { ?>
         <tr class="heading">
-            <td><?php echo $result['location'];?></td>
+            <td><?php echo $result['location_name'];?></td>
             <td>
-                <a href="?action=add_product&id=<?php echo $result['id'];?>" style="float:right">Update</a>
+                <a href="?action=update_location&location_id=<?php echo $result['location_id'];?>" style="float:right">Update</a>
             </td>
             
         </tr>
         <?php
-
-
-    }
+        }
     ?>
     <tr>
             

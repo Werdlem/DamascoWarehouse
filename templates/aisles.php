@@ -8,23 +8,26 @@ $productDal = new products;
 <div class="panel-heading" style="text-align:center; font-size:15px">Select Aisle Number</div>
 <div class="panel-body">
 <div style="text-align:center">
-<a href="?action=aisles&Aisle=2" class="btn btn-large btn-info">Aisle 2</a>
-<a href="?action=aisles&Aisle=3" class="btn btn-large btn-info">Aisle 3</a>
-<a href="?action=aisles&Aisle=4" class="btn btn-large btn-info">Aisle 4</a>
-<a href="?action=aisles&Aisle=5" class="btn btn-large btn-info">Aisle 5</a>
-<a href="?action=aisles&Aisle=6" class="btn btn-large btn-info">Aisle 6</a>
-<a href="?action=aisles&Aisle=7" class="btn btn-large btn-info">Aisle 7</a>
-<a href="?action=aisles&Aisle=8" class="btn btn-large btn-info">Aisle 8</a>
+<a href="?action=aisles&aisle=2" class="btn btn-large btn-info">Aisle 2</a>
+<a href="?action=aisles&aisle=3" class="btn btn-large btn-info">Aisle 3</a>
+<a href="?action=aisles&aisle=4" class="btn btn-large btn-info">Aisle 4</a>
+<a href="?action=aisles&aisle=5" class="btn btn-large btn-info">Aisle 5</a>
+<a href="?action=aisles&aisle=6" class="btn btn-large btn-info">Aisle 6</a>
+<a href="?action=aisles&aisle=7" class="btn btn-large btn-info">Aisle 7</a>
+<a href="?action=aisles&aisle=8" class="btn btn-large btn-info">Aisle 8</a>
 </div>
- <input type="hidden" name="Aisle2" value="2">
+ <input type="hidden" name="aisle2" value="2">
 </div></div>
 
 <?php
-  $Aisle = $_GET['Aisle']; ?>
+
+  $aisle = $_GET['aisle']; 
+
+?>
   
 <div class="panel panel-info" style="width:60%; float:left">
   <!-- Default panel contents -->
-  <div class="panel-heading" style="text-align:center; font-size:18px">Aisle No: <?php echo $Aisle; ?></div>
+  <div class="panel-heading" style="text-align:center; font-size:18px">Aisle No: <?php echo $aisle; ?></div>
   
    
 
@@ -40,27 +43,27 @@ $productDal = new products;
         </thead>
         <tbody>
         <?php
-	$Aisles = $productDal->GetAisle($Aisle);	
-    foreach ($Aisles as $result)
+				 		 
+	$aisles = $productDal->GetAisle($aisle);	
+    foreach ($aisles as $result)
     {
 		?>
         <tr>
-            <td><a href="edit_location.php?id=<?php echo $result['id']; ?>" style='color:black'><?php echo $result['location'];?></a></td>
-            <td><?php echo $result['product'];?></td>
+            <td><a href="edit_location.php?id=<?php echo $result['location_id']; ?>" style='color:black'><?php echo $result['location_name'];?></a></td>
+            <td><?php echo $result['sku'];?></td>
             <td>
-            <?php if ($result['product'] > null){ ?>
+            <?php if ($result['sku'] > null){ ?>
                
-            <a href="?action=update_product&id=<?php echo $result['product']; ?>&p_id=<?php echo $result['product_id'];?>">Details</a>
+            <a href="?action=update_product&sku=<?php echo $result['sku']; ?>&sku_id=<?php echo $result['sku_id'];?>">Details</a>
             </td>
             
             <td>
-                <a href="?action=delete&delete=<?php echo $result['id']; ?>">Delete</a>
+                <a href="?action=action&clear_location&location_id=<?php echo $result['location_id'] ?>">Delete</a>
             </td>
             
             <?php } else{
 				echo
-				"<td><a href='?action=add_product&id=". $result['id']."'>Insert</a></td>
-				";
+				"<td><a href='?action=update_location&location_id=". $result['location_id']."'>Update</a></td>";
 				}?>
             
         </tr>
@@ -74,4 +77,4 @@ $productDal = new products;
 </table>
 </div>
 
-<?php include 'empty_Location.php';
+<?php include 'modules/empty_Location.php';

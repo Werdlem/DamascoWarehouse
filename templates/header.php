@@ -25,8 +25,8 @@
       <div class="container-fluid">
         <ul class="nav navbar-nav">
           <li><a href="?action=search">Home</a></li>
-          <li><a href="?action=update">Add</a></li>
-          <li><a href="?action=aisles&Aisle=2">Aisles</a></li>
+          <li><a href="?action=add_product_location">Add</a></li>
+          <li><a href="?action=aisles&aisle=2">Aisles</a></li>
           <?php 
 		  if (!isset($_COOKIE['password'])){ 
 		  }
@@ -35,10 +35,10 @@
           <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="?action=production_stock&id=">Production Stock</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="?action=production_stock_totals&id=">Produced Stock Totals</a></li>
-              <li><a href="?action=add_production_stock">Add Product / Customer</a></li>
+              <li><a href="?action=add_allocation">Add Allocation Details</a></li>
               <li><a href="?action=sheetboard">Goods In</a></li>
               <li><a href="?action=stock_qty">Stock Totals</a></li>
-              <li><a href="?action=goods_out_stock">Goods outStock Totals</a></li>
+              <li><a href="?action=stock_order_report">Stock Order Report</a></li>
               </li>
             </ul>
            <li><a href="?action=suppliers">Suppliers</a></li>

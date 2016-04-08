@@ -2,17 +2,17 @@
 //include_once('../DAL/PDOConnection.php');
 
 $productDal = new products();
-if ($_GET['p_id'] == ''){
-	$id = $_GET['id'];
-	$id = $productDal->GetProducts($id);
-	foreach ($id as $result){
-		$id = $result['product_id'];
+if ($_GET['sku_id'] == ''){
+	$sku = $_GET['sku'];
+	$sku = $productDal->GetProducts($sku);
+	foreach ($sku as $result){
+		$sku_id = $result['sku_id'];
 		}
 	}
 
 else
 {
-$id = $_GET['p_id'];
+$sku_id = $_GET['sku_id'];
 }
 
 ?>
@@ -23,13 +23,13 @@ $id = $_GET['p_id'];
 
 <div>
   <?php		
-			$p_id = $productDal->get_history($id); ?>
+			$sku_id = $productDal->get_history($sku_id); ?>
 <table class="table" style="text-align:center">
 <thead><tr class="heading">
 <th style="text-align:center"> Date Ordered</th>
         
 			<?php echo '<tr>';
-		foreach($p_id as $result){?>
+		foreach($sku_id as $result){?>
             <td><?php echo $result['date']; ?></td>
            </tr></thead>
             <span id="notesInfo"></span>

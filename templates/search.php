@@ -1,5 +1,5 @@
 <?php 
-require_once './DAL/PDOConnection.php';
+require_once('./DAL/PDOConnection.php');
 ?>
 <style>
 .home {
@@ -18,9 +18,9 @@ require_once './DAL/PDOConnection.php';
       <h3 style="text-align:center">Product Search</h3>
     </div>
     <div class="panel-body">
-      <form action="index.php" method="post" id="Search">
-        <div id="search" style="text-align:center">
-          <input type="text" style="margin-bottom:10px" class="txt_box" name="search_product" tabindex="1"/>
+      <form action="index.php" method="post" location_id="Search">
+        <div location_id="search" style="text-align:center">
+          <input type="text" style="margin-bottom:10px" class="txt_box" name="search_sku" tabindex="1"/>
           <br />
           <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
           <input type="hidden" name="doSearch" value="1">
@@ -33,8 +33,8 @@ require_once './DAL/PDOConnection.php';
       <h3 style="text-align:center">Location / Notes Search</h3>
     </div>
     <div class="panel-body">
-      <form action="index.php" method="post" id="Search" >
-        <div id="search" style="text-align:center">
+      <form action="index.php" method="post" location_id="Search" >
+        <div location_id="search" style="text-align:center">
           <input type="text" style="margin-bottom:10px" class="txt_box" name="search_location" tabindex="2">
           <br />
           <button type="submit" class="btn btn-large btn-success" name="submit" value="Search">Search</button>
@@ -51,85 +51,85 @@ if(isset($_POST['doSearch'])){
 	
 	if($_POST['doSearch']==1)
 		{
-			if ($_POST['search_product'] == ""){ die ('<div class="alert alert-danger" role="alert" style="float:left; width:100%; text-align: center">Oops, it would appear you have not entered a product to search for!! <br />Please try again!</div>');}else{
+			if ($_POST['search_sku'] == ""){ 			
+			die ('<div class="alert alert-danger" role="alert" style="float:left; width:100%; text-align: center">Oops, it would appear you have not entered a product to search for!! <br />Please try again!</div>');
+			}
+			
+			else{
 			$productDal = new products;
-			$Search = $_POST['search_product'];
-			$Search = $productDal->search($Search);
-			foreach($Search as $Result){
-			
-				$id = $Result['product'];
-				$p_id = $Result['product_id'];
-			
-		}
-		}
-		}
-	elseif($_POST['doSearch']==2)
-		{
+			$fetch = $_POST['search_sku'];
+			$fetch = $productDal->Search($fetch, $fetch);
+					}
+		}	
+			if ($_POST['doSearch']==2){					
 			$productDal = new products;			
-			$Search = $_POST['search_location'];	
-			$Search = $productDal->SearchLocation($Search);
-}
+			$fetch = $_POST['search_location'];	
+			$fetch = $productDal->SearchLocation($fetch);
+			}
 
-
-
-?>
-<?php if (!isset($_POST['doSearch']) || $_POST['doSearch']) { ?>
-<div class="panel panel-primary" style="width:100%; float:left">
-<div class="panel panel-heading"><h3>Search Results</h3></div>
-<div class="panel-body" style="margin-top:-20px">
-<?php foreach ($Search as $result){ 
-	  echo "<div style='border-bottom: 1px dashed #777; padding-bottom:5px; margin-bottom:10px; width:100%; float:left'> "?>
+ if (!isset($_POST['doSearch']) || $_POST['doSearch']) { 
+ ?>
+ <div class="panel panel-primary" style="width:100%; float:left">
+ <div class="panel panel-heading"><h3>Search Results</h3></div>
+ <div class="panel-body" style="margin-top:-20px">
+ <?php foreach ($fetch as $result){ 
+	  echo "<div style='border-bottom: 1px dashed #777; padding-bottom:5px; margin-bottom:10px; width:100%; float:left'> "
+	  ?>
       
-      <div class="alert alert-info" role="alert" style="width:40%; float:right; height:85px; font-size:46px; color:#C00; text-align:center"><?php echo $result['location'];?></strong></div>
- 
-
-<p>Product: <a href="?action=update_product&id=<?php echo $result['product']; ?>&p_id=<?php echo $result['product_id']; ?>"><?php echo $result['product'];?></a>
-
-  <?php 
+      <div class="alert alert-info" role="alert" style="width:40%; float:right; height:85px; font-size:46px; color:#C00; text-align:center"><?php
+	   echo $result['location_name'];
+	  ?>
+      </strong>
+      </div>
+      
+      <p>Product: <a href="?action=update_product&sku=<?php echo $result['sku']; ?>&sku_id=<?php echo $result['sku_id']; ?>"><?php echo
+	  $result['sku'];?></a>	  
+	  <?php 
 				//PRODUCT EDIT AND LOCATION ASSIGN				
-				if ($result['product'] == null){ echo("<a href='?action=add_product&id=".$result['id']."'>Add</a>");}				
-				elseif ($result['location']<0){ 
-				echo "<a href='?action=product_detail&l_id=".$result['product']."'style='color:red'>assign</a>";}				
+				if ($result['sku'] == null){ 
+				echo("<a href='?action=add_product&location_id=".$result['location_id']."'>Add</a>");
+				}				
+				elseif ($result['location_name']<0){ 
+				echo "<a href='?action=product_detail&l_id=".$result['sku']."'style='color:red'>assign</a>";
+				}				
 				?>
-  &nbsp; | &nbsp;
-  Location: <?php echo $result['location'];?></strong>
-  <?php 
+                &nbsp; | &nbsp;
+                
+                Location: <?php echo $result['location_name'];?>
+                </strong>
+               		
+				<?php 
 				// lOCATION ADD PRODUCT AND ASSIGN PRODUCT
-				if ($result['id']>0){ 
-				echo "<a href='?action=add_product&id=".$result['id']."'>Assign</a>";}
+				if ($result['location_id']>0){ 
+				echo "<a href='?action=add_product&location_id=".$result['location_id']."'>Assign</a>";}
 				else{ 
-				//echo "<a href='?action=product_detail&l_id=".$result['product']."'style='color:red'>assign</a> ";
+				//echo "<a href='?action=product_detail&l_id=".$result['sku']."'style='color:red'>assign</a> ";
 				}
 				?>
-</p>
-
-<p>Last Ordered: <?php echo $result['last_ordered']?> &nbsp | &nbsp Quantity: <?php echo $result['quantity'] ?></p>
-<p>Notes: <?php echo $result['description']?></p>
-
-<?php 
-if(!$result['product']){
-	die;
-	}
- 
-if (!$result['location']){
-	echo "<a href='?action=delete&delete_product=".$result['product']."'>Delete Product</a>";
-	}
-else
-
-echo '<a href="?action=delete&delete='.$result['id'].'">Delete</a>';?>
-| <a href="?action=send&product=<?php echo $id;?>&id=<?php echo $p_id;?>">Order</a>
-<?php if ($result['product']>0){ 
-  echo "| <a href='?action=update_product&id=".$result['product']."&p_id=". $result['product_id']."'>Details</a>";}
-  
-  else{
-	 
-	 
- }
-			echo '</div>';		
+                </p>
+                 <p>Alias 1: <strong><?php echo $result['alias_1'];?></strong>
+                <p>Last Ordered: <?php echo $result['last_order_date']?> 
+                <p>Notes: <?php echo $result['notes']?></p>
+				<?php
+                if(!$result['sku']){
+				die;
+				}
+				
+				if (!$result['location_name']){
+					echo "<a href='?action=action&delete_sku=".$result['sku']."'>Delete Product</a>";
+				}
+				else				
+						echo '<a href="?action=action&clear_location&location_id='.$result['location_id'].'">Delete</a>';
+				?>
+                | <a href="?action=test_send&sku=<?php echo $result['sku'];?>&location_id=<?php echo $result['location_id'];?>">Order</a>
+				<?php if ($result['sku']>0){
+					echo "| <a href='?action=update_product&sku=".$result['sku']."&sku_id=". $result['sku_id']."'>Details</a>";
+					}
+					else{
+						}
+						echo '</div>';
+						}
+					}
 		}
-	
-}
-}
-
 ?>
 

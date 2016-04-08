@@ -1,6 +1,5 @@
 <?php 
 require_once './DAL/PDOConnection.php';
-//require_once '../DAL/PDOConnection.php';
 $suppliers = new products; 
 ?>
 
@@ -28,12 +27,7 @@ $suppliers = new products;
       <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
       <input type="hidden" name="doSearch" value="1"  />
     </form>
-<<<<<<< HEAD
-=======
- 
-    
-     
->>>>>>> origin/master
+<!-- <<<<<<< HEAD  ====== origin/master >>>>>>>>>-->
     <?php
   if(isset($_POST['doSearch'])){
 	  

@@ -1,19 +1,18 @@
 <?php
-require_once './DAL/sheetboard_PDOConnection.php';
-$productDal = new sheetboard();
+require_once './DAL/PDOConnection.php';
+$productDal = new products();
 
 include('/templates/sheetboard.php');
 
-if (isset($_GET['sku'])){
-	
+if (isset($_GET['sku'])){	
 	$sku = $_GET['sku'];
 	}
 	else{
 	$sku = $_POST['search_board'];	
+	$goods_in = $productDal->get_Goods_In_Sku($sku);
 	}
-				
-		$goods_in = $productDal->get_Sheetboard($sku);
-		$stock = $productDal->get_sku($sku);
+	
+		$goods_in = $productDal->get_sku($sku);
 
 	?>
 
@@ -24,9 +23,10 @@ if (isset($_GET['sku'])){
   <div class="panel-body">
     <div>
    
-      <label for="product">Product</label><br />
-      <input id="product" name="product" type="text" disabled="disabled" class="form-control" style="width: 47%;" value="<?php echo $sku ?>"/>
-      <span id="notesInfo"></span>
+      <label for="product" style="font-size:16px"><strong>Product:</label>
+      <a href="?action=update_product&sku=<?php echo $sku ?>&sku_id=" style="font-size:16px">
+      <?php echo $sku ?></a></strong>
+     <span id="notesInfo"></span>
       </div>
     </form>
     <div>
@@ -49,10 +49,10 @@ if (isset($_GET['sku'])){
 include ('/templates/modules/goods_in.php');
 include ('/templates/modules/goods_out.php');
 
-$total = $goods_in_amt - $goods_out_amt;
+$total = $goods_in_amt - $total_goods_out;
 
 
-echo '<label for="total" style="position:absolute; margin-left: -404px; margin-top: -125px">Total in Stock: '. $total . '</label>';
+echo '<label for="total" style="position:absolute; margin-top:-127px; margin-left:-404px" >Total in Stock: '. $total . '</label>';
  
  echo ' </div>';
 echo '</div>';

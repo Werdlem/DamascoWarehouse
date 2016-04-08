@@ -13,14 +13,31 @@ else
 	}
  ?>
 
- <div class="panel panel-primary">
+<div class="panel panel-primary">
 <div class="panel panel-heading">
 <h3>Add Product</h3></div>
 <div class="panel-body">
     <form method="post" id="productDetail">
         <div>
-            <label for="product">Product</label>
-            <input id="product" class="form-control" name="product" type="text" value="<?php echo $new; ?>"/>
+            <label for="sku">Product</label>
+            <input id="sku" class="form-control" name="sku" type="text" value="<?php echo $new; ?>"/>
+            <span id="notesInfo"></span>
+        </div>
+       <div>
+        <label for="alias_1">Alias 1</label>
+        <input id="alias_1" name="alias_1" type="text" class="form-control"/>
+      </div>
+      <div >
+        <label for="alias_2">Alias 2</label>
+        <input id="alias_2" name="alias_2" type="text" class="form-control" />
+      </div>
+      <div>
+        <label for="alias_3">Alias 3</label>
+        <input id="alias_3" name="alias_3" type="text" class="form-control" />
+      </div>
+        <div>
+            <label for="customer">Customer/Supplier</label>
+            <input id="customer" class="form-control" name="customer" type="text" />
             <span id="notesInfo"></span>
         </div>
         <div>
@@ -55,6 +72,10 @@ else
      <?php   if(isset($_POST['add'])){
 	
 $product = strtoupper($_POST['product']);
+$alias_1 = strtoupper($_POST['alias_1']);
+$alias_2 = strtoupper($_POST['alias_2']);
+$alias_3 = strtoupper($_POST['alias_3']);
+$customer = strtoupper($_POST['customer']);
 $notes = nl2br($_POST['notes']);
 $quantity = $_POST['quantity'];
 $buffer_quantity = $_POST['buffer_quantity'];
@@ -63,7 +84,7 @@ $last_ordered = $_POST['last_ordered'];
 
 $productDal = new products();  
 
-$add_product = $productDal->AddProduct($product, $notes, $quantity,$buffer_quantity, $description, $last_ordered);
+$add_product = $productDal->AddProduct($product, $customer, $notes, $quantity,$buffer_quantity, $description, $last_ordered, $alias_1, $alias_2, $alias_3);
 header('location:?action=update_product&id='.$product.'&p_id=');
 }?>
 
