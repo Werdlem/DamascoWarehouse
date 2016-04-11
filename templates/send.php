@@ -11,6 +11,7 @@
 	 $sku_id = $result['sku_id'];
 	 //date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
+	$product = $result['sku'];
 				
 				$sheetboardOrder->sku_order($today, $sku_id);
 	 
@@ -60,7 +61,7 @@
 			->setBody('<html>'.
                 '<head>Hello<br /><br /></head>'.
                 '<body>'.
-                'Please will you kindly order ' .$result['sku'].
+                'Please will you kindly order ' .$product.
                 '<br /><br />Kind Regards<br /><br />'.
                 'PostPack'.
                 '</body>' .
@@ -77,7 +78,7 @@
 				echo "<div class='panel panel-success'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Success!</h3></div>
 <div class='panel-body'>
-				Your order of ".$result['sku']. " has been successfully sent, have a nice day :-D
+				Your order of ".$product . " has been successfully sent, have a nice day :-D
 				</div></div>";
 			}
 			else{
@@ -85,7 +86,7 @@
 				echo "<div class='panel panel-danger'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Failure</h3></div>
 <div class='panel-body'>
-				<p>Your order of <strong style='red'>".$result['sku'],"</strong> was not sent, please call the office with your order.</p>
+				<p>Your order of <strong style='red'>".$product,"</strong> was not sent, please call the office with your order.</p>
 				</div></div>";
 				
 				}
