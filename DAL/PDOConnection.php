@@ -197,16 +197,16 @@ class products{
 			$stmt->execute();
 		}
 		
-		public function sku_order($today, $sku_id){
+		public function sku_order($today, $sku){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update 
 		products 
 		set last_order_date = ?
 		where
-		sku_id like ?
+		sku like ?
 		');
 		$stmt->bindValue(1, $today);
-		$stmt->bindValue(2, $sku_id);
+		$stmt->bindValue(2, $sku);
 		$stmt->execute();
 		}
 		
@@ -632,6 +632,33 @@ class products{
 			
 			}
 }
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+public function Get_Sku_Total($selection){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('select products.sku, products.alias_1 as alias_1, products.alias_2 as alias_2, products.alias_3 as alias_3, products.buffer_qty,
+			(select sum(qty_received)as total from goods_in where sku like :stmt) as total_rec,
+			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1 ) as date_rec,
+			(select sum(qty_delivered) as total_del from goods_out where sku like alias_1 or sku like alias_2 or sku like products.sku or desc1 like :wild or desc1 like 
+					concat("%",NULLIF(alias_1,""),"%") or desc1 like concat("%",NULLIF(alias_2,""),"%")) as total_del_desc1,			
+			(select sum(qty_in) as qty_in from stock_adjustment where sku like :stmt) as qty_in,
+			(select sum(qty_out) as qty_out from stock_adjustment where sku like :stmt) as qty_out
+			from products
+			where sku like :stmt');
+		$stmt->bindValue(':stmt', $selection);
+		$stmt->bindValue(':wild', "%".$selection."%");
+		$stmt->execute();
+		if($stmt->rowCount()>0) {
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			}
+		else{
+			
+			}
+	}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	public function Goods_Out_total($sku, $alias1, $alias2, $alias3, $sku, $alias1, $alias2, $alias3){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('select *, sum(qty_delivered) as total 

@@ -16,15 +16,14 @@ require_once "DAL/settings.php";
 	 
 	 }
   
- if (isset($_GET['production_product'])){
-	 require_once 'DAL/Production_PDOConnection.php';
-	 $productionDal = new products();
-	 
-	 $product = $_GET['production_product'];	 
+ if (isset($_GET['sku_order'])){
+	 require_once 'DAL/PDOConnection.php'; 
+ $productDal = new products();	 
+	 $sku = $_GET['sku_order'];	 
 	 date_default_timezone_set('UTC');
-	$today = date('d-m-y');
+	$today = date('Y-m-d');
    
-		$productionDal->updateProduct($product, $today);
+		$productDal->sku_order($sku, $today);
 	 
 	 }
 	 else
@@ -47,7 +46,7 @@ require_once "DAL/settings.php";
  	echo "<div class='panel panel-success'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Success!</h3></div>
 <div class='panel-body'>
-				Your order of ".$result['sku'] . " has been successfully sent, have a nice day :-D"			
+				Your order of ".$sku. " has been successfully sent, have a nice day :-D"			
 	
 		
  ?>

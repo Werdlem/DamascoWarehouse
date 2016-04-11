@@ -51,7 +51,7 @@ else {
 	if ($total){foreach ($total as $amt);{echo $amt;}}else{echo '0';}
 	?>
      <td><?php echo $Result['details'];?></td>
-    <td><a href="?action=send&production_product=<?php echo $Result['product'];?>&id=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary" style="float:right; height:30px">Order</a></td>
+    <td><a href="?action=send&sku_order=<?php echo $Result['product'];?>&id=<?php echo $Result['product_id'];?>" class="btn btn-large btn-primary" style="float:right; height:30px">Order</a></td>
     </tr>
     <?php }?>
     </table>
