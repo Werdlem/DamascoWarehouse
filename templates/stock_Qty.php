@@ -43,10 +43,10 @@ $fetch = $productDal->Get_Allocation();
 <div>
 <table class="table">
   <tr class="heading">
-    <td style="font-size:16px"><strong>Product</td>
+    <td style="font-size:16px"><strong>SKU</td>
     <td style="font-size:16px; text-align:center"><strong>Date Ordered</td>
     <td style="font-size:16px; text-align:center"><strong>Date Rec</td>
-    <td style="font-size:16px; text-align:center"><strong>Stock On Hand</td>
+    <td style="font-size:16px; text-align:center"><strong>SKU total</td>
     <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td>
     <td style="font-size:16px; text-align:center"><strong>Order</td>
   </tr>
@@ -65,6 +65,7 @@ foreach ($goods_total as $result){
 	$sku_adj = $result['qty_in']-$result['qty_out'];
 
 	$sku_total = $result['total_rec']+$result['qty_in']-$result['qty_out']-$result['total_del_desc1'];
+	
 	echo '<td style="text-align:center">'.$result['date_rec'].'</td>';
 	if($sku_total < $result['buffer_qty']){
 		

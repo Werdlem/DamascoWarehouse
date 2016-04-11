@@ -13,10 +13,10 @@ $selection = $productDal->select_all();
 <div>
 <table class="table">
   <tr class="heading">
-    <td style="font-size:16px"><strong>Product</td>
+    <td style="font-size:16px"><strong>SKU</td>
     <td style="font-size:16px; text-align:center"><strong>Date Ordered</td>
     <td style="font-size:16px; text-align:center"><strong>Date Rec</td>
-    <td style="font-size:16px; text-align:center"><strong>Stock On Hand</td>
+    <td style="font-size:16px; text-align:center"><strong>SKU Total</td>
     <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td>
     <td style="font-size:16px; text-align:center"><strong>Order</td>
   </tr>
@@ -42,7 +42,7 @@ foreach ($goods_total as $result){
 		<?php 
 		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.2);*/"><strong style="color: red; ">'. $sku_total;
 		echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); ">'. $result['buffer_qty'];
-		echo '<td style="text-align:center;"><a href="?action=test_send&sku='.$result['sku'] .'class="btn btn-default btn-primary">Order</a></td>';
+		echo '<td style="text-align:center;"><a href="?action=test_send&sku_order='.$result['sku'] .'"class="btn btn-default btn-primary">Order</a></td>';
 			
 		}
 	}

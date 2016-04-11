@@ -37,7 +37,7 @@
               <li><a href="?action=production_stock_totals&id=">Produced Stock Totals</a></li>
               <li><a href="?action=add_allocation">Add Allocation Details</a></li>
               <li><a href="?action=sheetboard">Goods In</a></li>
-              <li><a href="?action=stock_qty_new">Stock Totals</a></li>
+              <li><a href="?action=stock_qty">Stock Totals</a></li>
               <li><a href="?action=stock_order_report">Stock Order Report</a></li>
               </li>
             </ul>

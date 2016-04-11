@@ -23,7 +23,7 @@ require_once "DAL/settings.php";
 	 date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
    
-		$productDal->sku_order($sku, $today);
+		$productDal->sku_order($today, $sku);
 	 
 	 }
 	 else

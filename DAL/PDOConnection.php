@@ -201,9 +201,9 @@ class products{
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update 
 		products 
-		set last_order_date = ?
+		set last_order_date = (?)
 		where
-		sku like ?
+		sku like (?)
 		');
 		$stmt->bindValue(1, $today);
 		$stmt->bindValue(2, $sku);
