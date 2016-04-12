@@ -13,7 +13,6 @@ if (isset($_GET['sku'])){
 	}
 	
 		$goods_in = $productDal->get_sku($sku);
-
 	?>
 
 <div class="panel panel-primary" style="width:100%; float:left;">
@@ -28,6 +27,24 @@ if (isset($_GET['sku'])){
       <?php echo $sku ?></a></strong>
      <span id="notesInfo"></span>
       </div>
+      <?php 
+	  
+	 
+	  
+	  $goods_total = $productDal->Get_Sku_Total($sku, $sku);
+	  
+	  	if(!$goods_total){
+		}
+		else{
+
+foreach ($goods_total as $result){
+		
+	$sku_adj = $result['qty_in']-$result['qty_out'];
+	$sku_total = $result['total_rec']+$result['qty_in']-$result['qty_out']-$result['total_del_desc1'];
+	echo '<label for="total">Total in Stock: '. $sku_total. '</label>';
+}
+}
+?>
     </form>
     <div>
       <form  method="post" action="?action=action&update_sheetboard&sku=<?php echo $sku?>">
@@ -48,13 +65,7 @@ if (isset($_GET['sku'])){
     <?php 
 include ('/templates/modules/goods_in.php');
 include ('/templates/modules/goods_out.php');
-
-$total = $goods_in_amt - $total_goods_out;
-
-
-echo '<label for="total" style="position:absolute; margin-top:-127px; margin-left:-404px" >Total in Stock: '. $total . '</label>';
- 
- echo ' </div>';
+echo '</div>';
 echo '</div>';
 
 

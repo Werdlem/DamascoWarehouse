@@ -66,7 +66,7 @@ foreach ($goods_total as $result){
 
 	$sku_total = $result['total_rec']+$result['qty_in']-$result['qty_out']-$result['total_del_desc1'];
 	
-	echo '<td style="text-align:center">'.$result['date_rec'].'</td>';
+	echo '<td style="text-align:center">'. $result['date_rec'].'</td>';
 	if($sku_total < $result['buffer_qty']){
 		
 		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.2);*/"><strong style="color: red; ">'. $sku_total;

@@ -32,7 +32,6 @@ if (!$total){
   <?php			
 		}	
 			}
-		}
-	
+		}	
 	?>
 </table>
