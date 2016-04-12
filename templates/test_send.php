@@ -16,7 +16,7 @@ require_once "DAL/settings.php";
 	 
 	 }
   
- if (isset($_GET['sku_order'])){
+  if (isset($_GET['sku_order'])){
 	 require_once 'DAL/PDOConnection.php'; 
  $productDal = new products();	 
 	 $sku = $_GET['sku_order'];	 
@@ -24,6 +24,18 @@ require_once "DAL/settings.php";
 	$today = date('Y-m-d');
    
 		$productDal->sku_order($today, $sku);
+	 
+	 }
+	   
+ if (isset($_GET['production_product'])){
+	 require_once 'DAL/Production_PDOConnection.php';
+	 $productionDal = new products();
+	 
+	 $product = $_GET['production_product'];	 
+	 date_default_timezone_set('UTC');
+	$today = date('d-m-y');
+   
+		$productionDal->updateProduct($product, $today);
 	 
 	 }
 	 else

@@ -16,7 +16,17 @@
 				$sheetboardOrder->sku_order($today, $sku_id);
 	 
 	 }
-  
+	 if (isset($_GET['sku_order'])){
+	 require_once 'DAL/PDOConnection.php'; 
+ $productDal = new products();	 
+	 $sku = $_GET['sku_order'];	 
+	 date_default_timezone_set('UTC');
+	$today = date('Y-m-d');
+   
+		$productDal->sku_order($today, $sku);
+	 
+	 }
+	   
  if (isset($_GET['production_product'])){
 	 require_once 'DAL/Production_PDOConnection.php';
 	 $productionDal = new products();
