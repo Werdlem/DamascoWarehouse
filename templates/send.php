@@ -19,7 +19,8 @@
 	 if (isset($_GET['sku_order'])){
 	 require_once 'DAL/PDOConnection.php'; 
  $productDal = new products();	 
-	 $sku = $_GET['sku_order'];	 
+	 $sku = $_GET['sku_order'];	
+	 $product = $_GET['sku_order']; 
 	 date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
    
