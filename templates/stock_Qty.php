@@ -76,7 +76,7 @@ foreach ($goods_total as $result){
 	echo '<td style="text-align:center">'. $sku_total .'</td>';
 		}
 	echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); "><strong>'. $result['buffer_qty'] .'</td>';
-	echo '<td style="text-align:center;"><a href="?action=test_send&sku_order='.$result['sku'].'" class="btn btn-default btn-primary">Order</a></td>';
+	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.$result['sku'].'" class="btn btn-default btn-primary">Order</a></td>';
 }
 }
 	}
