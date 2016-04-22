@@ -638,7 +638,7 @@ class products{
 
 public function Get_Sku_Total($selection){
 	$pdo = Database::DB();
-	$stmt = $pdo->prepare('select products.sku, products.alias_1 as alias_1, products.alias_2 as alias_2, products.alias_3 as alias_3, products.buffer_qty,
+	$stmt = $pdo->prepare('select products.sku, products.alias_1 as alias_1, products.alias_2 as alias_2, products.alias_3 as alias_3, products.buffer_qty, products.last_order_date,
 			(select sum(qty_received)as total from goods_in where sku like :stmt) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1 ) as date_rec,
 			(select sum(qty_delivered) as total_del from goods_out where sku like alias_1 or sku like alias_2 or sku like products.sku or desc1 like :wild or desc1 like 
