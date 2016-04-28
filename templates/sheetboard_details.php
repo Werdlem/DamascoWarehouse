@@ -40,8 +40,8 @@ if (isset($_GET['sku'])){
 
 foreach ($goods_total as $result){
 		
-	$sku_adj = $result['qty_in']-$result['qty_out'];
-	$sku_total = $result['total_rec']+$result['qty_in']-$result['qty_out']-$result['total_del_desc1'];
+	$sku_adj = $result['total_alloc'];
+	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	echo '<label for="total">Total in Stock: '. $sku_total. '</label>';
 }
 }

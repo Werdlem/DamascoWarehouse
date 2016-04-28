@@ -643,8 +643,7 @@ public function Get_Sku_Total($selection){
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1 ) as date_rec,
 			(select sum(qty_delivered) as total_del from goods_out where sku like alias_1 or sku like alias_2 or sku like products.sku or desc1 like :wild or desc1 like 
 					concat("%",NULLIF(alias_1,""),"%") or desc1 like concat("%",NULLIF(alias_2,""),"%")) as total_del_desc1,			
-			(select sum(qty_in) as qty_in from stock_adjustment where sku like :stmt) as qty_in,
-			(select sum(qty_out) as qty_out from stock_adjustment where sku like :stmt) as qty_out
+			(select total from stk_allocation_totals where sku like :stmt) as total_alloc
 			from products
 			where sku like :stmt');
 		$stmt->bindValue(':stmt', $selection);

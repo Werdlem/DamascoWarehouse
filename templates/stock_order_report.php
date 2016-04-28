@@ -31,9 +31,9 @@ $selection = $result['sku'];
 foreach ($goods_total as $result){
 	$date_ordered = $result['last_order_date'];
 	$date_received = $result['date_rec'];	
-	$sku_adj = $result['qty_in']-$result['qty_out'];
+	$sku_adj = $result['total_alloc'];
 
-	$sku_total = $result['total_rec']+$result['qty_in']-$result['qty_out']-$result['total_del_desc1'];
+	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	
 	if($sku_total < $result['buffer_qty']){ ?>
 		<tr style="">
