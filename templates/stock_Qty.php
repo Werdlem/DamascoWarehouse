@@ -12,6 +12,7 @@ $fetch = $productDal->Get_Allocation();
   <div id="search" style="text-align:center">
     <?php $product = $productDal->Get_Allocation();
 	  $dropdown = "<select name='search_stock' id='mySelect' onchange='select()'>";
+	 $dropdown .="\r\n<option value='0'>Select</option>";
 	  foreach ($product as $result){
 		  $dropdown .="\r\n<option value='{$result['allocation_id']}'>{$result['name']}</option>";
 		  }
@@ -29,6 +30,7 @@ $fetch = $productDal->Get_Allocation();
     <button type="submit" class="btn btn-large btn-success" name="submit" >Search</button>
     <input type="hidden" name="doSearch" value="1">
   </div>
+
 </form>
 <?php 
     if(isset($_POST['doSearch'])){
@@ -40,6 +42,8 @@ $fetch = $productDal->Get_Allocation();
 			$fetch = $productDal->Get_Allocation_Sku($fetch);
 		}
 			?>
+           
+            
 <div>
 <table class="table">
   <tr class="heading">
@@ -86,3 +90,5 @@ foreach ($goods_total as $result){
 ?>
   </tr>
 </table>
+</div>
+</div>

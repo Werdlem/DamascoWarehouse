@@ -21,7 +21,7 @@ $suppliers = new products;
         <option>DS Smith</option>
         <option>Drayton</option>
         <option>Sansetsu</option>
-         <option>Smurfit Kappa</option>
+        <option>Smurfit Kappa</option>
       </select>
       <input class="suppliers" name="date-from" placeholder=" date from" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" placeholder=" date to" type="text" onfocus="(this.type='date')" />

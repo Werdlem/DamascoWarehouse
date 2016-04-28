@@ -1,8 +1,9 @@
 <?php
 require_once './DAL/PDOConnection.php';
 $productDal = new products();
-
 include('/templates/sheetboard.php');
+//include('/templates/stock_qty.php');
+
 
 if (isset($_GET['sku'])){	
 	$sku = $_GET['sku'];
@@ -45,6 +46,12 @@ foreach ($goods_total as $result){
 }
 }
 ?>
+<p><button onclick="goBack()"> Back</button></p>
+<script>
+function goBack(){
+	window.history.back();
+	}
+</script>
     </form>
     <div>
       <form  method="post" action="?action=action&update_sheetboard&sku=<?php echo $sku?>">
