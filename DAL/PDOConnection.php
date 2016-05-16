@@ -482,7 +482,8 @@ class products{
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('
 			Select *
-			from stock_allocation			
+			from stock_allocation
+			order by name asc			
 		');
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
@@ -645,7 +646,8 @@ public function Get_Sku_Total($selection){
 					concat("%",NULLIF(alias_1,""),"%") or desc1 like concat("%",NULLIF(alias_2,""),"%")) as total_del_desc1,			
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc
 			from products
-			where sku like :stmt');
+			where sku like :stmt
+		');
 		$stmt->bindValue(':stmt', $selection);
 		$stmt->bindValue(':wild', "%".$selection."%");
 		$stmt->execute();

@@ -12,7 +12,7 @@ $fetch = $productDal->Get_Allocation();
   <div id="search" style="text-align:center">
     <?php $product = $productDal->Get_Allocation();
 	  $dropdown = "<select name='search_stock' id='mySelect' onchange='select()'>";
-	 $dropdown .="\r\n<option value='0'>Select</option>";
+	 $dropdown .="\r\n<option value='0'> </option>";
 	  foreach ($product as $result){
 		  $dropdown .="\r\n<option value='{$result['allocation_id']}'>{$result['name']}</option>";
 		  }
@@ -38,6 +38,7 @@ $fetch = $productDal->Get_Allocation();
 	if($_POST['doSearch']==1)
 		{
 			$fetch = $_POST['search_stock'];
+			$export = $_POST['search_stock'];
 			
 			$fetch = $productDal->Get_Allocation_Sku($fetch);
 		}
@@ -51,11 +52,12 @@ $fetch = $productDal->Get_Allocation();
     <td style="font-size:16px; text-align:center"><strong>Date Ordered</td>
     <td style="font-size:16px; text-align:center"><strong>Date Rec</td>
     <td style="font-size:16px; text-align:center"><strong>SKU total</td>
-     <td style="font-size:16px; text-align:center"><strong>SKU total alloc</td>
+    
     <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td>
     <td style="font-size:16px; text-align:center"><strong>Order</td>
   </tr>
   <?php
+  
 foreach ($fetch as $result){ ?>
   <tr style="">
     <td style=""><a href="?action=sheetboard_details&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
@@ -79,9 +81,10 @@ foreach ($goods_total as $result){
 	echo '<td style="text-align:center">'. $sku_total .'</td>';
 		
 		}
-		echo '<td style="text-align:center">'. $result['total_alloc'] .'</td>';
+		
 	echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); "><strong>'. $result['buffer_qty'] .'</td>';
 	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.$result['sku'].'" class="btn btn-default btn-primary">Order</a></td>';
+			
 }
 }
 	}
@@ -91,5 +94,6 @@ foreach ($goods_total as $result){
 ?>
   </tr>
 </table>
+
 </div>
 </div>
