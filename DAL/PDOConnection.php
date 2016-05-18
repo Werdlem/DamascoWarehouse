@@ -161,7 +161,7 @@ class products{
 			$stmt = $pdo->prepare('Select * 
 		from products
 		left join location on location.sku_id=products.sku_id 
-		where description like :stmt');
+		where notes like :stmt');
 		$stmt->bindValue(':stmt', "%".$Search."%");
 		$stmt->execute();
 		if($stmt->rowCount()>0){
@@ -214,7 +214,8 @@ class products{
 			$pdo = Database::DB();
 			$stmt = $pdo->query('select * from location
 			where sku_id
-			like "0"');
+			like "0"
+			order by location_name asc');
 			$stmt->execute();
 			if($stmt->rowCount()> 'null'){
 			while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))

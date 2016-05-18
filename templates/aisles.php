@@ -47,12 +47,12 @@ $productDal = new products;
 	$aisles = $productDal->GetAisle($aisle);	
     foreach ($aisles as $result)
     {
+		if($result['sku'] > null){
 		?>
         <tr>
             <td><a href="edit_location.php?id=<?php echo $result['location_id']; ?>" style='color:black'><?php echo $result['location_name'];?></a></td>
             <td><?php echo $result['sku'];?></td>
             <td>
-            <?php if ($result['sku'] > null){ ?>
                
             <a href="?action=update_product&sku=<?php echo $result['sku']; ?>&sku_id=<?php echo $result['sku_id'];?>">Details</a>
             </td>
@@ -61,13 +61,9 @@ $productDal = new products;
                 <a href="?action=action&clear_location&location_id=<?php echo $result['location_id'] ?>">Delete</a>
             </td>
             
-            <?php } else{
-				echo
-				"<td><a href='?action=update_location&location_id=". $result['location_id']."'>Update</a></td>";
-				}?>
-            
         </tr>
         <?php
+		}
 	}
 	
 	?>
