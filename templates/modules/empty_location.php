@@ -11,6 +11,7 @@ $productDal = new products();
 <?php
 //echo $aisle;
     $getEmptyLocations = $productDal->EmptyLocations($aisle);
+	$empty = 0;
       ?>
     <table class="table">
         <thead>
@@ -22,8 +23,11 @@ $productDal = new products();
         </thead>
        
         <?php foreach ($getEmptyLocations as $result)
-    { ?>
-        <tr class="heading">
+	
+    { 
+	$empty++;
+	?>
+      <tr class="heading">
             <td><?php echo $result['location_name'];?></td>
             <td>
                 <a href="?action=update_location&location_id=<?php echo $result['location_id'];?>" style="float:right">Update</a>
@@ -32,11 +36,14 @@ $productDal = new products();
         </tr>
         <?php
         }
+		
     ?>
     <tr>
-            
+           
         </tr>
+        
 </table>
+<?php echo "&nbsp <strong>" . $empty . " Empty locations avaliable!</strong>"; ?>
 </div>
 </body>
 </html>

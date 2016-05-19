@@ -34,13 +34,5 @@ if(isset($_POST['add_location'])){
         </div>
         </div>
         
-       <?php $locationDelete = new products();
- $getEmptyLocations = $locationDelete->EmptyLocations();
-if(isset($_GET['delete'])){
-	
-    $locationDelete->DeleteLocation($_GET['delete']);
-	header("Status: 200");
-    header("Location: ?action=empty_location");
-		} ?>
-       
+      
       

@@ -190,9 +190,10 @@ class products{
 		public function Clear_Location($location_id){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('update location
-			set sku_id = "0"
+			set sku_id = :null
 			where
 			location_id like :stmt');
+			$stmt->bindValue(':null', null, PDO::PARAM_NULL);
 			$stmt->bindValue(':stmt', $location_id);
 			$stmt->execute();
 		}
@@ -213,7 +214,7 @@ class products{
 		public function EmptyLocations($aisle){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select * from location
-			where sku_id like "0"
+			where sku_id is null
 			and 
 			location_name like (?)
 			order by location_name asc');
