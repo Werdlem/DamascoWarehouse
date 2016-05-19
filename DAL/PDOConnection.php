@@ -210,12 +210,14 @@ class products{
 		$stmt->execute();
 		}
 		
-		public function EmptyLocations(){
+		public function EmptyLocations($aisle){
 			$pdo = Database::DB();
-			$stmt = $pdo->query('select * from location
-			where sku_id
-			like "0"
+			$stmt = $pdo->prepare('select * from location
+			where sku_id like "0"
+			and 
+			location_name like (?)
 			order by location_name asc');
+			$stmt->bindValue(1, $aisle."%");
 			$stmt->execute();
 			if($stmt->rowCount()> 'null'){
 			while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))

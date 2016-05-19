@@ -1,14 +1,16 @@
 <?php 
 
 require_once('DAL/PDOConnection.php');
-$productDal = new products()
+$productDal = new products();
+
 
 ?><div class="panel panel-info" style="width:39%; float:right">
   <!-- Default panel contents -->
   <div class="panel-heading" style="text-align:center; font-size:18px">Empty Locations</div>
   
 <?php
-    $getEmptyLocations = $productDal->EmptyLocations();
+//echo $aisle;
+    $getEmptyLocations = $productDal->EmptyLocations($aisle);
       ?>
     <table class="table">
         <thead>
