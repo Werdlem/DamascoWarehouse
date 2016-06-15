@@ -108,7 +108,22 @@ if(isset($_POST['doSearch'])){
 				?>
                 </p>
                  <p>Alias 1: <strong><?php echo $result['alias_1'];?></strong>
-                <p>Last Ordered: <?php echo $result['last_order_date']?> 
+                 <?php $selection =  $result['sku'];
+		$goods_total = $productDal->Get_Sku_Total($selection, $selection);
+
+foreach ($goods_total as $total_sku){
+	
+	$sku_total = $total_sku['total_rec']+$total_sku['total_alloc']-$total_sku['total_del_desc1'];
+	if($sku_total < $result['buffer_qty'])
+	{
+		echo '<strong><p style="color: red">Qty in Stock: '.$sku_total.'</strong>';
+		}
+		else {
+			echo '<p>Qty in Stock: '.$sku_total;
+			}
+	} 
+	?>
+               <p>Last Ordered: <?php echo $result['last_order_date']?> 
                 <p>Notes: <?php echo $result['notes']?></p>
 				<?php
                 if(!$result['sku']){

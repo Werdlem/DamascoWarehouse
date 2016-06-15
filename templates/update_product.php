@@ -52,8 +52,18 @@ $sku = $productDal->GetProducts($sku);
       </div>
       <div style="width:50%; margin-left:200px">
         <label for="stock_qty">Total Stock</label>
-        <input id="stock_qty" name="stock_qty" type="text" class="form-control" value="<?php echo $productDetail['stock_qty'];?>" />
+        
+        <?php 
+		$selection = $_GET['sku'];
+		$goods_total = $productDal->Get_Sku_Total($selection, $selection);
+
+foreach ($goods_total as $result){
+	
+	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1']; ?>
+        <input id="stock_qty" name="stock_qty" readonly="readonly" type="text" class="form-control" value="<?php echo $sku_total;}?>" />
       </div>
+      
+      
       <div style="width:50%; float: left;">
         <label for="allocation_id">Allocation</label>
         <?php $product = $productDal->Get_Allocation();

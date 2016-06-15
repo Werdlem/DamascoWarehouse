@@ -57,7 +57,6 @@ $fetch = $productDal->Get_Allocation();
     <td style="font-size:16px; text-align:center"><strong>Order</td>
   </tr>
   <?php
-  
 foreach ($fetch as $result){ ?>
   <tr style="">
     <td style=""><a href="?action=sheetboard_details&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
@@ -88,8 +87,6 @@ foreach ($goods_total as $result){
 }
 }
 	}
-	
-	
 
 ?>
   </tr>
