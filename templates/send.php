@@ -75,7 +75,7 @@
 			->setBody('<html>'.
                 '<head>Hello<br /><br /></head>'.
                 '<body>'.
-                'Please will you kindly order '. $qty . ' ' .$product.
+                'Please will you kindly order '. $qty . '--' .$product.
                 '<br /><br />Kind Regards<br /><br />'.
                 'PostPack'.
                 '</body>' .
@@ -100,7 +100,7 @@
 				echo "<div class='panel panel-danger'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Failure</h3></div>
 <div class='panel-body'>
-				<p>Your order of <strong style='red'>".$product ." </strong> was not sent, please call the office with your order.</p>
+				<p>Your order of <strong style='red'>".$qty . '--'.$product ." </strong> was not sent, please call the office with your order.</p>
 				</div></div>";
 				
 				}
