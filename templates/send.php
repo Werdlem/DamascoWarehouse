@@ -12,6 +12,7 @@
 	 //date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
 	$product = $result['sku'];
+	$qty = $result['pack_qty'];
 				
 				$sheetboardOrder->sku_order($today, $sku_id);
 	 
@@ -20,7 +21,8 @@
 	 require_once 'DAL/PDOConnection.php'; 
  $productDal = new products();	 
 	 $sku = $_GET['sku_order'];	
-	 $product = $_GET['sku_order']; 
+	 $product = $_GET['sku_order'];
+	 $qty = $_GET['qty']; 
 	 date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
    
@@ -73,7 +75,7 @@
 			->setBody('<html>'.
                 '<head>Hello<br /><br /></head>'.
                 '<body>'.
-                'Please will you kindly order ' .$product.
+                'Please will you kindly order '. $qty . ' ' .$product.
                 '<br /><br />Kind Regards<br /><br />'.
                 'PostPack'.
                 '</body>' .
@@ -98,7 +100,7 @@
 				echo "<div class='panel panel-danger'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Failure</h3></div>
 <div class='panel-body'>
-				<p>Your order of <strong style='red'>".$product,"</strong> was not sent, please call the office with your order.</p>
+				<p>Your order of <strong style='red'>".$product ." </strong> was not sent, please call the office with your order.</p>
 				</div></div>";
 				
 				}

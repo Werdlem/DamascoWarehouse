@@ -136,7 +136,7 @@ foreach ($goods_total as $total_sku){
 				else				
 						echo '<a href="?action=action&clear_location&location_id='.$result['location_id'].'">Delete</a>';
 				?>
-                | <a href="?action=send&sku_order=<?php echo $result['sku']?>">Order</a>
+                | <a href="?action=send&sku_order=<?php echo $result['sku']?>&qty=<?php echo $result['pack_qty'];?>">Order</a>
 				<?php if ($result['sku']>0){
 					echo "| <a href='?action=update_product&sku=".$result['sku']."&sku_id=". $result['sku_id']."'>Details</a>";
 					}

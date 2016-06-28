@@ -18,9 +18,10 @@ if(isset($_POST['updates'])){
 	$alias_1 = $_POST['alias_1'];
 	$alias_2 = $_POST['alias_2'];
 	$alias_3 = $_POST['alias_3'];
+	$pack_qty = $_POST['pack_qty'];
 	$stock_qty = $_POST['stock_qty'];
 	
-	$productDal->UpdateProduct($sku_id, $sku,$notes,$buffer_qty, $allocation_id, $supplier_name,$description, $alias_1, $alias_2, $alias_3, $stock_qty);
+	$productDal->UpdateProduct($sku_id, $sku,$notes,$buffer_qty, $allocation_id, $supplier_name,$description, $alias_1, $alias_2, $alias_3,$pack_qty, $stock_qty);
 	header("location:?action=update_product&sku=".$sku."&sku_id=".$sku_id);
 }
 

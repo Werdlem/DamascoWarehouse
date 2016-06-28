@@ -42,15 +42,15 @@ $sku = $productDal->GetProducts($sku);
         <label for="alias_3">Alias 3</label>
         <input id="alias_3" name="alias_3" type="text" class="form-control" value="<?php echo $productDetail['alias_3'];?>" />
       </div>
-      <div>
-        <label for="last_ordered">Last Ordered</label>
-        <input id="last_ordered" name="last_ordered" type="text" class="form-control" readonly="readonly" style="width: 40%" value="<?php echo $productDetail['last_order_date']; ?>"/>
+      <div style="width:32%; float:left">
+        <label for="pack_qty">Order Qty</label>
+        <input id="pack_qty" name="pack_qty" type="text" class="form-control" value="<?php echo $productDetail['pack_qty'];?>" />
       </div>
-      <div style="width:50%; float: left;">
+      <div style="width:32%; float:right; padding-left:15px">
         <label for="buffer_qty">Buffer Qty</label>
-        <input id="buffer_qty" name="buffer_qty" type="text" class="form-control"  value="<?php echo $productDetail['buffer_qty']; ?>"/>
+        <input id="buffer_qty" name="buffer_qty" type="text" class="form-control"  value="<?php echo $productDetail['buffer_qty'];?>" />
       </div>
-      <div style="width:50%; margin-left:200px">
+      <div style="width:32%; float:right">
         <label for="stock_qty">Total Stock</label>
         
         <?php 
@@ -62,7 +62,11 @@ foreach ($goods_total as $result){
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1']; ?>
         <input id="stock_qty" name="stock_qty" readonly="readonly" type="text" class="form-control" value="<?php echo $sku_total;}?>" />
       </div>
-      
+      <div>
+        <label for="last_ordered">Last Ordered</label>
+        <input id="last_ordered" name="last_ordered" type="text" class="form-control" readonly="readonly" style="width: 40%" value="<?php echo $productDetail['last_order_date']; ?>"/>
+      </div>
+           
       
       <div style="width:50%; float: left;">
         <label for="allocation_id">Allocation</label>
@@ -93,7 +97,7 @@ foreach ($goods_total as $result){
       </div>
       <br/>
       <button id="updates" class="btn btn-large btn-primary" name="updates" type="submit">Update</button>
-      <a href="?action=send&sku_order=<?php echo $productDetail['sku'];?>&id=<?php echo $productDetail['sku_id'];?>" class="btn btn-large btn-primary">Order</a>
+      <a href="?action=send&sku_order=<?php echo $productDetail['sku'];?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>" class="btn btn-large btn-primary">Order</a>
     </form>
     <a href="?action=sheetboard_details&sku=<?php echo $productDetail['sku'] ?>">Link</a>
   </div>

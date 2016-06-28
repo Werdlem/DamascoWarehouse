@@ -103,10 +103,10 @@ class products{
 			}
 		}
 		
-		public function UpdateProduct($sku_id, $sku, $notes, $buffer_qty, $allocation_id, $supplier_name, $description, $alias_1, $alias_2, $alias_3, $stock_qty){
+		public function UpdateProduct($sku_id, $sku, $notes, $buffer_qty, $allocation_id, $supplier_name, $description, $alias_1, $alias_2, $alias_3,$pack_qty, $stock_qty){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, stock_qty = :stock_qty
+		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3,pack_qty = :pack_qty, stock_qty = :stock_qty
 		where sku_id = :sku_id');		
 		$stmt->bindValue(':sku', $sku);
 		$stmt->bindValue(':notes', $notes);
@@ -117,6 +117,7 @@ class products{
 		$stmt->bindValue(':alias_1', $alias_1);
 		$stmt->bindValue(':alias_2', $alias_2);
 		$stmt->bindValue(':alias_3', $alias_3);
+		$stmt->bindValue(':pack_qty', $pack_qty);
 		$stmt->bindValue(':stock_qty', $stock_qty);
 		$stmt->bindValue(':sku_id', $sku_id);
 		$stmt->execute();
@@ -415,11 +416,13 @@ class products{
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('insert into
 		stock_adjustment (sku, qty_in, date)
-		values (?,?,?)		
+		values (?,?,?);
+		
 		');
 		$stmt->bindValue(1, $sku);
 		$stmt->bindValue(2, $qty_in);
 		$stmt->bindValue(3, $date);
+	
 		$stmt->execute();
 		}
 		
@@ -643,12 +646,13 @@ class products{
 
 public function Get_Sku_Total($selection){
 	$pdo = Database::DB();
-	$stmt = $pdo->prepare('select products.sku, products.alias_1 as alias_1, products.alias_2 as alias_2, products.alias_3 as alias_3, products.buffer_qty, products.last_order_date,
+	$stmt = $pdo->prepare('select products.sku, products.alias_1 as alias_1, products.alias_2 as alias_2, products.alias_3 as alias_3, products.buffer_qty, products.last_order_date, products.pack_qty,
+			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt) as total_rec,
-			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1 ) as date_rec,
+			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(select sum(qty_delivered) as total_del from goods_out where sku like alias_1 or sku like alias_2 or sku like products.sku or desc1 like :wild or desc1 like 
-					concat("%",NULLIF(alias_1,""),"%") or desc1 like concat("%",NULLIF(alias_2,""),"%")) as total_del_desc1,			
-			(select total from stk_allocation_totals where sku like :stmt) as total_alloc
+					concat("%",NULLIF(alias_1,""),"%") or desc1 like concat("%",NULLIF(alias_2,""),"%")) as total_del_desc1			
+			
 			from products
 			where sku like :stmt
 		');
@@ -662,6 +666,26 @@ public function Get_Sku_Total($selection){
 			
 			}
 	}
+	
+	public function Get_All_Stock_Qty($selection, $selection){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('select sku, qty_delivered, desc1
+		from goods_out
+		where sku like :stmt or desc1 like :wild or sku like :wild
+		order by despatch DESC');
+		$stmt->bindValue(':stmt', $selection);
+		$stmt->bindValue(':wild', '%'.$selection.'%');
+		$stmt->execute();
+		if($stmt->rowCount()<0) {
+		die ('Nothing');
+		}
+		while ($row = $stmt->fetchAll(PDO::FETCH_ASSOC)){
+		return $row;
+			
+			}
+		}
+	
+	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	public function Goods_Out_total($sku, $alias1, $alias2, $alias3, $sku, $alias1, $alias2, $alias3){
