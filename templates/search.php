@@ -76,8 +76,8 @@ if(isset($_POST['doSearch'])){
 	  echo "<div style='border-bottom: 1px dashed #777; padding-bottom:5px; margin-bottom:10px; width:100%; float:left'> "
 	  ?>
       
-      <div class="alert alert-info" role="alert" style="width:40%; float:right; height:85px; font-size:46px; color:#C00; text-align:center"><?php
-	   echo $result['location_name'];
+      <div class="alert alert-info" role="alert" style="width:40%; float:right; height:85px; font-size:46px; color:#C00; text-align:center">
+	  <?php echo $result['location_name'];
 	  ?>
       </strong>
       </div>

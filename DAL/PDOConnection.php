@@ -650,8 +650,14 @@ public function Get_Sku_Total($selection){
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
-			(select sum(qty_delivered) as total_del from goods_out where sku like alias_1 or sku like alias_2 or sku like products.sku or desc1 like :wild or desc1 like 
-					concat("%",NULLIF(alias_1,""),"%") or desc1 like concat("%",NULLIF(alias_2,""),"%")) as total_del_desc1			
+			(select sum(qty_delivered) as total_del from goods_out where 
+			sku = alias_1 
+			or sku = alias_2 
+			or sku = products.sku 
+			or desc1sku = :stmt 
+			or desc1sku = products.alias_1 
+			or desc1sku = products.alias_2)
+			as total_del_desc1			
 			
 			from products
 			where sku like :stmt
@@ -684,7 +690,26 @@ public function Get_Sku_Total($selection){
 			
 			}
 		}
+		
+		////////EXPERIMENTAL//////////
+		
+		public function get_stock_order_report(){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select *
+			from products
+			where stock_qty < buffer_qty
+			and allocation_id > 0');
+			$stmt->execute();			
+		if($stmt->rowCount()>0){				
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else
+		{
+		
+		}
+		}
 	
+	///////////////////////////////////////////
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
