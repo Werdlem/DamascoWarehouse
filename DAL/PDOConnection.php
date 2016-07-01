@@ -663,7 +663,7 @@ public function Get_Sku_Total($selection){
 			where sku like :stmt
 		');
 		$stmt->bindValue(':stmt', $selection);
-		$stmt->bindValue(':wild', "%".$selection."%");
+		
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
