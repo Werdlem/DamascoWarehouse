@@ -35,7 +35,7 @@ foreach ($goods_total as $result){
 
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	
-	if($sku_total < $result['buffer_qty']){ ?>
+	if($sku_total <= $result['buffer_qty']){ ?>
 		<tr style="">
     <td style=""><a href="?action=sheetboard_details&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
     
