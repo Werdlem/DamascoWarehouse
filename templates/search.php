@@ -108,7 +108,10 @@ if(isset($_POST['doSearch'])){
 				?>
                 </p>
                  <p>Alias 1: <strong><?php echo $result['alias_1'];?></strong>
-                 <?php $selection =  $result['sku'];
+                 <?php
+				 			if ($result['sku']> ''){
+				 
+				  $selection =  $result['sku'];
 		$goods_total = $productDal->Get_Sku_Total($selection, $selection);
 
 foreach ($goods_total as $total_sku){
@@ -122,6 +125,8 @@ foreach ($goods_total as $total_sku){
 			echo '<p>Qty in Stock: '.$sku_total;
 			}
 	} 
+	}
+	
 	?>
                <p>Last Ordered: <?php echo $result['last_order_date']?> 
                 <p>Notes: <?php echo $result['notes']?></p>
