@@ -648,15 +648,16 @@ public function Get_Sku_Total($selection){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('select products.sku, products.alias_1 as alias_1, products.alias_2 as alias_2, products.alias_3 as alias_3, products.buffer_qty, products.last_order_date, products.pack_qty,
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
-			(select sum(qty_received)as total from goods_in where sku like :stmt) as total_rec,
+			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(select sum(qty_delivered) from goods_out where 
+			
 			sku = alias_1 
 			or sku = alias_2 
-			or sku like concat(nullif(products.sku,""),"%") 
+			or sku like concat(nullif(products.sku,"")) 
 			or desc1sku = :stmt 
-			or desc1sku like concat(nullif(products.alias_1,""),"%") 
-			or desc1sku like concat(nullif(products.alias_2,""),"%"))
+			or desc1sku like concat(nullif(products.alias_1,"")) 
+			or desc1sku like concat(nullif(products.alias_2,"")))
 			as total_del_desc1			
 			
 			from products
