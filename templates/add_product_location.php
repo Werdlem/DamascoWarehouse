@@ -8,3 +8,7 @@ echo'</div>';
 echo'<div style="width:49%; float:right">';
 include 'modules/add_location.php';
 echo'</div>';
+
+echo'<div style="width:49%; float:right">';
+include 'modules/add_allocation.php';
+echo'</div>';

@@ -35,7 +35,7 @@ if(isset($_POST['add_location'])){
 }
 
 if(isset($_POST['new_location'])){
-   $result = $_POST['location_name'];
+   $result = strtoupper($_POST['location_name']);
    		$productDal->New_Location($result);
 		//header("location:?action=update_product&sku=".$sku."&sku_id=".$sku_id);
 		//echo '<div class="alert alert-success" role="alert">Location '.$result.' successfully added</div>';	

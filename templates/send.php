@@ -25,9 +25,7 @@
 	 $qty = $_GET['qty']; 
 	 date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
-   
-		$productDal->sku_order($today, $sku);
-	 
+
 	 }
 	   
  if (isset($_GET['production_product'])){
@@ -89,6 +87,8 @@
 			$result = $mailer->send($message);
 			if ($result > 0)
 			{
+				$productDal->sku_order($today, $sku);
+				
 				echo "<div class='panel panel-success'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Success!</h3></div>
 <div class='panel-body'>

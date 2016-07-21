@@ -1,11 +1,6 @@
-<?php include_once('DAL/Production_PDOConnection.php');
-$productDal = new products();
-?>
-    <title>Add Customer</title>
-    </head>
-<body>
-<div class="panel panel-primary" style="width:49%; float:left">
-<div class="panel-heading" style="text-align:center;"><h3>Add Customer</h3></div>
+
+<div class="panel panel-primary">
+<div class="panel-heading" style="text-align:center;"><h3>New Allocation Details</h3></div>
 <div class="panel-body">
     <form method="post" id="add_allocation" action="?action=action">
         <div>
@@ -18,5 +13,4 @@ $productDal = new products();
         </form>
         </div>
         </div>
-</body>
 </html>
