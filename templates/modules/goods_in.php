@@ -10,9 +10,9 @@ if (!$total){
 
 ?>
 
-<table class="table" style="width:48%; float:left;">
+<table class="table" style="width: 28%; float:left;border-color:#CFF">
   
-    <td style="border-bottom:none; float:right"><h3>Goods In</h3></td>
+    <td style="border-bottom:none; float:right"><h3>Sku</h3></td>
   <tr class="heading">
     <td>Date Rec</td>
     <td style="text-align:center">Qty</td>
@@ -26,7 +26,7 @@ if (!$total){
 			foreach ($goods_in as $Result){
 				
 		{?>
-    <td><?php echo date('d-m-Y',strtotime($Result['delivery_date']))?></td>
+    <td><?php echo date('d/m',strtotime($Result['delivery_date']))?></td>
     <td style="text-align:center"><?php echo $Result['qty_received']?></td>
   </tr>
   <?php			

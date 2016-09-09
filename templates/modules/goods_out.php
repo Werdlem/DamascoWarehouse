@@ -9,14 +9,10 @@ $goods_in = $productDal->Get_All($sku);
 //--------------------------------------------------------------------------------------//
  
 $goods_out_movement = $productDal->get_Movement($sku);
-//$total = $productDal->total($sku);
 
-//if ($total){foreach ($total as $goods_out_amt){ $goods_out_amt;}} else {echo '0';}
-	//$total_goods_out = $goods_out_result['total'] - $goods_out_amt;
-	
 ?>
-<table class="table" style="width:48%; float:right">
-  <td style="border-bottom:none; float:right"><h3>Adjustment</h3></td>
+<table class="table" style="width:50%; float:right; background-color:#FCF">
+  <td style="border-bottom:none;"><h3>In/Out</h3></td>
     <tr class="heading">
     <td>Date</td>
     <td style="text-align:center">Qty Out</td>
@@ -28,7 +24,7 @@ $goods_out_movement = $productDal->get_Movement($sku);
      if (!$goods_out_movement);else{
 	 foreach ($goods_out_movement as $result){
 		?>
-     <td ><?php echo date('d-m-Y', strtotime($result['date']))?></td>
+     <td ><?php echo date('d/m', strtotime($result['date']))?></td>
       <td style="text-align:center"><?php echo $result['qty_out']?></td>
       <td style="text-align:center"><?php echo $result['qty_in']?></td>
       <td style="text-align:center"><a href="?action=action&delete_line&id=<?php echo $result['id'];?>&sku=<?php echo $result['sku'] ?>">X</a></td>       

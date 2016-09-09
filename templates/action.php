@@ -113,12 +113,40 @@ if (isset($_GET['update_sheetboard'])) {
 	header('Location: ?action=sheetboard_details&sku=' .$sku);
 	}
 	
+	//------------------------------------------------------------------------------------------------------//
+	if (isset($_GET['update_movement'])) {
+		$sku = $_GET['sku'];
+		//$sku_id = $_GET['sku_id'];
+		
+		if ($_POST['add'] > 0){
+	$add = $_POST['add'];
+	$date = date('y-m-d');	
+	$qty_in = $_POST['add'];
+	$add = $productDal->qty_In($sku, $qty_in, $date);
+	}
+	else{
+		if($_POST['subtract']> 0){
+		$subtract = $_POST['subtract'];
+	$date = date('y-m-d');
+
+	$qty_out = $_POST['subtract'];
+	$subtract = $productDal->qty_Out($sku, $qty_out, $date);
+		}
+	
+	}
+	$dosearch = '1';
+	header('Location: ?action=update_product&sku=' .$sku.'&sku_id='.$sku_id);
+	}
+	
+	//------------------------------------------------------------------------------------------------------//
+	
 		if (isset($_GET['delete_line'])){
 			$id = $_GET['id'];
 			$sku = $_GET['sku'];
+			$sku_id = $_GET['sku_id'];
 			
 			$delete_line = $productDal->delete_line($id);
-			header('location:? action=sheetboard_details&sku='.$sku);
+			header('location:? action=update_product&sku='.$sku .'&sku_id='.$sku_id);
 			}
 			
 			if(isset($_POST['add_allocation'])){
