@@ -47,6 +47,7 @@ $fetch = $productDal->Get_Allocation();
             
 <div>
 <table class="table">
+<form id="Stock_Qty" method="post" action="?action=dummy">
   <tr class="heading">
     <td style="font-size:16px"><strong>SKU</td>
     <td style="font-size:16px; text-align:center"><strong>Date Ordered</td>
@@ -59,7 +60,7 @@ $fetch = $productDal->Get_Allocation();
   <?php
 foreach ($fetch as $result){ ?>
   <tr style="">
-    <td style=""><a href="?action=sheetboard_details&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
+    <td style=""><a href="?action=results&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
     <td style="text-align:center"><?php if ($result['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($result['last_order_date']));} ?></td>
     <?php
 $selection = $result['sku'];
@@ -87,9 +88,14 @@ foreach ($goods_total as $result){
 }
 }
 	}
+	
 
 ?>
+ <input type="submit" name="Submit" value="submit" />
+ 
+
   </tr>
+  </form>
 </table>
 
 </div>

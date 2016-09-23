@@ -641,12 +641,42 @@ class products{
 			}
 }
 
+public function get_Goods_Out_Sku($search_sku, $alias1, $alias2){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('
+			Select *
+			from goods_out
+			where (
+			sku = :stmt1
+			or sku = :stmt2 
+			or sku like concat(nullif(:stmt,"")) 
+			or desc1sku = :stmt 
+			or desc1sku like concat(nullif(:stmt1,"")) 
+			or desc1sku like concat(nullif(:stmt2,"")))
+			having qty_delivered <> "0.00"
+			and due_date > "2016-01-01"
+			order by due_date desc
+			limit 0,20
+						
+		');
+		$stmt->bindValue(':stmt', $search_sku);
+		$stmt->bindValue(':stmt1', $alias1);
+		$stmt->bindValue(':stmt2', $alias2);
+		$stmt->execute();
+		if($stmt->rowCount()>0) {
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			
+			}
+	}
+
 
 //////////////////////////////////////////////////////////////// STOCK QUANTITY QUERY //////////////////////////////////////////////////////////////
 
 public function Get_Sku_Total($selection){
 	$pdo = Database::DB();
-	$stmt = $pdo->prepare('select products.sku, products.alias_1 as alias_1, products.alias_2 as alias_2, products.alias_3 as alias_3, products.buffer_qty, products.last_order_date, products.pack_qty,
+	$stmt = $pdo->prepare('select * ,
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
@@ -673,6 +703,21 @@ public function Get_Sku_Total($selection){
 			
 			}
 	}
+	
+		public function goods_out_total($search_sku){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('select 
+		coalesce(sum(qty_delivered),0) as total 
+		from goods_out
+		where sku like :stmt or desc1sku like :stmt
+		');
+		$stmt->bindValue(':stmt', $search_sku);
+		$stmt->execute();
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+		{
+		 return $results;		
+		}
+		}
 	
 	public function Get_All_Stock_Qty($selection, $selection){
 		$pdo = Database::DB();
@@ -714,37 +759,7 @@ public function Get_Sku_Total($selection){
 	
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	public function Goods_Out_total($sku, $alias1, $alias2, $alias3, $sku, $alias1, $alias2, $alias3){
-		$pdo = Database::DB();
-		$stmt = $pdo->prepare('select *, sum(qty_delivered) as total 
-		from goods_out
-		where 
-		(sku like (?)) or
-		(sku like (?)) or
-		(sku like (?)) or
-		(sku like (?)) or
-		(desc1 like (?)) or
-		(desc1 like (?)) or
-		(desc1 like (?)) or
-		(desc1 like (?))
-	
-		');
-		$stmt->bindValue(1, $sku);
-		$stmt->bindValue(2, '%'.$alias1.'%');
-		$stmt->bindValue(3, '%'.$alias2.'%');
-		$stmt->bindValue(4, '%'.$alias3.'%');
-		$stmt->bindValue(5, '%'.$sku.'%');
-		$stmt->bindValue(6, '%'.$alias1.'%');
-		$stmt->bindValue(7, '%'.$alias2.'%');
-		$stmt->bindValue(8, '%'.$alias3.'%');
-		$stmt->execute();
-		if($stmt->rowCount()>0) {
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
-		}
-		else{
-			
-			}			
-		}
+
 		
 		public function select_all(){
 		$pdo = Database::DB();
