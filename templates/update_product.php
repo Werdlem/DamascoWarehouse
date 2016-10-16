@@ -106,7 +106,6 @@ foreach ($goods_total as $result){
 <?php
 include 'modules/location_list.php';
 include 'modules/update_location.php';
-//include 'modules/order_history.php'; 
-include 'modules/stock_amendment.php';
+
 
 
