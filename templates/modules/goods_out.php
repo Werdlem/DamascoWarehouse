@@ -11,8 +11,8 @@ $goods_in = $productDal->Get_All($sku);
 $goods_out_movement = $productDal->get_Movement($sku);
 
 ?>
-<table class="table" style="width:50%; float:right; background-color:#FCF">
-  <td style="border-bottom:none;"><h3>In/Out</h3></td>
+<table class="table" style="width:48%; float:right">
+  <td style="border-bottom:none; float:right"><h3>Adjustment</h3></td>
     <tr class="heading">
     <td>Date</td>
     <td style="text-align:center">Qty Out</td>

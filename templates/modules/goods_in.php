@@ -10,8 +10,7 @@ if (!$total){
 
 ?>
 
-<table class="table" style="width: 28%; float:left;border-color:#CFF">
-  
+<table class="table" style="width:48%; float:left;">  
     <td style="border-bottom:none; float:right"><h3>Sku</h3></td>
   <tr class="heading">
     <td>Date Rec</td>
