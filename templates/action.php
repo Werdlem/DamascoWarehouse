@@ -214,7 +214,7 @@ if ($_POST['add'] > 0){
 		 }
 		 
 		 
-///////////////////////////////////////////////////Results.php actions//////////////////////////////
+///////////////////////////////////////////////////activity.php actions//////////////////////////////
 if (isset($_GET['sku_ammend'])) {
 		$sku = $_GET['sku'];
 		if ($_POST['add'] > 0){
@@ -236,7 +236,7 @@ if (isset($_GET['sku_ammend'])) {
 		
 		
 	$doSearch = '1';
-	header('Location: ?action=results&sku=' .$sku);
+	header('Location: ?action=activity&sku=' .$sku);
 	
 }
 
@@ -246,7 +246,7 @@ if (isset($_GET['delete_line'])){
 			$sku_id = $_GET['sku_id'];
 			
 			$delete_line = $productDal->delete_line($id);
-			header('location:? action=results&sku='.$sku .'&sku_id='.$sku_id);
+			header('location:? action=activity&sku='.$sku .'&sku_id='.$sku_id);
 			}
 		
 	

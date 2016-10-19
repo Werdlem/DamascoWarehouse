@@ -36,7 +36,6 @@ if (!$total){
 		}	
 			}
 		}
-		//echo '<p style="color: green"><strong>SKU Total Goods In:</strong> '.$goods_in_amt.'</p>'
 	?>
 </table>
 </div>
