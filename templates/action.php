@@ -240,7 +240,7 @@ if (isset($_GET['sku_ammend'])) {
 	
 }
 
-if (isset($_GET['delete_line'])){
+if (isset($_GET['delete_entry'])){
 			$id = $_GET['id'];
 			$sku = $_GET['sku'];
 			$sku_id = $_GET['sku_id'];

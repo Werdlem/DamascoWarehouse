@@ -60,7 +60,7 @@ $fetch = $productDal->Get_Allocation();
   <?php
 foreach ($fetch as $result){ ?>
   <tr style="">
-    <td style=""><a href="?action=results&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
+    <td style=""><a href="?action=activity&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
     <td style="text-align:center"><?php if ($result['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($result['last_order_date']));} ?></td>
     <?php
 $selection = $result['sku'];
