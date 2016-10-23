@@ -23,7 +23,7 @@ $sku = $productDal->GetProducts($sku);
     <form method="post" action="?action=action&updates">
       <div>
         <label for="sku">Product</label>
-        <input id="sku" name="sku" type="text" class="form-control" value="<?php echo $productDetail['sku']; ?>"/>
+        <input id="sku" name="sku" type="text" class="form-control" value="<?php echo htmlspecialchars($productDetail['sku']); ?>"/>
         <input id="sku_id" name="sku_id" type="hidden" value="<?php echo $productDetail['sku_id']; ?> "
         <span id="notesInfo"></span> </div>
       <div>

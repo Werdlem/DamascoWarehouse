@@ -26,7 +26,7 @@ else
 
     <form method="post" action="?action=action">
         
-            <p>Product: <input id="sku" class="form-control-new" name="sku" type="text" value="<?php echo $new; ?>"/></p>
+            <p>Product: <input id="sku" class="form-control-new" name="sku" type="text" value="<?php echo htmlspecialchars($new); ?>"/></p>
             <p>Desc: <input id="description" class="form-control-new" name="description" type="text" /></p>    
             <p>Pack Qty: <input id="pack_qty" class="form-control-new" name="pack_qty" type="text" value="0"/></p>
            
