@@ -232,13 +232,13 @@ class products{
 			}		
 		}
 		
-		public function Add_Sku($sku, $pack_qty, $alias_1, $alias_2, $alias_3, $allocation_id, $description, $stock_qty, $buffer_qty, $notes){
+		public function add_sku($sku, $pack_qty, $alias_1, $alias_2, $alias_3, $allocation_id, $description, $stock_qty, $buffer_qty, $notes){
 			$pdo = Database::DB();
 		try{
 			$stmt = $pdo->prepare('insert
 			into products
 			(sku, pack_qty, alias_1, alias_2, alias_3, allocation_id, description, stock_qty, buffer_qty, notes)
-			values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+			values (?, ?, ?, ?, ?, ?, ?,?, ?, ?)');
 			$stmt->bindValue(1, $sku);
 			$stmt->bindValue(2, $pack_qty);
 			$stmt->bindValue(3, $alias_1);
@@ -741,10 +741,21 @@ public function Get_Sku_Total($selection){
 		
 		public function get_stock_order_report(){
 			$pdo = Database::DB();
-			$stmt = $pdo->prepare('select *
-			from products
-			where stock_qty < buffer_qty
-			and allocation_id > 0');
+			$stmt = $pdo->prepare('select
+p.*,
+gi.delivery_date
+from products p
+join goods_in gi on gi.sku=p.sku
+join(select n.sku,
+max(n.delivery_date) as max_delivery_date 
+from goods_in n
+group by n.sku) y on y.sku=gi.sku
+and
+y.max_delivery_date=gi.delivery_date
+where
+p.stock_qty < p.buffer_qty
+			and allocation_id > 0
+			');
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);

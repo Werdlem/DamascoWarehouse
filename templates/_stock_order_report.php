@@ -2,6 +2,12 @@
 $productDal = new products();
 $goods_total = $productDal->get_stock_order_report();
 			?>
+            <style>
+			
+			.ordered{background-color: rgba(0,255,0,0.2); }
+			.not_ordered{background-color: rgba(255,0,0,0.2); }
+			
+			</style>
             <div class="panel panel-primary" style="width:100%; float:left;">
 <div class="panel-heading" style="text-align:center;">
   <h3>Low Stock Order Report</h3>
@@ -18,23 +24,20 @@ $goods_total = $productDal->get_stock_order_report();
     <td style="font-size:16px; text-align:center"><strong>Order</td>
   </tr>
   <?php
-  
-
-foreach ($goods_total as $result){
-	?>
-	
-		<tr style="">
+  foreach ($goods_total as $result){
+	 $status = ($result['last_order_date'] > $result['delivery_date'])? 'ordered': 'not_ordered';
+		echo "<tr class='$status'>";
+		?>
     <td style=""><a href="?action=sheetboard_details&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
-    
-	<?php 
-		echo '<td style="text-align:center;background-color: rgba(0,255,0,0.2)">'. $result['last_order_date'];
-	 echo'<td style="text-align:center; background-color: rgba(255,0,0,0.2)">'. $result['last_order_date'];
+  <?php  			
+	 echo '<td class="sean">'. date('d-m-Y', strtotime($result['last_order_date']));		
+	 echo'<td class="sean">'. date('d-m-Y', strtotime($result['delivery_date']));
 	?>
     </strong></td>
    
 		<?php 
-		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.2);*/"><strong style="color: red; ">'. $result['stock_qty'];
-		echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); ">'. $result['buffer_qty'];
+		echo '<td style="text-align:center; "><strong style="color: red; ">'. $result['stock_qty'];
+		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.1); ">'. $result['buffer_qty'];
 		echo '<td style="text-align:center;"><a href="?action=send&sku_order='.$result['sku'] .'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>';
 						
 		}

@@ -35,7 +35,7 @@
           <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="?action=stock_qty">Stock</a>
             <ul class="dropdown-menu" role="menu">
               <li><a href="?action=sheetboard">Goods In</a></li>
-              <li><a href="?action=stock_order_report">Stock Order Report</a></li>
+              <li><a href="?action=_stock_order_report">Stock Order Report</a></li>
               </li>
             </ul>
            <li><a href="?action=suppliers">Suppliers</a></li>
