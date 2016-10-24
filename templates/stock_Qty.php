@@ -2,6 +2,11 @@
 $productDal = new products();
 $fetch = $productDal->Get_Allocation();
 ?>
+<style>		
+	.ordered{background-color: rgba(0,255,0,0.2); }
+			.not_ordered{background-color: rgba(255,0,0,0.2); }
+			
+</style>
 
 <div class="panel panel-primary" style="width:100%; float:left;">
 <div class="panel-heading" style="text-align:center;">
