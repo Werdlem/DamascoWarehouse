@@ -37,16 +37,23 @@ $fetch = $productDal->Get_Allocation();
   </div>
 
 </form>
-<?php 
+<?php
+
+if (isset($_GET['id'])){
+		$fetch = $_GET['id'];
+	
+	$fetch = $productDal->Get_Allocation_Sku($fetch);
+
+	} 
     if(isset($_POST['doSearch'])){
 	
 	if($_POST['doSearch']==1)
 		{
 			$fetch = $_POST['search_stock'];
 			$export = $_POST['search_stock'];
-			
-			$fetch = $productDal->Get_Allocation_Sku($fetch);
+						
 		}
+		$fetch = $productDal->Get_Allocation_Sku($fetch);
 			?>
            
             

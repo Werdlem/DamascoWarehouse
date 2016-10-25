@@ -99,7 +99,7 @@ foreach ($goods_total as $result){
       <button id="updates" class="btn btn-large btn-primary" name="updates" type="submit">Update</button>
       <a href="?action=send&sku_order=<?php echo $productDetail['sku'];?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>" class="btn btn-large btn-primary">Order</a>
     </form>
-    <a href="?action=sheetboard_details&sku=<?php echo $productDetail['sku'] ?>">Link</a>
+    <a href="?action=activity&sku=<?php echo $productDetail['sku'] ?>">Activity</a>
   </div>
   <?php }?>
 </div>
