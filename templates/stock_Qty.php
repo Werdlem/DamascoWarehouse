@@ -96,8 +96,6 @@ foreach ($goods_total as $result){
 	
 
 ?>
- <input type="submit" name="Submit" value="submit" />
- 
 
   </tr>
   </form>

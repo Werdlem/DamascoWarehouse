@@ -753,7 +753,7 @@ group by n.sku) y on y.sku=gi.sku
 and
 y.max_delivery_date=gi.delivery_date
 where
-p.stock_qty < p.buffer_qty
+p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
 			');
 			$stmt->execute();			
