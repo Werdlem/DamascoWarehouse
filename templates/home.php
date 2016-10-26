@@ -31,7 +31,7 @@
 });
     </script>
 
-<form action="?action=results" method="post">
+<form action="?action=activity" method="post">
   <input type="text" placeholder="Search SKU" id="sku" name="search_sku" width="200px" autocomplete="off"/>
     <button type="submit" value="Search">Search</button>
   <input type="hidden" name="doSearch" value="1">

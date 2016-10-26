@@ -1,63 +1,17 @@
 <?php require_once './DAL/PDOConnection.php';
 $productDal = new products();
-$fetch = $productDal->Get_Allocation();
 
 if (isset($_GET['id'])){
 		$fetch = $_GET['id'];
 }
-?>
-<style>		
-	.ordered{background-color: rgba(0,255,0,0.2); }
-			.not_ordered{background-color: rgba(255,0,0,0.2); }
-			
-</style>
 
-<div class="panel panel-primary" style="width:100%; float:left;">
-<div class="panel-heading" style="text-align:center;">
-  <h3>Stock Quantity Totals</h3>
-</div>
-<div class="panel-body">
-<form  method="post" id="Search" action="?action=stock_qty">
-  <div id="search" style="text-align:center">
-    <?php $product = $productDal->Get_Allocation();
-	  $dropdown = "<select name='search_stock' id='mySelect' onchange='select()'>";
-	 $dropdown .="\r\n<option value='0'> </option>";
-	  foreach ($product as $result){
-		  $dropdown .="\r\n<option value='{$result['allocation_id']}'>{$result['name']}</option>";
-		  }
-		  $dropdown .="\r\n</select>";
-		  echo $dropdown;
-	   ?>
-    <script>
-       function select(){
-		   var x = document.getElementById("mySelect").value;
-		   
-		   }
-       </script> 
-    <br />
-    <br />
-    <button type="submit" class="btn btn-large btn-success" name="submit" >Search</button>
-    <input type="hidden" name="doSearch" value="1">
-  </div>
-
-</form>
-<?php
-
-   if(isset($_POST['doSearch'])){
-	
-	if($_POST['doSearch']==1)
-		{
-			$fetch = $_POST['search_stock'];
-			$export = $_POST['search_stock'];
-						
-		}
 		$fetch = $productDal->Get_Allocation_Sku($fetch);
 			?>
            
             
 <div>
 <table class="table">
-<form id="Stock_Qty" method="post">
+<form id="Stock_Qty" method="post" action="?action=dummy">
   <tr class="heading">
     <td style="font-size:16px"><strong>SKU</td>
     <td style="font-size:16px; text-align:center"><strong>Date Ordered</td>
@@ -97,14 +51,9 @@ foreach ($goods_total as $result){
 			
 }
 }
-	}
-	
 
 ?>
 
   </tr>
   </form>
 </table>
-
-</div>
-</div>
