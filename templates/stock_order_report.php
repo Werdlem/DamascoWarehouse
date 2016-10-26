@@ -24,7 +24,7 @@ foreach ($goods_total as $result){
 	?>
 	
 		<tr style="">
-    <td style=""><a href="?action=sheetboard_details&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
+    <td style=""><a href="?action=sheetboard_details&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
     
 	<?php 
 		echo '<td style="text-align:center;background-color: rgba(0,255,0,0.2)">'. $result['last_order_date'];
@@ -35,7 +35,7 @@ foreach ($goods_total as $result){
 		<?php 
 		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.2);*/"><strong style="color: red; ">'. $result['stock_qty'];
 		echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); ">'. $result['buffer_qty'];
-		echo '<td style="text-align:center;"><a href="?action=send&sku_order='.$result['sku'] .'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>';
+		echo '<td style="text-align:center;"><a href="?action=send&sku_order='.htmlspecialchars($result['sku']) .'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>';
 						
 		}
 

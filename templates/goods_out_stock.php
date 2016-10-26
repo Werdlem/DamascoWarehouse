@@ -42,13 +42,13 @@ if(isset($_POST['doSearch'])){
 			$search = $_POST[''];
 
 foreach ($stock as $result){
-	$sku = $result['sku'];
+	$sku = htmlspecialchars($result['sku']);
 	?>
 
 	<tr>
 	
 	<?php
-	echo '<td>'. $result['sku'] .'</td>';
+	echo '<td>'. htmlspecialchars($result['sku']) .'</td>';
 	echo '<td>'. $result['supplier'] .'</td>';
 	echo '<td>'. $result['delivery_date'] .'</td>';
 	$qty_used = $products->qty_instock($sku);

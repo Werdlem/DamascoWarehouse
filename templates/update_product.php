@@ -97,9 +97,9 @@ foreach ($goods_total as $result){
       </div>
       <br/>
       <button id="updates" class="btn btn-large btn-primary" name="updates" type="submit">Update</button>
-      <a href="?action=send&sku_order=<?php echo $productDetail['sku'];?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>" class="btn btn-large btn-primary">Order</a>
+      <a href="?action=send&sku_order=<?php echo htmlspecialchars($productDetail['sku']);?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>" class="btn btn-large btn-primary">Order</a>
     </form>
-    <a href="?action=activity&sku=<?php echo $productDetail['sku'] ?>">Activity</a>
+    <a href="?action=activity&sku=<?php echo htmlspecialchars($productDetail['sku']) ?>">Activity</a>
   </div>
   <?php }?>
 </div>

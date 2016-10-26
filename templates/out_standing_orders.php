@@ -6,6 +6,6 @@ $orders = $productDal->select_orders();
 
 foreach ($orders as $result){
 	echo $result['order_id'] .'&nbsp';
-	echo $result['sku'] . '<br />';
+	echo htmlspecialchars($result['sku']) . '<br />';
 	
 	}

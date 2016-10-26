@@ -11,7 +11,7 @@
 	 $sku_id = $result['sku_id'];
 	 //date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
-	$product = $result['sku'];
+	$product = htmlspecialchars($result['sku']);
 	$qty = $result['pack_qty'];
 				
 				$sheetboardOrder->sku_order($today, $sku_id);

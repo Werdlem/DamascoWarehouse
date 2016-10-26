@@ -41,7 +41,7 @@ foreach($id as $productDetail){
           action="?action=action&add_location">
         <div>
             <label for="sku">Product</label>
-            <input id="sku" class="form-control" name="sku" type="text" readonly  value="<?php echo $productDetail['sku']; ?>"/>
+            <input id="sku" class="form-control" name="sku" type="text" readonly  value="<?php echo htmlspecialchars($productDetail['sku']); ?>"/>
             <input id="sku_id" name="sku_id" type="hidden" readonly  value="<?php echo $productDetail['sku_id']; ?>"/>
             <span id="productInfo"></span>
         </div>

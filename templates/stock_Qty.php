@@ -70,10 +70,10 @@ if (isset($_GET['id'])){
   <?php
 foreach ($fetch as $result){ ?>
   <tr style="">
-    <td style=""><a href="?action=activity&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
+    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
     <td style="text-align:center"><?php if ($result['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($result['last_order_date']));} ?></td>
     <?php
-$selection = $result['sku'];
+$selection =$result['sku'];
 
 $goods_total = $productDal->Get_Sku_Total($selection, $selection);
 
@@ -93,7 +93,7 @@ foreach ($goods_total as $result){
 		}
 		
 	echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); "><strong>'. $result['buffer_qty'] .'</td>';
-	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.$result['sku'].'&qty='.$result['pack_qty'].'" class="btn btn-default btn-primary">Order</a></td>';
+	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.htmlspecialchars($result['sku']).'&qty='.$result['pack_qty'].'" class="btn btn-default btn-primary">Order</a></td>';
 			
 }
 }

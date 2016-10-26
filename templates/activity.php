@@ -24,7 +24,7 @@ echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
   
 foreach ($sku as $result){ 
 
-$selection = $result['sku'];
+$selection =$result['sku'];
 
 $goods_total = $productDal->Get_Sku_Total($selection, $selection);
 
@@ -33,7 +33,7 @@ foreach ($goods_total as $result){
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	
 echo 
-'<p><strong>SKU: </strong>'. $result['sku'] .'</p>
+'<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .'</p>
 <p><strong>Alias 1:</strong> '.$result['alias_1'].'</p>
 <p><strong>Alias 2:</strong> '.$result['alias_2'].'</p>
 <p><strong>SKU Total:</strong> '.$sku_total.'</p>

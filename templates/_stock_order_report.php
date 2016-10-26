@@ -28,7 +28,7 @@ $goods_total = $productDal->get_stock_order_report();
 	 $status = ($result['last_order_date'] > $result['delivery_date'])? 'ordered': 'not_ordered';
 		echo "<tr class='$status'>";
 		?>
-    <td style=""><a href="?action=sheetboard_details&sku=<?php echo $result['sku'];?>"><?php echo $result['sku']; ?></a></td>
+    <td style=""><a href="?action=sheetboard_details&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
   <?php  			
 	 echo '<td class="sean">'. date('d-m-Y', strtotime($result['last_order_date']));		
 	 echo'<td class="sean">'. date('d-m-Y', strtotime($result['delivery_date']));
@@ -38,7 +38,7 @@ $goods_total = $productDal->get_stock_order_report();
 		<?php 
 		echo '<td style="text-align:center; "><strong style="color: red; ">'. $result['stock_qty'];
 		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.1); ">'. $result['buffer_qty'];
-		echo '<td style="text-align:center;"><a href="?action=send&sku_order='.$result['sku'] .'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>';
+		echo '<td style="text-align:center;"><a href="?action=send&sku_order='.htmlspecialchars($result['sku']) .'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>';
 						
 		}
 

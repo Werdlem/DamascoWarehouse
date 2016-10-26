@@ -1,7 +1,7 @@
 
 <div id="goods_ammend">
 <h3 style="text-align:center">Stock Ammend</h3>
-<form  method="post" action="?action=action&sku_ammend&sku=<?php echo $result['sku']?>" style="width:90%; margin: 0 auto">
+<form  method="post" action="?action=action&sku_ammend&sku=<?php echo htmlspecialchars($result['sku'])?>" style="width:90%; margin: 0 auto">
 		
         <input id="product_id" name="product_id" type="hidden" value="" />
         <br />
@@ -44,7 +44,7 @@ $goods_out_movement = $productDal->get_Movement($search_sku);
      <td ><?php echo date('d/m/y', strtotime($result['date']))?></td>
       <td style="text-align:center"><?php echo $result['qty_out']?></td>
       <td style="text-align:center"><?php echo $result['qty_in']?></td>
-      <td style="text-align:center"><a href="?action=action&delete_entry&id=<?php echo $result['id'];?>&sku=<?php echo $result['sku'] ?>">X</a></td>       
+      <td style="text-align:center"><a href="?action=action&delete_entry&id=<?php echo $result['id'];?>&sku=<?php echo htmlspecialchars($result['sku']) ?>">X</a></td>       
   </tr>
        
 <?php }}

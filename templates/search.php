@@ -83,14 +83,14 @@ if(isset($_POST['doSearch'])){
       </div>
       
       <p>Product: <a href="?action=update_product&sku=<?php echo htmlspecialchars($result['sku']); ?>&sku_id=<?php echo $result['sku_id']; ?>"><?php echo
-	  $result['sku'];?></a>	  
+	  htmlspecialchars($result['sku']);?></a>	  
 	  <?php 
 				//PRODUCT EDIT AND LOCATION ASSIGN				
-				if ($result['sku'] == null){ 
+				if (htmlspecialchars($result['sku']) == null){ 
 				echo("<a href='?action=add_product&location_id=".$result['location_id']."'>Add</a>");
 				}				
 				elseif ($result['location_name']<0){ 
-				echo "<a href='?action=product_detail&l_id=".$result['sku']."'style='color:red'>assign</a>";
+				echo "<a href='?action=product_detail&l_id=".htmlspecialchars($result['sku'])."'style='color:red'>assign</a>";
 				}				
 				?>
                 &nbsp; | &nbsp;
@@ -109,9 +109,9 @@ if(isset($_POST['doSearch'])){
                 </p>
                  <p>Alias 1: <strong><?php echo $result['alias_1'];?></strong>
                  <?php
-				 			if ($result['sku']> ''){
+				 			if (htmlspecialchars($result['sku'])> ''){
 				 
-				  $selection =  $result['sku'];
+				  $selection = $result['sku'];
 		$goods_total = $productDal->Get_Sku_Total($selection, $selection);
 
 foreach ($goods_total as $total_sku){
@@ -131,20 +131,20 @@ foreach ($goods_total as $total_sku){
                <p>Last Ordered: <?php echo $result['last_order_date']?> 
                 <p>Notes: <?php echo $result['notes']?></p>
 				<?php
-                if(!$result['sku']){
+                if(htmlspecialchars(!$result['sku'])){
 				die;
 				}
 				
 				if (!$result['location_name']){
-					echo "<a href='?action=action&delete_sku=".$result['sku']."'>Delete Product</a>";
+					echo "<a href='?action=action&delete_sku=".htmlspecialchars($result['sku'])."'>Delete Product</a>";
 				}
 				else				
 						echo '<a href="?action=action&clear_location&location_id='.$result['location_id'].'">Delete</a>';
 				?>
-                | <a href="?action=send&sku_order=<?php echo $result['sku']?>&qty=<?php echo $result['pack_qty'];?>">Order</a>
-                | <a href='?action=activity&sku=<?php echo $result['sku']?>'>Activity</a>
-				<?php if ($result['sku']>0){
-					echo "| <a href='?action=update_product&sku=".$result['sku']."&sku_id=". $result['sku_id']."'>Details</a>";
+                | <a href="?action=send&sku_order=<?php echo htmlspecialchars($result['sku'])?>&qty=<?php echo $result['pack_qty'];?>">Order</a>
+                | <a href='?action=activity&sku=<?php echo htmlspecialchars($result['sku'])?>'>Activity</a>
+				<?php if (htmlspecialchars($result['sku'])>0){
+					echo "| <a href='?action=update_product&sku=".htmlspecialchars($result['sku'])."&sku_id=". $result['sku_id']."'>Details</a>";
 					
 					}
 					else{
