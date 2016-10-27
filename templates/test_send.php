@@ -58,8 +58,16 @@ require_once "DAL/settings.php";
  	echo "<div class='panel panel-success'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Success!</h3></div>
 <div class='panel-body'>
-				Your order of ".$sku. " has been successfully sent, have a nice day :-D"			
-	
-		
+				Your order of ".$sku. " has been successfully sent, have a nice day :-D"	
  ?>
+				
+				<button onclick='goBack()'>Go Back</button>
+
+				<script>
+						function goBack() {
+   						 window.history.back();
+				}
+						</script>
+				</div></div>";
+			
 			

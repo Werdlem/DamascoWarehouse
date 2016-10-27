@@ -4,7 +4,7 @@ $goods_total = $productDal->get_stock_order_report();
 			?>
             <style>
 			
-			.ordered{background-color: rgba(0,255,0,0.2); }
+			.ordered{display:none; }
 			.not_ordered{background-color: rgba(255,0,0,0.2); }
 			
 			</style>
@@ -28,7 +28,7 @@ $goods_total = $productDal->get_stock_order_report();
 	 $status = ($result['last_order_date'] > $result['delivery_date'])? 'ordered': 'not_ordered';
 		echo "<tr class='$status'>";
 		?>
-    <td style=""><a href="?action=sheetboard_details&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
+    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
   <?php  			
 	 echo '<td class="sean">'. date('d-m-Y', strtotime($result['last_order_date']));		
 	 echo'<td class="sean">'. date('d-m-Y', strtotime($result['delivery_date']));
