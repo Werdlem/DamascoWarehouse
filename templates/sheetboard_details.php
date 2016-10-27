@@ -24,7 +24,7 @@ if (isset($_GET['sku'])){
     <div>
    
       <label for="product" style="font-size:16px"><strong>Product:</label>
-      <a href="?action=update_product&sku=<?php echo $sku ?>&sku_id=" style="font-size:16px">
+      <a href="?action=update_product&sku=<?php echo htmlspecialchars($sku) ?>&sku_id=" style="font-size:16px">
       <?php echo $sku ?></a></strong>
      <span id="notesInfo"></span>
       </div>
