@@ -29,5 +29,4 @@ if (!empty($_GET['action'])) {
 // Include $action
 
 include("templates/$action.php");
-
-//include("templates/footer.html");
+include("templates/footer.html");
