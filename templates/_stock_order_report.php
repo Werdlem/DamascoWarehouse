@@ -16,13 +16,14 @@ $goods_total = $productDal->get_stock_order_report();
 <div>
 <table class="table">
   <tr class="heading">
-    <td style="font-size:16px"><strong>SKU</td>
-    <td style="font-size:16px; text-align:center"><strong>Date Ordered</td>
-    <td style="font-size:16px; text-align:center"><strong>Date Rec</td>
-    <td style="font-size:16px; text-align:center"><strong>SKU Total</td>
-    <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td>
-    <td style="font-size:16px; text-align:center"><strong>Order</td>
+    <td style="font-size:16px"><strong>SKU</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>Date Ordered</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>Date Rec</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>SKU Total</td></strong>
+    <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>Order</td></strong>
   </tr>
+  </td>
   <?php
   foreach ($goods_total as $result){
 	 $status = ($result['last_order_date'] > $result['delivery_date'])? 'ordered': 'not_ordered';
@@ -33,7 +34,7 @@ $goods_total = $productDal->get_stock_order_report();
 	 echo '<td class="sean">'. date('d-m-Y', strtotime($result['last_order_date']));		
 	 echo'<td class="sean">'. date('d-m-Y', strtotime($result['delivery_date']));
 	?>
-    </strong></td>
+    </strong>
    
 		<?php 
 		echo '<td style="text-align:center; "><strong style="color: red; ">'. $result['stock_qty'];
@@ -46,3 +47,7 @@ $goods_total = $productDal->get_stock_order_report();
 ?>
   </tr>
 </table>
+</div>
+</div>
+
+

@@ -10,12 +10,12 @@ $goods_total = $productDal->get_stock_order_report();
 <div>
 <table class="table">
   <tr class="heading">
-    <td style="font-size:16px"><strong>SKU</td>
-    <td style="font-size:16px; text-align:center"><strong>Date Ordered</td>
-    <td style="font-size:16px; text-align:center"><strong>Date Rec</td>
-    <td style="font-size:16px; text-align:center"><strong>SKU Total</td>
-    <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td>
-    <td style="font-size:16px; text-align:center"><strong>Order</td>
+    <td style="font-size:16px"><strong>SKU</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>Date3 Ordered</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>Date Rec</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>SKU Total</td></strong>
+    <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td></strong>
+    <td style="font-size:16px; text-align:center"><strong>Order</td></strong>
   </tr>
   <?php
   
@@ -43,3 +43,6 @@ foreach ($goods_total as $result){
 ?>
   </tr>
 </table>
+</div>
+</div>
+</div>
