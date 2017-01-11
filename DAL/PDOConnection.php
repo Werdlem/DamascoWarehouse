@@ -656,7 +656,7 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2){
 			having qty_delivered <> "0.00"
 			and due_date > "2016-01-01"
 			order by due_date desc
-			limit 0,20
+			
 						
 		');
 		$stmt->bindValue(':stmt', $search_sku);

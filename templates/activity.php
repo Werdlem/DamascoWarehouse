@@ -33,15 +33,14 @@ foreach ($goods_total as $result){
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	
 echo 
-'<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .'</p>
+'<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
 <p><strong>Alias 1:</strong> '.$result['alias_1'].'</p>
 <p><strong>Alias 2:</strong> '.$result['alias_2'].'</p>
 <p><strong>SKU Total:</strong> '.$sku_total.'</p>
 <p><strong>Last Order Date:</strong> '. date('d/m/Y', strtotime($result['last_order_date'])).'</p>
 <p style="color: green"><strong>SKU Total Goods In:</strong> '.$result['total_rec'].'</p>
 <p style="color: red"><strong>SKU Total Goods Out:</strong> '.$result['total_del_desc1'].'</p>
-<p><strong>Associated Product List:</strong> <a href="?action=products&id='.$result['allocation_id'].'">Follow! </p></a>
-';}
+<p><strong>Associated Product List:</strong> <a href="?action=products&id='.$result['allocation_id'].'">Follow! </p></a>';}
 }
 			
 		

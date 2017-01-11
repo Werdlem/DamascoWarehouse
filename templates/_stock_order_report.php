@@ -26,9 +26,9 @@ $goods_total = $productDal->get_stock_order_report();
   </td>
   <?php
   foreach ($goods_total as $result){
-	 $status = ($result['last_order_date'] > $result['delivery_date'])? 'ordered': 'not_ordered';
+	 $status = $result['last_order_date'] > $result['delivery_date']? 'ordered': 'not_ordered';
 		echo "<tr class='$status'>";
-		?>
+			?>
     <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
   <?php  			
 	 echo '<td class="sean">'. date('d-m-Y', strtotime($result['last_order_date']));		
