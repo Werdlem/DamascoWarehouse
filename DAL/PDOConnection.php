@@ -655,7 +655,8 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2){
 			or desc1sku like concat(nullif(:stmt2,"")))
 			having qty_delivered <> "0.00"
 			and due_date > "2016-01-01"
-			order by due_date desc
+			order by due_date desc 
+			limit 10
 			
 						
 		');
@@ -680,6 +681,15 @@ public function Get_Sku_Total($selection){
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
+			(SELECT  sum(qty_delivered)
+				FROM    goods_out
+					WHERE   due_date BETWEEN CURDATE() - INTERVAL 2 DAY AND CURDATE() and (sku = alias_1 
+							or sku = alias_2 
+							or sku like concat(nullif(products.sku,"")) 
+							or desc1sku = :stmt 
+							or desc1sku like concat(nullif(products.alias_1,"")) 
+							or desc1sku like concat(nullif(products.alias_2,"")))) as last30,
+			
 			(select sum(qty_delivered) from goods_out where 
 			
 			sku = alias_1 
