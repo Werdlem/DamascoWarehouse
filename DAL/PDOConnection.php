@@ -683,7 +683,7 @@ public function Get_Sku_Total($selection){
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(SELECT  sum(qty_delivered)
 				FROM    goods_out
-					WHERE   due_date BETWEEN CURDATE() - INTERVAL 2 DAY AND CURDATE() and (sku = alias_1 
+					WHERE   due_date BETWEEN CURDATE() - INTERVAL 30 DAY AND CURDATE() and (sku = alias_1 
 							or sku = alias_2 
 							or sku like concat(nullif(products.sku,"")) 
 							or desc1sku = :stmt 
