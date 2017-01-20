@@ -39,7 +39,7 @@ echo
 <p><strong>SKU Total:</strong> '.$sku_total.'</p>
 <p><strong>Last Order Date:</strong> '. date('d/m/Y', strtotime($result['last_order_date'])).'</p>
 <p style="color: green"><strong>SKU Total Goods In:</strong> '.$result['total_rec'].'</p>
-<p style="color: red"><strong>Last 30 Days:</strong> '.$result['last30'].'</p>
+<p style="color: red"><strong>Ave per Month</strong> '.$result['last30'].'*</p> <p>*Average number units sold per month for the last 4 months (120 days)</p>
 <p><strong>Associated Product List:</strong> <a href="?action=products&id='.$result['allocation_id'].'">Follow! </p></a>';}
 }
 			
