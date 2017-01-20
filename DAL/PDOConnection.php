@@ -681,7 +681,9 @@ public function Get_Sku_Total($selection){
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
+			(SELECT  sum((qty_delivered) / 4) 
 				FROM    goods_out
+					WHERE   due_date BETWEEN CURDATE() - INTERVAL 120 DAY AND CURDATE() and (sku = alias_1 
 							or sku = alias_2 
 							or sku like concat(nullif(products.sku,"")) 
 							or desc1sku = :stmt 
