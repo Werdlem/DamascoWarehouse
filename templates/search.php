@@ -12,7 +12,6 @@ require_once('./DAL/PDOConnection.php');
 	width:49%;
 }
 </style>
-
   <div class="panel panel-success" style="float:left">
     <div class="panel panel-heading">
       <h3 style="text-align:center">Product Search</h3>
@@ -20,7 +19,7 @@ require_once('./DAL/PDOConnection.php');
     <div class="panel-body">
       <form action="index.php" method="post" location_id="Search">
         <div location_id="search" style="text-align:center">
-          <input type="text" style="margin-bottom:10px" class="txt_box" name="search_sku" tabindex="1"/>
+          <input type="text" style="margin-bottom:10px" class="txt_box" name="search_sku" autofocus="autofocus" tabindex="1"/>
           <br />
           <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
           <input type="hidden" name="doSearch" value="1">
@@ -43,8 +42,6 @@ require_once('./DAL/PDOConnection.php');
       </form>
     </div>
   </div>
-
-
 
 <?php
 if(isset($_POST['doSearch'])){
