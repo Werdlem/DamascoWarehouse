@@ -31,6 +31,8 @@ $goods_total = $productDal->Get_Sku_Total($selection, $selection);
 foreach ($goods_total as $result){
 	
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
+	$_goods_in = number_format((float)$result['total_rec']);
+	$_ave = number_format((float)$result['last30']);
 	
 echo 
 '<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
@@ -38,8 +40,8 @@ echo
 <p><strong>Alias 2:</strong> '.$result['alias_2'].'</p>
 <p><strong>SKU Total:</strong> '.$sku_total.'</p>
 <p><strong>Last Order Date:</strong> '. date('d/m/Y', strtotime($result['last_order_date'])).'</p>
-<p style="color: green"><strong>SKU Total Goods In:</strong> '.$result['total_rec'].'</p>
-<p style="color: red"><strong>Ave per Month</strong> '.$result['last30'].'*</p> <p>*Average number units sold per month for the last 4 months (120 days)</p>
+<p style="color: green"><strong>SKU Total Goods In:</strong> '.$_goods_in.'</p>
+<p style="color: red"><strong>Ave per Month</strong> '.$_ave.'*</p> <p>*Average number units sold per month for the last 4 months (120 days)</p>
 <p><strong>Associated Product List:</strong> <a href="?action=products&id='.$result['allocation_id'].'">Follow! </p></a>';}
 }
 			
