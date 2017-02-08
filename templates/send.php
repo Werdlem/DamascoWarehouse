@@ -102,7 +102,7 @@
    						 window.history.back();
 				}
 						</script>
-				</div></div>";
+				</div></div>
 			<?php
             }
             else{
