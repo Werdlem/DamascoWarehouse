@@ -779,7 +779,7 @@ p.stock_qty <= p.buffer_qty
 	
 		public function sku_qty_update(){
 			$pdo = Database::DB();
-			$stmt = $pdo->prepare('call sku_qty_update()
+			$stmt = $pdo->prepare('call updateStock()
 			');
 			$stmt->execute();			
 		
