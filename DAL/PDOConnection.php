@@ -578,11 +578,12 @@ class products{
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('
 	select *
-	from supplier_details
+	from supplier_performance
 	where name like (?)
-	and next_due > (?)
-	and next_due < (?)
-	order by next_due DESC
+	and due_date >= (?)
+	and due_date <= (?)
+	group by id
+	order by due_date DESC
 	');
 	$stmt->bindValue(1 , "%".$supplier_name."%");
 	$stmt->bindValue(2 ,$dateFrom);
@@ -747,23 +748,23 @@ public function Get_Sku_Total($selection){
 			}
 		}
 		
-		////////EXPERIMENTAL//////////
+		// FETCH STOCK ORDER REPORT RESULTS FROM DB TABLE 'PRODUCTS' POPULATED WITH THE RESULTS CREATED WITH THE 'UPDATESTOCK' STORED PROCEDURE. THE STORED PROCEDURE NEEDS TO BE RUN WHEN EVER AN UPDATED LOW STOCK ORDER REPORT IS REQUIRED.
 		
-		public function get_stock_order_report(){
+	public function get_stock_order_report(){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
-p.*,
-gi.delivery_date
-from products p
-join goods_in gi on gi.sku=p.sku
-join(select n.sku,
-max(n.delivery_date) as max_delivery_date 
-from goods_in n
-group by n.sku) y on y.sku=gi.sku
-and
-y.max_delivery_date=gi.delivery_date
-where
-p.stock_qty <= p.buffer_qty
+			p.*,
+			gi.delivery_date
+			from products p
+				join goods_in gi on gi.sku=p.sku
+				join(select n.sku,
+			max(n.delivery_date) as max_delivery_date 
+			from goods_in n
+			group by n.sku) y on y.sku=gi.sku
+			and
+			y.max_delivery_date=gi.delivery_date
+			where
+			p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
 			');
 			$stmt->execute();			
@@ -774,7 +775,7 @@ p.stock_qty <= p.buffer_qty
 			echo 'No Results to show';
 			}
 		}
-	///////////////////////////////////////////
+	////////////////////////// END ////////////////////////
 	
 	
 		public function sku_qty_update(){
@@ -859,8 +860,6 @@ public function New_Location($result){
 				}			
 }
 
-	//--------------------------------------------------------------------------------------------------------------------------------------------------//
-	
 	public function stock_In($date, $product_id, $qty_in){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('insert into
