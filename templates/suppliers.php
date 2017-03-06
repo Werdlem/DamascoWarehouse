@@ -55,6 +55,8 @@ $supplier_name = 'Select Supplier';}
  ?>
      <style>
          tr:nth-child(even){background:#d9edf7;}
+         td{text-align: center;}
+         th{text-align: center;}
      </style>
 
     <br />
@@ -99,8 +101,8 @@ $supplier_name = 'Select Supplier';}
        <td><?php echo $result['pop_id'];?></td>
        <td><?php echo $result['id'];?></td>
       <td><?php echo date('d-m-Y', strtotime($result['due_date'])); ?></td>
-        <td><?php echo date('d-m-Y H:i:s', strtotime($result['schedule_date'])); ?></td>
-        <td><?php echo date('d-m-Y H:i:s', strtotime($result['delivery_date'])); ?></td>
+        <td><?php echo date('d-m-Y H:i', strtotime($result['schedule_date'])); ?></td>
+        <td><?php echo date('d-m-Y H:i', strtotime($result['delivery_date'])); ?></td>
         <td><?php if ($due == $date_format){
 
         // Calculate the difference between the GRN time stamp and scheduled booking in time provided by the supplier
