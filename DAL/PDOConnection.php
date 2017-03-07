@@ -580,10 +580,10 @@ class products{
 	select *
 	from supplier_performance
 	where name like (?)
-	and due_date >= (?)
-	and due_date <= (?)
+	and delivery_date between (?)
+	and (?)
 	group by id
-	order by due_date DESC
+	order by delivery_date DESC
 	');
 	$stmt->bindValue(1 , "%".$supplier_name."%");
 	$stmt->bindValue(2 ,$dateFrom);
@@ -655,8 +655,8 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2){
 			or desc1sku like concat(nullif(:stmt1,"")) 
 			or desc1sku like concat(nullif(:stmt2,"")))
 			having qty_delivered <> "0.00"
-			and due_date > "2016-01-01"
-			order by due_date desc 
+			and delivery_date > "2016-01-01"
+			order by delivery_date desc 
 			limit 10
 			
 						
@@ -684,7 +684,7 @@ public function Get_Sku_Total($selection){
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(SELECT  sum((qty_delivered) / 4) 
 				FROM    goods_out
-					WHERE   due_date BETWEEN CURDATE() - INTERVAL 120 DAY AND CURDATE() and (sku = alias_1 
+					WHERE   delivery_date BETWEEN CURDATE() - INTERVAL 120 DAY AND CURDATE() and (sku = alias_1 
 							or sku = alias_2 
 							or sku like concat(nullif(products.sku,"")) 
 							or desc1sku = :stmt 

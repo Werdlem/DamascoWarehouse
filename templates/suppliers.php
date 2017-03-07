@@ -3,7 +3,7 @@
 require_once './DAL/PDOConnection.php';
 $suppliers = new products;
 
-//check if page has been posted back
+//check if page has been posted back with populated variables
 if(isset($_POST['doSearch'])){ 
  
  $dateFrom = $_POST['date-from'];
@@ -11,9 +11,12 @@ if(isset($_POST['doSearch'])){
  $supplier_name = $_POST['taskOption'];
 }
 //declare variables 
- else{ $dateFrom = 'Date From';
- $dateTo = 'Date To';
-$supplier_name = 'Select Supplier';}
+ else
+  { 
+    $dateFrom = 'Date From';
+    $dateTo = 'Date To';
+    $supplier_name = 'Select Supplier';
+  }
 ?>
 
 <div class="panel panel-primary">
@@ -35,6 +38,7 @@ $supplier_name = 'Select Supplier';}
         <option>Drayton</option>
         <option>Sansetsu</option>
         <option>Smurfit Kappa</option>
+         <option> </option>
       </select>
       <input class="suppliers" name="date-from" value="<?php echo $dateFrom ?>" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" value="<?php echo $dateTo ?>" type="text" onfocus="(this.type='date')" />
@@ -43,6 +47,7 @@ $supplier_name = 'Select Supplier';}
     </form>
 <!-- <<<<<<< HEAD  ====== origin/master >>>>>>>>>-->
     <?php
+    // <<<<< Run rest of page once the submit button is pressed >>>>//
   if(isset($_POST['doSearch'])){
 	  
 	  if ($_POST['taskOption'] == "Select Supplier") {die ("please select a supplier");} else{
@@ -76,7 +81,7 @@ $supplier_name = 'Select Supplier';}
       <tbody>
 
         <?php
-	 // Fetch data from DB and delacre variables 
+	 // Fetch data from DB and declare variables for the number of records found matching the corresponding query
 		 $fetch = $suppliers->select($supplier_name, $dateFrom, $dateTo);
 		 	$count = 0;
 			$onTime = 0;
@@ -90,7 +95,7 @@ $supplier_name = 'Select Supplier';}
 
      echo"<tr class='table' style=' border-bottom: thin dashed #CCC'>";
       $sched = $result['schedule_date'];
-	  		$del = $result['delivery_date'];
+	  		$del = $result['grn_delivery_date'];
 			$due = $result['due_date'];
 			$control = "0 days, 01h 30m 00s";
 			$date_sched = date_create($sched);
@@ -102,7 +107,7 @@ $supplier_name = 'Select Supplier';}
        <td><?php echo $result['id'];?></td>
       <td><?php echo date('d-m-Y', strtotime($result['due_date'])); ?></td>
         <td><?php echo date('d-m-Y H:i', strtotime($result['schedule_date'])); ?></td>
-        <td><?php echo date('d-m-Y H:i', strtotime($result['delivery_date'])); ?></td>
+        <td><?php echo date('d-m-Y H:i', strtotime($result['grn_delivery_date'])); ?></td>
         <td><?php if ($due == $date_format){
 
         // Calculate the difference between the GRN time stamp and scheduled booking in time provided by the supplier
@@ -118,7 +123,7 @@ $supplier_name = 'Select Supplier';}
 		$late++;
 		echo '<span class="label label-danger">Late</span>';} ?></td>
 
-    <!- compare the difference between the date scheduled and date delivered with the delivery grace period of 90 minutes (1h 30min) ->
+    <!-- <<< compare the difference between the date scheduled and date delivered with the delivery grace period of 90 minutes (1h 30min) >>>-->
         <td><?php  $diff = date_diff($date_sched, $date_del); 
 		          $results = $diff->format("%d days, %Hh %Im %Ss");
    		         if ($results > $control){
@@ -138,7 +143,7 @@ $supplier_name = 'Select Supplier';}
 	  echo '<p>'. $late . " <span class='label label-danger'> Late</span> Deliveries (" . number_format((100.0*$late)/$count ) . "%)";
 	 
 }?>
-      <!-summary of how the metrics are captured for the end user ->
+      <!--<< summary of how the metrics are captured for the front end user >>-->
       <div class="alert alert-info" role="alert" style="width:75%; float: right; margin-top: -102px; font-size:13px; padding:10px"><strong>On Time/Late/Early</strong> deliveries is the difference between the initial agreed <strong>Due Date</strong> & actual <strong>Delivery Date</strong>. The <strong>Margin</strong> is the difference of delivery time between the <strong>Scheduled Date & Time</strong> and actual <strong> Delivery Date & Time</strong>. This result is then compared to a 90 minute delivery grace period, going green if within the 90minutes or red if later.</div>
       <?php }?>
         </tbody>
