@@ -655,8 +655,8 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2){
 			or desc1sku like concat(nullif(:stmt1,"")) 
 			or desc1sku like concat(nullif(:stmt2,"")))
 			having qty_delivered <> "0.00"
-			and delivery_date > "2016-01-01"
-			order by delivery_date desc 
+			and due_date > "2016-01-01"
+			order by due_date desc 
 			limit 10
 			
 						
