@@ -36,6 +36,7 @@ $productDal = new products;
         <tr class="heading">
             <th>Location</th>
             <th>Product</th>
+            <th style="background-color: #d9edf7">Qty*</th>
             <th></th>
             <th></th>
            <th></th>
@@ -52,8 +53,8 @@ $productDal = new products;
         <tr>
             <td><a href="edit_location.php?id=<?php echo $result['location_id']; ?>" style='color:black'><?php echo $result['location_name'];?></a></td>
             <td><?php echo htmlspecialchars($result['sku']);?></td>
-            <td>
-               
+            <td style="text-align: center; background-color:#d9edf7"><?php echo $result['stock_qty']; ?></td>
+            <td>               
             <a href="?action=update_product&sku=<?php echo htmlspecialchars($result['sku']); ?>&sku_id=<?php echo $result['sku_id'];?>">Details</a>
             </td>
             

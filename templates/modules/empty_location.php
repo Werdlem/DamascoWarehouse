@@ -17,7 +17,8 @@ $productDal = new products();
         <thead>
         <tr class="heading">
             <th>Location</th>
-            <th style="float:right">Update</th>
+
+            <th style="text-align: right;">Update</th>
             
         </tr>
         </thead>
