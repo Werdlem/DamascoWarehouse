@@ -74,7 +74,7 @@
                 '<head>Hello<br /><br /></head>'.
                 '<body>'.
                 'Please will you kindly order '. $qty . '(qty) <a href="http://postpackstock.web/index.php?action=activity&sku=' .$product.
-                '">'.$product.'</a><br /><br />Kind Regards<br /><br />'.
+                '"></a>'.$product.'<br /><br />Kind Regards<br /><br />'.
                 'PostPack'.
                 '</body>' .
                 '</html>',
