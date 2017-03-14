@@ -17,7 +17,7 @@ if(isset($_POST['search_sku'])){
 }
 
 	$productDal = new products();
-	$sku = $productDal->Get_Sku_Total($search_sku);
+	$sku = $productDal->Get_Sku_Total($search_sku, $search_sku);
 
 
 echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
@@ -25,8 +25,15 @@ echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
 foreach ($sku as $result){ 
 
 $selection =$result['sku'];
-
-$goods_total = $productDal->Get_Sku_Total($selection, $selection);
+// assign (null) to empty wild card string returned should alias wild be and empty string
+		if ($result['alias_wild']==''){
+		$sku_wildcard = '(null)';
+	}
+	else{
+		$sku_wildcard = $result['alias_wild'];
+	}
+	// end
+$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
 
 foreach ($goods_total as $result){
 	
@@ -38,7 +45,8 @@ echo
 '<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
 <p><strong>Alias 1:</strong> '.$result['alias_1'].'</p>
 <p><strong>Alias 2:</strong> '.$result['alias_2'].'</p>
-<p><strong>SKU Total:</strong> '.$sku_total.'</p>
+<p><strong>Wild Card:</strong> '.$result['alias_wild'].'</p>
+<p><strong>SKU Total:</strong> '.$sku_total .'</p>
 <p><strong>Last Order Date:</strong> '. date('d/m/Y', strtotime($result['last_order_date'])).'</p>
 <p style="color: green"><strong>SKU Total Goods In:</strong> '.$_goods_in.'</p>
 <p style="color: red"><strong>Ave per Month</strong> '.$_ave.'*</p> <p>*Average number units sold per month for the last 4 months (120 days)</p>

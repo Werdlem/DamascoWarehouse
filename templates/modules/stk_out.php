@@ -3,7 +3,15 @@
 <?php 
 $alias1 = $result['alias_1'];
 $alias2 = $result['alias_2'];
-$goods_in = $productDal->get_Goods_Out_Sku($search_sku, $alias1, $alias2);
+// assign (null) to empty wild card string returned should alias wild be and empty string
+			if ($result['alias_wild']==''){
+		$sku_wildcard = '(null)';
+	}
+	else{
+		$sku_wildcard = $result['alias_wild'];
+	}
+	// end
+$goods_in = $productDal->get_Goods_Out_Sku($search_sku, $alias1, $alias2,$sku_wildcard);
 $total = $productDal->goods_out_total($search_sku);
 if (!$total){
 		$goods_out_amt = 0;
@@ -24,6 +32,8 @@ if (!$total){
  
       <?php
 	if (!$goods_in){
+
+
 		
 		}
 		else{
@@ -34,7 +44,7 @@ if (!$total){
   <tr style="border-bottom:thin dashed #000;">
     <td><?php echo date('d/m/y',strtotime($Result['due_date']))?></td>
     <td style="text-align:left; padding-left:5px; font-weight:bold"><?php echo $Result['customer']?></td>
-     <td style="text-align:center"><?php echo $Result['order_id']?></td>
+    <td style="text-align:center"><?php echo $Result['order_id']?></td>
     <td style="text-align:right"><?php echo $Result['qty_delivered']?></td>
   </tr>
   <?php			

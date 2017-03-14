@@ -75,7 +75,15 @@ foreach ($fetch as $result){ ?>
     <?php
 $selection =$result['sku'];
 
-$goods_total = $productDal->Get_Sku_Total($selection, $selection);
+// assign (null) to empty wild card string returned should alias wild be and empty string
+		if ($result['alias_wild']==''){
+		$sku_wildcard = '(null)';
+	}
+	else{
+		$sku_wildcard = $result['alias_wild'];
+	}
+	// end
+$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
 
 foreach ($goods_total as $result){
 	

@@ -103,10 +103,11 @@ class products{
 			}
 		}
 		
-		public function UpdateProduct($sku_id, $sku, $notes, $buffer_qty, $allocation_id, $supplier_name, $description, $alias_1, $alias_2, $alias_3,$pack_qty, $stock_qty){
+		public function UpdateProduct($sku_id, $sku, $notes, $buffer_qty, $allocation_id, $supplier_name, $description, $alias_1, $alias_2, $alias_3,
+			$sku_wildcard, $pack_qty, $stock_qty){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3,pack_qty = :pack_qty, stock_qty = :stock_qty
+		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, alias_wild = :sku_wild, pack_qty = :pack_qty, stock_qty = :stock_qty
 		where sku_id = :sku_id');		
 		$stmt->bindValue(':sku', $sku);
 		$stmt->bindValue(':notes', $notes);
@@ -117,6 +118,7 @@ class products{
 		$stmt->bindValue(':alias_1', $alias_1);
 		$stmt->bindValue(':alias_2', $alias_2);
 		$stmt->bindValue(':alias_3', $alias_3);
+		$stmt->bindValue(':sku_wild', $sku_wildcard);
 		$stmt->bindValue(':pack_qty', $pack_qty);
 		$stmt->bindValue(':stock_qty', $stock_qty);
 		$stmt->bindValue(':sku_id', $sku_id);
@@ -642,28 +644,31 @@ class products{
 			}
 }
 
-public function get_Goods_Out_Sku($search_sku, $alias1, $alias2){
+public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('
 			Select *
 			from goods_out
 			where (
-			sku = :stmt1
+			sku = :stmt
+			or sku = :stmt1
 			or sku = :stmt2 
-			or sku like concat(nullif(:stmt,"")) 
-			or desc1sku = :stmt 
+			or sku like concat(nullif(:stmt,""))
+			or sku Rlike concat(nullif(:stmt3,"")) 
+			or desc1sku = concat(nullif(:stmt,"")) 
 			or desc1sku like concat(nullif(:stmt1,"")) 
-			or desc1sku like concat(nullif(:stmt2,"")))
+			or desc1sku like concat(nullif(:stmt2,""))
+			or desc1sku Rlike concat(nullif(:stmt3,"")))
 			having qty_delivered <> "0.00"
 			and due_date > "2016-01-01"
 			order by due_date desc 
-			limit 10
-			
-						
+			limit 20
+				
 		');
 		$stmt->bindValue(':stmt', $search_sku);
 		$stmt->bindValue(':stmt1', $alias1);
 		$stmt->bindValue(':stmt2', $alias2);
+		$stmt->bindValue(':stmt3',$alias_wild.'[^0A]');
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -676,7 +681,7 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2){
 
 //////////////////////////////////////////////////////////////// STOCK QUANTITY QUERY //////////////////////////////////////////////////////////////
 
-public function Get_Sku_Total($selection){
+public function Get_Sku_Total($selection, $sku_wildcard){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('select * ,
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
@@ -687,25 +692,29 @@ public function Get_Sku_Total($selection){
 					WHERE   due_date BETWEEN CURDATE() - INTERVAL 120 DAY AND CURDATE() and (sku = alias_1 
 							or sku = alias_2 
 							or sku like concat(nullif(products.sku,"")) 
+							or sku Rlike concat (nullif(:wild,""))
 							or desc1sku = :stmt 
 							or desc1sku like concat(nullif(products.alias_1,"")) 
-							or desc1sku like concat(nullif(products.alias_2,"")))) as last30,
+							or desc1sku like concat(nullif(products.alias_2,""))
+							or desc1sku rlike concat(nullif(:wild,""))))
+							as last30,
 			
 			(select sum(qty_delivered) from goods_out where 
 			
 			sku = alias_1 
 			or sku = alias_2 
+			or sku Rlike concat (nullif(:wild,""))
 			or sku like concat(nullif(products.sku,"")) 
 			or desc1sku = :stmt 
 			or desc1sku like concat(nullif(products.alias_1,"")) 
-			or desc1sku like concat(nullif(products.alias_2,"")))
-			as total_del_desc1			
-			
+			or desc1sku like concat(nullif(products.alias_2,""))
+			or desc1sku Rlike concat(nullif(:wild,"")))
+			as total_del_desc1				
 			from products
 			where sku like :stmt
 		');
 		$stmt->bindValue(':stmt', $selection);
-		
+		$stmt->bindValue(':wild', $sku_wildcard.'[^0A]');
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -718,7 +727,7 @@ public function Get_Sku_Total($selection){
 		public function goods_out_total($search_sku){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('select 
-		coalesce(sum(qty_delivered),0) as total 
+		coalesce(sum(qty_delivered),0) as goods_out_total 
 		from goods_out
 		where sku like :stmt or desc1sku like :stmt
 		');
