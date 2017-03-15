@@ -17,6 +17,111 @@ class Database
 }
 
 class products{	
+
+	// CUSTOMER SEARCH
+
+	public function get_Customer($search){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('
+			select * from goods_out go 				
+				where CUSTOMER like :stmt
+				and despatch_status <= 0.00
+				and qty_delivered >= 0.00
+				and due_date > "2017-01-01"
+				order by due_date asc
+				
+		');
+		$stmt->bindValue(':stmt', "%".$search."%");
+		$stmt->execute();
+		if($stmt->rowCount()>0) {
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			die("<br/><div class='alert alert-danger' role='alert'>The order '".$search."' Could not be found. Please try again!</div></div></ br></br>");
+			}
+	}
+
+	// Customer Order Search
+
+	public function get_Order($search){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('
+			select * from goods_out go 				
+				where order_id like :stmt
+				and despatch_status <= 0.00
+				and qty_delivered >= 0.00
+				and due_date > "2017-01-01"
+				order by due_date asc
+				
+		');
+		$stmt->bindValue(':stmt', "%".$search."%");
+		$stmt->execute();
+		if($stmt->rowCount()>0) {
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			die("<br/><div class='alert alert-danger' role='alert'>The order '".$search."' Could not be found. Please try again!</div></div></ br></br>");
+			}
+	}
+
+	// Search Order Date Range
+
+	public function get_Date_Range($dateFrom, $dateTo){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('
+	select *
+	from goods_out
+	where (due_date between (?)
+	and (?)
+	and despatch_status <= 0.00
+	and qty > 0)
+	order by due_date asc
+	');
+	$stmt->bindValue(1 ,$dateFrom);
+	$stmt->bindValue(2 ,$dateTo);
+	$stmt->execute();
+	if($stmt->rowCount()> 'null')
+	{
+			while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+			return $results;
+		}
+			}
+		else{
+			die ("No Results");
+			}		
+		}
+		
+
+	public function _get_products($sku1, $sku2){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('select * 
+		from products
+		where
+		(sku = :sku1
+		or sku = :sku2
+		
+		or concat(nullif(alias_1,"")) = concat(nullif(:sku1, ""))
+		or concat(nullif(alias_1,"")) =  concat(nullif(:sku2, ""))
+		
+		or concat(nullif(alias_2,"")) =  concat(nullif(:sku1, ""))
+		or concat(nullif(alias_2,"")) =  concat(nullif(:sku2, ""))
+		)
+		
+		');
+	$stmt->bindValue(':sku1' , $sku1);
+	$stmt->bindValue(':sku2', $sku2);
+	$stmt->execute();
+	if($stmt->rowCount()<0) {
+		echo '0';
+		}
+		else{
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+}
+
+	// PRODUCT SEARCH 
 	
 	public function Search($fetch,$fetch){
 		$pdo = Database::DB();
