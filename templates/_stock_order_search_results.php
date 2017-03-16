@@ -55,7 +55,7 @@ if ($_POST['doSearch']==3){
 <thead>
 <tr class="table">
 <th>PO</th>
-<th style="width:25%">Due Date</th>
+<th>Due Date</th>
 <th>Product Code</th>
 <th>Description</th>
 <th>Description Sku</th>
