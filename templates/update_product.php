@@ -35,7 +35,7 @@ $sku = $productDal->GetProducts($sku);
 				<label for="alias_1">Alias 1</label>
 				<input id="alias_1" name="alias_1" type="text" class="form-control"  value="<?php echo $productDetail['alias_1']; ?>"/>
 			</div>
-			<div style="width:50%; margin-left:200px">
+			<div style="width:50%; margin-left:auto">
 				<label for="alias_2">Alias 2</label>
 				<input id="alias_2" name="alias_2" type="text" class="form-control" value="<?php echo $productDetail['alias_2'];?>" />
 			</div>
@@ -47,7 +47,7 @@ $sku = $productDal->GetProducts($sku);
 			 <?php 
 			 // disable the 'wildcard' text box for non logged in users
 		  if (!isset($_COOKIE['password'])){ echo '
-		  	<div style="width:50%; margin-left: 200px; color: red">
+		  	<div style="width:50%; margin-left: auto; color: red">
 				<label for="sku_wildcard">Wild Card</label>
 				<input id="sku_wildcard" name="sku_wildcard" type="text" class="form-control" style="border: 1px solid red;" disabled value="'.
 				$productDetail['alias_wild'].'" />
@@ -57,7 +57,7 @@ $sku = $productDal->GetProducts($sku);
 
 		  	// enable 'wildcard' text box for logged in users
 		  	echo '
-		  	<div style="width:50%; margin-left: 200px; color: red">
+		  	<div style="width:50%; margin-left: auto; color: red">
 				<label for="sku_wildcard">Wild Card</label>
 				<input id="sku_wildcard" name="sku_wildcard" type="text" class="form-control" style="border: 1px solid red;" value="'.
 				$productDetail['alias_wild'].'" />
@@ -119,7 +119,7 @@ foreach ($goods_total as $result){
 			 }
 			 </script> 
 			</div>
-			<div style="width:50%; margin-left:200px">
+			<div style="width:50%; margin-left:auto">
 				<label for="supplier_name">Supplier</label>
 				<input id="supplier_name" name="supplier_name" type="text" class="form-control" value="<?php echo $productDetail['supplier_name']; ?>"/>
 			</div>

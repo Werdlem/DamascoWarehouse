@@ -45,6 +45,8 @@ if ($_POST['doSearch']==3){
 ?>
  <style>
          tr:nth-child(even){background:#d9edf7;}
+         .low{ color: white; text-align: center; font-weight:bold; background-color: red; font-size: 20px }
+         .ok{ text-align: center; }
         
      </style>
 
@@ -53,12 +55,13 @@ if ($_POST['doSearch']==3){
 <thead>
 <tr class="table">
 <th>PO</th>
-<th style="width:15%">Due Date</th>
-<th>Sku</th>
+<th style="width:25%">Due Date</th>
+<th>Product Code</th>
 <th>Description</th>
 <th>Description Sku</th>
 <th>Required</th>
 <th style="width:15%">Stock Qty</th>
+<th style="text-align: center;">SKU</th>
 </thead>
 <tbody>
 
@@ -78,8 +81,13 @@ echo 		'<tr>
 			<td>'.number_format($results['qty']) . '</td>';
 			
 			$fetch = $productDal->_get_products($sku1, $sku2);
+
 			foreach ($fetch as $found){
-					echo '<td>'.number_format($found['stock_qty']). '</td></tr>';
+				 $status = $results['qty'] > $found['stock_qty']? 'low': 'ok';
+					echo "<td class='$status'>".number_format($found['stock_qty']). "</td>
+						 <td style='text-align: center;'><a href='?action=activity&sku=".$found['sku']."'>".$found['sku']."</a></td>
+
+					</tr>";
 
 			}
 			
