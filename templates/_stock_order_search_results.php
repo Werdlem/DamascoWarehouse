@@ -40,6 +40,13 @@ if ($_POST['doSearch']==3){
  $productDal = new products();
  $order = $productDal->get_Date_Range($dateFrom, $dateTo); 
 }
+if ($_POST['doSearch']==4){ 
+ 
+ $date = $_POST['date'];
+ $search = 'Date: '.$_POST['date'];
+ $productDal = new products();
+ $order = $productDal->get_Order_By_Date($date); 
+}
 
 
 ?>

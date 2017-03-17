@@ -24,28 +24,66 @@ if(isset($_POST['search_date'])){
 	vertical-align: middle;
 }
 </style>
-
+<h1>Outstanding Sales Order Report</h1>
+<!--CUSTOMER ORDERS SEARCH SEARCH-->
 <form action="?action=_stock_order_search_results" method="post">
-  <input type="text" placeholder="Search Customer" id="sku" name="search_customer" width="200px" autocomplete="off"/>
-    <button type="submit" value="Search" id='search_cus'>Search</button>
-  <input type="hidden" name="doSearch" value="1">
+<div class="col-lg-4">
+    <div class="input-group">
+     <input type="text" class="form-control" placeholder="Search Customer" id="sku" name="search_customer" width="200px" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Search a particular Customer"/>
+      <span class="input-group-btn">
+     <button type="submit" class="btn btn-default" value="Search"  id='search_cus' data-toggle="tooltip" data-placement="right" title="Search a particular Customer">Search</button>
+     <input type="hidden" name="doSearch" value="1">
+     <span>
+  </div>
+  </div>
 </form>
-<br/>
+<br/><br/>
+<!--ORDER SEARCH-->
 <form action="?action=_stock_order_search_results" method="post">
-  <input type="text" placeholder="Search Order" id="sku" name="search_order" width="200px" autocomplete="off"/>
-    <button type="submit" value="Search" id='search_ord'>Search</button>
+ <div class="col-lg-4">
+    <div class="input-group">
+     <input type="text" class="form-control" placeholder="Search Order" id="sku" name="search_order" width="200px" autocomplete="off" data-toggle="tooltip" data-placement="right" title="Search a particular Order"/>
+     <span class="input-group-btn">
+    <button type="submit" class="btn btn-default" value="Search" id='search_ord' data-toggle="tooltip" data-placement="right" title="Search a particular Order">Search</button>
   <input type="hidden" name="doSearch" value="2">
+  </span>
+  </div>
+  </div>
 </form>
-<br/>
-
-<p>Search Date Range</p>
+<br/><br />
+<!--SEARCH NEW ORDERS BY DATE RECEIVED-->
 <form action="?action=_stock_order_search_results" method="post">
-<input class="suppliers" name="date-from" value="<?php echo $dateFrom ?>" type="text" onfocus="(this.type='date')" />
-      <input class="suppliers" name="date-to" value="<?php echo $dateTo ?>" type="text" onfocus="(this.type='date')" />
-     <button type="submit" value="Search" id='search_date'>Search</button>
+<div class="col-lg-4">
+<div class="input-group">
+ <input class="form-control" name="date" placeholder="Search Day" type="text" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="right" title="Search Orders Placed on a Particular Day"/>
+ <span class="input-group-btn">
+    <button class="btn btn-default" type="submit" value="Search" id='search_day' data-toggle="tooltip" data-placement="right" title="Search Orders Placed on a Particular Day">Search</button>
+  <input type="hidden" name="doSearch" value="4">
+  </span>
+  </div>
+  </div>
+</form>
+<br/><br/>
+
+
+<form action="?action=_stock_order_search_results" method="post">
+<div class="col-lg-4">
+<div class="input-group">
+<input class="form-control" style="width: 40%" name="date-from" placeholder="Search date from" type="text" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="right" title="Search Orders Placed between a Specific Date Range"/>
+      <input class="form-control" style="width: 40%; " name="date-to" placeholder="Search date to" type="text" onfocus="(this.type='date')" data-toggle="tooltip" data-placement="right" title="Search Orders Placed between a Specific Date Range"/>
+     <span class="input-group-btn" style="float: left;">
+     <button class="btn btn-default" type="submit" value="Search" id='search_date' data-toggle="tooltip" data-placement="right" title="Search Orders Placed between a Specific Date Range">Search</button>
       <input type="hidden" name="doSearch" value="3">
+      </span>
+      </div>
+      </div>
     </form>
-    <br/>
-    <div id='page_break' style="border-bottom: solid 2px black "></div>
+    <br/><br/><br/>
+   <div id='page_break' style="border-bottom: solid 2px black "></div>
+   <script>
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
 
 

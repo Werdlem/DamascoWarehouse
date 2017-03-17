@@ -18,6 +18,28 @@ class Database
 
 class products{	
 
+	// Search for orders received on a particular day
+	public function get_Order_By_Date($date){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('
+	select *
+	from goods_out
+	where due_date = (?)
+	');
+	$stmt->bindValue(1, $date);
+	$stmt->execute();
+	if($stmt->rowCount()> 'null')
+	{
+			while($results = $stmt->fetchAll(PDO::FETCH_ASSOC))
+		{
+			return $results;
+		}
+			}
+		else{
+			die ("No Results");
+			}		
+		}
+
 	// CUSTOMER SEARCH
 
 	public function get_Customer($search){
