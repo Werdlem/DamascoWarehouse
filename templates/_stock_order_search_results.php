@@ -43,13 +43,13 @@ if ($_POST['doSearch']==3){
 if ($_POST['doSearch']==4){ 
  
  $date = $_POST['date'];
- $search = 'Date: '.$_POST['date'];
+ $search = 'Date Received: '.date('d-m-Y', strtotime($_POST['date']));
  $productDal = new products();
- $order = $productDal->get_Order_By_Date($date); 
+ $order = $productDal->get_Order_By_Order_Date($date); 
 }
 
-
 ?>
+
  <style>
          tr:nth-child(even){background:#d9edf7;}
          .low{ color: white; text-align: center; font-weight:bold; background-color: red; font-size: 20px }

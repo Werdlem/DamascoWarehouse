@@ -19,12 +19,12 @@ class Database
 class products{	
 
 	// Search for orders received on a particular day
-	public function get_Order_By_Date($date){
+	public function get_Order_By_Order_Date($date){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('
 	select *
 	from goods_out
-	where due_date = (?)
+	where order_date = (?)
 	');
 	$stmt->bindValue(1, $date);
 	$stmt->execute();
