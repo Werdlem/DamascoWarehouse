@@ -93,7 +93,7 @@ class products{
 	$stmt = $pdo->prepare('
 	select *
 	from goods_out
-	where (due_date between (?)
+	where (order_date between (?)
 	and (?)
 	and despatch_status <= 0.00
 	and qty > 0)
