@@ -40,7 +40,7 @@ $sku = $productDal->GetProducts($sku);
 				<input id="alias_2" name="alias_2" type="text" class="form-control" value="<?php echo $productDetail['alias_2'];?>" />
 			</div>
 			<div style="width:50%; float: left;">
-				<label for="alias_3">Alias 3</label>
+				<label for="alias_3">Goods In Alias SKU</label>
 				<input id="alias_3" name="alias_3" type="text" class="form-control" value="<?php echo $productDetail['alias_3'];?>" />
 			</div>
 			<!--Wild card alias entry for multi coloured products-->

@@ -11,7 +11,7 @@ $alias2 = $result['alias_2'];
 		$sku_wildcard = $result['alias_wild'];
 	}
 	// end
-$goods_in = $productDal->get_Goods_Out_Sku($search_sku, $alias1, $alias2,$sku_wildcard);
+$goods_in = $productDal->get_Goods_Out_Sku($search_sku, $alias1, $alias2,$sku_wildcard, $alias_3);
 $total = $productDal->goods_out_total($search_sku);
 if (!$total){
 		$goods_out_amt = 0;

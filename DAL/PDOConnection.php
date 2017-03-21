@@ -446,17 +446,19 @@ class products{
 		}
 	}
 	
-	public function get_Goods_In_Sku($sku){
+	public function get_Goods_In_Sku($sku, $alias_3){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('
 			Select *
 			from goods_in
 			where sku like :stmt
+			or sku like :alias_3
 			having qty_received <> "0.00"
 			order by delivery_date desc
 			limit 10			
 		');
 		$stmt->bindValue(':stmt', $sku);
+		$stmt->bindValue(':alias_3', $alias_3);
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -771,7 +773,7 @@ class products{
 			}
 }
 
-public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild){
+public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild, $alias_3){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('
 			Select *
@@ -781,7 +783,8 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild){
 			or sku = :stmt1
 			or sku = :stmt2 
 			or sku like concat(nullif(:stmt,""))
-			or sku Rlike concat(nullif(:stmt3,"")) 
+			or sku Rlike concat(nullif(:stmt3,""))
+			or sku Rlike concat(nullif(:stmt4,""))  
 			or desc1sku = concat(nullif(:stmt,"")) 
 			or desc1sku like concat(nullif(:stmt1,"")) 
 			or desc1sku like concat(nullif(:stmt2,""))
@@ -796,6 +799,7 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild){
 		$stmt->bindValue(':stmt1', $alias1);
 		$stmt->bindValue(':stmt2', $alias2);
 		$stmt->bindValue(':stmt3',$alias_wild.'[^0A]');
+		$stmt->bindValue(':stmt4',$alias_3);
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);

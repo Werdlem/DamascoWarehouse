@@ -1,7 +1,7 @@
 <div id="goods_in">
 <h3 style="text-align:center">Goods In</h3>
 <?php 
-$goods_in = $productDal->get_Goods_In_Sku($search_sku, $selection);
+$goods_in = $productDal->get_Goods_In_Sku($search_sku, $alias_3);
 $total = $productDal->Goods_In_Total($search_sku);
 if (!$total){
 		$goods_in_amt = 0;

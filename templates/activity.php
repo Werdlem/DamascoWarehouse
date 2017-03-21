@@ -2,6 +2,8 @@
 include 'home.php';
 //require_once '../DAL/PDOConnection.php';
 				require_once './DAL/PDOConnection.php';
+
+				
 if(isset($_GET['sku'])){
 	$search_sku = $_GET['sku'];
 	}
@@ -19,10 +21,11 @@ if(isset($_POST['search_sku'])){
 	$productDal = new products();
 	$sku = $productDal->Get_Sku_Total($search_sku, $search_sku);
 
-
 echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
   
 foreach ($sku as $result){ 
+
+	$alias_3 = $result['alias_3'];
 
 $selection =$result['sku'];
 // assign (null) to empty wild card string returned should alias wild be and empty string
@@ -40,7 +43,7 @@ foreach ($goods_total as $result){
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	$_goods_in = number_format((float)$result['total_rec']);
 	$_ave = number_format((float)$result['last30']);
-	
+
 echo 
 '<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
 <p><strong>Alias 1:</strong> '.$result['alias_1'].'</p>
