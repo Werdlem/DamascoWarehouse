@@ -784,10 +784,11 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild, $a
 			or sku = :stmt2 
 			or sku like concat(nullif(:stmt,""))
 			or sku Rlike concat(nullif(:stmt3,""))
-			or sku Rlike concat(nullif(:stmt4,""))  
+			or sku like concat(nullif(:stmt4,""))  
 			or desc1sku = concat(nullif(:stmt,"")) 
 			or desc1sku like concat(nullif(:stmt1,"")) 
 			or desc1sku like concat(nullif(:stmt2,""))
+			or desc1sku like concat(nullif(:stmt4,""))
 			or desc1sku Rlike concat(nullif(:stmt3,"")))
 			having qty_delivered <> "0.00"
 			and due_date > "2016-01-01"
@@ -828,7 +829,7 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 							or desc1sku like concat(nullif(products.alias_1,"")) 
 							or desc1sku like concat(nullif(products.alias_2,""))
 							or desc1sku rlike concat(nullif(:wild,""))))
-							as last30,
+							as last120,
 			
 			(select sum(qty_delivered) from goods_out where 
 			

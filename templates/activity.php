@@ -3,7 +3,7 @@ include 'home.php';
 //require_once '../DAL/PDOConnection.php';
 				require_once './DAL/PDOConnection.php';
 
-				
+
 if(isset($_GET['sku'])){
 	$search_sku = $_GET['sku'];
 	}
@@ -42,7 +42,7 @@ foreach ($goods_total as $result){
 	
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	$_goods_in = number_format((float)$result['total_rec']);
-	$_ave = number_format((float)$result['last30']);
+	$_ave = number_format((float)$result['last120']);
 
 echo 
 '<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
