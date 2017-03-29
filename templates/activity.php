@@ -6,7 +6,14 @@ include 'home.php';
 
 if(isset($_GET['sku'])){
 	$search_sku = $_GET['sku'];
-	$days = $_GET['days'];
+		if (!isset($_GET['days']))
+			{
+				$days = 120;
+			}
+		else
+		{
+			$days = $_GET['days'];
+		}
 	}
 if(isset($_POST['search_sku'])){
 	
@@ -51,12 +58,21 @@ echo
 <p><strong>Wild Card:</strong> '.$result['alias_wild'].'</p>
 <p><strong>SKU Total:</strong> '.$sku_total .'</p>
 <p><strong>Last Order Date:</strong> '. date('d/m/Y', strtotime($result['last_order_date'])).'</p>
-<p style="color: red"><strong>Ave per Month: '.$_ave.'*</p></strong> <p>*Average number units sold per month for the last '.$days.' days</p>
+<div class="panel panel-warning" style="width: 35%">
+<div class="panel-heading">
+Filter Monthly Average
+</div>
+<div class="panel-body">
+<p style="color: red"><strong>Ave per Month: '.$_ave.'*</p></strong> 
 <p><a href="?action=activity&sku='.$result['sku'].'&days=30">1 Month </a>|
 <a href="?action=activity&sku='.$result['sku'].'&days=60">2 Months </a>|
 <a href="?action=activity&sku='.$result['sku'].'&days=90">3 Months </a>|
 <a href="?action=activity&sku='.$result['sku'].'&days=120">4 months</a> |
 <a href="?action=activity&sku='.$result['sku'].'&days=365">12 months</a></p>
+<p>*Average number units sold per month for the last '.$days.' days</p>
+</div>
+</div>
+
 <p><strong>Associated Product List:</strong> <a href="?action=products&id='.$result['allocation_id'].'">Follow! </p></a>';}
 }
 			
