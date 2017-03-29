@@ -852,7 +852,52 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			}
 		else{
+			 die ('That SKU does not exist! Please try again.');
+			}
+	}
+// sku totals for activity.php
+
+	public function Get_Sku_Total_Ave($selection, $sku_wildcard,$days){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('select * ,
+			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
+			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
+			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
+			(SELECT  sum((qty_delivered) / (:days/ 30)) 
+				FROM    goods_out
+					WHERE   due_date BETWEEN CURDATE() - INTERVAL :days DAY AND CURDATE() and (sku = alias_1 
+							or sku = alias_2 
+							or sku like concat(nullif(products.sku,"")) 
+							or sku Rlike concat (nullif(:wild,""))
+							or desc1sku = :stmt 
+							or desc1sku like concat(nullif(products.alias_1,"")) 
+							or desc1sku like concat(nullif(products.alias_2,""))
+							or desc1sku rlike concat(nullif(:wild,""))))
+							as last120,
 			
+			(select sum(qty_delivered) from goods_out where 
+			
+			sku = alias_1 
+			or sku = alias_2 
+			or sku Rlike concat (nullif(:wild,""))
+			or sku like concat(nullif(products.sku,"")) 
+			or desc1sku = :stmt 
+			or desc1sku like concat(nullif(products.alias_1,"")) 
+			or desc1sku like concat(nullif(products.alias_2,""))
+			or desc1sku Rlike concat(nullif(:wild,"")))
+			as total_del_desc1				
+			from products
+			where sku like :stmt
+		');
+		$stmt->bindValue(':stmt', $selection);
+		$stmt->bindValue(':wild', $sku_wildcard.'[^0A]');
+		$stmt->bindValue(':days', $days);
+		$stmt->execute();
+		if($stmt->rowCount()>0) {
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			}
+		else{
+			 die ('That SKU does not exist! Please try again.');
 			}
 	}
 	

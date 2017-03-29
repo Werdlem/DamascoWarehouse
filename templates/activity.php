@@ -6,27 +6,27 @@ include 'home.php';
 
 if(isset($_GET['sku'])){
 	$search_sku = $_GET['sku'];
+	$days = $_GET['days'];
 	}
 if(isset($_POST['search_sku'])){
 	
 	if ($_POST['search_sku'] == ''){
 		die('<br /><div class="alert alert-danger" role="alert">Please enter a product SKU.');	
-		}
-		
+		}		
 		else{		
 	$search_sku = $_POST['search_sku'];
+	$days = 120;
 	}
 }
 
 	$productDal = new products();
-	$sku = $productDal->Get_Sku_Total($search_sku, $search_sku);
+	$sku = $productDal->Get_Sku_Total_Ave($search_sku, $search_sku, $days);
 
 echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
   
 foreach ($sku as $result){ 
 
 	$alias_3 = $result['alias_3'];
-
 $selection =$result['sku'];
 // assign (null) to empty wild card string returned should alias wild be and empty string
 		if ($result['alias_wild']==''){
@@ -36,7 +36,7 @@ $selection =$result['sku'];
 		$sku_wildcard = $result['alias_wild'];
 	}
 	// end
-$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
+$goods_total = $productDal->Get_Sku_Total_Ave($selection, $sku_wildcard, $days);
 
 foreach ($goods_total as $result){
 	
@@ -51,8 +51,12 @@ echo
 <p><strong>Wild Card:</strong> '.$result['alias_wild'].'</p>
 <p><strong>SKU Total:</strong> '.$sku_total .'</p>
 <p><strong>Last Order Date:</strong> '. date('d/m/Y', strtotime($result['last_order_date'])).'</p>
-<p style="color: green"><strong>SKU Total Goods In:</strong> '.$_goods_in.'</p>
-<p style="color: red"><strong>Ave per Month</strong> '.$_ave.'*</p> <p>*Average number units sold per month for the last 4 months (120 days)</p>
+<p style="color: red"><strong>Ave per Month: '.$_ave.'*</p></strong> <p>*Average number units sold per month for the last '.$days.' days</p>
+<p><a href="?action=activity&sku='.$result['sku'].'&days=30">1 Month </a>|
+<a href="?action=activity&sku='.$result['sku'].'&days=60">2 Months </a>|
+<a href="?action=activity&sku='.$result['sku'].'&days=90">3 Months </a>|
+<a href="?action=activity&sku='.$result['sku'].'&days=120">4 months</a> |
+<a href="?action=activity&sku='.$result['sku'].'&days=365">12 months</a></p>
 <p><strong>Associated Product List:</strong> <a href="?action=products&id='.$result['allocation_id'].'">Follow! </p></a>';}
 }
 			
