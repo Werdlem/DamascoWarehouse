@@ -1,6 +1,5 @@
 <?php
 include 'home.php';
-//require_once '../DAL/PDOConnection.php';
 				require_once './DAL/PDOConnection.php';
 
 

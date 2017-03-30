@@ -37,6 +37,7 @@
               <li><a href="?action=sheetboard">Goods In</a></li>
               <li><a href="?action=_stock_order_report">Low Stock Report</a></li>
               <li><a href="?action=stock_order_search">Sales Order Report</a></li>
+              <li><a href="?action=production_home">Production Activity</a></li>
               </li>
             </ul>
            <li><a href="?action=suppliers">Suppliers</a></li>

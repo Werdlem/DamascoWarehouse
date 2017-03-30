@@ -18,6 +18,34 @@ class Database
 
 class products{	
 
+	//search the goods out table for products not saved on the products table
+	public function get_goods_out_products($sku, $days){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('select *,
+		(SELECT  sum((qty_delivered) / (:days/ 30)) 
+				FROM    goods_out
+					WHERE   due_date BETWEEN CURDATE() - INTERVAL :days DAY AND CURDATE() and (sku = :sku 
+							or desc1sku = :sku))					
+							as ave
+		from goods_out
+		where 
+		sku = :sku
+		or desc1sku = :sku
+		having qty_delivered <> 0.00
+		order by due_date desc
+		limit 20
+		');
+	$stmt->bindValue(':sku', $sku);
+	$stmt->bindValue(':days', $days);
+	$stmt->execute();
+	if($stmt->rowCount()>0){
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
+	else{
+
+		die ('That SKU cannot be found');
+	}
+}
 	// Search for orders received on a particular day
 	public function get_Order_By_Order_Date($date){
 	$pdo = Database::DB();
