@@ -47,7 +47,7 @@ $sku = $productDal->GetProducts($sku);
 			 <?php 
 			 // disable the 'wildcard' text box for non logged in users
 		  if (!isset($_COOKIE['password'])){ echo '
-		  	<div style="width:50%; margin-left: auto; color: red">
+		  	<div style="width:50%; margin-left: auto; color: red; visibility: hidden">
 				<label for="sku_wildcard">Wild Card</label>
 				<input id="sku_wildcard" name="sku_wildcard" type="text" class="form-control" style="border: 1px solid red;" disabled value="'.
 				$productDetail['alias_wild'].'" />
