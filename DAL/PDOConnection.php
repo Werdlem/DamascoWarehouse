@@ -173,17 +173,16 @@ class products{
 
 	// PRODUCT SEARCH 
 	
-	public function Search($fetch,$fetch){
+	public function Search($fetch){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('
 			Select *
 			from products
 			left join location 
 			on location.sku_id=products.sku_id
-			where (sku like :stmt) or (alias_1 like :stmt)
+			where (sku like :stmt) or (alias_1 like :stmt) or (alias_2 like :stmt)
 		');
-		$stmt->bindValue(':stmt', "%".$fetch."%");
-		$stmt->bindValue(':stmt', "%".$fetch."%");
+		$stmt->bindValue(':stmt', "%".$fetch."%");		
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -813,6 +812,7 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild, $a
 			or sku like concat(nullif(:stmt,""))
 			or sku Rlike concat(nullif(:stmt3,""))
 			or sku like concat(nullif(:stmt4,""))  
+			or desc1sku = concat(nullif(:stmt,""))
 			or desc1sku like concat(nullif(:stmt1,"")) 
 			or desc1sku like concat(nullif(:stmt2,""))
 			or desc1sku like concat(nullif(:stmt4,""))

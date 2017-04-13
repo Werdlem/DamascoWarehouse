@@ -55,7 +55,7 @@ if(isset($_POST['doSearch'])){
 			else{
 			$productDal = new products;
 			$fetch = $_POST['search_sku'];
-			$fetch = $productDal->Search($fetch, $fetch);
+			$fetch = $productDal->Search($fetch);
 					}
 		}	
 			if ($_POST['doSearch']==2){					
