@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/dateInput.css" />
 
+
 <title>Damasco Warehouse Control</title>
 </head>
 
@@ -38,7 +39,9 @@
               <li><a href="?action=_stock_order_report">Low Stock Report</a></li>
               <li><a href="?action=stock_order_search">Sales Order Report</a></li>
               <li><a href="?action=production_home">Production Activity</a></li>
+              <li><a href="?action=shredmaster">Shredmaster</a></li>
               </li>
+
             </ul>
            <li><a href="?action=suppliers">Suppliers</a></li>
          <?php }?>
