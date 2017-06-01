@@ -6,6 +6,29 @@ require_once('DAL/PDOConnection.php');
 $productDal = new products();
 //$sheetboardDAL = new sheetboard();
 
+if(isset($_POST['addShred'])){
+    //UPDATE SHREDMASTER TABLE
+$palletNo = $_POST['palletNo'];
+$width = $_POST['width'];
+$length = $_POST['length'];
+$grade = strtoupper($_POST['grade']);
+$flute = $_POST['flute'];
+$qty = $_POST['qty'];
+
+
+
+$productDal->addShred($palletNo, $width, $length, $grade, $flute, $qty);	
+	header("location:?action=shredmaster");
+}
+
+if (isset($_GET['deleteShred'])){
+
+	$id= $_GET['id'];
+
+	$productDal->deleteShred($id);
+	header("location:?action=shredmaster");
+}
+
 if(isset($_POST['updates'])){
     //UPDATE PRODUCT FORM SUBMITTED
 	$sku_id= $_POST['sku_id'];
@@ -26,6 +49,7 @@ if(isset($_POST['updates'])){
 		$sku_wildcard,$pack_qty, $stock_qty);
 	header("location:?action=update_product&sku=".$sku."&sku_id=".$sku_id);
 }
+
 
 if(isset($_POST['add_location'])){
    $result = $_POST['location_name'];

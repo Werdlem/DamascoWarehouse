@@ -17,6 +17,76 @@ class Database
 }
 
 class products{	
+	//SHREDMASTER BOARD ENTRY
+
+	public function addShred($palletNo, $width, $length, $grade, $flute, $qty){
+		$pdo = Database::DB();
+		try {
+			$stmt = $pdo->prepare('insert into
+			shredmaster
+			(palletNo, width, length, grade, flute, qty)
+			values (?,?,?,?,?,?)');
+		$stmt->bindValue(1, $palletNo);
+		$stmt->bindValue(2, $width);
+		$stmt->bindValue(3, $length);
+		$stmt->bindValue(4, $grade);
+		$stmt->bindValue(5, $flute);
+		$stmt->bindValue(6, $qty);
+		$stmt->execute();
+			}	
+			
+			catch (PDOException $e){
+
+				echo '<div class="alert alert-danger" role="alert">'. $e .'</div>';
+			
+				}			
+		}
+
+	public function getShred(){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select * 
+				from 
+				shredmaster
+				order by palletNo desc');
+			$stmt->execute();
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+	public function deleteShred($id){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('delete 
+			from shredmaster
+			where id like :stmt
+			');
+		$stmt->bindValue(':stmt', $id);
+		$stmt->execute();
+	}	
+
+	public function getProductionList(){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select
+			p.*,
+			gi.delivery_date
+			from products p
+				join goods_in gi on gi.sku=p.sku
+				join(select n.sku,
+			max(n.delivery_date) as max_delivery_date 
+			from goods_in n
+			group by n.sku) y on y.sku=gi.sku
+			and
+			y.max_delivery_date=gi.delivery_date
+			where
+			p.stock_qty <= p.buffer_qty
+			and allocation_id = 27
+			');
+			$stmt->execute();			
+		if($stmt->rowCount()>0){				
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			die('No Results to show');
+			}
+		}
 
 	//search the goods out table for products not saved on the products table
 	public function get_goods_out_products($sku, $days){
@@ -32,7 +102,7 @@ class products{
 		sku = :sku
 		or desc1sku = :sku
 		having qty_delivered <> 0.00
-		order by order_date desc
+		order by due_date desc
 		limit 20
 		');
 	$stmt->bindValue(':sku', $sku);
@@ -818,8 +888,8 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild, $a
 			or desc1sku like concat(nullif(:stmt4,""))
 			or desc1sku Rlike concat(nullif(:stmt3,"")))
 			having qty_delivered <> "0.00"
-			and order_date > "2016-01-01"
-			order by order_date desc 
+			and due_date > "2016-01-01"
+			order by due_date desc 
 			limit 20
 				
 		');
