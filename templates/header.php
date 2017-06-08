@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html ng-app="sheetBoard">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="css/damasco-style.css"  type="text/css"/>
@@ -13,6 +13,7 @@
 <body>
 <script src="Jquery/jquery-ui.min.js"></script> 
 <script src="js/bootstrap.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <style>
    
    </style>

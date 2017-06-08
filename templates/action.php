@@ -15,10 +15,8 @@ $grade = strtoupper($_POST['grade']);
 $flute = $_POST['flute'];
 $qty = $_POST['qty'];
 
-
-
 $productDal->addShred($palletNo, $width, $length, $grade, $flute, $qty);	
-	header("location:?action=shredmaster");
+header("location:?action=shredmaster");
 }
 
 if (isset($_GET['deleteShred'])){
