@@ -3,29 +3,29 @@ app.controller('boardController', function($scope) {
     
         $scope.board =[{
     	flute: 'B',
-      score: 200,
-      sheets: 50,
+      score: 300,
+      sheets: 119,
 
     },
     {
     	flute: 'C',
-      score: 100,
-      sheets: 50,
+      score: 120,
+      sheets: 33,
   },
   {
     	flute: 'BC',
-      score: 100,
-      sheets: 50,
+      score: 700,
+      sheets: 119,
   },
   {
     	flute: 'E',
-      score: 100,
-      sheets: 50,
+      score: 160,
+      sheets: 105,
   },
   {
     	flute: 'EB',
-      score: 100,
-      sheets: 50,
+      score: 1012,
+      sheets: 300,
   }];
 
   $scope.boardCalc = function(){

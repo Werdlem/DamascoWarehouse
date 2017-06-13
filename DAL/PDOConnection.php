@@ -1037,18 +1037,16 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
 			p.*,
-			gi.delivery_date
+			max(gi.delivery_date) as delivery_date
 			from products p
-				join goods_in gi on gi.sku=p.sku
-				join(select n.sku,
-			max(n.delivery_date) as max_delivery_date 
-			from goods_in n
-			group by n.sku) y on y.sku=gi.sku
-			and
-			y.max_delivery_date=gi.delivery_date
+			  left join goods_in gi on gi.sku=p.sku
+			
 			where
 			p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
+			
+			group by p.sku_id
+
 			');
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				

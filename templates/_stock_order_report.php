@@ -17,7 +17,7 @@ else{
 		?>
 		 <style>
 			
-			.ordered{display:none; }
+			.ordered{display: none;}
 			.not_ordered{background-color: rgba(255,0,0,0.2); }
 			
 			</style>
@@ -41,6 +41,7 @@ else{
   <?php
   foreach ($goods_total as $result){
 	 $status = $result['last_order_date'] > $result['delivery_date']? 'ordered': 'not_ordered';
+	 $status_old = $result['last_order_date'] > $result['delivery_date']? 'ordered': 'not_ordered';
 		echo "<tr class='$status'>";
 			?>
     <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
