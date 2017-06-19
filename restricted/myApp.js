@@ -9,8 +9,8 @@ app.controller('boardController', function($scope) {
     },
     {
     	flute: 'C',
-      score: 120,
-      sheets: 33,
+      score: 725,
+      sheets: 190,
   },
   {
     	flute: 'BC',
