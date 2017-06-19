@@ -241,11 +241,12 @@ if ($_POST['add'] > 0){
 ///////////////////////////////////////////////////activity.php actions//////////////////////////////
 if (isset($_GET['sku_ammend'])) {
 		$sku = $_GET['sku'];
+		$sku_id = $_GET['sku_id'];
 		if ($_POST['add'] > 0){
 	$add = $_POST['add'];
 	$date = date('y-m-d');	
 	$qty_in = $_POST['add'];
-	$add = $productDal->qty_In($sku, $qty_in, $date, $allocation_id);
+	$add = $productDal->qty_In($sku, $qty_in, $date, $sku_id);
 	}
 	else{
 		if($_POST['subtract']> 0){
@@ -253,15 +254,23 @@ if (isset($_GET['sku_ammend'])) {
 	$date = date('y-m-d');
 
 	$qty_out = $_POST['subtract'];
-	$subtract = $productDal->qty_Out($sku, $qty_out, $date);
+	$subtract = $productDal->qty_Out($sku, $qty_out, $date, $sku_id);
 		}
 	
 	}
 		
 		
 	$doSearch = '1';
-	header('Location: ?action=activity&sku=' .$sku);
+	header('Location: ?action=activity&sku=' .$sku.'&sku_id='.$sku_id);
 	
+}
+
+if (isset($_GET['sku_ammend_'])){
+	$sku = $_GET['sku'];
+	$sku_id = $_GET['sku_id'];
+
+		echo $sku;
+		echo $sku_id;
 }
 
 if (isset($_GET['delete_entry'])){

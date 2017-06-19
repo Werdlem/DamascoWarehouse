@@ -149,7 +149,7 @@ foreach ($goods_total as $total_sku){
 						echo '<a href="?action=action&clear_location&location_id='.$result['location_id'].'">Delete</a>';
 				?>
                 | <a href="?action=send&sku_order=<?php echo htmlspecialchars($result['sku'])?>&qty=<?php echo $result['pack_qty'];?>">Order</a>
-                | <a href='?action=activity&sku=<?php echo htmlspecialchars($result['sku'])?>'>Activity</a>
+                | <a href='?action=activity&sku=<?php echo htmlspecialchars($result['sku']).'&sku_id='.$result['sku_id']?>'>Activity</a>
 				<?php if (htmlspecialchars($result['sku'])>0){
 					echo "| <a href='?action=update_product&sku=".htmlspecialchars($result['sku'])."&sku_id=". $result['sku_id']."'>Details</a>";
 					

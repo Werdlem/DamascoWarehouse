@@ -44,7 +44,7 @@ else{
 	 $status_old = $result['last_order_date'] > $result['delivery_date']? 'ordered': 'not_ordered';
 		echo "<tr class='$status'>";
 			?>
-    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
+    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']).'&sku_id='.$result['sku_id'];?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
   <?php  			
 	 echo '<td style="text-align:center">'. date('d-m-Y', strtotime($result['last_order_date']));		
 	 echo'<td style="text-align:center">'. date('d-m-Y', strtotime($result['delivery_date']));

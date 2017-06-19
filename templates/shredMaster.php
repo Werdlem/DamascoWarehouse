@@ -67,8 +67,8 @@ foreach ($data as $results){
   echo '
          
   <td>'. $results['palletNo'] .'</td> 
-  <td>'. $results['width'] .' x '
-  . $results['length'].'</td>
+  <td>'. $results['width'] .'mm <strong>x</strong> '
+  . $results['length'].'mm</td>
   <td>'. $results['grade'].'</td>
   <td>'. $results['flute'].'</td>
   <td>'. $results['qty'].'</td>

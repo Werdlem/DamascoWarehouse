@@ -1,7 +1,7 @@
 
 <div id="goods_ammend">
 <h3 style="text-align:center">Stock Ammend</h3>
-<form  method="post" action="?action=action&sku_ammend&sku=<?php echo htmlspecialchars($result['sku'])?>" style="width:90%; margin: 0 auto">
+<form  method="post" action="?action=action&sku_ammend&sku=<?php echo htmlspecialchars($result['sku'])?>&sku_id=<?php echo $result['sku_id'] ?>" style="width:90%; margin: 0 auto">
 		
         <input id="product_id" name="product_id" type="hidden" value="" />
         <br />
@@ -18,13 +18,14 @@
       </form>
 <?php
 
+
 //----------------------------------------GOODS_OUT_TOTAL--------------------------------//
 
 $goods_in = $productDal->Get_All($search_sku); 
 
 //--------------------------------------------------------------------------------------//
  
-$goods_out_movement = $productDal->get_Movement($search_sku);
+$goods_out_movement = $productDal->get_Movement($sku_id);
 
 ?>
 <table style=" width:90%; margin: 0 auto; margin-bottom:10px">

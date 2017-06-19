@@ -599,18 +599,19 @@ class products{
 		
 	}
 	
-	public function get_Movement($sku){
+	public function get_Movement($sku_id){
 	$pdo = Database::DB();
 		$stmt = $pdo->prepare('
 			Select *
 			from stock_adjustment 
-			where stock_adjustment.sku like (?)
+			where stock_adjustment.sku_id like(?)
 			having date <> "0000-00-00"
 			order by date DESC
 			limit 10
 			
 		');
-		$stmt->bindValue(1, $sku);		
+		$stmt->bindValue(1, $sku_id);
+		//$stmt->bindValue(2, $sku_id);		
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -640,30 +641,31 @@ class products{
 		}
 	}
 	
-	public function qty_In($sku, $qty_in, $date){
+	public function qty_In($sku, $qty_in, $date, $sku_id){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('insert into
-		stock_adjustment (sku, qty_in, date)
-		values (?,?,?);
+		stock_adjustment (sku, qty_in, date, sku_id)
+		values(?,?,?,?)
 		
 		');
 		$stmt->bindValue(1, $sku);
 		$stmt->bindValue(2, $qty_in);
 		$stmt->bindValue(3, $date);
-	
+		$stmt->bindValue(4, $sku_id);
 		$stmt->execute();
 		}
 		
-		public function qty_Out($sku,$qty_out, $date){
+		public function qty_Out($sku,$qty_out, $date, $sku_id){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('insert into
-		stock_adjustment (sku, qty_out, date)
-		values(?,?,?)
+		stock_adjustment (sku, qty_out, date, sku_id)
+		values(?,?,?,?)
 		
 		');
 		$stmt->bindValue(1, $sku);
 		$stmt->bindValue(2, $qty_out);
 		$stmt->bindValue(3, $date);
+		$stmt->bindValue(4, $sku_id);
 		$stmt->execute();
 		}
 		
@@ -954,10 +956,10 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 	}
 // sku totals for activity.php
 
-	public function Get_Sku_Total_Ave($selection, $sku_wildcard,$days){
+	public function Get_Sku_Total_Ave($selection, $sku_wildcard,$days,$sku_id){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('select * ,
-			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
+			(select total from stk_allocation_totals where sku_id like :sku_id) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(SELECT  sum((qty_delivered) / (:days/ 30)) 
@@ -989,6 +991,7 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 		$stmt->bindValue(':stmt', $selection);
 		$stmt->bindValue(':wild', $sku_wildcard.'[^0A]');
 		$stmt->bindValue(':days', $days);
+		$stmt->bindValue(':sku_id', $sku_id);
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);

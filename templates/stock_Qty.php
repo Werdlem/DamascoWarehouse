@@ -70,8 +70,8 @@ if (isset($_GET['id'])){
   <?php
 foreach ($fetch as $result){ ?>
   <tr style="">
-    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
-    <td style="text-align:center"><?php if ($result['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($result['last_order_date']));} ?></td>
+    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']).'&sku_id='.$result['sku_id'];?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
+   <td style="text-align:center"><?php if ($result['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($result['last_order_date']));} ?></td>
     <?php
 $selection =$result['sku'];
 
@@ -86,6 +86,7 @@ $selection =$result['sku'];
 $goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
 
 foreach ($goods_total as $result){
+
 	
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
 	

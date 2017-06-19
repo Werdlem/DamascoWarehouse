@@ -5,6 +5,7 @@ include 'home.php';
 
 if(isset($_GET['sku'])){
 	$search_sku = $_GET['sku'];
+	$sku_id = $_GET['sku_id'];
 		if (!isset($_GET['days']))
 			{
 				$days = 120;
@@ -26,7 +27,7 @@ if(isset($_POST['search_sku'])){
 }
 
 	$productDal = new products();
-	$sku = $productDal->Get_Sku_Total_Ave($search_sku, $search_sku, $days);
+	$sku = $productDal->_get_products($search_sku, $search_sku);
 
 echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
   
@@ -34,6 +35,7 @@ foreach ($sku as $result){
 
 	$alias_3 = $result['alias_3'];
 $selection =$result['sku'];
+$sku_id = $result['sku_id'];
 // assign (null) to empty wild card string returned should alias wild be and empty string
 		if ($result['alias_wild']==''){
 		$sku_wildcard = '(null)';
@@ -42,7 +44,7 @@ $selection =$result['sku'];
 		$sku_wildcard = $result['alias_wild'];
 	}
 	// end
-$goods_total = $productDal->Get_Sku_Total_Ave($selection, $sku_wildcard, $days);
+$goods_total = $productDal->Get_Sku_Total_Ave($selection, $sku_wildcard, $days,$sku_id);
 
 foreach ($goods_total as $result){
 	
@@ -52,6 +54,7 @@ foreach ($goods_total as $result){
 
 echo 
 '<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
+<p><strong>Description:</strong> '.$result['description'].'</p>
 <p><strong>Alias 1:</strong> '.$result['alias_1'].'</p>
 <p><strong>Alias 2:</strong> '.$result['alias_2'].'</p>
 <p><strong>Wild Card:</strong> '.$result['alias_wild'].'</p>
@@ -63,11 +66,11 @@ Filter Monthly Average
 </div>
 <div class="panel-body">
 <p style="color: red"><strong>Ave per Month: '.$_ave.'*</p></strong> 
-<p><a href="?action=activity&sku='.$result['sku'].'&days=30">1 Month </a>|
-<a href="?action=activity&sku='.$result['sku'].'&days=60">2 Months </a>|
-<a href="?action=activity&sku='.$result['sku'].'&days=90">3 Months </a>|
-<a href="?action=activity&sku='.$result['sku'].'&days=120">4 months</a> |
-<a href="?action=activity&sku='.$result['sku'].'&days=365">12 months</a></p>
+<p><a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=30">1 Month </a>|
+<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=60">2 Months </a>|
+<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=90">3 Months </a>|
+<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=120">4 months</a> |
+<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=365">12 months</a></p>
 <p>*Average number units sold per month for the last '.$days.' days</p>
 </div>
 </div>
