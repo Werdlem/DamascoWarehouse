@@ -1,9 +1,19 @@
 <?php 
-//require_once('DAL/Production_PDOConnection.php');
-//require_once('DAL/sheetboard_PDOConnection.php');
+
 require_once('DAL/PDOConnection.php');
 
+
+
 $productDal = new products();
+
+//PRODUTION LOG ACTIVITY
+if (isset($_GET['production_Add'])) {
+		$sku_id = $_GET['sku_id'];
+		$qty = $_POST['qty'];
+
+		$productDal->productionAdd($sku_id, $qty);
+header("location:?action=production");
+	}
 //$sheetboardDAL = new sheetboard();
 
 if(isset($_POST['addShred'])){
@@ -42,9 +52,10 @@ if(isset($_POST['updates'])){
 	$sku_wildcard = $_POST['sku_wildcard'];
 	$pack_qty = $_POST['pack_qty'];
 	$stock_qty = $_POST['stock_qty'];
+	$ave = $_POST['ave'];
 	
 	$productDal->UpdateProduct($sku_id, $sku,$notes,$buffer_qty, $allocation_id, $supplier_name,$description, $alias_1, $alias_2, $alias_3,
-		$sku_wildcard,$pack_qty, $stock_qty);
+		$sku_wildcard,$pack_qty, $stock_qty, $ave);
 	header("location:?action=update_product&sku=".$sku."&sku_id=".$sku_id);
 }
 

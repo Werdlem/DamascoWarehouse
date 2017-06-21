@@ -90,13 +90,15 @@ $sku = $productDal->GetProducts($sku);
 		$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
 
 foreach ($goods_total as $result){
+
 	
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1']; ?>
-				<input id="stock_qty" name="stock_qty" readonly="readonly" type="text" class="form-control" value="<?php echo $sku_total;}?>" />
+				<input id="stock_qty" name="stock_qty" readonly="readonly" type="text" class="form-control" value="<?php echo $productDetail['stock_qty'];}?>" />
 			</div>
 			<div>
 				<label for="last_ordered">Last Ordered</label>
 				<input id="last_ordered" name="last_ordered" type="text" class="form-control" readonly="readonly" style="width: 40%" value="<?php echo $productDetail['last_order_date']; ?>"/>
+				<input type="ave" name="ave" value="<?php echo $result['last120'] ?>">
 			</div>
 					 
 			
@@ -119,6 +121,7 @@ foreach ($goods_total as $result){
 			 }
 			 </script> 
 			</div>
+
 			<div style="width:50%; margin-left:auto">
 				<label for="supplier_name">Supplier</label>
 				<input id="supplier_name" name="supplier_name" type="text" class="form-control" value="<?php echo $productDetail['supplier_name']; ?>"/>

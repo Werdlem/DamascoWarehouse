@@ -19,6 +19,17 @@ class Database
 class products{	
 	//SHREDMASTER BOARD ENTRY
 
+	public function productionAdd($sku_id, $qty){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('update products
+		set stock_qty = stock_qty + :qty
+		where sku_id = :sku_id');
+	$stmt->bindValue(':sku_id', $sku_id);
+	$stmt->bindValue(':qty', $qty);
+	$stmt->execute();
+}
+
+
 	public function addShred($palletNo, $width, $length, $grade, $flute, $qty){
 		$pdo = Database::DB();
 		try {
@@ -64,20 +75,10 @@ class products{
 
 	public function getProductionList(){
 			$pdo = Database::DB();
-			$stmt = $pdo->prepare('select
-			p.*,
-			gi.delivery_date
-			from products p
-				join goods_in gi on gi.sku=p.sku
-				join(select n.sku,
-			max(n.delivery_date) as max_delivery_date 
-			from goods_in n
-			group by n.sku) y on y.sku=gi.sku
-			and
-			y.max_delivery_date=gi.delivery_date
-			where
-			p.stock_qty <= p.buffer_qty
-			and allocation_id = 27
+			$stmt = $pdo->prepare('select * 
+				from products
+				where buffer_qty > stock_qty
+				and allocation_id = 27
 			');
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				
@@ -328,10 +329,10 @@ class products{
 		}
 		
 		public function UpdateProduct($sku_id, $sku, $notes, $buffer_qty, $allocation_id, $supplier_name, $description, $alias_1, $alias_2, $alias_3,
-			$sku_wildcard, $pack_qty, $stock_qty){
+			$sku_wildcard, $pack_qty, $stock_qty, $ave){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, alias_wild = :sku_wild, pack_qty = :pack_qty, stock_qty = :stock_qty
+		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, alias_wild = :sku_wild, pack_qty = :pack_qty, stock_qty = :stock_qty, ave = :ave
 		where sku_id = :sku_id');		
 		$stmt->bindValue(':sku', $sku);
 		$stmt->bindValue(':notes', $notes);
@@ -346,6 +347,7 @@ class products{
 		$stmt->bindValue(':pack_qty', $pack_qty);
 		$stmt->bindValue(':stock_qty', $stock_qty);
 		$stmt->bindValue(':sku_id', $sku_id);
+		$stmt->bindValue(':ave', $ave);
 		$stmt->execute();
 		
 		}
@@ -918,7 +920,7 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
-			(SELECT  sum((qty_delivered) / 4) 
+			(SELECT  sum(qty_delivered)
 				FROM    goods_out
 					WHERE   due_date BETWEEN CURDATE() - INTERVAL 120 DAY AND CURDATE() and (sku = alias_1 
 							or sku = alias_2 
@@ -1047,6 +1049,7 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 			where
 			p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
+			and not allocation_id = 27
 			
 			group by p.sku_id
 

@@ -46,6 +46,7 @@
             </ul>
            <li><a href="?action=suppliers">Suppliers</a></li>
          <?php }?>
+         <li><a href="?action=production">Production Log</a></li>
         </ul>
       </div>
     </ul>
