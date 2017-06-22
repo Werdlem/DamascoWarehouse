@@ -20,12 +20,15 @@ $cost = $_POST['cost'];
 $margin = $_POST['margin'];
 $boardQty = $_POST['boardQty'];
 $config = $_POST['config'];
+$flute = $_POST['flute'];
 //VARIABLE CALCULATIONS
 $boss1 = ($glueFlap + 100);
 $boss2 = $boss1 + $deckleCreaseL;
 $boss3 = $boss2 + $deckleCreaseW;
 $boss4 = $boss3 + $deckleCreaseL;
 $boss5 = $boss4 + $deckleCreaseW;
+$lengthF = $length + $flute;
+$widthF = $width + $flute;
 ?>
 
 
@@ -91,10 +94,10 @@ td{
         <p>A)Glue Flap Slot: '.$chopCrease1.'</p>
         <p>B)4th Slot: '.$chopCrease1.'</p>
         <h4>Step 2</h4>
-        <p>A) Slot 1 = '.$length.'
-        <p>B) Slot 2 = '.$width.'
-        <p>C) Slot 3 = '.$length.'
-        <p>D) Slot 4 = '.$width.'
+        <p>A) Slot 1 = '.$lengthF.'
+        <p>B) Slot 2 = '.$widthF.'
+        <p>C) Slot 3 = '.$lengthF.'
+        <p>D) Slot 4 = '.$widthF.'
         <p><strong>NB: REPEAT FOR STEP FOR OPPOSTITE SIDE</strong>
         </div>
         <div id="setup">

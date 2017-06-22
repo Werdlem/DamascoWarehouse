@@ -174,6 +174,7 @@ input{
                          <input type="Hidden" name="category" value="{{selectedCategory.category}}">
                           <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
                           <input type="Hidden" name="config" value="{{setupConfig()}}">
+                          <input type="" name="flute" value="{{selectedFlute.width}}">
                          
                           </form>
 
