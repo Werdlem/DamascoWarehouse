@@ -1,8 +1,9 @@
 <!DOCTYPE HTML>
-<html ng-app="sheetBoard">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="stylesheet" href="css/damasco-style.css"  type="text/css"/>
+
 <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
 <link rel="stylesheet" type="text/css" href="css/dateInput.css" />
 
@@ -41,6 +42,7 @@
               <li><a href="?action=stock_order_search">Sales Order Report</a></li>
               <li><a href="?action=production_home">Production Activity</a></li>
               <li><a href="?action=shredmaster">Shredmaster</a></li>
+              <li><a href="?action=ctn_carton_specs">Carton Calculator</a></li>
               </li>
 
             </ul>

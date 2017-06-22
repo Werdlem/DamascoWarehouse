@@ -21,7 +21,7 @@ th{
     background-color: #bce8f1;
   }
 </style>
-<div ng-controller="boardController as board">
+<div ng-controller="boardController as board" ng-app="sheetBoard">
 <div class="panel panel-success" style="float:left width: auto;">
   <div class="panel panel-heading">
     <h3 style="text-align:center">Sheetboard Entry</h3>
@@ -83,3 +83,4 @@ foreach ($data as $results){
 </form>
 </div>
 <script src="/restricted/myApp.js"></script>
+</div>
