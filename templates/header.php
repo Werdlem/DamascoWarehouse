@@ -48,7 +48,9 @@
             </ul>
            <li><a href="?action=suppliers">Suppliers</a></li>
          <?php }?>
-         <li><a href="?action=production">Production Log</a></li>
+         <li role="presentation" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="?action=ctn_carton_specs">Carton Production</a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="?action=ctn_jobSheet">Job Sheets</a></li>
         </ul>
       </div>
     </ul>

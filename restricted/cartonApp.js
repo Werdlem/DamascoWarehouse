@@ -43,18 +43,20 @@ app.controller('styleController', function($scope, $http) {
         return($scope.selectedGrade.grade +'/'+ $scope.selectedFlute.flute +'/'+ $scope.selectedLiner.liner)
      
     };
-    
-        // Calculate the deckle width
-       $scope.boardDeckle = function(){
-    	var res =($scope.width * $scope.selectedStyle.breadth * 2 +(+$scope.height) + (+$scope.selectedCategory.trimWidth) + (+$scope.selectedFlute.width));      
+
+      $scope.boardDeckle = function(){
+      var res =($scope.calcChopCrease1()* 2 +(+$scope.height) + (+$scope.selectedFlute.width * $scope.selectedStyle.creaseDeckle));      
       if(isNaN(res)){
         return null;
       }
       return res;
     };
+
+
+       
         // calculate the chop length
     $scope.boardChop = function(){
-    	var res =(($scope.selectedStyle.length * $scope.length )+($scope.selectedStyle.width * $scope.width) + (+$scope.selectedCategory.glueFlap) + (+$scope.selectedCategory.trimLength));
+    	var res =(($scope.selectedStyle.length * $scope.length )+($scope.selectedStyle.width * $scope.width) + (+$scope.selectedCategory.glueFlap) + (+$scope.selectedFlute.width * $scope.selectedStyle.creaseChop));
     	if (isNaN(res)){
         return null;
       }
@@ -135,6 +137,24 @@ app.controller('styleController', function($scope, $http) {
        var width = $scope.calcDeckleWidth();
        return ("4 Panel Carton");
      }
+
+     //calculate chop blade positions
+$scope.chopSlotL = function(){
+      var res = (($scope.selectedCarton.length *1) + (+$scope.selectedCarton.fluteWidth*1 ));
+      if (isNaN(res)){
+        return null;
+      }
+      return res;
+     }
+
+     $scope.chopSlotW = function(){
+      var res = (($scope.selectedCarton.width *1) + (+$scope.selectedCarton.fluteWidth*1 ));
+      if (isNaN(res)){
+        return null;
+      }
+      return res;
+     }
+
 
      //Calculate internal Dimms
      $scope.internalDimms = function(){

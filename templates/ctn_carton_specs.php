@@ -122,6 +122,7 @@ input{
 </div>
 </form>
 
+
 <form method="POST" action="?action=ctn_addJob">
 <p><button type="submit"> Add job</button></p>
 
@@ -146,6 +147,7 @@ input{
                          <input type="Hidden" name="category" value="{{selectedCategory.category}}">
                           <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
                           <input type="Hidden" name="config" value="{{setupConfig()}}">
+                           <input type="Hidden" name="fluteWidth" value="{{selectedFlute.width}}">
                          
                           </form>
 
@@ -174,7 +176,7 @@ input{
                          <input type="Hidden" name="category" value="{{selectedCategory.category}}">
                           <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
                           <input type="Hidden" name="config" value="{{setupConfig()}}">
-                          <input type="" name="flute" value="{{selectedFlute.width}}">
+                          <input type="Hidden" name="flute" value="{{selectedFlute.width}}">
                          
                           </form>
 

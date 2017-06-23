@@ -48,11 +48,10 @@ $cost = $_POST['cost'];
 $margin = $_POST['margin'];
 $boardQty = $_POST['boardQty'];
 $config = $_POST['config'];
-
-echo $style;
+$fluteWidth = $_POST['fluteWidth'];
 
 $carton->addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $chop, $chopCrease1, $chopCrease2,$deckleCreaseL, $deckleCreaseW, $glueFlap, $finish, $grade, $image, $category, $cost, 
-  $margin, $boardQty, $config, $length);
+  $margin, $boardQty, $config, $length, $fluteWidth);
 header("location:?action=ctn_carton_specs");
 
 };

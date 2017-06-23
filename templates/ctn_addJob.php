@@ -24,6 +24,7 @@ $cost = $_POST['cost'];
 $margin = $_POST['margin'];
 $boardQty = $_POST['boardQty'];
 $config = $_POST['config'];
+$fluteWidth = $_POST['fluteWidth'];
 //add the fields found in the DB table to this page. print job sheet from this page. Posted vairables all need to be in <input>'s for the addJob DB function to work
 
  ?>
@@ -76,6 +77,7 @@ $config = $_POST['config'];
                           <input type="HIDDEN" name="boardQty" value="<?php echo $boardQty ?>">
                           <input type="HIDDEN" name="config" value="<?php echo $config ?>">
                           <input type="HIDDEN" name="length" value="<?php echo $length ?>">
+                          <input type="HIDDEN" name="fluteWidth" value="<?php echo $fluteWidth ?>">
                     
  
  <button type="submit" name="addJob">addjob</button>
