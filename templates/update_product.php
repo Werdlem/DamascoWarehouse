@@ -98,7 +98,7 @@ foreach ($goods_total as $result){
 			<div>
 				<label for="last_ordered">Last Ordered</label>
 				<input id="last_ordered" name="last_ordered" type="text" class="form-control" readonly="readonly" style="width: 40%" value="<?php echo $productDetail['last_order_date']; ?>"/>
-				<input type="ave" name="ave" value="<?php echo $result['last120'] ?>">
+				
 			</div>
 					 
 			
