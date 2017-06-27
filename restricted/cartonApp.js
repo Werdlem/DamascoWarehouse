@@ -32,9 +32,20 @@ app.controller('styleController', function($scope, $http) {
      	margin: 1
      }];
 
+     $scope.panelConfig=[{
+      config: "2 Panel",
+      score: 2
+    },
+    {
+      config: "4 Panel",
+      score: 1  
+     }];
+
     $scope.labour = 7.5;
     $scope.date = new Date();
     $scope.delivery = .40;
+     
+    
 
     //Carton Grade Specs
 
@@ -43,6 +54,8 @@ app.controller('styleController', function($scope, $http) {
         return($scope.selectedGrade.grade +'/'+ $scope.selectedFlute.flute +'/'+ $scope.selectedLiner.liner)
      
     };
+
+    //CALCULATE DECKLE
 
       $scope.boardDeckle = function(){
       var res =($scope.calcChopCrease1()* 2 +(+$scope.height) + (+$scope.selectedFlute.width * $scope.selectedStyle.creaseDeckle));      
@@ -62,6 +75,18 @@ app.controller('styleController', function($scope, $http) {
       }
       return res;
     };
+
+
+    //CALCULATE CARTON CONFIG
+   $scope.cartonConfigChop = function(){
+      var res = ($scope.boardChop() / $scope.selectedPanelConfig.score)
+     if(isNaN(res)){
+          return null;
+        }
+        return res;
+    };
+
+
         // calculate the square Meter per carton
     $scope.calcSqMperBox = function(){
        var res = $scope.boardDeckle() * $scope.boardChop()
@@ -127,7 +152,7 @@ app.controller('styleController', function($scope, $http) {
 
      $scope.setupConfig = function(){
      var res = $scope.boardChop();
-      if ($scope.boardChop() > 2250){
+      if ($scope.boardChop() > 1300){
        var length = $scope.calcDeckleLength();
        var width = $scope.calcDeckleWidth();
        return ("2 Panel carton");

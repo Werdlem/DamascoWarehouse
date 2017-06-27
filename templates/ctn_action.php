@@ -26,8 +26,8 @@ echo $style;
 
 if (isset($_POST['addJob']))
 {
-	$ref = $_POST['ref'];
-	$initials = $_POST['initials'];
+	$ref = (strtoupper($_POST['ref']));
+	$initials = (strtoupper($_POST['initials']));
 $style = $_POST['style'];
 $height =  $_POST['height'];
 $length =  $_POST['length'];

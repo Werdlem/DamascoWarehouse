@@ -57,18 +57,26 @@ input{
 
 <div ng-controller="styleController as style" ng-app="quoteApp">
 
+<div class="options-container" style="float: none; margin-left: auto;">
+<div class="options">
+
+<h3>Carton Select</h3>
+<p>Carton: <select style="float: right; width: 174px; height: 26px;" name="" ng-model="selectedCarton" ng-init="selectedCarton = cartons[0]" ng-options="x.ref for x in cartons" ></select></p>
+</div>
+</div>
+
 <div class="container">
 <div class="options-container">
 <div class="options">
 
-<h3>Carton Select</h3>
+<h3>Carton</h3>
 <p>Style: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedStyle" ng-options="x.style for x in styles"></select></p>
-<p>Flute: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedFlute" ng-options="x.flute for x in flutes" ng-init="selectedFlute = flutes[0]" ></select></p>
+<p>Flute: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedFlute" ng-options="x.flute for x in flutes" ng-init="selectedFlute = flutes[0]"></select></p>
 <p>Grade: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedGrade" ng-options="x.grade for x in grades" ng-init="selectedGrade = type[0]" ></select></p>
 <p>Liner: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedLiner" ng-options="x.liner for x in liners" ng-init="selectedLiner = liner[0]" ></select></p>
 
 <h3>Carton Dimms</h3>
-<p>Length: <input type="text" ng-model="length"></p>
+<p>Length: <input type="text" ng-model="length" ng-bind="selectedCarton.length"></p>
 <p>Width: <input type="text" ng-model="width"></p>
 <p>Height: <input type="text" ng-model="height"></p>
 
