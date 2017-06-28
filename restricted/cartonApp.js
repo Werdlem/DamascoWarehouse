@@ -203,7 +203,7 @@ $scope.chopSlotL = function(){
     };
 
     $scope.calcBoardCost = function(){
-      var res = $scope.cost * $scope.calcSqMperBoxQty();
+      var res = (($scope.cost /1000 ) * $scope.calcSqMperBoxQty());
       if(isNaN(res)){
         return null;
       }
@@ -221,7 +221,7 @@ $scope.chopSlotL = function(){
     };
 
     $scope.calculateCostPerUnit = function(){
-      var res =($scope.calcLabour() + ($scope));
+      var res =(($scope.cost / 1000) * $scope.calcSqMperBox());
           if(isNaN(res)){
             return null;
           }
