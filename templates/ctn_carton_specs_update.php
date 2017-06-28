@@ -76,9 +76,9 @@ input{
 <p>Liner: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedLiner" ng-options="x.liner for x in liners" ng-init="selectedLiner = liner[0]" ></select></p>
 
 <h3>Carton Dimms</h3>
-<p>Length: <input type="text" ng-model="length" ng-bind="selectedCarton.length"></p>
-<p>Width: <input type="text" ng-model="width"></p>
-<p>Height: <input type="text" ng-model="height"></p>
+<p>Length: <input type="text" ng-model="length=selectedCarton.length"></p>
+<p>Width: <input type="text" ng-model="width=selectedCarton.width"></p>
+<p>Height: <input type="text" ng-model="height=selectedCarton.height"></p>
 
 </select></p>
 <p>Finish: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedFinish" ng-options="x.finish for x in finish"><option value="select">select</option></select></p>
