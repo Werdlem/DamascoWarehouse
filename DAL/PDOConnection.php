@@ -23,6 +23,9 @@ class products{
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('update products
 		set stock_qty = stock_qty + :qty
+		(insert into stock_adjustment
+		sku_id = :sku_id, qty_in = :qty_in, date = :date
+		)
 		where sku_id = :sku_id');
 	$stmt->bindValue(':sku_id', $sku_id);
 	$stmt->bindValue(':qty', $qty);
@@ -220,13 +223,8 @@ class products{
 		from products
 		where
 		(sku = :sku1
-		or sku = :sku2
+		or sku = :sku2	
 		
-		or concat(nullif(alias_1,"")) = concat(nullif(:sku1, ""))
-		or concat(nullif(alias_1,"")) =  concat(nullif(:sku2, ""))
-		
-		or concat(nullif(alias_2,"")) =  concat(nullif(:sku1, ""))
-		or concat(nullif(alias_2,"")) =  concat(nullif(:sku2, ""))
 		)
 		
 		');
