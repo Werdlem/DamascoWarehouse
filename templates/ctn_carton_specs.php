@@ -82,7 +82,7 @@ input{
 <p>£ per KSqM: <input type="text" ng-model="cost"></p>
  <p>Labour: <input ng-if="calcTime() !== null" disabled value="{{calcTime() | number:1}} Hours"></p>
 <p>Margin: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedMargin" ng-options="x.margin for x in margin" ng-init="selectMargin = margin[0]" ></select></p>
-<p>Delivery: <input type="text" ng-model="miles"></p>
+<p>Delivery: <input type="text" ng-model="miles" placeholder="Miles"></p>
 </div>
 </div>
 <span ng-hide="selectedStyle == null">
@@ -112,15 +112,18 @@ input{
 </div>
 <div id="material">
 <h3>Costing Specs</h3>
+<p><strong style="text-decoration: underline;">Unit Price</strong></p>
 <p><span ng-if="calcSqMperBox() !==null"><strong> Square M per box: </strong> {{calcSqMperBox() | number:3}}</span></p>
-<p><span ng-if="calcLabour() !==null"><strong>Labour per unit:</strong> {{calcLabour() | currency: '£' }}</span></p>
-<p><span ng-if="calculateCostPerUnit() !==null"><strong>Cost per unit:</strong> {{calculateCostPerUnit() | currency: '£' }}</span></p>
+<p><span ng-if="calcLabourPerUnit() !==null"><strong>Labour per unit:</strong> {{calcLabourPerUnit() | currency: '£' }}</span></p>
+<p><span ng-if="calculateCostPerUnit() !==null"><strong>Material cost per unit:</strong> {{calculateCostPerUnit() | currency: '£' }}</span></p>
+<p><span ng-if="calcMarginPerUnit() !==null"><strong>Margin per unit:</strong> {{calcMarginPerUnit() | currency: '£' }}</span></p>
+<p><strong style="text-decoration: underline;">Total Price</strong></p>
 <p><span ng-if="calcSqMperBoxQty() !== null"><strong>Total Square M: </strong> {{calcSqMperBoxQty() | number : 3}}</span></p>
+<p><span ng-if="calcLabour() !==null"><strong>Total labour:</strong> {{calcLabour() | currency: '£' }}</span></p>
 <p><span ng-if="calcBoardCost() !== null"><strong>Materials Cost: </strong> {{calcBoardCost() | currency: '£'}}</span></p>
 <p><span ng-if="calcDelivery() !==null"><strong>Delivery:</strong> {{calcDelivery() | currency: '£' }}</span></p>
-<p><span ng-if="calculateMargin() !==null"><strong>Margin:</strong> {{calculateMargin() | currency: '£'}}</span></p>
-<p><span ng-if="calculateMargin() !==null"><strong>Margin per box:</strong> {{calculateMargin() /(qty) | currency: '£'}}</span></p>
-<p><span ng-if="calculateTotal() !==null"><strong>Total:</strong> {{calculateTotal() | currency: '£' }}</span></p>
+<p><span ng-if="calculateMargin() !==null"><strong>Total margin:</strong> {{calculateMargin() | currency: '£'}}</span></p>
+<p><span ng-if="calcTotal() !==null"><strong>Total:</strong> {{calcTotal() | currency: '£' }}</span></p>
 </div>
 </div>
 </form>

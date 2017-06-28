@@ -104,6 +104,94 @@ app.controller('styleController', function($scope, $http) {
         }
         return res;
     };
+    $scope.calQtyReq = function(){
+      var res = $scope.boardChop();
+      if ($scope.boardChop() > 2000){
+        return $scope.qty * 2;      
+      }
+      return $scope.qty;
+     }
+$scope.calcBoardCost = function(){
+      var res = (($scope.cost /1000 ) * $scope.calcSqMperBoxQty());
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+      };
+ $scope.calculateCost = function(){
+      var res =($scope.calculateCostPerUnit() * $scope.qty);
+          if(isNaN(res)){
+            return null;
+          }
+          return res;
+    };
+
+$scope.calculateCostPerUnit = function(){
+      var res =(($scope.cost / 1000) * $scope.calcSqMperBox());
+          if(isNaN(res)){
+            return null;
+          }
+          return res;
+    };
+
+
+    $scope.calculateMargin = function(){
+      var res= $scope.calculateCost() * $scope.selectedMargin.margin;
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+    };
+    $scope.calcMarginPerUnit = function(){
+      var res= $scope.calculateCostPerUnit() * $scope.selectedMargin.margin;
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+    };
+
+     $scope.calcTotal = function(){
+      var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour()) + $scope.calcDelivery();
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+    };
+
+    $scope.calcTime = function(){
+      var res = ($scope.qty / $scope.selectedCategory.qtyPerHour);
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+    };
+
+    $scope.calcLabour = function(){
+      var res = ($scope.labour * $scope.calcTime());
+      if(isNaN(res)){
+        return res;
+      }
+      return res;
+    }
+
+     $scope.calcLabourPerUnit = function(){
+      var res = (($scope.labour * $scope.calcTime()) / $scope.qty);
+      if(isNaN(res)){
+        return res;
+      }
+      return res;
+    }
+
+    $scope.calcDelivery = function(){
+      var res = $scope.delivery * $scope.miles;
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+    }
+
+
+
         // calculate the Chop creasing positions
     $scope.calcChopCrease1 = function(){
      var res = ($scope.width * $scope.selectedStyle.breadth + (+$scope.selectedFlute.width / 2 ));
@@ -142,13 +230,7 @@ app.controller('styleController', function($scope, $http) {
       return res;
       };
       
-     $scope.calQtyReq = function(){
-      var res = $scope.boardChop();
-      if ($scope.boardChop() > 2000){
-        return $scope.qty * 2;      
-      }
-      return $scope.qty;
-     }
+     
 
      $scope.setupConfig = function(){
      var res = $scope.boardChop();
@@ -201,74 +283,6 @@ $scope.chopSlotL = function(){
         }
         return res;
     };
-
-    $scope.calcBoardCost = function(){
-      var res = (($scope.cost /1000 ) * $scope.calcSqMperBoxQty());
-      if(isNaN(res)){
-        return null;
-      }
-      return res;
-      };
-    
-
-        // calculate the cost of carton based on carton variables
-    $scope.calculateCost = function(){
-    	var res =(($scope.calcSqMperBoxQty() * $scope.cost + (+$scope.selectedFinish.rate * ($scope.height * 0.04) * $scope.qty) + ($scope.calcTime() * $scope.labour)));
-          if(isNaN(res)){
-            return null;
-          }
-          return res;
-    };
-
-    $scope.calculateCostPerUnit = function(){
-      var res =(($scope.cost / 1000) * $scope.calcSqMperBox());
-          if(isNaN(res)){
-            return null;
-          }
-          return res;
-    };
-
-
-    $scope.calculateMargin = function(){
-    	var res= $scope.calculateCost() * $scope.selectedMargin.margin;
-      if(isNaN(res)){
-        return null;
-      }
-    	return res;
-    };
-
-     $scope.calculateTotal = function(){
-      var res = $scope.calculateCost() + $scope.calculateMargin()+ $scope.calcDelivery();
-      if(isNaN(res)){
-        return null;
-      }
-      return res;
-    };
-
-    $scope.calcTime = function(){
-      var res = ($scope.qty / $scope.selectedCategory.qtyPerHour);
-      if(isNaN(res)){
-        return null;
-      }
-      return res;
-    };
-
-    $scope.calcLabour = function(){
-      var res = (($scope.labour * $scope.calcTime()) / $scope.qty);
-      if(isNaN(res)){
-        return res;
-      }
-      return res;
-    }
-
-    $scope.calcDelivery = function(){
-      var res = $scope.delivery * $scope.miles;
-      if(isNaN(res)){
-        return null;
-      }
-      return res;
-    }
-
     
     $scope.printSheet = function(jobSheet) {
   var printContents = document.getElementById(jobSheet).innerHTML;
