@@ -32,7 +32,7 @@ $goods_total = $productDal->getProductionList();
 			?>
       <form method="post" action="?action=action&production_Add&sku=<?php echo htmlspecialchars($result['sku'])?>&sku_id=<?php echo $result['sku_id'] ?>">
       <tr>
-    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']);?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
+    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']).'&sku_id='.$result['sku_id'];?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
      </strong>
 		<?php 
     $qty = $result['ave']-$result['buffer_qty'];

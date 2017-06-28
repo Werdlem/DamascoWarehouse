@@ -109,6 +109,7 @@ if(isset($_POST['doSearch'])){
 				 			if (htmlspecialchars($result['sku'])> ''){
 				 
 				  $selection = $result['sku'];
+				  $sku_id = $result['sku_id'];
 
 				  // assign (null) to empty wild card string returned should alias wild be and empty string
 		if ($result['alias_wild']==''){
@@ -119,7 +120,7 @@ if(isset($_POST['doSearch'])){
 	}
 	// end
 
-		$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
+		$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard, $sku_id);
 
 foreach ($goods_total as $total_sku){
 	

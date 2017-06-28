@@ -8,7 +8,7 @@ $productDal = new products();
 
 
 $sku = $_GET['sku'];
-//$sku_id = $_GET['sku_id'];
+$sku_id = $_GET['sku_id'];
 	
 $sku = $productDal->GetProducts($sku);
 	foreach($sku as $productDetail){
@@ -87,13 +87,13 @@ $sku = $productDal->GetProducts($sku);
 		$sku_wildcard = $productDetail['alias_wild'];
 	}
 	// end
-		$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
+		$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard, $sku_id);
 
 foreach ($goods_total as $result){
 
 	
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1']; ?>
-				<input id="stock_qty" name="stock_qty" readonly="readonly" type="text" class="form-control" value="<?php echo $productDetail['stock_qty'];}?>" />
+				<input id="stock_qty" name="stock_qty" readonly="readonly" type="text" class="form-control" value="<?php echo $sku_total;}?>" />
 			</div>
 			<div>
 				<label for="last_ordered">Last Ordered</label>

@@ -19,16 +19,17 @@ class Database
 class products{	
 	//SHREDMASTER BOARD ENTRY
 
-	public function productionAdd($sku_id, $qty){
+	public function productionAdd($sku_id, $qty, $date){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('update products
 		set stock_qty = stock_qty + :qty
 		(insert into stock_adjustment
-		sku_id = :sku_id, qty_in = :qty_in, date = :date
+		sku_id = :sku_id, qty_in = :qty, date = :date
 		)
 		where sku_id = :sku_id');
 	$stmt->bindValue(':sku_id', $sku_id);
 	$stmt->bindValue(':qty', $qty);
+	$stmt->bindValue(':date', $date);
 	$stmt->execute();
 }
 
@@ -245,7 +246,7 @@ class products{
 	public function Search($fetch){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('
-			Select *
+			Select *, products.sku_id as sku_id
 			from products
 			left join location 
 			on location.sku_id=products.sku_id
@@ -912,10 +913,10 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild, $a
 
 //////////////////////////////////////////////////////////////// STOCK QUANTITY QUERY //////////////////////////////////////////////////////////////
 
-public function Get_Sku_Total($selection, $sku_wildcard){
+public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('select * ,
-			(select total from stk_allocation_totals where sku like :stmt) as total_alloc,
+			(select total from stk_allocation_totals where sku_id like :sku_id) as total_alloc,
 			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(SELECT  sum(qty_delivered)
@@ -946,6 +947,7 @@ public function Get_Sku_Total($selection, $sku_wildcard){
 		');
 		$stmt->bindValue(':stmt', $selection);
 		$stmt->bindValue(':wild', $sku_wildcard.'[^0A]');
+		$stmt->bindValue(':sku_id', $sku_id);
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);

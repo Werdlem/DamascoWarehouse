@@ -58,7 +58,7 @@ echo
 <p><strong>Alias 1:</strong> '.$result['alias_1'].'</p>
 <p><strong>Alias 2:</strong> '.$result['alias_2'].'</p>
 <p><strong>Wild Card:</strong> '.$result['alias_wild'].'</p>
-<p><strong>SKU Total:</strong> '.$sku_total .'</p>
+<p><strong>SKU Total:</strong> '.$sku_total.'</p>
 <p><strong>Last Order Date:</strong> '. date('d/m/Y', strtotime($result['last_order_date'])).'</p>
 <div class="panel panel-warning" style="width: 35%">
 <div class="panel-heading">

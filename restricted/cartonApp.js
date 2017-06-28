@@ -220,6 +220,15 @@ $scope.chopSlotL = function(){
           return res;
     };
 
+    $scope.calculateCostPerUnit = function(){
+      var res =($scope.calcLabour() + ($scope));
+          if(isNaN(res)){
+            return null;
+          }
+          return res;
+    };
+
+
     $scope.calculateMargin = function(){
     	var res= $scope.calculateCost() * $scope.selectedMargin.margin;
       if(isNaN(res)){
@@ -245,7 +254,7 @@ $scope.chopSlotL = function(){
     };
 
     $scope.calcLabour = function(){
-      var res = $scope.labour * $scope.calcTime();
+      var res = (($scope.labour * $scope.calcTime()) / $scope.qty);
       if(isNaN(res)){
         return res;
       }

@@ -68,20 +68,9 @@ display:
          <td>Blank Size:</td><td style="text-align: left;">{{selectedCarton.deckle + ' x ' + selectedCarton.chop}}</td>
         </table>
         <img src="{{selectedCarton.image}}" style="width: 100%; height: 80%">
-        	<div id='setup'>
+<div id='setup'>
         <h3>Slitter Creaser</h3>
-        <p>A) Chop Slit as required</p>
-        <p>B) Tram Crease 1 = {{selectedCarton.chopCrease1}}
-        <p>C) Tram Crease 2 = {{selectedCarton.chopCrease2}}
-        <p>D) Chop Slit = {{selectedCarton.chopCrease1}}
-         <h3>Boss Check Measurements</h3>
-         <p>1) {{((selectedCarton.chopCrease1 *1))}}</p>
-         <p>2) {{((selectedCarton.chopCrease1 *1))+(selectedCarton.chopCrease2*1)}}</p>
-         <p>3) {{((selectedCarton.chopCrease1 *1))+(selectedCarton.chopCrease2*1)+(selectedCarton.chopCrease1 *1)}}</p>
-        </div>
-        <div id='setup'>
-        <h3>Slitter Creaser</h3>
-        {{cartonConfigDimms()}}
+        <p>(Deckle Crease)</p>
         <p>A) Glue Flap Crease = {{selectedCarton.glueFlap}} </p>
         <p>B) Deckle Crease (L) = {{selectedCarton.deckleCreaseL}}</p>
         <div ng-hide="selectedCarton.config == '4 Panel'">
@@ -100,6 +89,20 @@ display:
         <p>5) {{((selectedCarton.glueFlap * 1) )+ (selectedCarton.deckleCreaseL *1) + (selectedCarton.deckleCreaseW*1) + (selectedCarton.deckleCreaseL * 1) + (selectedCarton.deckleCreaseW *1)}}</p>
         </div>
         </div>
+        
+        	<div id='setup'>
+        <h3>Slitter Creaser</h3>
+        <p>(Tram Crease)</p>
+        <p>A) Chop Slit as required</p>
+        <p>B) Tram Crease 1 = {{selectedCarton.chopCrease1}}
+        <p>C) Tram Crease 2 = {{selectedCarton.chopCrease2}}
+        <p>D) Chop Slit = {{selectedCarton.chopCrease1}}
+         <h3>Boss Check Measurements</h3>
+         <p>1) {{((selectedCarton.chopCrease1 *1))}}</p>
+         <p>2) {{((selectedCarton.chopCrease1 *1))+(selectedCarton.chopCrease2*1)}}</p>
+         <p>3) {{((selectedCarton.chopCrease1 *1))+(selectedCarton.chopCrease2*1)+(selectedCarton.chopCrease1 *1)}}</p>
+        </div>
+        
          <div id='setup'>
         <h3>Slotter</h3>
         <h4>Step 1</h4>
