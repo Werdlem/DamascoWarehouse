@@ -113,10 +113,11 @@ input{
 <div id="material">
 <h3>Costing Specs</h3>
 <p><strong style="text-decoration: underline;">Unit Price</strong></p>
-<p><span ng-if="calcSqMperBox() !==null"><strong> Square M per box: </strong> {{calcSqMperBox() | number:3}}</span></p>
+<p><span ng-if="calcSqMperBox() !==null"><strong> Square M per box: </strong> {{calcSqMperBox() | number: 3}}</span></p>
 <p><span ng-if="calcLabourPerUnit() !==null"><strong>Labour per unit:</strong> {{calcLabourPerUnit() | currency: '£' }}</span></p>
 <p><span ng-if="calculateCostPerUnit() !==null"><strong>Material cost per unit:</strong> {{calculateCostPerUnit() | currency: '£' }}</span></p>
 <p><span ng-if="calcMarginPerUnit() !==null"><strong>Margin per unit:</strong> {{calcMarginPerUnit() | currency: '£' }}</span></p>
+<p><span ng-if="calcTotalCostPerUnit() !==null"><strong>Cost per unit:</strong> {{calcTotalCostPerUnit() | currency: '£' }}</span></p>
 <p><strong style="text-decoration: underline;">Total Price</strong></p>
 <p><span ng-if="calcSqMperBoxQty() !== null"><strong>Total Square M: </strong> {{calcSqMperBoxQty() | number : 3}}</span></p>
 <p><span ng-if="calcLabour() !==null"><strong>Total labour:</strong> {{calcLabour() | currency: '£' }}</span></p>
@@ -128,11 +129,11 @@ input{
 </div>
 </form>
 
-
+<!--Hidden fields for page Posting-->
 <form method="POST" action="?action=ctn_addJob">
 <p><button type="submit"> Add job</button></p>
 
-<!--Hidden fields for page Posting-->
+
                         <input type="Hidden" name="length" value="{{length}}">
                         <input type="Hidden" name="width" value="{{width}}">
                         <input type="Hidden" name="height" value="{{height}}">
@@ -154,14 +155,18 @@ input{
                           <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
                           <input type="Hidden" name="config" value="{{selectedPanelConfig.config}}">
                            <input type="Hidden" name="fluteWidth" value="{{selectedFlute.width}}">
+                            <input type="Hidden" name="breadth" value="{{selectedStyle.breadth}}">
+                            <input type="Hidden" name="unitPrice" value="{{calcTotalCostPerUnit() | currency: '£'}}">
+                            <input type="Hidden" name="total" value="{{calcTotal() | currency: '£'}}">
                          
                           </form>
 
                           <!--Job Sheet-->
                           <form method="POST" action="?action=ctnBespokeJobSheet">
+<!--Hidden fields for page Posting-->
 <p><button type="submit"> Print Bespoke Sheet</button></p>
 
-<!--Hidden fields for page Posting-->
+
                         <input type="Hidden" name="length" value="{{length}}">
                         <input type="Hidden" name="width" value="{{width}}">
                         <input type="Hidden" name="height" value="{{height}}">
@@ -183,6 +188,45 @@ input{
                           <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
                           <input type="Hidden" name="config" value="{{selectedPanelConfig.config}}">
                           <input type="Hidden" name="flute" value="{{selectedFlute.width}}">
+                         
+                          </form>
+
+<form method="POST" action="?action=quotation_review">
+<p><button type="submit">Save Quote</button></p>
+
+<!--Hidden fields for page Posting-->
+                        <input type="Hidden" name="length" value="{{length}}">
+                        <input type="Hidden" name="width" value="{{width}}">
+                        <input type="Hidden" name="height" value="{{height}}">
+                        <input type="Hidden" name="style" value="{{selectedStyle.style}}">
+                        <input type="Hidden" name="qty" value="{{qty}}">
+                         <input type="Hidden" name="deckle" value="{{boardDeckle()}}">
+                        <input type="Hidden" name="chop" value="{{cartonConfigChop()}}">
+                        <input type="Hidden" name="chopCrease1" value="{{calcChopCrease1()}}">
+                        <input type="Hidden" name="chopCrease2" value="{{calcChopCrease2()}}">
+                        <input type="Hidden" name="deckleCreaseL" value="{{calcDeckleLength()}}">
+                         <input type="Hidden" name="deckleCreaseW" value="{{calcDeckleWidth()}}">
+                        <input type="Hidden" name="glueFlap" value="{{selectedCategory.glueFlap}}">
+                         <input type="Hidden" name="finish" value="{{selectedFinish.finish}}">
+                        <input type="Hidden" name="grade" value="{{cartonGrade()}}">
+                        <input type="Hidden" name="image" value="{{selectedStyle.image}}">
+                        <input type="Hidden" name="cost" value="{{cost | currency: '£'}}">
+                        <input type="Hidden" name="margin" value="{{(selectedMargin.margin * 100) + '%'}}">
+                         <input type="Hidden" name="category" value="{{selectedCategory.category}}">
+                          <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
+                          <input type="Hidden" name="config" value="{{selectedPanelConfig.config}}">
+                           <input type="Hidden" name="fluteWidth" value="{{selectedFlute.width}}">
+                            <input type="Hidden" name="breadth" value="{{selectedStyle.breadth}}">
+                            <input type="Hidden" name="unitPrice" value="{{calcTotalCostPerUnit() | currency: '£'}}">
+                            <input type="Hidden" name="unitLabour" value="{{calcLabourPerUnit() | currency: '£'}}">
+                            <input type="Hidden" name="unitSqm" value="{{calcSqMperBox() | number :3}}">
+                            <input type="Hidden" name="unitMaterials" value="{{calculateCostPerUnit() | currency: '£'}}">
+                            <input type="Hidden" name="total" value="{{calcTotal() | currency: '£'}}">
+                            <input type="Hidden" name="materialsTotal" value="{{calcBoardCost()|currency:'£'}}">
+                            <input type="Hidden" name="labourTotal" value="{{calcLabour() |currency:'£'}}">
+                            <input type="Hidden" name="totalSqm" value="{{calcSqMperBoxQty()|number: 4}}">
+                            <input type="Hidden" name="deliveryTotal" value="{{calcDelivery()|currency: '£'}}">
+
                          
                           </form>
 

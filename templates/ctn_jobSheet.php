@@ -51,7 +51,7 @@ display:
 }
 </style>
 <br />
-<div id="jobSheet" style="padding-top: 10px" ng-hide="selectedCarton == null">
+<div id="jobSheet" style="padding-top: 10px" ng-hide="selectedCarton==null">
 
     <table class="table">
 
@@ -59,34 +59,41 @@ display:
         <tr>
         <td>Date:</td> <td style="text-align: left;">{{date | date:'dd-mm-yyyy'}}</td>
         <td>Ref:</td><td style="text-align: left;">{{selectedCarton.ref}}</td>
-        <td>Style:</td><td style="text-align: left;">{{selectedCarton.style}}</td>
-        <td>Internal Dimms:</td><td style="text-align: left;">{{selectedCarton.length + "x" + selectedCarton.width + "x" + selectedCarton.height}}</td>
+        <td>Style:</td><td style="text-align: left;" >{{selectedCarton.style}}</td>
+        <td>Internal Dimms:</td><td style="text-align: left;">{{selectedCarton.length + 'x' + selectedCarton.width + 'x' + selectedCarton.height}}</td>
         <td>Grade:</td><td style="text-align: left;">{{selectedCarton.grade}}</td>
+
         </tr>
         <tr>
         <td>Config</td><td style="text-align: left;">{{selectedCarton.config}}</td>
          <td>Blank Size:</td><td style="text-align: left;">{{selectedCarton.deckle + ' x ' + selectedCarton.chop}}</td>
+         <input type="hidden" ng-model="width=selectedCarton.width">
+         <input type="hidden" ng-model="length=selectedCarton.length">
+         <input type="hidden" ng-model="height=selectedCarton.height">
+         <input type="hidden" ng-model="flute=selectedCarton.flute">
+
+         
         </table>
         <img src="{{selectedCarton.image}}" style="width: 100%; height: 80%">
 <div id='setup'>
         <h3>Slitter Creaser</h3>
         <p>(Deckle Crease)</p>
         <p>A) Glue Flap Crease = {{selectedCarton.glueFlap}} </p>
-        <p>B) Deckle Crease (L) = {{selectedCarton.deckleCreaseL}}</p>
+        <p>B) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
         <div ng-hide="selectedCarton.config == '4 Panel'">
-        <p>C) Deckle Slit (W) = {{selectedCarton.deckleCreaseW}}</p>  </div>
+        <p>C) Deckle Slit (W) = {{calcJsDeckleWidth()}}</p>  </div>
         <div ng-show="selectedCarton.config == '4 Panel'">
-        <p>C) Deckle Crease (W) = {{selectedCarton.deckleCreaseW}}</p>        
-        <p>D) Deckle Crease (L) = {{selectedCarton.deckleCreaseL}}</p>
-        <p>E) Deckle Chop (W) = {{selectedCarton.deckleCreaseW}} * if required</p>
+        <p>C) Deckle Crease (W) = {{calcJsDeckleWidth()}}</p>        
+        <p>D) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
+        <p>E) Deckle Chop (W) = {{calcJsDeckleWidth()}} * if required</p>
         </div>
         <h3>Boss Check Measurements</h3>
         <p>1) {{((selectedCarton.glueFlap * 1) )}}</p>
-        <p>2) {{((selectedCarton.glueFlap * 1) )+ (selectedCarton.deckleCreaseL *1)}}</p>
-        <p>3) {{((selectedCarton.glueFlap * 1) )+ (selectedCarton.deckleCreaseL *1) + selectedCarton.deckleCreaseW*1 }}</p>
+        <p>2) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1)}}</p>
+        <p>3) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1 }}</p>
          <div ng-show="selectedCarton.config == '4 Panel'">
-        <p>4) {{((selectedCarton.glueFlap * 1) )+ (selectedCarton.deckleCreaseL *1) + (selectedCarton.deckleCreaseW*1) + (selectedCarton.deckleCreaseL * 1) }}</p>
-        <p>5) {{((selectedCarton.glueFlap * 1) )+ (selectedCarton.deckleCreaseL *1) + (selectedCarton.deckleCreaseW*1) + (selectedCarton.deckleCreaseL * 1) + (selectedCarton.deckleCreaseW *1)}}</p>
+        <p>4) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) }}</p>
+        <p>5) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) + (calcJsDeckleWidth() *1)}}</p>
         </div>
         </div>
         
@@ -94,21 +101,21 @@ display:
         <h3>Slitter Creaser</h3>
         <p>(Tram Crease)</p>
         <p>A) Chop Slit as required</p>
-        <p>B) Tram Crease 1 = {{selectedCarton.chopCrease1}}
-        <p>C) Tram Crease 2 = {{selectedCarton.chopCrease2}}
-        <p>D) Chop Slit = {{selectedCarton.chopCrease1}}
+        <p>B) Tram Crease 1 = {{calcTram1()}}
+        <p>C) Tram Crease 2 = {{calcTram2()}}
+        <p>D) Chop Slit = {{calcTram1()}}
          <h3>Boss Check Measurements</h3>
-         <p>1) {{((selectedCarton.chopCrease1 *1))}}</p>
-         <p>2) {{((selectedCarton.chopCrease1 *1))+(selectedCarton.chopCrease2*1)}}</p>
-         <p>3) {{((selectedCarton.chopCrease1 *1))+(selectedCarton.chopCrease2*1)+(selectedCarton.chopCrease1 *1)}}</p>
+         <p>1) {{((calcTram1() *1))}}</p>
+         <p>2) {{((calcTram1() *1))+(calcTram2()*1)}}</p>
+         <p>3) {{((calcTram1() *1))+(calcTram2()*1)+(calcTram1() *1)}}</p>
         </div>
         
          <div id='setup'>
         <h3>Slotter</h3>
         <h4>Step 1</h4>
-        <p>A) Glue Flap Slot: {{selectedCarton.chopCrease1}}</p>
-         <p ng-show="selectedCarton.config =='4 Panel'">B) 4th Slot: {{selectedCarton.chopCrease1}}</p>
-         <p ng-hide="selectedCarton.config =='4 Panel'">B) 2nd Slot: {{selectedCarton.chopCrease1}}</p>
+        <p>A) Glue Flap Slot: {{calcTram1()}}</p>
+         <p ng-show="selectedCarton.config =='4 Panel'">B) 4th Slot: {{calcTram1()}}</p>
+         <p ng-hide="selectedCarton.config =='4 Panel'">B) 2nd Slot: {{calcTram1()}}</p>
         <h4>Step 2</h4>
         <p>A) Slot 1 = {{chopSlotL()}}
          <div ng-show="selectedCarton.config == '4 Panel'">

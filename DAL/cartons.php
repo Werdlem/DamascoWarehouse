@@ -74,6 +74,14 @@ public function getCartons(){
    $stmt->execute();
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function getQuotes(){
+  $pdo= Database::DB();
+  $stmt = $pdo->prepare('select *
+    from ctn_quotes');
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 public function addStyle($style,$height,$width,$length,$breadth,$glueFlap,$trimWidth,$trimLength,$image){
   $pdo = Database::DB();
   $stmt = $pdo->prepare('insert into ctn_style
@@ -92,13 +100,13 @@ public function addStyle($style,$height,$width,$length,$breadth,$glueFlap,$trimW
 
 }
 
-public function addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $chop, $chopCrease1, $chopCrease2,$deckleCreaseL, $deckleCreaseW, $glueFlap, $finish, $grade, $image, $category, $cost, 
-  $margin, $boardQty, $config, $length, $fluteWidth){
+public function addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $chop, $glueFlap, $finish, $grade, $image, $category, $cost, 
+  $margin, $boardQty, $config, $length, $flute, $breadth){
   $pdo = Database::DB();
   $stmt = $pdo->prepare('insert into ctn_cartons
-    (ref,initials, style, height,  width, qty, deckle, chop, chopCrease1, chopCrease2,deckleCreaseL, deckleCreaseW, glueFlap, finish, grade, image, category, cost, margin, 
-  boardQty, config, length, fluteWidth)
-    values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+    (ref,initials, style, height,  width, qty, deckle, chop, glueFlap, finish, grade, image, category, cost, margin, 
+  boardQty, config, length, flute, breadth)
+    values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
   $stmt->bindvalue(1, $ref);
   $stmt->bindvalue(2, $initials);
   $stmt->bindvalue(3, $style);
@@ -107,23 +115,62 @@ public function addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $
   $stmt->bindvalue(6, $qty);
   $stmt->bindvalue(7, $deckle);
   $stmt->bindvalue(8, $chop);
-  $stmt->bindvalue(9, $chopCrease1);
-  $stmt->bindvalue(10, $chopCrease2);
-  $stmt->bindvalue(11, $deckleCreaseL);
-  $stmt->bindvalue(12, $deckleCreaseW);
-  $stmt->bindvalue(13, $glueFlap);
-  $stmt->bindvalue(14, $finish);
-  $stmt->bindvalue(15, $grade);
-  $stmt->bindvalue(16, $image);
-  $stmt->bindvalue(17, $category);
-  $stmt->bindvalue(18, $cost);
-  $stmt->bindvalue(19, $margin);
-  $stmt->bindvalue(20, $boardQty);
-  $stmt->bindvalue(21, $config);
-  $stmt->bindvalue(22, $length);
-  $stmt->bindvalue(23, $fluteWidth);
+  $stmt->bindvalue(9, $glueFlap);
+  $stmt->bindvalue(10, $finish);
+  $stmt->bindvalue(11, $grade);
+  $stmt->bindvalue(12, $image);
+  $stmt->bindvalue(13, $category);
+  $stmt->bindvalue(14, $cost);
+  $stmt->bindvalue(15, $margin);
+  $stmt->bindvalue(16, $boardQty);
+  $stmt->bindvalue(17, $config);
+  $stmt->bindvalue(18, $length);
+  $stmt->bindvalue(19, $flute);
+  $stmt->bindvalue(20, $breadth);
   $stmt->execute();
 
+}
+
+public function addQuote($ref,$productRef,$style,$height,$length,$width,$qty,$deckle,$chop,$glueFlap,$finish,$grade,$category,$cost,$margin,$boardQty,$config,$flute,
+  $breadth,$unitPrice,$total,$date,$unitLabour,$unitSqm,$unitMaterials,$materialsTotal,$labourTotal,$totalSqm,$deliveryTotal,$fluteWidth, $customerName, $customerContact){
+  $pdo = Database::DB();
+  $stmt = $pdo->prepare('insert into ctn_quotes
+    (ref,productRef,style,height,length,width,qty,deckle,chop,glueFlap,finish,grade,category,cost,margin,boardQty,config,flute,breadth,unitPrice,
+  total,date,unitLabour,unitSqm,unitMaterials,materialsTotal,labourTotal,totalSqm,deliveryTotal,fluteWidth, customerName, customerContact)
+  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+  $stmt->bindvalue(1, $ref);
+  $stmt->bindvalue(2, $productRef);
+  $stmt->bindvalue(3, $style);
+  $stmt->bindvalue(4, $height);
+  $stmt->bindvalue(5, $length);
+  $stmt->bindvalue(6, $width);
+  $stmt->bindvalue(7, $qty);
+  $stmt->bindvalue(8, $deckle);
+  $stmt->bindvalue(9, $chop);
+  $stmt->bindvalue(10, $glueFlap);
+  $stmt->bindvalue(11, $finish);
+  $stmt->bindvalue(12, $grade);
+  $stmt->bindvalue(13, $category);
+  $stmt->bindvalue(14, $cost);
+  $stmt->bindvalue(15, $margin);
+  $stmt->bindvalue(16, $boardQty);
+  $stmt->bindvalue(17, $config);
+  $stmt->bindvalue(18, $flute);
+  $stmt->bindvalue(19, $breadth);
+  $stmt->bindvalue(20, $unitPrice);
+  $stmt->bindvalue(21, $total);
+  $stmt->bindvalue(22, $date);
+  $stmt->bindvalue(23, $unitLabour);
+  $stmt->bindvalue(24, $unitSqm);
+  $stmt->bindvalue(25, $unitMaterials);
+  $stmt->bindvalue(26, $materialsTotal);
+  $stmt->bindvalue(27, $labourTotal);
+  $stmt->bindvalue(28, $totalSqm);
+  $stmt->bindvalue(29, $deliveryTotal);
+  $stmt->bindvalue(30, $fluteWidth);
+  $stmt->bindvalue(31, $customerName);
+  $stmt->bindvalue(32, $customerContact);
+  $stmt->execute();
 }
 
 }

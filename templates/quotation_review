@@ -1,0 +1,372 @@
+<?php
+$style = $_POST['style'];
+$height =  $_POST['height'];
+$length =  $_POST['length'];
+$width = $_POST['width'];
+$qty = $_POST['qty'];
+$deckle =  $_POST['deckle'];
+$chop =  $_POST['chop'];
+$chopCrease1 = $_POST['chopCrease1'];
+$chopCrease2 = $_POST['chopCrease2'];
+$deckleCreaseL = $_POST['deckleCreaseL'];
+$deckleCreaseW = $_POST['deckleCreaseW'];
+$glueFlap = $_POST['glueFlap'];
+$finish =  $_POST['finish'];
+$grade =  $_POST['grade'];
+$image = $_POST['image'];
+$category = $_POST['category'];
+$cost = $_POST['cost'];
+$margin = $_POST['margin'];
+$boardQty = $_POST['boardQty'];
+$config = $_POST['config'];
+$flute = $_POST['fluteWidth'];
+$breadth = $_POST['breadth'];
+$unitPrice = $_POST['unitPrice'];
+$total = $_POST['total'];
+$date = date("d/m/Y");
+
+?>
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=Excel.Sheet>
+<meta name=Generator content="Microsoft Excel 12">
+<link rel=File-List href="Quote%20Review_files/filelist.xml">
+<style id="Book1_10048_Styles">
+<!--table
+	{mso-displayed-decimal-separator:"\.";
+	mso-displayed-thousand-separator:"\,";}
+.xl1510048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6310048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6410048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	background:#F2F2F2;
+	mso-pattern:black none;
+	white-space:nowrap;}
+.xl6510048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:underline;
+	text-underline-style:single;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border:.5pt solid windowtext;
+	background:#F2F2F2;
+	mso-pattern:black none;
+	white-space:nowrap;}
+.xl6610048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border-top:.5pt solid windowtext;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;
+	background:#F2F2F2;
+	mso-pattern:black none;
+	white-space:nowrap;}
+.xl6710048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:.5pt solid windowtext;
+	border-left:.5pt solid windowtext;
+	background:#F2F2F2;
+	mso-pattern:black none;
+	white-space:nowrap;}
+.xl6810048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:400;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:.5pt solid windowtext;
+	border-left:.5pt solid windowtext;
+	mso-background-source:auto;
+	mso-pattern:auto;
+	white-space:nowrap;}
+.xl6910048
+	{padding-top:1px;
+	padding-right:1px;
+	padding-left:1px;
+	mso-ignore:padding;
+	color:black;
+	font-size:11.0pt;
+	font-weight:700;
+	font-style:normal;
+	text-decoration:none;
+	font-family:Calibri, sans-serif;
+	mso-font-charset:0;
+	mso-number-format:General;
+	text-align:general;
+	vertical-align:bottom;
+	border-top:none;
+	border-right:.5pt solid windowtext;
+	border-bottom:none;
+	border-left:.5pt solid windowtext;
+	background:#F2F2F2;
+	mso-pattern:black none;
+	white-space:nowrap;}
+-->
+</style>
+</head>
+
+<body>
+<!--[if !excel]>&nbsp;&nbsp;<![endif]-->
+<!--The following information was generated by Microsoft Office Excel's Publish
+as Web Page wizard.-->
+<!--If the same item is republished from Excel, all information between the DIV
+tags will be replaced.-->
+<!----------------------------->
+<!--START OF OUTPUT FROM EXCEL PUBLISH AS WEB PAGE WIZARD -->
+<!- -->
+
+<div id="Book1_10048" align=center x:publishsource="Excel">
+
+<table border=0 cellpadding=0 cellspacing=0 width=561 style='border-collapse:
+ collapse;table-layout:fixed;width:421pt'>
+ <col width=139 style='mso-width-source:userset;mso-width-alt:5083;width:104pt'>
+ <col width=121 style='mso-width-source:userset;mso-width-alt:4425;width:91pt'>
+ <col width=101 style='mso-width-source:userset;mso-width-alt:3693;width:76pt'>
+ <col width=69 style='mso-width-source:userset;mso-width-alt:2523;width:52pt'>
+ <col width=67 style='mso-width-source:userset;mso-width-alt:2450;width:50pt'>
+ <col width=64 style='width:48pt'>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6610048 width=139 style='height:15.0pt;width:104pt'>Date</td>
+  <td class=xl6610048 width=121 style='border-left:none;width:91pt'>Quotation
+  Review</td>
+  <td class=xl6610048 width=101 style='border-left:none;width:76pt'>Ref</td>
+  <td class=xl6610048 width=69 style='border-left:none;width:52pt'>&nbsp;</td>
+  <td class=xl6610048 width=67 style='border-left:none;width:50pt'>&nbsp;</td>
+  <td class=xl6410048 width=64 style='border-left:none;width:48pt'>Ref</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6310048 style='height:15.0pt'>&nbsp;</td>
+  <td class=xl6310048 style='border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-top:none;border-left:none'>&nbsp;</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl1510048 style='height:15.0pt'></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6410048 style='height:15.0pt'>Product Description</td>
+  <td class=xl6410048 style='border-left:none'>Product Ref</td>
+  <td class=xl6410048 style='border-left:none'>Size (Internals)</td>
+  <td class=xl6410048 style='border-left:none'>Grade</td>
+  <td class=xl6410048 style='border-left:none'>Quantity</td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6810048 style='height:15.0pt'>&nbsp;</td>
+  <td class=xl6810048 style='border-left:none'>&nbsp;</td>
+  <td class=xl6810048 style='border-left:none'>&nbsp;</td>
+  <td class=xl6810048 style='border-left:none'>&nbsp;</td>
+  <td class=xl6810048 style='border-left:none'>&nbsp;</td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl1510048 style='height:15.0pt'></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6510048 style='height:15.0pt'>Unit breakdown</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6910048 style='height:15.0pt'>Materials</td>
+  <td class=xl6410048 style='border-left:none'>Labour</td>
+  <td class=xl6410048 style='border-left:none'>Sqm</td>
+  <td class=xl6410048 style='border-left:none'>Blank Size</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6310048 style='height:15.0pt'>&nbsp;</td>
+  <td class=xl6310048 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl1510048 style='height:15.0pt'></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6510048 style='height:15.0pt'>Totals</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6710048 style='height:15.0pt'>Materials</td>
+  <td class=xl6410048 style='border-left:none'>Labour</td>
+  <td class=xl6410048 style='border-left:none'>Sqm</td>
+  <td class=xl6410048 style='border-left:none'>Delivery</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6310048 style='height:15.0pt;border-top:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl6310048 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6410048 style='height:15.0pt;border-top:none'>Grand
+  Total (exc Vat)</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl6310048 style='height:15.0pt;border-top:none'>&nbsp;</td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+  <td class=xl1510048></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=139 style='width:104pt'></td>
+  <td width=121 style='width:91pt'></td>
+  <td width=101 style='width:76pt'></td>
+  <td width=69 style='width:52pt'></td>
+  <td width=67 style='width:50pt'></td>
+  <td width=64 style='width:48pt'></td>
+ </tr>
+ <![endif]>
+</table>
+
+</div>
+
+
+<!----------------------------->
+<!--END OF OUTPUT FROM EXCEL PUBLISH AS WEB PAGE WIZARD-->
+<!----------------------------->
+</body>
+
+</html>

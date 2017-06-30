@@ -48,10 +48,53 @@ $cost = $_POST['cost'];
 $margin = $_POST['margin'];
 $boardQty = $_POST['boardQty'];
 $config = $_POST['config'];
-$fluteWidth = $_POST['fluteWidth'];
+$flute = $_POST['flute'];
+$breadth = $_POST['breadth'];
 
-$carton->addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $chop, $chopCrease1, $chopCrease2,$deckleCreaseL, $deckleCreaseW, $glueFlap, $finish, $grade, $image, $category, $cost, 
-  $margin, $boardQty, $config, $length, $fluteWidth);
+$carton->addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $chop, $glueFlap, $finish, $grade, $image, $category, $cost, 
+  $margin, $boardQty, $config, $length, $flute, $breadth);
 header("location:?action=ctn_carton_specs");
 
 };
+
+if(isset($_POST['saveQuote']))
+{
+$ref = (strtoupper($_POST['ref']));
+$productRef = (strtoupper($_POST['productRef']));
+$style = $_POST['style'];
+$height =  $_POST['height'];
+$length =  $_POST['length'];
+$width = $_POST['width'];
+$qty = $_POST['qty'];
+$deckle =  $_POST['deckle'];
+$chop =  $_POST['chop'];
+$glueFlap = $_POST['glueFlap'];
+$finish =  $_POST['finish'];
+$grade =  $_POST['grade'];
+$category = $_POST['category'];
+$cost = $_POST['cost'];
+$margin = $_POST['margin'];
+$boardQty = $_POST['boardQty'];
+$config = $_POST['config'];
+$flute = $_POST['fluteWidth'];
+$breadth = $_POST['breadth'];
+$unitPrice = $_POST['unitPrice'];
+$total = $_POST['total'];
+$date = date('Y-m-d');
+$unitLabour = $_POST['unitLabour'];
+$unitSqm = $_POST['unitSqm'];
+$unitMaterials = $_POST['unitMaterials'];
+$materialsTotal = $_POST['materialsTotal'];
+$labourTotal = $_POST['labourTotal'];
+$totalSqm = $_POST['totalSqm'];
+$deliveryTotal = $_POST['deliveryTotal'];
+$fluteWidth = $_POST['fluteWidth'];
+$customerName = (strtoupper($_POST['customerName']));
+$customerContact = (strtoupper($_POST['customerContact']));
+
+$carton->addQuote($ref,$productRef,$style,$height,$length,$width,$qty,$deckle,$chop,$glueFlap,$finish,$grade,$category,$cost,$margin,$boardQty,$config,$flute,$breadth,$unitPrice,
+	$total,$date,$unitLabour,$unitSqm,$unitMaterials,$materialsTotal,$labourTotal,$totalSqm,$deliveryTotal,$fluteWidth,$customerName,$customerContact);
+header("location:?action=ctn_carton_specs");
+echo 'success';
+}
+

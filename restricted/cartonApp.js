@@ -44,8 +44,67 @@ app.controller('styleController', function($scope, $http) {
     $scope.labour = 7.5;
     $scope.date = new Date();
     $scope.delivery = .40;
-     
-    
+
+       //**********************JOB SHEET CALCULATIONS*********************************//
+
+       //DECKLE
+
+        $scope.calcJsDeckleLength = function(){
+      var res = (($scope.selectedCarton.flute * 1 ) + (+$scope.length));
+       if (isNaN(res)){
+        return null;
+       }
+       return res;
+     };
+     $scope.calcJsDeckleWidth = function(){
+      var res = (($scope.selectedCarton.flute * 1 ) + (+$scope.width));
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+      };
+
+    //CHOP TRAM
+
+     $scope.calcTram1 = function(){
+     var res = ($scope.width * $scope.selectedCarton.breadth) + (+$scope.selectedCarton.flute) / 2 ;
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+    };
+
+    $scope.calcTram2 = function(){
+      try{
+        return(($scope.selectedCarton.flute * 2) + (+$scope.height))
+      }
+      catch(x){}
+    };
+
+    $scope.chopSlotL = function(){
+      var res = (($scope.selectedCarton.length *1) + (+$scope.selectedCarton.flute*1 ));
+      if (isNaN(res)){
+        return null;
+      }
+      return res;
+     }
+
+     $scope.chopSlotW = function(){
+      var res = (($scope.selectedCarton.width *1) + (+$scope.selectedCarton.flute*1 ));
+      if (isNaN(res)){
+        return null;
+      }
+      return res;
+     }
+
+
+
+
+
+    //**********************JOB SHEET CALCULATIONS END*********************************//
+
+
+
 
     //Carton Grade Specs
 
@@ -128,6 +187,14 @@ $scope.calcBoardCost = function(){
 
 $scope.calculateCostPerUnit = function(){
       var res =(($scope.cost / 1000) * $scope.calcSqMperBox());
+          if(isNaN(res)){
+            return null;
+          }
+          return res;
+    };
+
+    $scope.calcTotalCostPerUnit = function(){
+      var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour())/$scope.qty;
           if(isNaN(res)){
             return null;
           }
@@ -245,24 +312,6 @@ $scope.calculateCostPerUnit = function(){
        return ("4 Panel Carton");
      }
 
-     //calculate chop blade positions
-$scope.chopSlotL = function(){
-      var res = (($scope.selectedCarton.length *1) + (+$scope.selectedCarton.fluteWidth*1 ));
-      if (isNaN(res)){
-        return null;
-      }
-      return res;
-     }
-
-     $scope.chopSlotW = function(){
-      var res = (($scope.selectedCarton.width *1) + (+$scope.selectedCarton.fluteWidth*1 ));
-      if (isNaN(res)){
-        return null;
-      }
-      return res;
-     }
-
-
      //Calculate internal Dimms
      $scope.internalDimms = function(){
       var res = $scope.selectedCarton.length + "x" + $scope.selectedCarton.width + "x" + $scope.selectedCarton.height;
@@ -283,7 +332,9 @@ $scope.chopSlotL = function(){
         }
         return res;
     };
-    
+
+ 
+
     $scope.printSheet = function(jobSheet) {
   var printContents = document.getElementById(jobSheet).innerHTML;
   var popupWin = window.open('', '_blank', 'width=600,height=600');
@@ -341,6 +392,15 @@ $scope.chopSlotL = function(){
     $http({
       method: 'GET',
       url: './jsonData/cartons.json.php'
+    }).then(function(response){
+      $scope.cartons=response.data;
+    });
+
+    //JSON DB QUOTE RETREIVAL
+
+    $http({
+      method:'GET',
+      url:'./jsonData/quotes.json.php'
     }).then(function(response){
       $scope.cartons=response.data;
     });

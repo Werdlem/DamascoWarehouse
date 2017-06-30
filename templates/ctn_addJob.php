@@ -24,7 +24,10 @@ $cost = $_POST['cost'];
 $margin = $_POST['margin'];
 $boardQty = $_POST['boardQty'];
 $config = $_POST['config'];
-$fluteWidth = $_POST['fluteWidth'];
+$flute = $_POST['fluteWidth'];
+$breadth = $_POST['breadth'];
+$unitPrice = $_POST['unitPrice'];
+$total = $_POST['total'];
 
 echo 'chop'.$chop;
 //add the fields found in the DB table to this page. print job sheet from this page. Posted vairables all need to be in <input>'s for the addJob DB function to work
@@ -36,29 +39,7 @@ echo 'chop'.$chop;
                         <p>Height: <label type="text" name="height" ><?php echo $height ?></label>
                        <p> Finish: <label type="text" name="finish" ><?php echo $finish ?></label>
                        </div>
-                       <!--
-                        <p> <label type="text" name="qty" ><?php echo $qty ?></label>
-                         <p> <label type="text" name="deckle" ><?php echo $deckle ?></label>
-                        <p> <label type="text" name="chop" ><?php echo $chop ?></label>
-                        <p> <label type="text" name="chopCrease1" ><?php echo $chopCrease1 ?></label>
-                        <p> <label type="text" name="chopCrease2" ><?php echo $chopCrease2 ?></label>
-                        <p> <label type="text" name="deckleCreaseL" ><?php echo $deckleCreaseL ?></label>
-                        <p> <label type="text" name="deckleCreaseW" ><?php echo $deckleCreaseW ?></label>
-                        <p> <label type="text" name="glueFlap" ><?php echo $glueFlap ?></label>
-                         
-                        <p> <label type="text" name="grade" ><?php echo $grade ?></label>
-                        <p> <label type="text" name="image" ><?php echo $image ?></label>
-                        <p> <label type="text" name="category" ><?php echo $category ?></label>
-                         <p> <label type="text" name="cost" ><?php echo $cost ?></label>
-                          <p> <label type="text" name="margin" ><?php echo $margin ?></label>
-                          <p> <label type="text" name="boardQty" ><?php echo $boardQty ?></label>
-                          <p> <label type="text" name="config" >Config<?php echo $config ?></label><br/><br/>
-
-                        <input type="Hidden" name="slit" value="15">
-                        
-                        
-                       -->
-                      
+                                          
                         <input type="HIDDEN" name="width" value="<?php echo $width ?>">
                         <input type="HIDDEN" name="height" value="<?php echo $height ?>">
                         <input type="HIDDEN" name="style" value="<?php echo $style ?>">
@@ -79,7 +60,9 @@ echo 'chop'.$chop;
                           <input type="HIDDEN" name="boardQty" value="<?php echo $boardQty ?>">
                           <input type="HIDDEN" name="config" value="<?php echo $config ?>">
                           <input type="HIDDEN" name="length" value="<?php echo $length ?>">
-                          <input type="HIDDEN" name="fluteWidth" value="<?php echo $fluteWidth ?>">
+                          <input type="HIDDEN" name="flute" value="<?php echo $flute ?>">
+                           <input type="HIDDEN" name="breadth" value="<?php echo $breadth ?>">
+
                     
  
  <button type="submit" name="addJob">addjob</button>
