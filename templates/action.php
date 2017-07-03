@@ -10,9 +10,9 @@ $productDal = new products();
 if (isset($_GET['production_Add'])) {
 		$sku_id = $_GET['sku_id'];
 		$qty = $_POST['qty'];
-		$date = date('y-m-d');
+		$date = date('Y-m-d');
 
-		$productDal->productionAdd($sku_id, $qty,$date);
+		$productDal->productionAdd($sku_id, $qty, $date,$qty,  $sku_id);
 header("location:?action=production");
 	}
 //$sheetboardDAL = new sheetboard();

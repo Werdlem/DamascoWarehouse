@@ -17,22 +17,28 @@ class Database
 }
 
 class products{	
-	//SHREDMASTER BOARD ENTRY
 
-	public function productionAdd($sku_id, $qty, $date){
+	//ADD PRODUCED CARTONS INTO STOCK
+
+
+	public function productionAdd($sku_id, $qty, $date,$qty,  $sku_id){
 	$pdo = Database::DB();
-	$stmt = $pdo->prepare('update products
-		set stock_qty = stock_qty + :qty
-		(insert into stock_adjustment
-		sku_id = :sku_id, qty_in = :qty, date = :date
-		)
-		where sku_id = :sku_id');
-	$stmt->bindValue(':sku_id', $sku_id);
-	$stmt->bindValue(':qty', $qty);
-	$stmt->bindValue(':date', $date);
+	$stmt = $pdo->prepare('update products		
+		(insert into
+		stock_adjustment 
+		(sku_id, qty_in, date)
+		values(?,?,?))
+		set stock_qty = stock_qty + ?,		
+		where sku_id = ?');
+	$stmt->bindValue(1, $sku_id);
+	$stmt->bindValue(2, $qty);
+	$stmt->bindValue(3, $date);
+	$stmt->bindValue(4, $qty);
+	$stmt->bindValue(5, $sku_id);
 	$stmt->execute();
 }
 
+//SHREDMASTER BOARD ENTRY
 
 	public function addShred($palletNo, $width, $length, $grade, $flute, $qty){
 		$pdo = Database::DB();

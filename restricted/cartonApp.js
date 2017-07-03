@@ -97,16 +97,9 @@ app.controller('styleController', function($scope, $http) {
       return res;
      }
 
-
-
-
-
     //**********************JOB SHEET CALCULATIONS END*********************************//
-
-
-
-
-    //Carton Grade Specs
+      
+      //Carton Grade Specs
 
     $scope.cartonGrade = function(){
      
@@ -163,13 +156,17 @@ app.controller('styleController', function($scope, $http) {
         }
         return res;
     };
+
+    //calculate number of sheetboard based on carton configuration
     $scope.calQtyReq = function(){
       var res = $scope.boardChop();
-      if ($scope.boardChop() > 2000){
+      if ($scope.selectedPanelConfig.config == '2 Panel'){
         return $scope.qty * 2;      
       }
       return $scope.qty;
      }
+
+     //calculate board cost for total sqm of carton
 $scope.calcBoardCost = function(){
       var res = (($scope.cost /1000 ) * $scope.calcSqMperBoxQty());
       if(isNaN(res)){
@@ -177,6 +174,8 @@ $scope.calcBoardCost = function(){
       }
       return res;
       };
+
+      //calculate cost of the order
  $scope.calculateCost = function(){
       var res =($scope.calculateCostPerUnit() * $scope.qty);
           if(isNaN(res)){
@@ -184,6 +183,8 @@ $scope.calcBoardCost = function(){
           }
           return res;
     };
+
+    //calculate cost per unit based on sqm
 
 $scope.calculateCostPerUnit = function(){
       var res =(($scope.cost / 1000) * $scope.calcSqMperBox());
@@ -193,6 +194,8 @@ $scope.calculateCostPerUnit = function(){
           return res;
     };
 
+    //calculate total cost per unit (labour+margin+materials)
+
     $scope.calcTotalCostPerUnit = function(){
       var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour())/$scope.qty;
           if(isNaN(res)){
@@ -201,6 +204,7 @@ $scope.calculateCostPerUnit = function(){
           return res;
     };
 
+    //calculate the total margin 
 
     $scope.calculateMargin = function(){
       var res= $scope.calculateCost() * $scope.selectedMargin.margin;
@@ -209,6 +213,9 @@ $scope.calculateCostPerUnit = function(){
       }
       return res;
     };
+
+    //calculate margin per unit
+
     $scope.calcMarginPerUnit = function(){
       var res= $scope.calculateCostPerUnit() * $scope.selectedMargin.margin;
       if(isNaN(res)){
@@ -216,6 +223,8 @@ $scope.calculateCostPerUnit = function(){
       }
       return res;
     };
+
+    // calculate total ex vat - total margin + total labour + total delivery + materials cost total
 
      $scope.calcTotal = function(){
       var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour()) + $scope.calcDelivery();
@@ -225,6 +234,8 @@ $scope.calculateCostPerUnit = function(){
       return res;
     };
 
+    //calculate time per carton based on category and quantity per hour
+
     $scope.calcTime = function(){
       var res = ($scope.qty / $scope.selectedCategory.qtyPerHour);
       if(isNaN(res)){
@@ -232,6 +243,8 @@ $scope.calculateCostPerUnit = function(){
       }
       return res;
     };
+
+    //calculate the labour * time taken for job
 
     $scope.calcLabour = function(){
       var res = ($scope.labour * $scope.calcTime());
@@ -241,6 +254,8 @@ $scope.calculateCostPerUnit = function(){
       return res;
     }
 
+    //calculate labour per unit
+
      $scope.calcLabourPerUnit = function(){
       var res = (($scope.labour * $scope.calcTime()) / $scope.qty);
       if(isNaN(res)){
@@ -248,6 +263,8 @@ $scope.calculateCostPerUnit = function(){
       }
       return res;
     }
+
+    //calculate delivery per unit
 
     $scope.calcDelivery = function(){
       var res = $scope.delivery * $scope.miles;
@@ -333,6 +350,19 @@ $scope.calculateCostPerUnit = function(){
         return res;
     };
 
+    $scope.quoteRefGroup = function(){
+
+      return $scope.quotes;
+
+    };
+
+    //calculate the total quote amount
+
+    $scope.calcQuoteTotal = function(){
+      var res = $scope.quoteTotal
+       
+      return res;
+    };
  
 
     $scope.printSheet = function(jobSheet) {
@@ -402,7 +432,14 @@ $scope.calculateCostPerUnit = function(){
       method:'GET',
       url:'./jsonData/quotes.json.php'
     }).then(function(response){
-      $scope.cartons=response.data;
+      $scope.quotes=response.data;
     });
+    $http({
+      method:'GET',
+      url:'./jsonData/quoteRefs.json.php'
+    }).then(function(response){
+      $scope.quoteRefs=response.data;
+    });
+
 
 });

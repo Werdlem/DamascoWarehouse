@@ -78,10 +78,22 @@ public function getCartons(){
 public function getQuotes(){
   $pdo= Database::DB();
   $stmt = $pdo->prepare('select *
-    from ctn_quotes');
+    from ctn_quotes
+
+    ');
   $stmt->execute();
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+public function getQuoteRefs(){
+  $pdo = Database::DB();
+  $stmt = $pdo->prepare('select * 
+    from ctn_quotes
+    group by ref');  
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 public function addStyle($style,$height,$width,$length,$breadth,$glueFlap,$trimWidth,$trimLength,$image){
   $pdo = Database::DB();
   $stmt = $pdo->prepare('insert into ctn_style

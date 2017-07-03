@@ -92,9 +92,10 @@
 
 <div class="options-container" style="float: none; margin-left: auto;">
 <div class="options">
-
+<form action="?action=customer_quote" method="post">
 <h3>Quote Select</h3>
-<p><select style="width: 174px; height: 26px;" name="" ng-model="selectedQuote" ng-init="selectedCarton = cartons[0]" ng-options="x.ref for x in cartons" ><option>Quote Ref:</option></select></p>
+<p><select style="width: 174px; height: 26px;" name="quoteRefs" ng-model="selectedQuoteRef" ng-options="x.ref for x in quoteRefs" ></select></p>
+</form>
 </div>
 </div>
 
@@ -115,13 +116,13 @@
   <td class=xl662193 width=116 style='border-left:none;width:87pt'>Quote Ref</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
-  <td height=20 class=xl672193 style='height:15.0pt;border-top:none'>{{selectedQuote.date}}</td>
+  <td height=20 class=xl672193 style='height:15.0pt;border-top:none'>{{selectedQuoteRef.date}}</td>
   <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'></td>
   <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
   <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
   <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
   <td class=xl672193 style='border-top:none;border-left:none'>&nbsp;</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{selectedQuote.ref}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{selectedQuoteRef.ref}}</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl662193 style='height:15.0pt;border-top:none'>Product
@@ -133,15 +134,27 @@
   <td class=xl662193 style='border-top:none;border-left:none'>Unit Price</td>
   <td class=xl662193 style='border-top:none;border-left:none'>Total Price</td>
  </tr>
- <tr ng-repeat="x in selectedQuote" height=20 style='height:15.0pt'>
-  <td height=20 class=xl672193 style='height:15.0pt;border-top:none'>{{x.selectedQuote.style + ' ' + x.selectedQuote.category}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{x.selectedQuote.finish}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{x.selectedQuote.length + 'x' + x.selectedQuote.width + 'x' + x.selectedQuote.height}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{x.selectedQuote.grade}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{x.selectedQuote.qty}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{x.selectedQuote.unitPrice}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{x.selectedQuote.total}}</td>
+
+ <tr ng-hide="selectedQuoteRef == null" ng-repeat="z in quotes | filter: {'ref':selectedQuoteRef.ref}" height=20 style='height:15.0pt'>
+  <td height=20 class=xl672193 style='height:15.0pt;border-top:none'>{{z.style + ' ' + z.category}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.finish}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.length + 'x' + z.width + 'x' + z.height}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.grade}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.qty}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.unitPrice}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'><input type="text" ng-model="quoteTotal=z.total"></td>
+	</tr>
+
+ <tr  height=20 style='height:15.0pt'>
+  <td height=20 class=xl662193 style='height:15.0pt;border-top:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'>{{quoteTotal}}</td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Total</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>{{calcQuoteTotal()}}</td>
  </tr>
+
  <tr height=53 style='mso-height-source:userset;height:39.75pt'>
   <td colspan=7 height=53 class=xl682193 width=590 style='height:39.75pt;
   width:443pt'><span lang=EN-US>Please note: All prices are shown excluding
@@ -164,6 +177,7 @@
 
 </div>
 </div>
+
 <script src="/restricted/cartonApp.js"></script>
 
 </body>
