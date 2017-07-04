@@ -29,7 +29,6 @@ $breadth = $_POST['breadth'];
 $unitPrice = $_POST['unitPrice'];
 $total = $_POST['total'];
 
-echo 'chop'.$chop;
 //add the fields found in the DB table to this page. print job sheet from this page. Posted vairables all need to be in <input>'s for the addJob DB function to work
 
  ?>

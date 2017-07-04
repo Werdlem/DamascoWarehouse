@@ -128,6 +128,20 @@ app.controller('styleController', function($scope, $http) {
       return res;
     };
 
+    
+   $scope.setupConfig = function(){
+     var res = $scope.boardChop();
+      if ($scope.boardChop() > 1300){
+       var length = $scope.calcDeckleLength();
+       var width = $scope.calcDeckleWidth();
+       return ("2 Panel carton");
+      }
+
+      var length = $scope.calcDeckleLength();
+       var width = $scope.calcDeckleWidth();
+       return ("4 Panel Carton");
+     }
+
 
     //CALCULATE CARTON CONFIG
    $scope.cartonConfigChop = function(){
@@ -135,8 +149,19 @@ app.controller('styleController', function($scope, $http) {
      if(isNaN(res)){
           return null;
         }
+        
         return res;
     };
+
+    //highlight board that is too big for us to process
+
+    $scope.boardChopMax = function(){
+      var res = $scope.cartonConfigChop();
+      
+      if((res) > 2300){
+        return{ color: "red"}
+      }
+    }
 
 
         // calculate the square Meter per carton
@@ -247,7 +272,7 @@ $scope.calculateCostPerUnit = function(){
     //calculate the labour * time taken for job
 
     $scope.calcLabour = function(){
-      var res = ($scope.labour * $scope.calcTime());
+      var res = ($scope.labour * $scope.labourTime);
       if(isNaN(res)){
         return res;
       }
@@ -257,7 +282,7 @@ $scope.calculateCostPerUnit = function(){
     //calculate labour per unit
 
      $scope.calcLabourPerUnit = function(){
-      var res = (($scope.labour * $scope.calcTime()) / $scope.qty);
+      var res = (($scope.labour * $scope.labourTime) / $scope.qty);
       if(isNaN(res)){
         return res;
       }
@@ -273,9 +298,6 @@ $scope.calculateCostPerUnit = function(){
       }
       return res;
     }
-
-
-
         // calculate the Chop creasing positions
     $scope.calcChopCrease1 = function(){
      var res = ($scope.width * $scope.selectedStyle.breadth + (+$scope.selectedFlute.width / 2 ));
@@ -313,21 +335,6 @@ $scope.calculateCostPerUnit = function(){
       }
       return res;
       };
-      
-     
-
-     $scope.setupConfig = function(){
-     var res = $scope.boardChop();
-      if ($scope.boardChop() > 1300){
-       var length = $scope.calcDeckleLength();
-       var width = $scope.calcDeckleWidth();
-       return ("2 Panel carton");
-      }
-
-      var length = $scope.calcDeckleLength();
-       var width = $scope.calcDeckleWidth();
-       return ("4 Panel Carton");
-     }
 
      //Calculate internal Dimms
      $scope.internalDimms = function(){

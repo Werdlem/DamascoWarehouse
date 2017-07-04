@@ -451,7 +451,7 @@ tags will be replaced.-->
                             <input type="Hidden" name="unitPrice" value="'.$unitPrice .'">
                             <input type="Hidden" name="unitLabour" value="'.$unitLabour .'">
                             <input type="Hidden" name="unitSqm" value="'.$unitSqm .'">
-                            <input type="Hidden" name="unitMaterials" value="$unitMaterials">
+                            <input type="Hidden" name="unitMaterials" value="'.$unitMaterials.'">
                             <input type="Hidden" name="total" value="'.$total .'">
                             <input type="Hidden" name="materialsTotal" value="'. $materialsTotal.'">
                             <input type="Hidden" name="labourTotal" value="'. $labourTotal .'">

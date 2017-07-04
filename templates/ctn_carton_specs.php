@@ -2,9 +2,10 @@
 <style>
   .options-container{
         width: 280px;
-        background-color: #99ccff;
+        background-color: #D8D8D8;
         float: left;
-         border-radius: 10px;
+        border: 1px solid #777;
+        
          margin: 0 auto;
 
     }
@@ -24,7 +25,9 @@
   }
   .results{
   padding-left: 20px;
-    float: left; 
+    float: left;
+    width: 75%;
+    margin-bottom: 10px
   }
 
   #jobSheet{
@@ -43,15 +46,25 @@
     width: auto;
     float: left;
     padding: 10px;
-    border: 1px solid black;
-    border-radius: 10px;
+    border: 1px solid black;   
     margin-left: 5px;
 }
 h3{
     text-decoration: underline;
+    text-align: center;
+    font-size: 18px
 }
 input{
     float: right;
+}
+.button-menu{
+ float: left;
+ 
+  margin-left: 10px
+}
+button{
+  margin-right: 10px;
+
 }
 </style>
 
@@ -66,7 +79,7 @@ input{
 <p>Flute: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedFlute" ng-options="x.flute for x in flutes" ng-init="selectedFlute = flutes[0]" ></select></p>
 <p>Grade: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedGrade" ng-options="x.grade for x in grades" ng-init="selectedGrade = type[0]" ></select></p>
 <p>Liner: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedLiner" ng-options="x.liner for x in liners" ng-init="selectedLiner = liner[0]" ></select></p>
-
+<br/>
 <h3>Carton Dimms</h3>
 <p>Length: <input type="text" ng-model="length"></p>
 <p>Width: <input type="text" ng-model="width"></p>
@@ -78,9 +91,11 @@ input{
 <p>Config: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedPanelConfig" ng-init="selectedPanelConfig = panelConfig[1]" ng-options="x.config for x in panelConfig" >
     </select>
     <p>Qty: <input type="text" name="qty" ng-model="qty"></p>
+
+    <br />
 <h3>Costing</h3>
 <p>£ per KSqM: <input type="text" ng-model="cost"></p>
- <p>Labour: <input ng-if="calcTime() !== null" disabled value="{{calcTime() | number:1}} Hours"></p>
+ <p>Labour: <input type="text" ng-model="labourTime"></p>
 <p>Margin: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedMargin" ng-options="x.margin for x in margin" ng-init="selectMargin = margin[0]" ></select></p>
 <p>Delivery: <input type="text" ng-model="miles" placeholder="Miles"></p>
 </div>
@@ -89,15 +104,12 @@ input{
 <form method="POST" action="?action=addJob">
  
 <div class="results">
-<h3></h3>
-<p><img ng-if="selectedStyle.image !==null" ng-src="{{selectedStyle.image}}"></p>
-<p><img ng-src="{{selectedFlute.image}}"></p>
 <div id="material">
-<h3>Material Specs</h3>
+<h3 >Material Specs</h3>
 <p><span ng-if="cartonGrade() !==null"><strong>Board Grade:</strong> {{cartonGrade()}}</span></p>
-<p><span ng-if="sheetBoardSize() !==null"><strong>Blank Size:</strong> {{boardDeckle()}} x {{cartonConfigChop()}}</span></p>
+<p><span ng-if="sheetBoardSize() !==null" ><strong>Blank Size:</strong> {{boardDeckle()}} x <span style ng-style="boardChopMax()">{{cartonConfigChop()}}</span></span></p> 
 <p><span ng-if="boardDeckle() !==null"><strong>Width:</strong> {{boardDeckle()}}</span></p>
-<p><span ng-if="cartonConfigChop() !==null"><strong>Length:</strong> {{cartonConfigChop()}}</span></p>
+<p><span ng-if="cartonConfigChop() !==null" ng-style="boardChopMax()"><strong>Length:</strong> {{cartonConfigChop()}} </span></p>
 </div>
 <div id="material" style="">
 <h3>Production Specs</h3>
@@ -128,10 +140,16 @@ input{
 </div>
 </div>
 </form>
+</span>
+</p>
+<br/>
+
+
+
 
 <!--Hidden fields for page Posting-->
 <form method="POST" action="?action=ctn_addJob">
-<p><button type="submit"> Add job</button></p>
+
 
 
                         <input type="Hidden" name="length" value="{{length}}">
@@ -158,13 +176,13 @@ input{
                             <input type="Hidden" name="breadth" value="{{selectedStyle.breadth}}">
                             <input type="Hidden" name="unitPrice" value="{{calcTotalCostPerUnit() | currency: '£'}}">
                             <input type="Hidden" name="total" value="{{calcTotal() | currency: '£'}}">
-                         
-                          </form>
+                         <p><button type="submit" class="button-menu"> Add job</button></p>
+                                                   </form>
 
                           <!--Job Sheet-->
                           <form method="POST" action="?action=ctnBespokeJobSheet">
 <!--Hidden fields for page Posting-->
-<p><button type="submit"> Print Bespoke Sheet</button></p>
+<p><button type="submit" name="bespoke" class="button-menu"> Print Bespoke Sheet</button></p>
 
 
                         <input type="Hidden" name="length" value="{{length}}">
@@ -192,7 +210,7 @@ input{
                           </form>
 
 <form method="POST" action="?action=quotation_review">
-<p><button type="submit">Save Quote</button></p>
+<p><button type="submit" class="button-menu">Save Quote</button></p>
 
 <!--Hidden fields for page Posting-->
                         <input type="Hidden" name="length" value="{{length}}">
