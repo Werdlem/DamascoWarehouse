@@ -83,7 +83,8 @@ $selection =$result['sku'];
 		$sku_wildcard = $result['alias_wild'];
 	}
 	// end
-$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard);
+	$sku_id=$result['sku_id'];
+$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard,$sku_id);
 
 foreach ($goods_total as $result){
 
