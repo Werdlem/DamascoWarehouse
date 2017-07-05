@@ -44,6 +44,7 @@ app.controller('styleController', function($scope, $http) {
     $scope.labour = 7.5;
     $scope.date = new Date();
     $scope.delivery = .40;
+    $scope.math = window.Math;
 
        //**********************JOB SHEET CALCULATIONS*********************************//
 
@@ -71,14 +72,15 @@ app.controller('styleController', function($scope, $http) {
       if(isNaN(res)){
         return null;
       }
-      return res;
+     return Math.ceil(res)
     };
 
     $scope.calcTram2 = function(){
-      try{
-        return(($scope.selectedCarton.flute * 2) + (+$scope.height))
+      var res = (($scope.selectedCarton.flute * 2) + (+$scope.height));
+      if(isNaN(res)){
+        return null;
       }
-      catch(x){}
+      return Math.ceil(res)
     };
 
     $scope.chopSlotL = function(){
@@ -298,20 +300,23 @@ $scope.calculateCostPerUnit = function(){
       }
       return res;
     }
-        // calculate the Chop creasing positions
+
+            // calculate the Chop creasing positions
     $scope.calcChopCrease1 = function(){
-     var res = ($scope.width * $scope.selectedStyle.breadth + (+$scope.selectedFlute.width / 2 ));
+     var res = ($scope.width * $scope.selectedStyle.breadth + (+$scope.selectedFlute.width / 2));
       if(isNaN(res)){
         return null;
       }
-      return res;
+      return Math.ceil(res);
     };
 
     $scope.calcChopCrease2 = function(){
-      try{
-        return(($scope.selectedFlute.width *2) +(+$scope.height))
+      var res = (($scope.selectedFlute.width *2) +(+$scope.height));
+      
+      if (isNaN(res)){
+        return null;
       }
-      catch(x){}
+      return Math.ceil(res)
     };
 
     $scope.glueFlap = function(){
