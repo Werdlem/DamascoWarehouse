@@ -40,7 +40,26 @@ th{
 
      
         <button type="submit" class="btn btn-large btn-success" name="addShred" id="addShred">Add</button>
+
         <label style="font-size: 12px">* Qty is only a guide and may not accurately reflect the number of sheets on the pallet.</label>
+        <br/>
+        <div id="filter" style="border: 1px solid #777; width: auto; text-align: center; float: left; padding: 5px">
+        <label>Filter Board</label><br/>
+       <label>Flute: </label><select ng-model="flute" style="width: 3em">
+         <option>B</option>
+          <option>C</option>
+           <option>E</option>
+            <option>BC</option>
+            <option>EB</option>
+        </select>
+        
+       
+       <label>Colour: </label><select ng-model="colour" style="width: 3em">
+         <option>K</option>
+          <option>W</option>
+          <option>T</option>
+        </select>
+        </div>
      
     </form>
   </div>
@@ -57,26 +76,15 @@ th{
         </tr>
         </thead>
 
+<tr ng-repeat ="x in shredMaster | filter: flute:true | filter: colour">
+<td>{{x.palletNo}}</td>
+<td>{{x.width + ' x ' + x.length}}</td>
+<td>{{x.grade}}</td>
+<td>{{x.flute}}</td>
+<td>{{x.qty}}</td>
+<td><a href="?action=action&deleteShred&id={{x.id}}"><img src="./css/images/icon-delete.gif" id="{{x.id}}'"></a></td>
+</tr>
 
-<?php
-
-$data = $productDal->getShred();
-
-foreach ($data as $results){
-
-  echo '
-         
-  <td>'. $results['palletNo'] .'</td> 
-  <td>'. $results['width'] .'mm <strong>x</strong> '
-  . $results['length'].'mm</td>
-  <td>'. $results['grade'].'</td>
-  <td>'. $results['flute'].'</td>
-  <td>'. $results['qty'].'</td>
-  <td><a href="?action=action&deleteShred&id='.$results['id'].'"><img src="./css/images/icon-delete.gif" id="'.$results['id'].'"></a></tr>'
-  ;
-
-}
-?>
 
 </table>
 </div>
