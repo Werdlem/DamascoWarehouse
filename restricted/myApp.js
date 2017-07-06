@@ -1,5 +1,5 @@
 var app = angular.module('sheetBoard', []);
-app.controller('boardController', function($scope) {
+app.controller('boardController', function($scope,$http) {
     
         $scope.board =[{
     	flute: 'B',
@@ -35,6 +35,14 @@ app.controller('boardController', function($scope) {
   	}
   	return res;
   }
+
+  $http({
+      method:'GET',
+      url:'./jsonData/shredMaster.json.php'
+    }).then(function(response){
+      $scope.shredMaster=response.data;
+    });
+
 
          
 });

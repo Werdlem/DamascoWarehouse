@@ -5,19 +5,6 @@
 <link rel=File-List href="customer3_files/filelist.xml">
 <style id="Book1_2193_Styles">
 
-@media print{
-body *{
-    visibility: hidden;
-  }
-  #customer_quote, #customer_quote * {
-    visibility: visible;
-  }
-  #customer_quote{
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
-}
 <!--table
 	{mso-displayed-decimal-separator:"\.";
 	mso-displayed-thousand-separator:"\,";}
@@ -104,16 +91,59 @@ body *{
 	
 <div ng-controller="styleController as style" ng-app="quoteApp">
 <div id="Book1_2193" align=center x:publishsource="Excel">
+<style type="text/css">
+	@media print{
+body *{
+    visibility: hidden;
+  }
+  #customer_quote, #customer_quote *, #footer-sig, #quote_headder, #greeting {
+    visibility: visible;
+    align-content: center;
+    zoom: 1.09;
 
+  }
+  #customer_quote{
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0 auto;  position: absolute;
+  }
+}
+</style>
 <div class="options-container" style="float: none; margin-left: auto;" >
 <div class="options">
 <form action="?action=customer_quote" method="post">
 <h3>Quote Select</h3>
-<p><select style="width: 174px; height: 26px;" name="quoteRefs" ng-model="selectedQuoteRef" ng-options="x.ref for x in quoteRefs" ></select></p>
+<p><select style="width: 174px; height: 26px;" name="quoteRefs" ng-model="selectedQuoteRef" ng-options="x.ref for x in quoteRefs" ></select>
+<h3>Select Company</h3>
+<p><select style="width: 174px; height: 26px;" name="company" ng-model="selectedCompany" ng-options="x.name for x in company" ng-init="selectedCompany = company[0]" ></select></p>
+
 </form>
 </div>
 </div>
+<div id="customer_quote" >
+<div id="quote_headder" >
+<img style="float: left;"">
 
+<div id="company_address"  style="text-align: right; width: 100%" ng-model=selectedCompany>
+<img src="{{selectedCompany.logo}}" style="float: left">
+
+<p>{{selectedCompany.name}}</p>
+<p>{{selectedCompany.address}}</p>
+<p>{{selectedCompany.contact}}</p>
+<p>{{selectedCompany.email}}</p>
+<p ></p>
+</div>
+
+
+<div id="greeting" style="text-align: left; padding-top: 50px; visibility: hidden;">
+	<p><label>Dear: {{selectedQuoteRef.customerName}}</label></p>
+	<p>Thank you for the recent opportunity to quote for your packaging requirements.
+		We are pleased to quote the following:
+	</p>
+</div>
+</div>
+<h2>Quotation</h2>
 <table border=0 cellpadding=0 cellspacing=0 width=590 style='border-collapse:
  collapse;table-layout:auto;width:700pt'>
  <col class=xl652193 width=133 style='mso-width-source:userset;mso-width-alt:
@@ -125,10 +155,10 @@ body *{
  <col class=xl652193 width=64 span=3 style='width:48pt'>
  <col class=xl652193 width=116 style='mso-width-source:userset;mso-width-alt:
  4242;width:87pt'>
-<div id="customer_quote">
+
  <tr height=20 style='height:15.0pt'>
   <td height=20 class=xl662193 width=133 style='height:15.0pt;width:100pt'>Date</td>
-  <td colspan=5 class=xl662193 width=341 style='border-left:none;width:256pt'>Quotation</td>
+  <td colspan=5 class=xl662193 width=341 style='border-left:none;width:256pt'</td>
   <td class=xl662193 width=116 style='border-left:none;width:87pt'>Quote Ref</td>
  </tr>
  <tr height=20 style='height:15.0pt'>
@@ -208,6 +238,13 @@ body *{
  </tr>
  <![endif]>
 </table>
+<br/>
+<div id="footer-sig" style="visibility: hidden;text-align: left;"">
+<p>I trust the above details are of interest & look forward to receiving your further instructions.</p>
+<p>Kindest Regards</p>
+<br/>
+<p>{{selectedQuoteRef.salesMen}}</p>
+</div>
 </div>
 <br/>
 
@@ -584,15 +621,15 @@ tags will be replaced.-->
   <td class=xl6722046></td>
  </tr>
  <tr height=23 style='mso-height-source:userset;height:17.25pt'>
-  <td height=23 class=xl7022046 style='height:17.25pt'>Grand Total (exc Vat)</td>
+  <td height=23 class=xl7022046 style='height:17.25pt' colspan="2">Grand Total (exc Vat)</td>
   <td class=xl6722046></td>
   <td class=xl6722046></td>
   <td class=xl6722046></td>
   <td class=xl6722046></td>
  </tr>
  <tr ng-hide="selectedQuoteRef == null" ng-repeat="z in quotes | filter: {'ref':selectedQuoteRef.ref}" height=23 style='mso-height-source:userset;height:17.25pt'>
-  <td height=23 class=xl6622046 style='height:17.25pt;border-top:none'>{{z.total}}</td>
-  <td class=xl6722046></td>
+  <td height=23 class=xl6622046 style='height:17.25pt;border-top:none'>{{z.productRef}}</td>
+  <td class=xl6622046>{{z.total}}</td>
   <td class=xl6722046></td>
   <td class=xl6722046></td>
   <td class=xl6722046></td>

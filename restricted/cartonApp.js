@@ -41,10 +41,41 @@ app.controller('styleController', function($scope, $http) {
       score: 1  
      }];
 
+     $scope.salesMen=[{
+      name: "Mark Reid"
+     },
+     {
+       name: "Steve Chambers"
+     },
+      {
+        name: "Lewis Reid"
+      },
+      {
+         name: "Neil Blanchard"
+      },
+      {
+       name: "Shane Munton"
+      }];    
+
     $scope.labour = 7.5;
     $scope.date = new Date();
     $scope.delivery = .40;
     $scope.math = window.Math;
+    $scope.company=[{
+                name: "Postpack",
+                logo: "/Css/images/postpack.png",
+                address: "Hollis Road, Grantham Lincolnshire NG31 7QH",
+                contact: "Tel: 0845 071 0754 Fax: 0845 071 0759",
+                email: " Email: sales@postpack.co.uk"
+              },
+              {
+                name: "Damasco",
+                logo: "/Css/images/dam.png",
+                address: "Hollis Road, Grantham Lincolnshire NG31 7QH",
+                contact: "Tel: 0845 071 0754 Fax: 0845 071 0759",
+                email: " Email: sales@postpack.co.uk"
+              }];
+
 
        //**********************JOB SHEET CALCULATIONS*********************************//
 

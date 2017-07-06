@@ -70,9 +70,12 @@ button{
 
 <div ng-controller="styleController as style" ng-app="quoteApp">
 
+
 <div class="container">
 <div class="options-container">
 <div class="options">
+<h3>Carton Select</h3>
+<p>Carton: <select style="float: right; width: 174px; height: 26px;" name="" ng-model="selectedCarton" ng-init="selectedCarton = cartons[0]" ng-options="x.ref for x in cartons" ></select></p>
 
 <h3>Carton Select</h3>
 <p>Style: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedStyle" ng-options="x.style for x in styles"></select></p>
@@ -86,8 +89,8 @@ button{
 <p>Height: <input type="text" ng-model="height=selectedCarton.height"></p>
 
 </select></p>
-<p>Finish: <input type="text" ng-model="selectedStyle=selectedCarton.finish" name=""></select></p>
-<p>Category: <input type="text" ng-model="selectedStyle=selectedCarton.category" name=""></p>
+<p>Finish: <input type="text" ng-model="selectedFinish=selectedCarton.finish"></p>
+<p>Category: <input type="text" ng-model="selectedCategory=selectedCarton.category"> </p>
 <p>Config: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedPanelConfig" ng-init="selectedPanelConfig = panelConfig[1]" ng-options="x.config for x in panelConfig" >
     </select>
     <p>Qty: <input type="text" name="qty" ng-model="qty"></p>
