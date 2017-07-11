@@ -34,11 +34,15 @@ app.controller('styleController', function($scope, $http) {
 
      $scope.panelConfig=[{
       config: "2 Panel",
-      score: 2
+      score: 2,
+      length: 2,
+      width:2
     },
     {
       config: "4 Panel",
-      score: 1  
+      score: 1,
+      length: 2,
+      width:2
      }];
 
      $scope.salesMen=[{
@@ -57,6 +61,7 @@ app.controller('styleController', function($scope, $http) {
        name: "Shane Munton"
       }];    
 
+    $scope.glueFlap = 40;
     $scope.labour = 7.5;
     $scope.date = new Date();
     $scope.delivery = .40;
@@ -82,14 +87,14 @@ app.controller('styleController', function($scope, $http) {
        //DECKLE
 
         $scope.calcJsDeckleLength = function(){
-      var res = (($scope.selectedCarton.flute * 1 ) + (+$scope.length));
+      var res = (($scope.selectedCarton.fluteWidth * 1 ) + (+$scope.length));
        if (isNaN(res)){
         return null;
        }
        return res;
      };
      $scope.calcJsDeckleWidth = function(){
-      var res = (($scope.selectedCarton.flute * 1 ) + (+$scope.width));
+      var res = (($scope.selectedCarton.fluteWidth * 1 ) + (+$scope.width));
       if(isNaN(res)){
         return null;
       }
@@ -99,7 +104,7 @@ app.controller('styleController', function($scope, $http) {
     //CHOP TRAM
 
      $scope.calcTram1 = function(){
-     var res = ($scope.width * $scope.selectedCarton.breadth) + (+$scope.selectedCarton.flute) / 2 ;
+     var res = ($scope.width * $scope.selectedCarton.breadth) + (+$scope.selectedCarton.fluteWidth) / 2 ;
       if(isNaN(res)){
         return null;
       }
@@ -107,7 +112,7 @@ app.controller('styleController', function($scope, $http) {
     };
 
     $scope.calcTram2 = function(){
-      var res = (($scope.selectedCarton.flute * 2) + (+$scope.height));
+      var res = (($scope.selectedCarton.fluteWidth * 2) + (+$scope.height));
       if(isNaN(res)){
         return null;
       }
@@ -115,7 +120,7 @@ app.controller('styleController', function($scope, $http) {
     };
 
     $scope.chopSlotL = function(){
-      var res = (($scope.selectedCarton.length *1) + (+$scope.selectedCarton.flute*1 ));
+      var res = (($scope.selectedCarton.length *1) + (+$scope.selectedCarton.fluteWidth*1 ));
       if (isNaN(res)){
         return null;
       }
@@ -123,7 +128,7 @@ app.controller('styleController', function($scope, $http) {
      }
 
      $scope.chopSlotW = function(){
-      var res = (($scope.selectedCarton.width *1) + (+$scope.selectedCarton.flute*1 ));
+      var res = (($scope.selectedCarton.width *1) + (+$scope.selectedCarton.fluteWidth*1 ));
       if (isNaN(res)){
         return null;
       }

@@ -113,12 +113,12 @@ public function addStyle($style,$height,$width,$length,$breadth,$glueFlap,$trimW
 }
 
 public function addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $chop, $glueFlap, $finish, $grade, $image, $category, $cost, 
-  $margin, $boardQty, $config, $length, $flute, $breadth){
+  $margin, $boardQty, $config, $length, $fluteWidth, $breadth, $flute){
   $pdo = Database::DB();
   $stmt = $pdo->prepare('insert into ctn_cartons
     (ref,initials, style, height,  width, qty, deckle, chop, glueFlap, finish, grade, image, category, cost, margin, 
-  boardQty, config, length, flute, breadth)
-    values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+  boardQty, config, length, fluteWidth, breadth, flute)
+    values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
   $stmt->bindvalue(1, $ref);
   $stmt->bindvalue(2, $initials);
   $stmt->bindvalue(3, $style);
@@ -137,8 +137,9 @@ public function addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $
   $stmt->bindvalue(16, $boardQty);
   $stmt->bindvalue(17, $config);
   $stmt->bindvalue(18, $length);
-  $stmt->bindvalue(19, $flute);
+  $stmt->bindvalue(19, $fluteWidth);
   $stmt->bindvalue(20, $breadth);
+  $stmt->bindvalue(21, $flute);
   $stmt->execute();
 
 }

@@ -173,6 +173,7 @@ button{
                           <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
                           <input type="Hidden" name="config" value="{{selectedPanelConfig.config}}">
                            <input type="Hidden" name="fluteWidth" value="{{selectedFlute.width}}">
+                           <input type="Hidden" name="flute" value="{{selectedFlute.flute}}">
                             <input type="Hidden" name="breadth" value="{{selectedStyle.breadth}}">
                             <input type="Hidden" name="unitPrice" value="{{calcTotalCostPerUnit() | currency: '£'}}">
                             <input type="Hidden" name="total" value="{{calcTotal() | currency: '£'}}">

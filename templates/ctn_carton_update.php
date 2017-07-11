@@ -78,19 +78,22 @@ button{
 <p>Carton: <select style="float: right; width: 174px; height: 26px;" name="" ng-model="selectedCarton" ng-init="selectedCarton = cartons[0]" ng-options="x.ref for x in cartons" ></select></p>
 
 <h3>Carton Select</h3>
-<p>Style: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedStyle" ng-options="x.style for x in styles"></select></p>
-<p>Flute: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedFlute" ng-options="x.flute for x in flutes" ng-init="selectedFlute = flutes[0]" ></select></p>
-<p>Grade: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedGrade" ng-options="x.grade for x in grades" ng-init="selectedGrade = type[0]" ></select></p>
-<p>Liner: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedLiner" ng-options="x.liner for x in liners" ng-init="selectedLiner = liner[0]" ></select></p>
+<p>Style: <input style="float: right; width: 174px; height: 26px;" ng-model="selectedStyle.style=selectedCarton.style" ></p>
+
+<p>Grade: <input style="float: right; width: 174px; height: 26px;" ng-model="selectedGrade=selectedCarton.grade"></p>
+<input type="Hidden" ng-model="selectedFlute.flute=selectedCarton.flute">
+<input type="Hidden" ng-model="selectedStyle.breadth=selectedCarton.breadth">
+<input type="Hidden" ng-model="selectedFlute.width=selectedCarton.fluteWidth">
 <br/>
 <h3>Carton Dimms</h3>
 <p>Length: <input type="text" ng-model="length=selectedCarton.length"></p>
 <p>Width: <input type="text" ng-model="width=selectedCarton.width"></p>
 <p>Height: <input type="text" ng-model="height=selectedCarton.height"></p>
 
+
 </select></p>
-<p>Finish: <input type="text" ng-model="selectedFinish=selectedCarton.finish"></p>
-<p>Category: <input type="text" ng-model="selectedCategory=selectedCarton.category"> </p>
+<p>Finish: <input type="text" ng-model="selectedFinish.finish=selectedCarton.finish"></p>
+<p>Category: <input type="text" ng-model="selectedCategory.category=selectedCarton.category"> </p>
 <p>Config: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedPanelConfig" ng-init="selectedPanelConfig = panelConfig[1]" ng-options="x.config for x in panelConfig" >
     </select>
     <p>Qty: <input type="text" name="qty" ng-model="qty"></p>

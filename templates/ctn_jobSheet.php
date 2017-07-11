@@ -221,7 +221,7 @@ tags will be replaced.-->
 <input type="hidden" ng-model="width=selectedCarton.width">
          <input type="hidden" ng-model="length=selectedCarton.length">
          <input type="hidden" ng-model="height=selectedCarton.height">
-         <input type="hidden" ng-model="flute=selectedCarton.flute">
+         <input type="hidden" ng-model="flute=selectedCarton.fluteWidth">
 </div>
         <img src="{{selectedCarton.image}}" style="width: 100%; height: 80%">
 <div id='setup'>
