@@ -61,6 +61,7 @@ app.controller('styleController', function($scope, $http) {
        name: "Shane Munton"
       }];    
 
+    $scope.panelTrim = 3;
     $scope.glueFlap = 40;
     $scope.labour = 7.5;
     $scope.date = new Date();
@@ -183,7 +184,7 @@ app.controller('styleController', function($scope, $http) {
 
     //CALCULATE CARTON CONFIG
    $scope.cartonConfigChop = function(){
-      var res = ($scope.boardChop() / $scope.selectedPanelConfig.score)
+      var res = (($scope.boardChop() / $scope.selectedPanelConfig.score) - $scope.panelTrim)
      if(isNaN(res)){
           return null;
         }
