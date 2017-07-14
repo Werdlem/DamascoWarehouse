@@ -121,28 +121,7 @@ body *{
 </form>
 </div>
 </div>
-<div id="customer_quote" >
-<div id="quote_headder" >
-<img style="float: left;"">
-
-<div id="company_address"  style="text-align: right; width: 100%" ng-model=selectedCompany>
-<img src="{{selectedCompany.logo}}" style="float: left">
-
-<p>{{selectedCompany.name}}</p>
-<p>{{selectedCompany.address}}</p>
-<p>{{selectedCompany.contact}}</p>
-<p>{{selectedCompany.email}}</p>
-<p ></p>
-</div>
-
-
-<div id="greeting" style="text-align: left; padding-top: 50px; visibility: hidden;">
-	<p><label>Dear: {{selectedQuoteRef.customerName}}</label></p>
-	<p>Thank you for the recent opportunity to quote for your packaging requirements.
-		We are pleased to quote the following:
-	</p>
-</div>
-</div>
+<div id="customer_quote_summary" >
 <h2>Quotation</h2>
 <table border=0 cellpadding=0 cellspacing=0 width=590 style='border-collapse:
  collapse;table-layout:auto;width:700pt'>
@@ -644,6 +623,131 @@ tags will be replaced.-->
  </tr>
  <![endif]>
 </table>
+</div>
+</div>
+
+<div id="customer_quote" style="visibility: hidden;" >
+<div id="quote_headder" >
+<img style="float: left;"">
+
+<div id="company_address"  style="text-align: right; width: 100%" ng-model=selectedCompany>
+<img src="{{selectedCompany.logo}}" style="float: left">
+
+<p>{{selectedCompany.name}}</p>
+<p>{{selectedCompany.address}}</p>
+<p>{{selectedCompany.contact}}</p>
+<p>{{selectedCompany.email}}</p>
+<p ></p>
+</div>
+
+<div id="greeting" style="text-align: left;">
+	<p><label>Dear: {{selectedQuoteRef.customerName}}</label></p>
+	<p>Thank you for the recent opportunity to quote for your packaging requirements.
+		We are pleased to quote the following:
+	</p>
+</div>
+</div>
+<h2>Quotation</h2>
+<table border=0 cellpadding=0 cellspacing=0 width=590 style='border-collapse:
+ collapse;table-layout:auto;width:700pt'>
+ <col class=xl652193 width=133 style='mso-width-source:userset;mso-width-alt:
+ 4864;width:100pt'>
+ <col class=xl652193 width=79 style='mso-width-source:userset;mso-width-alt:
+ 2889;width:59pt'>
+ <col class=xl652193 width=70 style='mso-width-source:userset;mso-width-alt:
+ 2560;width:53pt'>
+ <col class=xl652193 width=64 span=3 style='width:48pt'>
+ <col class=xl652193 width=116 style='mso-width-source:userset;mso-width-alt:
+ 4242;width:87pt'>
+
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl662193 width=133 style='height:15.0pt;width:100pt'>Date</td>
+  <td colspan=5 class=xl662193 width=341 style='border-left:none;width:256pt'</td>
+  <td class=xl662193 width=116 style='border-left:none;width:87pt'>Quote Ref</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl672193 style='height:15.0pt;border-top:none'>{{selectedQuoteRef.date}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'></td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{selectedQuoteRef.ref}}</td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl662193 style='height:15.0pt;border-top:none'>Customer Name</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{selectedQuoteRef.customerName}}</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Contact</td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>{{selectedQuoteRef.customerContact}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'></td>
+  <td class=xl672193 style='border-top:none;border-left:none;  border-right: none;'></td>
+  <td class=xl672193 style='border-top:none;border-left:none'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl672193 style='height:15.0pt;border-top:none; border-right: none;'></td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'></td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none; border-right: none;'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none;border-right: none;'>&nbsp;</td>
+  <td class=xl672193 style='border-top:none;border-left:none'></td>
+ </tr>
+ <tr height=20 style='height:15.0pt'>
+  <td height=20 class=xl662193 style='height:15.0pt;border-top:none'>Product
+  Description</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Finish</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Size</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Material</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Quantity</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Unit Price</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Total Price</td>
+ </tr>
+
+ <tr ng-hide="selectedQuoteRef == null" ng-repeat="z in quotes | filter: {'ref':selectedQuoteRef.ref}" height=20 style='height:15.0pt'>
+  <td height=20 class=xl672193 style='height:15.0pt;border-top:none'>{{z.style + ' ' + z.category}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.finish}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.length + 'x' + z.width + 'x' + z.height}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.grade}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.qty}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.unitPrice}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{quoteTotal=z.total}}</td>
+	</tr>
+
+ <tr  height=20 style='height:15.0pt'>
+  <td height=20 class=xl662193 style='height:15.0pt;border-top:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'>{{quoteTotal}}</td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none'>Total</td>
+  <td class=xl662193 style='border-top:none;border-left:none'>{{calcQuoteTotal()}}</td>
+ </tr>
+
+ <tr height=53 style='mso-height-source:userset;height:39.75pt'>
+  <td colspan=7 height=53 class=xl682193 width=590 style='height:39.75pt;
+  width:443pt'><span lang=EN-US>Please note: All prices are shown excluding
+  VAT. Quantities are subject to +/- 10% tolerance on bespoke items. Quotation
+  valid for 30 days from above date. Additional tooling charges may apply for
+  die cut and printed products. Stock can be held for call off as required.</span></td>
+ </tr>
+ <![if supportMisalignedColumns]>
+ <tr height=0 style='display:none'>
+  <td width=133 style='width:100pt'>5555555</td>
+  <td width=79 style='width:59pt'>66666666</td>
+  <td width=70 style='width:53pt'>89888888888</td>
+  <td width=64 style='width:48pt'>77777777777</td>
+  <td width=64 style='width:48pt'>99999999999999</td>
+  <td width=64 style='width:48pt'>121212121</td>
+  <td width=116 style='width:87pt'>2323232323</td>
+ </tr>
+ <![endif]>
+</table>
+<br/>
+<div id="footer-sig" style="visibility: hidden;text-align: left;"">
+<p>I trust the above details are of interest & look forward to receiving your further instructions.</p>
+<p>Kindest Regards</p>
+<br/>
+<p>{{selectedQuoteRef.salesMen}}</p>
 </div>
 </div>
 

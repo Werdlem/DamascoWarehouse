@@ -59,7 +59,7 @@ app.controller('styleController', function($scope, $http) {
       },
       {
        name: "Shane Munton"
-      }];    
+      }];  
 
     $scope.panelTrim = 3;
     $scope.glueFlap = 40;
@@ -79,11 +79,17 @@ app.controller('styleController', function($scope, $http) {
                 logo: "/Css/images/dam.png",
                 address: "Hollis Road, Grantham Lincolnshire NG31 7QH",
                 contact: "Tel: 0845 071 0754 Fax: 0845 071 0759",
-                email: " Email: sales@postpack.co.uk"
+                email: " Email: sales@damasco.co.uk"
               }];
 
 
        //**********************JOB SHEET CALCULATIONS*********************************//
+
+       $scope.selectCartonStyle = function(){
+      var res = $scope.selectedCarton.style;
+
+      return res;
+     };
 
        //DECKLE
 
@@ -94,6 +100,8 @@ app.controller('styleController', function($scope, $http) {
        }
        return res;
      };
+
+
      $scope.calcJsDeckleWidth = function(){
       var res = (($scope.selectedCarton.fluteWidth * 1 ) + (+$scope.width));
       if(isNaN(res)){
