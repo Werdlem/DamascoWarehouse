@@ -91,7 +91,7 @@ app.controller('styleController', function($scope, $http) {
       return res;
      };
 
-       //DECKLE
+       //DECKLE JOB SHEET
 
         $scope.calcJsDeckleLength = function(){
       var res = (($scope.selectedCarton.fluteWidth * 1 ) + (+$scope.length));
@@ -168,7 +168,7 @@ app.controller('styleController', function($scope, $http) {
        
         // calculate the chop length
     $scope.boardChop = function(){
-    	var res =(($scope.selectedStyle.length * $scope.length )+($scope.selectedStyle.width * $scope.width) + (+$scope.selectedCategory.glueFlap) + (+$scope.selectedFlute.width * $scope.selectedStyle.creaseChop));
+    	var res =(($scope.selectedStyle.length * $scope.length )+($scope.selectedStyle.width * $scope.width) + (+$scope.selectedFlute.width * $scope.selectedStyle.creaseChop));
     	if (isNaN(res)){
         return null;
       }
@@ -177,8 +177,8 @@ app.controller('styleController', function($scope, $http) {
 
     
    $scope.setupConfig = function(){
-     var res = $scope.boardChop();
-      if ($scope.boardChop() > 1300){
+     var res = $scope.cartonConfigChop();
+      if ($scope.cartonConfigChop() > 1300){
        var length = $scope.calcDeckleLength();
        var width = $scope.calcDeckleWidth();
        return ("2 Panel carton");
@@ -192,7 +192,7 @@ app.controller('styleController', function($scope, $http) {
 
     //CALCULATE CARTON CONFIG
    $scope.cartonConfigChop = function(){
-      var res = (($scope.boardChop() / $scope.selectedPanelConfig.score) - $scope.panelTrim)
+      var res = (($scope.boardChop() / $scope.selectedPanelConfig.score) - $scope.panelTrim + (+$scope.selectedStyle.glueFlap))
      if(isNaN(res)){
           return null;
         }
@@ -213,11 +213,15 @@ app.controller('styleController', function($scope, $http) {
 
         // calculate the square Meter per carton
     $scope.calcSqMperBox = function(){
-       var res = $scope.boardDeckle() * $scope.boardChop()
+       var res = $scope.boardDeckle() * $scope.cartonConfigChop()
          /1000000;
         if(isNaN(res)){
           return null;
         }
+        if($scope.panelConfig.config == "2 Panel")
+        {
+          return null;
+        }        
         return res;
     };
         // calculate the square meters of total carton quantity
@@ -231,7 +235,7 @@ app.controller('styleController', function($scope, $http) {
 
     //calculate number of sheetboard based on carton configuration
     $scope.calQtyReq = function(){
-      var res = $scope.boardChop();
+      var res = $scope.cartonConfigChop();
       if ($scope.selectedPanelConfig.config == '2 Panel'){
         return $scope.qty * 2;      
       }
