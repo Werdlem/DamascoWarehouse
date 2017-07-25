@@ -81,23 +81,23 @@ button{
 <p>Liner: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedLiner" ng-options="x.liner for x in liners" ng-init="selectedLiner = liner[0]" ></select></p>
 <br/>
 <h3>Carton Dimms</h3>
-<p>Length: <input type="number" ng-model="length"></p>
-<p>Width: <input type="number" ng-model="width"></p>
-<p>Height: <input type="number" ng-model="height"></p>
+<p>Length: <input type="text" ng-model="length"></p>
+<p>Width: <input type="text" ng-model="width"></p>
+<p>Height: <input type="text" ng-model="height"></p>
 
 </select></p>
 <p>Finish: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedFinish" ng-options="x.finish for x in finish"><option value="select">select</option></select></p>
 <p>Category: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedCategory" ng-options="x.category for x in category" ng-init="selectedCategory = category[0]" ></select></p>
 <p>Config: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedPanelConfig" ng-init="selectedPanelConfig = panelConfig[1]" ng-options="x.config for x in panelConfig" >
     </select>
-    <p>Qty: <input type="number" name="qty" ng-model="qty"></p>
+    <p>Qty: <input type="text" name="qty" ng-model="qty"></p>
 
     <br />
 <h3>Costing</h3>
-<p>£ per KSqM: <input type="number" ng-model="cost"></p>
- <p>Labour: <input type="number" ng-model="labourTime"></p>
+<p>£ per KSqM: <input type="text" ng-model="cost"></p>
+ <p>Labour: <input type="text" ng-model="labourTime"></p>
 <p>Margin: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedMargin" ng-options="x.margin for x in margin" ng-init="selectMargin = margin[0]" ></select></p>
-<p>Delivery: <input type="number" ng-model="miles" placeholder="Miles"></p>
+<p>Delivery: <input type="text" ng-model="miles" placeholder="Miles"></p>
 </div>
 </div>
 <span ng-hide="selectedStyle == null">
