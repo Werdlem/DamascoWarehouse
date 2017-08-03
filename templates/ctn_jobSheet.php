@@ -180,7 +180,7 @@ tags will be replaced.-->
  <col width=99 style='mso-width-source:userset;mso-width-alt:3620;width:74pt'>
  <tr height=20 style='height:25.0pt'>
   <td height=20 class=xl6512069 width=61 style='height:25.0pt;width:46pt'>Date:</td>
-  <td class=xl6612069 width=99 style='border-left:none;width:74pt'>{{date | date:'dd-mm-yyyy'}}</td>
+  <td class=xl6612069 width=99 style='border-left:none;width:74pt'>{{ today | date: "dd-MM-y" }}</td>
   <td class=xl6512069 width=78 style='border-left:none;width:62pt'>Ref:</td>
   <td class=xl6612069 width=98 style='border-left:none;width:74pt'>{{selectedCarton.ref}}</td>
   <td class=xl6512069 width=63 style='border-left:none;width:48pt'>Style:</td>

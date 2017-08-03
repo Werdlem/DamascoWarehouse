@@ -61,6 +61,7 @@ app.controller('styleController', function($scope, $http) {
        name: "Shane Munton"
       }];  
 
+    $scope.today = new Date();
     $scope.panelTrim = 7;
     $scope.glueFlap = 40;
     $scope.labour = 7.5;
