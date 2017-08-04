@@ -214,15 +214,18 @@ app.controller('styleController', function($scope, $http) {
 
         // calculate the square Meter per carton
     $scope.calcSqMperBox = function(){
-       var res = $scope.boardDeckle() * $scope.cartonConfigChop()
+       if ($scope.selectedPanelConfig.config == "2 Panel"){
+        var res = ($scope.boardDeckle() * $scope.cartonConfigChop() * 2)
          /1000000;
+       }
+       else{
+        var res = $scope.boardDeckle() * $scope.cartonConfigChop()
+         /1000000;
+       }
         if(isNaN(res)){
           return null;
         }
-        if($scope.panelConfig.config == "2 Panel")
-        {
-          return null;
-        }        
+         
         return res;
     };
         // calculate the square meters of total carton quantity
