@@ -87,8 +87,9 @@ class products{
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select * 
 				from products
-				where buffer_qty > stock_qty
-				and allocation_id = 27
+				where buffer_qty >= stock_qty
+				and allocation_id = 29
+				order by sku
 			');
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				
