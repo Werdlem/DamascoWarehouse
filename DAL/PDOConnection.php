@@ -85,11 +85,19 @@ class products{
 
 	public function getProductionList(){
 			$pdo = Database::DB();
-			$stmt = $pdo->prepare('select * 
-				from products
-				where buffer_qty >= stock_qty
-				and allocation_id = 29
-				order by sku
+			$stmt = $pdo->prepare('select
+			p.*,
+			max(gi.delivery_date) as delivery_date
+			from products p
+			  left join goods_in gi on gi.sku=p.sku
+			
+			where
+			p.stock_qty <= p.buffer_qty
+			
+			and allocation_id = 29
+			
+			group by p.sku_id
+			order by p.sku
 			');
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				
@@ -1056,7 +1064,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			where
 			p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
-			and not allocation_id = 27
+			and not allocation_id = 29
 			
 			group by p.sku_id
 
