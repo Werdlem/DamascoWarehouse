@@ -225,30 +225,35 @@ tags will be replaced.-->
 </div>
         <img src="{{selectedCarton.image}}" style="width: 100%; height: 80%">
 <div id='setup'>
+
         <h3>Slitter Creaser</h3>
+        <div><img src="css/images/deckleDirection.png" style="width: 20%; height: 20%; float: right;"></div>
         <p>(Deckle Crease)</p>
-        <p>A) Glue Flap Crease = {{selectedCarton.glueFlap}} </p>
-        <p>B) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
+        
+        <p>A) Glue Flap Crease = {{(selectedCarton.glueFlap * 1) + machineTrim }} </p>
+        <p>B) Deckle Crease (L) = {{calcJsDeckleLength() + machineTrim }}</p>
         <div ng-hide="selectedCarton.config == '4 Panel'">
-        <p>C) Deckle Slit (W) = {{calcJsDeckleWidth()}}</p>  </div>
+        <p>C) Deckle Slit (W) = {{calcJsDeckleWidth()+ machineTrim }}</p>  </div>
         <div ng-show="selectedCarton.config == '4 Panel'">
-        <p>C) Deckle Crease (W) = {{calcJsDeckleWidth()}}</p>        
-        <p>D) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
-        <p>E) Deckle Chop (W) = {{calcJsDeckleWidth()}} * if required</p>
+        <p>C) Deckle Crease (W) = {{calcJsDeckleWidth()+ machineTrim }}</p>        
+        <p>D) Deckle Crease (L) = {{calcJsDeckleLength()+ machineTrim }}</p>
+        <p>E) Deckle Chop (W) = {{calcJsDeckleWidth()+ machineTrim }} * if required</p>
         </div>
         <h3>Boss Check Measurements</h3>
-        <p>1) {{((selectedCarton.glueFlap * 1) )}}</p>
-        <p>2) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1)}}</p>
-        <p>3) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1 }}</p>
+        <p>1) {{((selectedCarton.glueFlap * 1) + machineTrim )}}</p>
+        <p>2) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + machineTrim }}</p>
+        <p>3) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1  }}</p>
          <div ng-show="selectedCarton.config == '4 Panel'">
-        <p>4) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) }}</p>
-        <p>5) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) + (calcJsDeckleWidth() *1)-panelTrim}}</p>
+        <p>4) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) }}</p>
+        <p>5) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) + (calcJsDeckleWidth() *1)-panelTrim}}</p>
         </div>
         </div>
         
         	<div id='setup'>
         <h3>Slitter Creaser</h3>
+        <div><img src="css/images/chopDirection.png" style="width: 20%; height: 20%; float: right;"></div>
         <p>(Tram Crease)</p>
+        
         <p>A) Chop Slit as required</p>
         <p>B) Tram Crease 1 = {{calcTram1()}}
         <p>C) Tram Crease 2 = {{calcTram2()}}
@@ -270,7 +275,7 @@ tags will be replaced.-->
          <div ng-show="selectedCarton.config == '4 Panel'">
         <p>B) Slot 2 = {{chopSlotW()}}
         <p>C) Slot 3 = {{chopSlotL()}}
-        <p>D) Slot 4 = {{chopSlotW()}}
+       
         </div>
         </div>
         <div id="setup">
