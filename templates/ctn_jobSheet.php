@@ -256,13 +256,13 @@ tags will be replaced.-->
         <p>(Tram Crease)</p>
         
         <p>A) Chop Slit as required</p>
-        <p>B) Tram Crease 1 = {{calcTram1()}}
-        <p>C) Tram Crease 2 = {{calcTram2()}}
-        <p>D) Chop Slit = {{calcTram1()}}
+        <p>B) Tram Crease 1 = {{calcTram1() + machineTrim}}
+        <p>C) Tram Crease 2 = {{calcTram2() + machineTrim}}
+        <p>D) Chop Slit = {{calcTram1() + machineTrim}}
          <h3>Boss Check Measurements</h3>
-         <p>1) {{((calcTram1() *1))}}</p>
-         <p>2) {{((calcTram1() *1))+(calcTram2()*1)}}</p>
-         <p>3) {{((calcTram1() *1))+(calcTram2()*1)+(calcTram1() *1)}}</p>
+         <p>1) {{((calcTram1() *1))+ machineTrim}}</p>
+         <p>2) {{((calcTram1() *1))+(calcTram2()*1)+ machineTrim}}</p>
+         <p>3) {{((calcTram1() *1))+(calcTram2()*1)+(calcTram1() *1)+ machineTrim}}</p>
         </div>
         
          <div id='setup'>
