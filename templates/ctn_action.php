@@ -94,8 +94,9 @@ $customerName = (strtoupper($_POST['customerName']));
 $customerContact = (strtoupper($_POST['customerContact']));
 $salesMen = $_POST['salesMan'];
 
-$carton->addQuote($ref,$productRef,$style,$height,$length,$width,$qty,$deckle,$chop,$glueFlap,$finish,$grade,$category,$cost,$margin,$boardQty,$config,$flute,$breadth,$unitPrice,
-	$total,$date,$unitLabour,$unitSqm,$unitMaterials,$materialsTotal,$labourTotal,$totalSqm,$deliveryTotal,$fluteWidth,$customerName,$customerContact,$salesMen);
+$carton->addQuote($ref,$productRef,$style,$height,$length,$width,$qty,$deckle,$chop,$glueFlap,$finish,$grade,$category,$cost,$margin,$boardQty,$config,$flute,
+  $breadth,$unitPrice,$total,$date,$unitLabour,$unitSqm,$unitMaterials,$materialsTotal,$labourTotal,$totalSqm,$deliveryTotal,$fluteWidth, $customerName, 
+  $customerContact, $salesMen);
 header("location:?action=ctn_carton_specs");
 echo 'success';
 }

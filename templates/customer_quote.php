@@ -194,8 +194,8 @@ body *{
   <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
   <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
   <td class=xl662193 style='border-top:none;border-left:none'></td>
-  <td class=xl662193 style='border-top:none;border-left:none'>Total</td>
-  <td class=xl662193 style='border-top:none;border-left:none'>{{calcQuoteTotal()}}</td>
+  <td class=xl662193 style='border-top:none;border-left:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none'></td>
  </tr>
 
  <tr height=53 style='mso-height-source:userset;height:39.75pt'>

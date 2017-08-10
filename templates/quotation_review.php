@@ -301,10 +301,10 @@ tags will be replaced.-->
  </tr>
  <tr height=23 style='mso-height-source:userset;height:17.25pt'>
   <td height=23 class=xl6622046 style='height:17.25pt;border-top:none'><?php echo $date ?></td>
-  <td class=xl6622046 style='border-top:none;border-left:none'><input type="text" name="customerName"></td>
-  <td class=xl6622046><input type="text" name="customerContact"></td>
-  <td class=xl6622046><input type="ref" name="ref"></td>
-  <td class=xl6622046><select ng-model="selectedSalesman" ng-options="x.name for x in salesMen">
+  <td class=xl6622046 style='border-top:none;border-left:none'><input type="text" name="customerName" required></td>
+  <td class=xl6622046><input type="text" name="customerContact" required></td>
+  <td class=xl6622046><input type="ref" name="ref" required=""></td>
+  <td class=xl6622046><select ng-model="selectedSalesman" ng-options="x.name for x in salesMen" >
 
  </select>
  </td>
@@ -327,7 +327,7 @@ tags will be replaced.-->
  </tr>
  <tr height=23 style='mso-height-source:userset;height:17.25pt'>
   <td height=23 class=xl6822046 style='height:17.25pt'><?php echo $style . ' ' . $category ?></td>
-  <td class=xl6822046 style='border-left:none'><input type="productRef" name="productRef"></td></td>
+  <td class=xl6822046 style='border-left:none'><input type="productRef" name="productRef" required></td></td>
   <td class=xl6822046 style='border-left:none'><?php echo $length . 'x'. $width.'x'.$height  ?></td>
   <td class=xl6822046 style='border-left:none'><?php echo $grade ?></td>
   <td class=xl6822046 style='border-left:none'><?php echo $cost  ?></td>
@@ -460,10 +460,10 @@ tags will be replaced.-->
                             <input type="Hidden" name="labourTotal" value="'. $labourTotal .'">
                             <input type="Hidden" name="totalSqm" value="'. $totalSqm.'">
                             <input type="Hidden" name="deliveryTotal" value="'.$deliveryTotal .'">
-                             <input name="salesMan" value="{{selectedSalesman.name}}">';
+                             <input type="hidden" name="salesMan" value="{{selectedSalesman.name}}">';
   
                             ?>
-                            <button type="submit" name="saveQuote"> Save</button>
+                            <button type="submit" name="saveQuote" ng-click="register()" ng-disabled="saveQuote.$invalid"> Save</button>
 </form>
 
 <!--END OF OUTPUT FROM EXCEL PUBLISH AS WEB PAGE WIZARD -->

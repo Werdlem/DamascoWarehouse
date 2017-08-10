@@ -6,31 +6,56 @@ app.controller('styleController', function($scope, $http) {
     	margin: .10
     },
     {
+      ref: '20%',
     	margin: .20
     },
     {
+      ref: '30%',
      	margin: .30
      },
      {
+      ref: '40%',
      	margin:.40
      },
       {
+        ref: '50%',
      	margin: .50
      },
       {
+        ref: '60%',
      	margin: .60
      },
       {
+        ref: '70%',
      	margin: .70
      },
       {
+        ref: '80%',
      	margin: .80
      },
       {
+        ref: '90%',
      	margin: .90
      },
       {
+        ref: '100%',
      	margin: 1
+     },
+     {
+        ref: '125%',
+      margin: 1.25
+     },
+     {
+        ref: '150%',
+      margin: 1.5
+     },
+     {
+        ref: '175%',
+      margin: 1.75
+     },
+     {
+        ref: '200%',
+      margin: 2
      }];
 
      $scope.panelConfig=[{
@@ -277,8 +302,15 @@ $scope.calculateCostPerUnit = function(){
 
     //calculate total cost per unit (labour+margin+materials)
 
-    $scope.calcTotalCostPerUnit = function(){
+    $scope.calcSaleCostPerUnit = function(){
       var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour())/$scope.qty;
+          if(isNaN(res)){
+            return null;
+          }
+          return res;
+    };
+    $scope.calcTotalCostPerUnit = function(){
+      var res = ($scope.calculateCost() + $scope.calcLabour())/$scope.qty;
           if(isNaN(res)){
             return null;
           }
@@ -288,7 +320,7 @@ $scope.calculateCostPerUnit = function(){
     //calculate the total margin 
 
     $scope.calculateMargin = function(){
-      var res= $scope.calculateCost() * $scope.selectedMargin.margin;
+      var res= ($scope.calculateCost() + $scope.calcLabour()) * $scope.selectedMargin.margin;
       if(isNaN(res)){
         return null;
       }
@@ -298,7 +330,7 @@ $scope.calculateCostPerUnit = function(){
     //calculate margin per unit
 
     $scope.calcMarginPerUnit = function(){
-      var res= $scope.calculateCostPerUnit() * $scope.selectedMargin.margin;
+      var res= ($scope.calculateCostPerUnit() + $scope.calcLabourPerUnit()) * $scope.selectedMargin.margin;
       if(isNaN(res)){
         return null;
       }
@@ -308,6 +340,14 @@ $scope.calculateCostPerUnit = function(){
     // calculate total ex vat - total margin + total labour + total delivery + materials cost total
 
      $scope.calcTotal = function(){
+      var res = ($scope.calculateCost() + $scope.calcLabour());
+      if(isNaN(res)){
+        return null;
+      }
+      return res;
+    };
+
+     $scope.calcSaleCostTotal = function(){
       var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour()) + $scope.calcDelivery();
       if(isNaN(res)){
         return null;

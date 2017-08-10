@@ -127,7 +127,8 @@ display:
   border:.5pt solid windowtext;
   background:#F2F2F2;
   mso-pattern:black none;
-  white-space:nowrap;}
+  white-space:nowrap;
+  width: auto;}
 .xl6612069
   {padding-top:1px;
   padding-right:1px;
@@ -196,12 +197,12 @@ tags will be replaced.-->
   <td class=xl6612069 style='border-top:none;border-left:none'>{{selectedCarton.config}}</td>
   <td class=xl6512069 style='border-top:none;border-left:none'>Blank Size:</td>
   <td class=xl6612069 style='border-top:none;border-left:none'>{{selectedCarton.deckle + ' x ' + selectedCarton.chop}}</td>
-  <td class=xl6412069 style='border-top:none;border-right:none; border-bottom: none'></td>
-  <td class=xl6412069 style="border-right:.5pt solid white; border-bottom:.5pt solid white;border-left:none;"></td>
-  <td class=xl6412069 style="border-right:.5pt solid white; border-bottom:.5pt solid white;border-left:none;"></td>
-  <td class=xl6412069 style="border-right:.5pt solid white; border-bottom:.5pt solid white;border-left:none;"></td>
-  <td class=xl6412069 style="border-right:.5pt solid white; border-bottom:.5pt solid white;border-left:none;"></td>
-  <td class=xl6412069 style="border-right:.5pt solid white; border-bottom:.5pt solid white;border-left:none;"></td>
+   
+ </tr>
+ <tr height=20 style='height:25.0pt'>
+  <td class=xl6512069 colspan="2.5" style='border-top:none;'>Sheetboard Spec Details: </td>  
+  <td class=xl6612069 colspan="7" style="border-top:none;border-left:none; text-align: left; padding-left: 5px;">{{selectedCarton.deckle + ' x ' + selectedCarton.chop + 'MM '+ calcTram1() + '/' + calcTram2() + '/' + calcTram1() + ' ' + selectedCarton.grade + ' REF:'+ selectedCarton.ref +'BOARDB'}}</td>
+ 
  </tr>
  <![if supportMisalignedColumns]>
  <tr height=0 style='display:none'>
@@ -242,7 +243,7 @@ tags will be replaced.-->
         <h3>Boss Check Measurements</h3>
         <p>1) {{((selectedCarton.glueFlap * 1) + machineTrim )}}</p>
         <p>2) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + machineTrim }}</p>
-        <p>3) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1  }}</p>
+        <p>3) {{machineTrim + (((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1) -panelTrim }}</p>
          <div ng-show="selectedCarton.config == '4 Panel'">
         <p>4) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) }}</p>
         <p>5) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) + (calcJsDeckleWidth() *1)-panelTrim}}</p>
