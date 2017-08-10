@@ -2,6 +2,7 @@ var app = angular.module('quoteApp', []);
 app.controller('styleController', function($scope, $http) {
     
         $scope.margin =[{
+          ref: '10%',
     	margin: .10
     },
     {
@@ -64,9 +65,9 @@ app.controller('styleController', function($scope, $http) {
     $scope.today = new Date();
     $scope.panelTrim = 7;
     $scope.glueFlap = 40;
-    $scope.labour = 7.5;
+    $scope.labour = 10;
     $scope.date = new Date();
-    $scope.delivery = .40;
+    $scope.delivery = .45;
     $scope.math = window.Math;
     $scope.company=[{
                 name: "Postpack",
@@ -347,7 +348,7 @@ $scope.calculateCostPerUnit = function(){
     //calculate delivery per unit
 
     $scope.calcDelivery = function(){
-      var res = $scope.delivery * $scope.miles;
+      var res = $scope.delivery * $scope.miles * 2;
       if(isNaN(res)){
         return null;
       }
