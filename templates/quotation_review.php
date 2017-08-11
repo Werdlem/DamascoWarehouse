@@ -27,6 +27,11 @@ $labourTotal = $_POST['labourTotal'];
 $totalSqm = $_POST['totalSqm'];
 $deliveryTotal = $_POST['deliveryTotal'];
 $fluteWidth = $_POST['fluteWidth'];
+$unitTotal = $_POST['unitTotal'];
+$orderTotal = $_POST['orderTotal'];
+
+echo $unitTotal;
+echo $orderTotal;
 ?>
 
 <html xmlns:o="urn:schemas-microsoft-com:office:office"
@@ -363,7 +368,7 @@ tags will be replaced.-->
    <td class=xl6622046 style='border-top:none;border-left:none'><?php echo $margin ?></td>
   <td class=xl6622046 style='border-top:none;border-left:none'><?php echo $unitSqm ?></td>
   <td class=xl6622046 style='border-top:none;border-left:none'><?php echo $deckle .'x'.$chop  ?></td>
-  <td height=23 class=xl6622046 style='height:17.25pt'><?php echo $unitPrice ?></td>
+  <td height=23 class=xl6622046 style='height:17.25pt'><?php echo $unitTotal ?></td>
   <td class=xl6722046></td>
  </tr>
  <tr height=23 style='mso-height-source:userset;height:17.25pt'>
@@ -409,7 +414,7 @@ tags will be replaced.-->
   <td class=xl6722046></td>
  </tr>
  <tr height=23 style='mso-height-source:userset;height:17.25pt'>
-  <td height=23 class=xl6622046 style='height:17.25pt;border-top:none'><?php echo $total ?></td>
+  <td height=23 class=xl6622046 style='height:17.25pt;border-top:none'><?php echo $orderTotal ?></td>
   <td class=xl6722046></td>
   <td class=xl6722046></td>
   <td class=xl6722046></td>
@@ -460,7 +465,9 @@ tags will be replaced.-->
                             <input type="Hidden" name="labourTotal" value="'. $labourTotal .'">
                             <input type="Hidden" name="totalSqm" value="'. $totalSqm.'">
                             <input type="Hidden" name="deliveryTotal" value="'.$deliveryTotal .'">
-                             <input type="hidden" name="salesMan" value="{{selectedSalesman.name}}">';
+                             <input type="hidden" name="salesMan" value="{{selectedSalesman.name}}">
+                             <input type="Hidden" name="unitTotal" value="'. $unitTotal.'">
+                            <input type="Hidden" name="orderTotal" value="'.$orderTotal .'">';
   
                             ?>
                             <button type="submit" name="saveQuote" ng-click="register()" ng-disabled="saveQuote.$invalid"> Save</button>

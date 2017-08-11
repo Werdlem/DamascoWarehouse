@@ -145,12 +145,12 @@ public function addJob($ref,$initials, $style, $height, $width, $qty, $deckle, $
 }
 
 public function addQuote($ref,$productRef,$style,$height,$length,$width,$qty,$deckle,$chop,$glueFlap,$finish,$grade,$category,$cost,$margin,$boardQty,$config,$flute,
-  $breadth,$unitPrice,$total,$date,$unitLabour,$unitSqm,$unitMaterials,$materialsTotal,$labourTotal,$totalSqm,$deliveryTotal,$fluteWidth, $customerName, $customerContact, $salesMen){
+  $breadth,$unitPrice,$total,$date,$unitLabour,$unitSqm,$unitMaterials,$materialsTotal,$labourTotal,$totalSqm,$deliveryTotal,$fluteWidth, $customerName, $customerContact, $salesMen, $unitTotal, $orderTotal){
   $pdo = Database::DB();
   $stmt = $pdo->prepare('insert into ctn_quotes
     (ref,productRef,style,height,length,width,qty,deckle,chop,glueFlap,finish,grade,category,cost,margin,boardQty,config,flute,breadth,unitPrice,
-  total,date,unitLabour,unitSqm,unitMaterials,materialsTotal,labourTotal,totalSqm,deliveryTotal,fluteWidth, customerName, customerContact, salesMen)
-  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
+  total,date,unitLabour,unitSqm,unitMaterials,materialsTotal,labourTotal,totalSqm,deliveryTotal,fluteWidth, customerName, customerContact, salesMen, unitTotal, orderTotal)
+  values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)');
   $stmt->bindvalue(1, $ref);
   $stmt->bindvalue(2, $productRef);
   $stmt->bindvalue(3, $style);
@@ -184,6 +184,8 @@ public function addQuote($ref,$productRef,$style,$height,$length,$width,$qty,$de
   $stmt->bindvalue(31, $customerName);
   $stmt->bindvalue(32, $customerContact);
   $stmt->bindvalue(33, $salesMen);
+  $stmt->bindvalue(34, $unitTotal);
+  $stmt->bindvalue(35, $orderTotal);
   $stmt->execute();
 }
 

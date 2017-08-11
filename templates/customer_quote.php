@@ -98,6 +98,7 @@ body *{
   }
   #customer_quote, #customer_quote *, #footer-sig, #quote_headder, #greeting {
     visibility: visible;
+    display: ;
     align-content: center;
     zoom: 1.09;
 
@@ -184,8 +185,8 @@ body *{
   <td class=xl672193 style='border-top:none;border-left:none'>{{z.length + 'x' + z.width + 'x' + z.height}}</td>
   <td class=xl672193 style='border-top:none;border-left:none'>{{z.grade}}</td>
   <td class=xl672193 style='border-top:none;border-left:none'>{{z.qty}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{z.unitPrice}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{quoteTotal=z.total}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.unitTotal}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{quoteTotal=z.orderTotal}}</td>
 	</tr>
 
  <tr  height=20 style='height:15.0pt'>
@@ -626,7 +627,7 @@ tags will be replaced.-->
 </div>
 </div>
 
-<div id="customer_quote" style="visibility: hidden;" >
+<div id="customer_quote" style="display: none;" >
 <div id="quote_headder" >
 <img style="float: left;"">
 
@@ -709,8 +710,8 @@ tags will be replaced.-->
   <td class=xl672193 style='border-top:none;border-left:none'>{{z.length + 'x' + z.width + 'x' + z.height}}</td>
   <td class=xl672193 style='border-top:none;border-left:none'>{{z.grade}}</td>
   <td class=xl672193 style='border-top:none;border-left:none'>{{z.qty}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{z.unitPrice}}</td>
-  <td class=xl672193 style='border-top:none;border-left:none'>{{quoteTotal=z.total}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{z.unitTotal}}</td>
+  <td class=xl672193 style='border-top:none;border-left:none'>{{quoteTotal=z.orderTotal}}</td>
 	</tr>
 
  <tr  height=20 style='height:15.0pt'>
@@ -718,9 +719,9 @@ tags will be replaced.-->
   <td class=xl662193 style='border-top:none;border-left:none;border-right:none'>{{quoteTotal}}</td>
   <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
   <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
+  <td class=xl662193 style='border-top:none;border-left:none;border-right:none'></td>
   <td class=xl662193 style='border-top:none;border-left:none'></td>
-  <td class=xl662193 style='border-top:none;border-left:none'>Total</td>
-  <td class=xl662193 style='border-top:none;border-left:none'>{{calcQuoteTotal()}}</td>
  </tr>
 
  <tr height=53 style='mso-height-source:userset;height:39.75pt'>
