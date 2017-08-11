@@ -124,16 +124,16 @@ button{
 </div>
 <div id="material">
 <h3>Costing Specs</h3>
-<p><strong style="text-decoration: underline;">Unit Price</strong></p>
-<p><span ng-if="calcSqMperBox() !==null"> Square M per box:  {{calcSqMperBox() | number: 3}}</span></p>
-<p><span ng-if="calcLabourPerUnit() !==null">Labour per unit: {{calcLabourPerUnit() | currency: '£' }}</span></p>
-<p><span ng-if="calculateCostPerUnit() !==null">Material cost per unit: {{calculateCostPerUnit() | currency: '£' }}</span></p>
-<p><span ng-if="calcTotalCostPerUnit() !==null">Cost per unit: {{calcTotalCostPerUnit() | currency: '£' }}</span></p>
+<p><strong style="text-decoration: underline;">Per Unit</strong></p>
+<p><span ng-if="calcSqMperBox() !==null"> Square M:  {{calcSqMperBox() | number: 3 }}</span></p>
+<p><span ng-if="calcLabourPerUnit() !==null">Labour: {{calcLabourPerUnit() | currency: '£' }}</span></p>
+<p><span ng-if="calculateCostPerUnit() !==null">Materials: {{calculateCostPerUnit() | currency: '£' }}</span></p>
+<p><span ng-if="calcTotalCostPerUnit() !==null" ng-model="unitCostunit">Cost: {{calcTotalCostPerUnit() | currency: '£' }}</span></p>
 
-<p><strong style="text-decoration: underline;">Total Price</strong></p>
-<p><span ng-if="calcSqMperBoxQty() !== null">Total Square M:  {{calcSqMperBoxQty() | number : 3}}</span></p>
-<p><span ng-if="calcLabour() !==null">Total labour: {{calcLabour() | currency: '£' }}</span></p>
-<p><span ng-if="calcBoardCost() !== null">Materials Cost:  {{calcBoardCost() | currency: '£'}}</span>
+<p><strong style="text-decoration: underline;">Total Order</strong></p>
+<p><span ng-if="calcSqMperBoxQty() !== null">Square M:  {{calcSqMperBoxQty() | number: 3}}</span></p>
+<p><span ng-if="calcLabour() !==null">Labour: {{calcLabour() | currency: '£' }}</span></p>
+<p><span ng-if="calcBoardCost() !== null">Materials:  {{calcBoardCost() | currency: '£'}}</span>
 <p><span ng-if="calcTotal() !==null">Total: {{calcTotal() | currency: '£' }}</span></span></p>
 </p>
 
@@ -141,14 +141,15 @@ button{
 <div id="material">
 <h3>Sale Price</h3>
 <p><strong style="text-decoration: underline;">Unit Cost</strong></p>
-<p><span ng-if="calcMarginPerUnit() !==null">Margin per unit:{{calcMarginPerUnit() | currency: '£' }}</span></p>
-<p><span ng-if="calcSaleCostPerUnit() !==null">Cost per unit: {{calcSaleCostPerUnit() | currency: '£' }}</span>
+<p><span ng-if="calcMarginPerUnit() !==null">Margin:{{calcMarginPerUnit() | currency: '£' }}</span></p>
+<p><strong><span ng-if="calcSaleCostPerUnit() !==null">Total: {{calcSaleCostPerUnit() | currency: '£' }}</span></strong>
 </p>
 <p><strong style="text-decoration: underline;">Order Cost</strong></p>
-<p><span ng-if="calculateMargin() !==null">Total margin: {{calculateMargin() | currency: '£'}}</span>
+
+<p><span ng-if="calculateMargin() !==null">Margin: {{calculateMargin() | currency: '£'}}</span>
 </p>
 <p><span ng-if="calcDelivery() !==null">Delivery: {{calcDelivery() | currency: '£' }}</span></p>
-<p><span ng-if="calcSaleCostTotal() !==null">Total: {{calcSaleCostTotal() | currency: '£' }}</span></span></p>
+<p><strong><span ng-if="calcSaleCostTotal() !==null">Total: {{calcSaleCostTotal() | currency: '£' }}</span></strong></p>
 </div>
 </form>
 </span>
@@ -238,7 +239,7 @@ button{
                          <input type="Hidden" name="finish" value="{{selectedFinish.finish}}">
                         <input type="Hidden" name="grade" value="{{cartonGrade()}}">
                         <input type="Hidden" name="image" value="{{selectedStyle.image}}">
-                        <input type="Hidden" name="cost" value="{{cost | currency: '£'}}">
+                        <input type="Hidden" name="cost" value="{{cost }}">
                         <input type="Hidden" name="margin" value="{{(selectedMargin.margin * 100) + '%'}}">
                          <input type="Hidden" name="category" value="{{selectedCategory.category}}">
                           <input type="Hidden" name="boardQty" value="{{calQtyReq()}}">
@@ -250,10 +251,13 @@ button{
                             <input type="Hidden" name="unitSqm" value="{{calcSqMperBox() | number :3}}">
                             <input type="Hidden" name="unitMaterials" value="{{calculateCostPerUnit() | currency: '£'}}">
                             <input type="Hidden" name="total" value="{{calcTotal() | currency: '£'}}">
-                            <input type="Hidden" name="materialsTotal" value="{{calcBoardCost()|currency:'£'}}">
+                            <input type="Hidden" name="materialsTotal" value="{{calcBoardCost() | currency: '£'}}">
                             <input type="Hidden" name="labourTotal" value="{{calcLabour() |currency:'£'}}">
                             <input type="Hidden" name="totalSqm" value="{{calcSqMperBoxQty()|number: 4}}">
                             <input type="Hidden" name="deliveryTotal" value="{{calcDelivery()|currency: '£'}}">
+                            <input type="Hidden" name="unitTotal" value="{{calcSaleCostPerUnit()|currency: '£'}}">
+                            <input type="Hidden" name="orderTotal" value="{{calcSaleCostTotal()|currency: '£'}}">
+
 
                          
                           </form>
