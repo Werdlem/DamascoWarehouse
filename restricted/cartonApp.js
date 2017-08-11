@@ -297,13 +297,13 @@ $scope.calculateCostPerUnit = function(){
           if(isNaN(res)){
             return null;
           }
-          return res;
+          return Math.round(res * 100)/100;
     };
 
     //calculate total cost per unit (labour+margin+materials)
 
     $scope.calcSaleCostPerUnit = function(){
-      var res = ($scope.calculateCostPerUnit() + $scope.calculateMarginPerUnit()+ $scope.calcLabourPerUnit())/$scope.qty;
+      var res = $scope.calcTotalCostPerUnit() + $scope.calcMarginPerUnit();
           if(isNaN(res)){
             return null;
           }
