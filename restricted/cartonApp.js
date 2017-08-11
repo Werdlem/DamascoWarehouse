@@ -274,7 +274,7 @@ app.controller('styleController', function($scope, $http) {
 
      //calculate board cost for total sqm of carton
 $scope.calcBoardCost = function(){
-      var res = (($scope.cost /1000 ) * $scope.calcSqMperBoxQty());
+      var res = ($scope.calculateCostPerUnit() * $scope.qty);
       if(isNaN(res)){
         return null;
       }

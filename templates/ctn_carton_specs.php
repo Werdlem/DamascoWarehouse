@@ -125,7 +125,7 @@ button{
 <div id="material">
 <h3>Costing Specs</h3>
 <p><strong style="text-decoration: underline;">Per Unit</strong></p>
-<p><span ng-if="calcSqMperBox() !==null"> Square M:  {{calcSqMperBox() | number: 3 }}</span></p>
+<p><span ng-if="calcSqMperBox() !==null"> Square M:  {{calcSqMperBox() }}</span></p>
 <p><span ng-if="calcLabourPerUnit() !==null">Labour: {{calcLabourPerUnit() | currency: '£' }}</span></p>
 <p><span ng-if="calculateCostPerUnit() !==null">Materials: {{calculateCostPerUnit() | currency: '£' }}</span></p>
 <p><span ng-if="calcTotalCostPerUnit() !==null" >Cost: {{calcTotalCostPerUnit() | currency: '£' }}</span></p>
