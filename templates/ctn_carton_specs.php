@@ -146,10 +146,9 @@ button{
 </p>
 <p><strong style="text-decoration: underline;">Order Cost</strong></p>
 
-<p><span ng-if="calculateMargin() !==null">Margin: {{calculateMargin() | currency: '£'}}</span>
-</p>
-<p><span ng-if="calcDelivery() !==null">Delivery: {{calcDelivery() | currency: '£' }}</span></p>
+<p><span ng-if="calculateMargin() !==null">Margin: {{calculateMargin() | currency: '£'}}</span></p>
 <p><strong><span ng-if="calcSaleCostTotal() !==null">Total: {{calcSaleCostTotal() | currency: '£' }}</span></strong></p>
+<p><span ng-if="calcDelivery() !==null" style="color: red">Delivery: {{calcDelivery() | currency: '£' }}</span></p>
 </div>
 </form>
 </span>

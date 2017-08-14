@@ -2,8 +2,12 @@ var app = angular.module('quoteApp', []);
 app.controller('styleController', function($scope, $http) {
     
         $scope.margin =[{
+          ref: 'Nil',
+    	margin: 0
+    },
+    {
           ref: '10%',
-    	margin: .10
+      margin: .10
     },
     {
       ref: '20%',
@@ -348,7 +352,7 @@ $scope.calculateCostPerUnit = function(){
     };
 
      $scope.calcSaleCostTotal = function(){
-      var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour()) + $scope.calcDelivery();
+      var res = ($scope.calculateCost() + $scope.calculateMargin()+ $scope.calcLabour());
       if(isNaN(res)){
         return null;
       }
