@@ -186,6 +186,7 @@ button{
                         <input type="Hidden" name="breadth" value="{{selectedStyle.breadth}}">
                         <input type="Hidden" name="unitPrice" value="{{calcTotalCostPerUnit() | currency: '£'}}">
                         <input type="Hidden" name="total" value="{{calcTotal() | currency: '£'}}">
+                        <input type="hidden" name="color" value="{{selectedGrade.color}}">
                         <p><button type="submit" class="button-menu"> Add job</button></p>
                         </form>
 

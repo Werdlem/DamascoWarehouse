@@ -318,7 +318,7 @@ $scope.calculateCostPerUnit = function(){
           if(isNaN(res)){
             return null;
           }
-          return res;
+          return Math.round(res * 100)/100;
     };
 
     //calculate the total margin 
@@ -386,7 +386,7 @@ $scope.calculateCostPerUnit = function(){
       if(isNaN(res)){
         return res;
       }
-      return res;
+      return Math.round(res *100)/100;
     }
 
     //calculate delivery per unit

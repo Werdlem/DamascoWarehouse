@@ -29,6 +29,8 @@ $breadth = $_POST['breadth'];
 $unitPrice = $_POST['unitPrice'];
 $total = $_POST['total'];
 $flute = $_POST['flute'];
+$color = $_POST['color'];
+
 
 //add the fields found in the DB table to this page. print job sheet from this page. Posted vairables all need to be in <input>'s for the addJob DB function to work
 
@@ -63,6 +65,7 @@ $flute = $_POST['flute'];
                           <input type="HIDDEN" name="fluteWidth" value="<?php echo $fluteWidth ?>">
                            <input type="HIDDEN" name="breadth" value="<?php echo $breadth ?>">
                            <input type="HIDDEN" name="flute" value="<?php echo $flute ?>">
+                           <input type="HIDDEN" name="color" value="<?php echo $color ?>">
 
                     
  
