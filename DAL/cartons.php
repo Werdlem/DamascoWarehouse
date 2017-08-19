@@ -68,7 +68,8 @@ public function getCategories(){
 }
 public function getCartons(){
   $pdo = Database::DB();
-  $stmt = $pdo->prepare('select *
+  $stmt = $pdo->prepare('
+    select *
     from ctn_cartons
     ');
    $stmt->execute();
