@@ -11,7 +11,7 @@ include_once('./DAL/PDOConnection.php');
 $productDal = new products();
 
 if(isset($_GET['search'])){
-$new = $_GET['search'];
+$new = urldecode($_GET['search']);
 }
 else
 {

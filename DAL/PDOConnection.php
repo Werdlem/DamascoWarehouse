@@ -83,7 +83,7 @@ class products{
 		$stmt->execute();
 	}	
 
-	public function getProductionList(){
+	public function getProductionList($skuId){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
 			p.*,
@@ -94,11 +94,37 @@ class products{
 			where
 			p.stock_qty <= p.buffer_qty
 			
-			and allocation_id = 29
+			and allocation_id = :stmt
 			
 			group by p.sku_id
 			order by p.sku
 			');
+			$stmt->bindValue(':stmt', $skuId);
+			$stmt->execute();			
+		if($stmt->rowCount()>0){				
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			die('No Results to show');
+			}
+		}
+
+		public function getProductionStockList($skuId){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select
+			p.*,
+			max(gi.delivery_date) as delivery_date
+			from products p
+			  left join goods_in gi on gi.sku=p.sku
+			
+			where allocation_id = :stmt
+
+			and sku like"board%"
+			
+			group by p.sku_id
+			order by p.sku
+			');
+			$stmt->bindValue(':stmt', $skuId);
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -124,6 +150,7 @@ class products{
 		having qty_delivered <> 0.00
 		order by due_date desc
 		limit 20
+		
 		');
 	$stmt->bindValue(':sku', $sku);
 	$stmt->bindValue(':days', $days);
@@ -274,7 +301,7 @@ class products{
 		}
 		else{
 			die("<div class='alert alert-danger' role='alert'>The Product '".$fetch."' Could not be found. please click
-			<a href='?action=add_product_location&search=".$fetch."'>here</a> to add it to the database!</div></div></ br></br>");
+			<a href='?action=add_product_location&search=".urlencode($fetch)."'>here</a> to add it to the database!</div></div></ br></br>");
 			}
 	}
 	
