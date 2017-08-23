@@ -33,6 +33,7 @@
 
 <form action="?action=activity" method="post">
   <input type="text" placeholder="Search SKU" id="sku" name="search_sku" width="200px" autocomplete="off"/>
+  <input type="text" hidden placeholder="" id="sku_id" name="sku_id" width="200px" autocomplete="off"/>
     <button type="submit" value="Search">Search</button>
   <input type="hidden" name="doSearch" value="1">
 </form>

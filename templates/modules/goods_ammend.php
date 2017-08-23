@@ -45,7 +45,7 @@ $goods_out_movement = $productDal->get_Movement($sku_id);
      <td ><?php echo date('d/m/y', strtotime($result['date']))?></td>
       <td style="text-align:center"><?php echo $result['qty_out']?></td>
       <td style="text-align:center"><?php echo $result['qty_in']?></td>
-      <td style="text-align:center"><a href="?action=action&delete_entry&id=<?php echo $result['id'];?>&sku=<?php echo htmlspecialchars($result['sku']) ?>">X</a></td>       
+      <td style="text-align:center"><a href="?action=action&delete_entry&id=<?php echo $result['id'];?>&sku_id=<?php echo $result['sku_id'] ?>">X</a></td>       
   </tr>
        
 <?php }}

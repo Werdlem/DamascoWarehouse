@@ -118,8 +118,6 @@ class products{
 			  left join goods_in gi on gi.sku=p.sku
 			
 			where allocation_id = :stmt
-
-			and sku like"board%"
 			
 			group by p.sku_id
 			order by p.sku
@@ -260,19 +258,18 @@ class products{
 		}
 		
 
-	public function _get_products($sku1, $sku2){
+	public function _get_products($sku_id){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('select * 
 		from products
 		where
-		(sku = :sku1
-		or sku = :sku2	
-		
+		( sku_id = :sku_id
+				
 		)
 		
 		');
-	$stmt->bindValue(':sku1' , $sku1);
-	$stmt->bindValue(':sku2', $sku2);
+	$stmt->bindValue(':sku_id' , $sku_id);
+	
 	$stmt->execute();
 	if($stmt->rowCount()<0) {
 		echo '0';
@@ -305,13 +302,13 @@ class products{
 			}
 	}
 	
-	public function GetProducts($sku){
+	public function GetProducts($sku_id){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('Select *
 			from products
 			left join stock_allocation on products.allocation_id=stock_allocation.allocation_id
-			where sku = :stmt');
-		$stmt->bindValue(':stmt', $sku);
+			where sku_id = :stmt');
+		$stmt->bindValue(':stmt', $sku_id);
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -959,17 +956,17 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('select * ,
 			(select total from stk_allocation_totals where sku_id like :sku_id) as total_alloc,
-			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
+			(select sum(qty_received)as total from goods_in where sku like p.sku or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(SELECT  sum(qty_delivered)
 				FROM    goods_out
 					WHERE   due_date BETWEEN CURDATE() - INTERVAL 120 DAY AND CURDATE() and (sku = alias_1 
 							or sku = alias_2 
-							or sku like concat(nullif(products.sku,"")) 
+							or sku like concat(nullif(p.sku,"")) 
 							or sku Rlike concat (nullif(:wild,""))
 							or desc1sku = :stmt 
-							or desc1sku like concat(nullif(products.alias_1,"")) 
-							or desc1sku like concat(nullif(products.alias_2,""))
+							or desc1sku like concat(nullif(p.alias_1,"")) 
+							or desc1sku like concat(nullif(p.alias_2,""))
 							or desc1sku rlike concat(nullif(:wild,""))))
 							as last120,
 			
@@ -978,14 +975,14 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			sku = alias_1 
 			or sku = alias_2 
 			or sku Rlike concat (nullif(:wild,""))
-			or sku like concat(nullif(products.sku,"")) 
+			or sku like concat(nullif(p.sku,"")) 
 			or desc1sku = :stmt 
-			or desc1sku like concat(nullif(products.alias_1,"")) 
-			or desc1sku like concat(nullif(products.alias_2,""))
+			or desc1sku like concat(nullif(p.alias_1,"")) 
+			or desc1sku like concat(nullif(p.alias_2,""))
 			or desc1sku Rlike concat(nullif(:wild,"")))
 			as total_del_desc1				
-			from products
-			where sku like :stmt
+			from products p
+			where p.sku like :stmt
 		');
 		$stmt->bindValue(':stmt', $selection);
 		$stmt->bindValue(':wild', $sku_wildcard.'[^0A]');
@@ -995,7 +992,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			return $stmt->fetchAll(PDO::FETCH_ASSOC);
 			}
 		else{
-			 die ('That SKU does not exist! Please try again.');
+			 die ('That SKU does not exist!! Please try again.');
 			}
 	}
 // sku totals for activity.php
@@ -1004,17 +1001,17 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 	$pdo = Database::DB();
 	$stmt = $pdo->prepare('select * ,
 			(select total from stk_allocation_totals where sku_id like :sku_id) as total_alloc,
-			(select sum(qty_received)as total from goods_in where sku like :stmt or sku = alias_3) as total_rec,
+			(select sum(qty_received)as total from goods_in where sku like p.sku or sku = alias_3) as total_rec,
 			(select delivery_date from goods_in where sku like :stmt order by delivery_date desc LIMIT 1) as date_rec,
 			(SELECT  sum((qty_delivered) / (:days/ 30)) 
 				FROM    goods_out
 					WHERE   due_date BETWEEN CURDATE() - INTERVAL :days DAY AND CURDATE() and (sku = alias_1 
 							or sku = alias_2 
-							or sku like concat(nullif(products.sku,"")) 
+							or sku like concat(nullif(p.sku,"")) 
 							or sku Rlike concat (nullif(:wild,""))
 							or desc1sku = :stmt 
-							or desc1sku like concat(nullif(products.alias_1,"")) 
-							or desc1sku like concat(nullif(products.alias_2,""))
+							or desc1sku like concat(nullif(p.alias_1,"")) 
+							or desc1sku like concat(nullif(p.alias_2,""))
 							or desc1sku rlike concat(nullif(:wild,""))))
 							as last120,
 			
@@ -1023,14 +1020,14 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			sku = alias_1 
 			or sku = alias_2 
 			or sku Rlike concat (nullif(:wild,""))
-			or sku like concat(nullif(products.sku,"")) 
+			or sku like concat(nullif(p.sku,"")) 
 			or desc1sku = :stmt 
-			or desc1sku like concat(nullif(products.alias_1,"")) 
-			or desc1sku like concat(nullif(products.alias_2,""))
+			or desc1sku like concat(nullif(p.alias_1,"")) 
+			or desc1sku like concat(nullif(p.alias_2,""))
 			or desc1sku Rlike concat(nullif(:wild,"")))
 			as total_del_desc1				
-			from products
-			where sku like :stmt
+			from products p
+			where p.sku like :stmt
 		');
 		$stmt->bindValue(':stmt', $selection);
 		$stmt->bindValue(':wild', $sku_wildcard.'[^0A]');

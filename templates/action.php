@@ -291,7 +291,7 @@ if (isset($_GET['delete_entry'])){
 			$sku_id = $_GET['sku_id'];
 			
 			$delete_line = $productDal->delete_line($id);
-			header('location:? action=activity&sku='.$sku .'&sku_id='.$sku_id);
+			header('location:? action=activity&sku_id='.$sku_id);
 			}
 		
 	

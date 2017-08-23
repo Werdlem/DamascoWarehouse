@@ -3,8 +3,8 @@ include 'home.php';
 				require_once './DAL/PDOConnection.php';
 
 
-if(isset($_GET['sku'])){
-	$search_sku = $_GET['sku'];
+if(isset($_GET['sku_id'])){
+	$search_sku = urldecode($_GET['sku_id']);
 	$sku_id = $_GET['sku_id'];
 		if (!isset($_GET['days']))
 			{
@@ -18,23 +18,26 @@ if(isset($_GET['sku'])){
 if(isset($_POST['search_sku'])){
 	
 	if ($_POST['search_sku'] == ''){
-		die('<br /><div class="alert alert-danger" role="alert">Please enter a product SKU.');	
+		die('<br /><div class="alert alert-danger" role="alert">Please enter a product SKU!.');	
 		}		
 		else{		
-	$search_sku = $_POST['search_sku'];
+	$search_sku = urldecode($_POST['search_sku']);
+	$sku_id = $_POST['sku_id'];
 	$days = 120;
 	}
 }
 
+
+
 	$productDal = new products();
-	$sku = $productDal->_get_products($search_sku, $search_sku);
+	$sku = $productDal->_get_products($sku_id);
 
 echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
   
 foreach ($sku as $result){ 
 
 	$alias_3 = $result['alias_3'];
-$selection =$result['sku'];
+$selection = urldecode($result['sku']);
 $sku_id = $result['sku_id'];
 // assign (null) to empty wild card string returned should alias wild be and empty string
 		if ($result['alias_wild']==''){
@@ -66,11 +69,11 @@ Filter Monthly Average
 </div>
 <div class="panel-body">
 <p style="color: red"><strong>Ave per Month: '.$_ave.'*</p></strong> 
-<p><a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=30">1 Month </a>|
-<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=60">2 Months </a>|
-<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=90">3 Months </a>|
-<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=120">4 months</a> |
-<a href="?action=activity&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'&days=365">12 months</a></p>
+<p><a href="?action=activity&sku='.urlencode($result['sku']).'&sku_id='.$result['sku_id'].'&days=30">1 Month </a>|
+<a href="?action=activity&sku='.urlencode($result['sku']).'&sku_id='.$result['sku_id'].'&days=60">2 Months </a>|
+<a href="?action=activity&sku='.urlencode($result['sku']).'&sku_id='.$result['sku_id'].'&days=90">3 Months </a>|
+<a href="?action=activity&sku='.urlencode($result['sku']).'&sku_id='.$result['sku_id'].'&days=120">4 months</a> |
+<a href="?action=activity&sku='.urlencode($result['sku']).'&sku_id='.$result['sku_id'].'&days=365">12 months</a></p>
 <p>*Average number units sold per month for the last '.$days.' days</p>
 </div>
 </div>
