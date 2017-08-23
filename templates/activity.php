@@ -56,7 +56,7 @@ foreach ($goods_total as $result){
 	$_ave = number_format((float)$result['last120']);
 
 echo 
-'<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.$result['sku'].'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
+'<p><strong>SKU: </strong>'. htmlspecialchars($result['sku']) .' <a href="?action=update_product&sku='.urlencode($result['sku']).'&sku_id='.$result['sku_id'].'">(Edit)</a></p>
 <p><strong>Description:</strong> '.$result['description'].'</p>
 <p><strong>Alias 1:</strong> '.$result['alias_1'].'</p>
 <p><strong>Alias 2:</strong> '.$result['alias_2'].'</p>

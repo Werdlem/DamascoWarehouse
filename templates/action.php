@@ -57,7 +57,7 @@ if(isset($_POST['updates'])){
 	
 	$productDal->UpdateProduct($sku_id, $sku,$notes,$buffer_qty, $allocation_id, $supplier_name,$description, $alias_1, $alias_2, $alias_3,
 		$sku_wildcard,$pack_qty, $stock_qty, $ave);
-	header("location:?action=update_product&sku=".$sku."&sku_id=".$sku_id);
+	header("location:?action=update_product&sku=".urlencode($sku)."&sku_id=".$sku_id);
 }
 
 
@@ -112,10 +112,10 @@ $notes = nl2br($_POST['notes']);
 $stock_qty = $_POST['stock_qty'];
 $buffer_qty = $_POST['buffer_qty'];
 $description = nl2br($_POST['description']);
-$last_ordered = $_POST['last_ordered'];
+//$last_ordered = $_POST['last_ordered'];
 
-$productDal->Add_Sku($sku, $pack_qty, $alias_1, $alias_2, $alias_3, $allocation_id, $description, $stock_qty, $buffer_qty, $notes);
-header('location: ?action=update_product&sku='.$sku.'&sku_id=');
+$productDal->add_sku($sku, $pack_qty, $alias_1, $alias_2, $alias_3, $allocation_id, $description, $stock_qty, $buffer_qty, $notes);
+//header('location: ?action=search&doSearch=1&fetch='.$sku);
 }
 
 if(isset($_POST['update_location'])){
