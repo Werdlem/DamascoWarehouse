@@ -281,15 +281,15 @@ th {
         <th colspan="2">Step 1</th>
         </tr>
         <tr>
-        <th>A) Glue Flap Slot:</th>
+        <th>A) Glue Slot Depth:</th>
         <td>{{calcTram1()}}</td>
         </tr>
         <tr ng-show="selectedCarton.config =='4 Panel'">
-         <th> B) 4th Slot:</th>
+         <th> B) 4th Slot Depth:</th>
          <td>{{calcTram1()}}</td>
          </tr>
          <tr ng-hide="selectedCarton.config =='4 Panel'">
-         <th>B) 2nd Slot:</th>
+         <th>B) 2nd Slot Depth:</th>
          <td>{{calcTram1()}}</td>
          </tr>
          <tr>
