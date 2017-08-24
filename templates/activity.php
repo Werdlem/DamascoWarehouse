@@ -4,7 +4,7 @@ include 'home.php';
 
 
 if(isset($_GET['sku_id'])){
-	$search_sku = urldecode($_GET['sku_id']);
+	$search_sku = urldecode($_GET['sku']);
 	$sku_id = $_GET['sku_id'];
 		if (!isset($_GET['days']))
 			{
@@ -39,6 +39,7 @@ foreach ($sku as $result){
 	$alias_3 = $result['alias_3'];
 $selection = urldecode($result['sku']);
 $sku_id = $result['sku_id'];
+$search_sku = urldecode($result['sku']);
 // assign (null) to empty wild card string returned should alias wild be and empty string
 		if ($result['alias_wild']==''){
 		$sku_wildcard = '(null)';

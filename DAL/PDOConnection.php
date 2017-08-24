@@ -83,7 +83,7 @@ class products{
 		$stmt->execute();
 	}	
 
-	public function getProductionList($skuId){
+	public function getProductionList($carton, $board){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
 			p.*,
@@ -94,12 +94,14 @@ class products{
 			where
 			p.stock_qty <= p.buffer_qty
 			
-			and allocation_id = :stmt
+			and allocation_id = :carton
+			or allocation_id = :board
 			
 			group by p.sku_id
 			order by p.sku
 			');
-			$stmt->bindValue(':stmt', $skuId);
+			$stmt->bindValue(':carton', $carton);
+			$stmt->bindValue(':board', $board);
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -109,7 +111,7 @@ class products{
 			}
 		}
 
-		public function getProductionStockList($skuId){
+		public function getProductionStockList($board){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
 			p.*,
@@ -117,12 +119,14 @@ class products{
 			from products p
 			  left join goods_in gi on gi.sku=p.sku
 			
-			where allocation_id = :stmt
+			where allocation_id = :board
+
+			and p.stock_qty > 0
 			
 			group by p.sku_id
 			order by p.sku
 			');
-			$stmt->bindValue(':stmt', $skuId);
+			$stmt->bindValue(':board', $board);
 			$stmt->execute();			
 		if($stmt->rowCount()>0){				
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -1089,6 +1093,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
 			and not allocation_id = 29
+			and not allocation_id = 31
 			
 			group by p.sku_id
 

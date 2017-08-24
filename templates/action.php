@@ -41,16 +41,16 @@ if (isset($_GET['deleteShred'])){
 if(isset($_POST['updates'])){
     //UPDATE PRODUCT FORM SUBMITTED
 	$sku_id= $_POST['sku_id'];
-	$sku = $_POST['sku'];
+	$sku = strtoupper($_POST['sku']);
     $notes = nl2br($_POST['notes']);
 	$buffer_qty = $_POST['buffer_qty'];
 	$allocation_id = $_POST['allocation_id'];
 	$supplier_name = $_POST['supplier_name'];
 	$description = nl2br($_POST['description']);
-	$alias_1 = $_POST['alias_1'];
-	$alias_2 = $_POST['alias_2'];
-	$alias_3 = $_POST['alias_3'];
-	$sku_wildcard = $_POST['sku_wildcard'];
+	$alias_1 = strtoupper($_POST['alias_1']);
+	$alias_2 = strtoupper($_POST['alias_2']);
+	$alias_3 = strtoupper($_POST['alias_3']);
+	$sku_wildcard = strtoupper($_POST['sku_wildcard']);
 	$pack_qty = $_POST['pack_qty'];
 	$stock_qty = $_POST['stock_qty'];
 	$ave = $_POST['ave'];
@@ -291,7 +291,7 @@ if (isset($_GET['delete_entry'])){
 			$sku_id = $_GET['sku_id'];
 			
 			$delete_line = $productDal->delete_line($id);
-			header('location:? action=activity&sku_id='.$sku_id);
+			header('location:? action=activity&sku_id='.$sku_id.'&sku='.$sku);
 			}
 		
 	

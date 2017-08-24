@@ -1,9 +1,10 @@
 
 <?php require_once './DAL/PDOConnection.php';
 
-$skuId = 29;
+$carton = 29;
+$board = 31;
 $productDal = new products();
-$goods_total = $productDal->getProductionList($skuId);
+$goods_total = $productDal->getProductionList($carton, $board);
 
 // check to see if the page is posted back via the "Update button" then continue to load the rest of the page
 
