@@ -61,9 +61,6 @@ $goods_total = $productDal->getProductionList($carton, $board);
 
   </tr>
 </table>
-
-
-<!-- the overlay -->
-<div id="sheet" class="rounded">
- 
-<div class="overlay black">
+</form>
+</div>
+</div>

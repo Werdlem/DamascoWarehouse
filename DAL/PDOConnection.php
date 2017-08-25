@@ -107,7 +107,7 @@ class products{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else{
-			die('No Results to show');
+			die("<div class='alert alert-danger' role='alert'>Nothing to see here</div></div>");
 			}
 		}
 
@@ -132,7 +132,7 @@ class products{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else{
-			die('No Results to show');
+			die("<div class='alert alert-danger' role='alert' style='text-align: center'>Nothing to see here, all stock is gone!</div></div>");
 			}
 		}
 

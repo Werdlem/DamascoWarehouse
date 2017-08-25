@@ -236,11 +236,11 @@ th {
         </tr>
         <tr>
         <th>C) Tram Crease 2</th>
-        <td>{{calcTram2() + machineTrim}}</td>
+        <td>{{calcTram2()}}</td>
         </tr>
         <tr>
         <th>D) Chop Slit</th>
-        <td>{{calcTram1() + machineTrim}}</td>
+        <td>{{calcTram1()}}</td>
         </tr>
         <tr>
          <th colspan="2">Boss Check Measurements</th>
