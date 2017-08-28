@@ -11,8 +11,7 @@ $goods_total = $productDal->getProductionStockList($board);
 		?>
 <style>
       
-      .ordered{background-color: rgba(0,255,0,0.2);}
-      .not_ordered{background-color: rgba(255,0,0,0.1);}
+    
       
       </style>
 		
@@ -28,7 +27,7 @@ $goods_total = $productDal->getProductionStockList($board);
    		 <td style="font-size:16px"><strong>SKU</td></strong>
    		 <td style="font-size:16px"><strong>Last Ordered</td></strong>
     	 <td style="font-size:16px; text-align:center"><strong>SKU Total</td></strong>
-    	 <td style="font-size:16px; text-align:center; background-color: rgba(0,0,255,0.3);"><strong>Buffer Qty</td></strong>
+    	 
      	 
   	</tr>
   </td>
@@ -48,8 +47,8 @@ $goods_total = $productDal->getProductionStockList($board);
     $qty = $result['ave']-$result['buffer_qty'];
    
 		echo '<td style="text-align:center; "><strong style="color: red; ">'. $result['stock_qty'];
-		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.1); ">'. $result['buffer_qty'];
-   	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.htmlspecialchars($result['sku']) .'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>
+		
+   	echo '<td style="text-align:center;"><a href="?action=activity&sku='.htmlspecialchars($result['sku']) .'&sku_id=' .$result['sku_id'].'"class="btn btn-default btn-primary">Amend</a></td>
     </tr>
     </form>';
 						
