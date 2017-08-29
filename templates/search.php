@@ -11,6 +11,9 @@ require_once('./DAL/PDOConnection.php');
 .panel-success {
 	width:49%;
 }
+
+.ordered{background-color: rgba(0,255,0,0.2);padding: 2px; border-radius: 5px; border: 1px solid green}
+			.not_ordered{background-color: rgba(255,0,0,0.2); padding: 2px; border-radius: 5px; border: 1px solid red}
 </style>
   <div class="panel panel-success" style="float:left">
     <div class="panel panel-heading">
@@ -134,9 +137,9 @@ foreach ($goods_total as $total_sku){
 			}
 	} 
 	}
-	
+	$status = $result['last_order_date'] > $total_sku['date_rec']? 'ordered':'not_ordered'
 	?>
-               <p>Last Ordered: <strong><?php echo date('d/m/Y', strtotime($result['last_order_date']))?> </strong>
+               <p>Last Ordered: <strong><?php echo '<label class="'.$status.'">'. date('d/m/Y', strtotime($result['last_order_date'])).'</label>'?></strong>
                 <p>Notes: <?php echo $result['notes']?></p>
 				<?php
                 if(htmlspecialchars(!$result['sku'])){
