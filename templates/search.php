@@ -136,7 +136,7 @@ foreach ($goods_total as $total_sku){
 	}
 	
 	?>
-               <p>Last Ordered: <?php echo $result['last_order_date']?> 
+               <p>Last Ordered: <strong><?php echo date('d/m/Y', strtotime($result['last_order_date']))?> </strong>
                 <p>Notes: <?php echo $result['notes']?></p>
 				<?php
                 if(htmlspecialchars(!$result['sku'])){

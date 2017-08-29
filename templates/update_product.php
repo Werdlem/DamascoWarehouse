@@ -97,8 +97,8 @@ foreach ($goods_total as $result){
 				<input id="stock_qty" name="stock_qty" readonly="readonly" type="text" class="form-control" value="<?php echo $sku_total;}?>" />
 			</div>
 			<div>
-				<label for="last_ordered">Last Ordered</label>
-				<input id="last_ordered" name="last_ordered" type="text" class="form-control" readonly="readonly" style="width: 40%" value="<?php echo $productDetail['last_order_date']; ?>"/>
+				<label for="last_ordered">Last Ordered</label><strong>
+				<input id="last_ordered" name="last_ordered" type="text" class="form-control" readonly="readonly" style="width: 40%" value="<?php echo date('d/m/Y', strtotime($productDetail['last_order_date'])); ?>"/></strong>
 				
 			</div>
 					 
