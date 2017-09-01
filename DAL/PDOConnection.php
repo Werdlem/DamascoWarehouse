@@ -301,8 +301,8 @@ class products{
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
 		}
 		else{
-			die("<div class='alert alert-danger' role='alert'>The Product '".$fetch."' Could not be found. please click
-			<a href='?action=add_product_location&search=".urlencode($fetch)."'>here</a> to add it to the database!</div></div></ br></br>");
+			die ("<div class='alert alert-danger' role='alert' style='float:left; width:100%; text-align: center'>The Product '".$fetch."' Could not be found. please click
+			<a href='?action=add_product_location&search=".urlencode($fetch)."'>here</a> to add it to the database!</div></ br></br>");
 			}
 	}
 	
@@ -319,7 +319,7 @@ class products{
 		}
 		else{
 			die("<div class='alert alert-danger' role='alert'>The Product '".$sku."' Could not be found. please click
-			<a href='?action=add_product_location&search=".$sku."'>here</a> to add it to the database!</div></div></ br></br>");
+			<a href='?action=add_product_location&search=".$sku."'>here</a> to add it to the database!</div></ br></br>");
 			}
 	}
 	

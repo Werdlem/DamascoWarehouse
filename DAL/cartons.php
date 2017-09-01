@@ -71,6 +71,7 @@ public function getCartons(){
   $stmt = $pdo->prepare('
     select *
     from ctn_cartons
+    order by ref asc
     ');
    $stmt->execute();
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
