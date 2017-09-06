@@ -23,7 +23,7 @@
 	 $sku = $_GET['sku_order'];	
 	 $product = $_GET['sku_order'];
 	 $qty = $_GET['qty']; 
-	 $sku_id = $_GET['id']
+	 $sku_id = $_GET['id'];
 	 date_default_timezone_set('UTC');
 	$today = date('Y-m-d');
 
