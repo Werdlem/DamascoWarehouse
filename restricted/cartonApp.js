@@ -180,9 +180,10 @@ app.controller('styleController', function($scope, $http) {
       //Carton Grade Specs
 
     $scope.cartonGrade = function(){
+      var grade = $scope.selectedGrade.grade.substr(0, 4)+ '/' + $scope.selectedFlute.flute + '/' + $scope.selectedGrade.grade.substr(5, 4);
      
-        return($scope.selectedGrade.grade +'/'+ $scope.selectedFlute.flute +'/'+ $scope.selectedLiner.liner)
-     
+     return grade;
+           
     };
 
     //CALCULATE DECKLE
