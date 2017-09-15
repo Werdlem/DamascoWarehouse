@@ -50,7 +50,7 @@ $goods_total = $productDal->getProductionList($carton, $board);
    
 		echo '<td style="text-align:center; "><strong style="color: red; ">'. $result['stock_qty'];
 		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.1); ">'. $result['buffer_qty'];
-   	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.htmlspecialchars($result['sku']) .'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>
+   	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.htmlspecialchars($result['sku']) .'&id='.$result['sku_id'].'&qty=' .$result['pack_qty'].'"class="btn btn-default btn-primary">Order</a></td>
     </tr>
     </form>';
 						

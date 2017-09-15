@@ -111,7 +111,7 @@
 				echo "<div class='panel panel-danger'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Failure</h3></div>
 <div class='panel-body'>
-				<p>Your order of <strong style='red'><a href='?action=activity&sku=". $product ."'> ".$product." </strong> was not sent, please call the office with your order.</p>
+				<p>Your order of <strong style='red'><a href='?action=activity&sku=". $product ."&sku_id=".$sku_id."'> ".$product." </strong> was not sent, please call the office with your order.</p>
 				</div></div>";
 				
 				}
