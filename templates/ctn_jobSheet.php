@@ -160,7 +160,7 @@ th {
         <td>{{calcJsDeckleWidth()}} * if required</td>
         </tr>
         <tr>
-          <th class="name" colspan="2">Boss Check Measurements</th>
+          <th class="name" colspan="2" style="background-color: white">Boss Check Measurements</th>
         </tr>
         <tr>
         <th class="name">Boss 1)</th>
@@ -204,7 +204,7 @@ th {
         <p>D) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
         <p>E) Deckle Chop (W) = {{calcJsDeckleWidth()}} * if required</p>
         </div>
-        <h3>Boss Check Measurements</h3>
+        <h3 style="background-color: white">Boss Check Measurements</h3>
         <p>1) {{((selectedCarton.glueFlap * 1) + machineTrim )}}</p>
         <p>2) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + machineTrim }}</p>
         <div ng-show="selectedCarton.config == '2 Panel'">
@@ -243,7 +243,7 @@ th {
         <td>{{calcTram1()}}</td>
         </tr>
         <tr>
-         <th colspan="2">Boss Check Measurements</th>
+         <th colspan="2" style="background-color: white">Boss Check Measurements</th>
          </tr>
          <tr>
          <th>Boss 1)</th>
@@ -278,7 +278,7 @@ th {
           <th colspan="2">Slotter</th>
           </tr>
           <tr>
-        <th colspan="2">Step 1</th>
+        <th colspan="2" style="background-color: white">Step 1</th>
         </tr>
         <tr>
         <th>A) Glue Flap Slot Depth:</th>
@@ -293,7 +293,7 @@ th {
          <td>{{calcTram1()}}</td>
          </tr>
          <tr>
-        <th colspan="2">Step 2</th>
+        <th colspan="2" style="background-color: white">Step 2</th>
         </tr>
         <tr>
         <th>A) Slot 1</th>
@@ -307,6 +307,21 @@ th {
         <th>C) Slot 3</th>
         <td>{{chopSlotL()}}</td>
         </tr>
+        <tr>
+        <th colspan="2" style="background-color: white">Slot Check</th>
+        <tr>
+        <th>A) Slot 1</th>
+        <td>{{chopSlotL()}}</td>
+        </tr>
+        <tr>
+        <th>A) Slot 2</th>
+        <td>{{chopSlotL() + chopSlotW()}}</td>
+        </tr>
+        <tr>
+        <th>A) Slot 3</th>
+        <td>{{chopSlotL() + chopSlotW() + chopSlotL()}}</td>
+        </tr>
+
         </table>
 
          <div id='setup' style="display: none">
