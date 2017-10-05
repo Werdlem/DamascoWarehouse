@@ -1106,6 +1106,23 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			echo 'No Results to show';
 			}
 		}
+
+	public function Get_Foam_Report(){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select *
+				from foam_report
+				where buffer_qty > sku_total
+			');
+			$stmt->execute();			
+		if($stmt->rowCount()>0){				
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			echo 'No Results to show';
+			}
+		}
+
+		
 	////////////////////////// END ////////////////////////
 	
 	

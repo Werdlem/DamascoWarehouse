@@ -39,6 +39,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="?action=sheetboard">Goods In</a></li>
               <li><a href="?action=_stock_order_report">Low Stock Report</a></li>
+               <li><a href="?action=_foam_report">Low Foam Report</a></li>
               <li><a href="?action=stock_order_search">Sales Order Report</a></li>
               <li><a href="?action=production_home">Production Activity</a></li>
               <li><a href="?action=shredmaster">Shredmaster</a></li>
