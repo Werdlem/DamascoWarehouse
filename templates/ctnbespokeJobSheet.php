@@ -21,6 +21,7 @@ $margin = $_POST['margin'];
 $boardQty = $_POST['boardQty'];
 $config = $_POST['config'];
 $flute = $_POST['flute'];
+$breadth = 1;
 //VARIABLE CALCULATIONS
 $boss1 = ($glueFlap + 100);
 $boss2 = $boss1 + $deckleCreaseL;
@@ -31,6 +32,18 @@ $lengthF = $length + $flute;
 $widthF = $width + $flute;
 
 $internals = $length. 'x'. $width .'x'. $height;
+
+//CREASES
+$boss1 = 140;
+$boss2 = $boss1 + $deckleCreaseW;
+$boss3 = $boss2 + $deckleCreaseL;
+$boss4 = $boss3 + $deckleCreaseW;
+$boss5 = $boss4 + $deckleCreaseL - 7;
+
+//TRAMS
+$tram1 = $width * $breadth;
+$tram2 = $tram1
+
 ?>
 
 
@@ -135,15 +148,12 @@ th {
 </tr>
 <tr>
   <td class="name" style="border-bottom: ;">Config:</td>
-  <td class="data" style="border-bottom: ;">{{selectedCarton.config}}</td>
+  <td class="data" ng-model="selectedCarton.config" style="border-bottom: ;"><?php echo $config ?></td>
   <td class="name" style="border-bottom: ;">Sheet Size:</td>
-  <td class="data" style="border-bottom: ;">{{selectedCarton.deckle + ' x ' + selectedCarton.chop}}</td>
+  <td class="data" style="border-bottom: ;"><?php echo $deckle .'x'. $chop ?></td>
 </tr>
 
-<tr>
-  <td class="name">Sheetboard Spec Details:</td>
-  <td class="data" colspan="7" style="">{{selectedCarton.deckle + ' x ' + selectedCarton.chop + 'MM '+ calcTram1() + '/' + calcTram2() + '/' + calcTram1() + ' ' + selectedCarton.grade + ' REF:'+ selectedCarton.ref +'BOARD'+ selectedCarton.color.charAt(0)}}</td>
-</tr>
+
 </table>
 
 <input type="hidden" ng-model="width=selectedCarton.width" >
@@ -151,7 +161,7 @@ th {
          <input type="hidden" ng-model="height=selectedCarton.height">
          <input type="hidden" ng-model="flute=selectedCarton.fluteWidth">
 
-        <img src="{{selectedCarton.image}}" style="width: 100%; height: 80%; padding-bottom: 15px; padding-top: 10px">
+        <img src="<?php echo $image ?>" style="width: 100%; height: 80%; padding-bottom: 15px; padding-top: 10px">
 
         
         <table width="330px" style="margin-bottom: 20px; margin-right: 5px">
@@ -163,56 +173,56 @@ th {
         <td><img src="css/images/deckleDirection.png" style="width: 50%; height: 21.5%; float: left;"></td>
         </tr>
         <th class="name">A) Glue Flap Crease</th>
-        <td class="data"> {{(selectedCarton.glueFlap * 1) + machineTrim }}</td>
+        <td class="data"> 140</td>
         </tr>
         <tr>
         <th class="name">B) Deckle Crease (L)</th>
-        <td class="data"> {{calcJsDeckleLength()}}</td>
+        <td class="data"> <?php echo $deckleCreaseL ?></td>
         </tr>
         
-        <tr ng-hide="selectedCarton.config == '4 Panel'">
+        <tr ng-hide="<?php echo $config == '4 Panel'?>">
         <th class="name">C) Deckle Slit (W)</th>
-        <td class="data"> {{calcJsDeckleWidth()}}* if required</td>
+        <td class="data"> <?php echo $deckleCreaseW ?>* if required</td>
         </tr>
                
-        <tr ng-show="selectedCarton.config == '4 Panel'">
+        <tr ng-show="<?php echo $config == '4 Panel'?>">
         <th class="name">C) Deckle Crease (W)</th>
-        <td>{{calcJsDeckleWidth()}}</td>
+        <td><?php echo $deckleCreaseW ?></td>
         </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
+        <tr ng-show="<?php echo $config == '4 Panel'?>">
         <th class="name">D) Deckle Crease (L)</th>
-        <td>{{calcJsDeckleLength()}}</td>
+        <td><?php echo $deckleCreaseL ?></td>
         </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
+        <tr ng-show="<?php echo $config == '4 Panel'?>">
         <th class="name">E) Deckle Chop (W)</th>
-        <td>{{calcJsDeckleWidth()}} * if required</td>
+        <td><?php echo $chop ?> * if required</td>
         </tr>
         <tr>
           <th class="name" colspan="2">Boss Check Measurements</th>
         </tr>
         <tr>
         <th class="name">Boss 1)</th>
-        <td> {{((selectedCarton.glueFlap * 1) + machineTrim )}}</td>
+        <td> <?php echo $boss1 ?></td>
         </tr>
         <tr>
         <th class="name">Boss 2)</th>
-        <td> {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + machineTrim }}</td>
+        <td> <?php echo $boss2 ?></td>
         </tr>
-        <tr ng-show="selectedCarton.config == '2 Panel'">
+        <tr ng-show="<?php echo $config == '2 Panel'?>">
         <th class="name">Boss 3)</th>
-        <td> {{machineTrim + (((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1)- panelTrim}}</td>
+        <td> <?php echo $boss3 ?></td>
         </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
+        <tr ng-show="<?php echo $config == '4 Panel'?>">
         <th class="name">Boss 3)</th>
-        <td> {{machineTrim +(((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1)}}</td>
+        <td> <?php echo $boss3 ?></td>
         </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
+        <tr ng-show="<?php echo $config == '4 Panel'?>">
         <th class="name">Boss 4)</th>
-        <td>{{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) }}</td>
+        <td><?php echo $boss4 ?></td>
         </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
+        <tr ng-show="<?php echo $config == '4 Panel'?>">
         <th class="name">Boss 5)</th>
-        <td> {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) + (calcJsDeckleWidth() *1)-panelTrim}}</td>
+        <td> <?php echo $boss5 ?></td>
         </tr>
          
         </table>
@@ -260,7 +270,7 @@ th {
         </tr>
         <tr>
         <th>B) Tram Crease 1 </th>
-        <td> {{calcTram1() + machineTrim}}</td>
+        <td> <?php ?></td>
         </tr>
         <tr>
         <th>C) Tram Crease 2</th>
@@ -351,15 +361,7 @@ th {
        
         </div>
         </div>
-        <table style="margin-left: 5px">
-          <tr>
-            <th colspan="2">Step 4</th>
-          </tr>
-          <tr>
-          <th>Finish</th>
-          <td>{{selectedCarton.finish}}</td>
-          </tr>
-          </table>
+       
           </div>
 
                 </body>

@@ -110,16 +110,15 @@ th {
   <td class="data" style="border-bottom: ;">{{selectedCarton.config}}</td>
   <td class="name" style="border-bottom: ;">Sheet Size:</td>
   <td class="data" style="border-bottom: ;">{{selectedCarton.deckle + ' x ' + selectedCarton.chop}}</td>
-  <td class="name" style="border-bottom: ;">Finish</td>
-  <td class="data" style="border-bottom: ;">{{selectedCarton.finish}}</td>
 </tr>
 
 <tr>
   <td class="name">Sheetboard Spec Details:</td>
-  <td class="data" colspan="7" style="">{{selectedCarton.deckle + ' x ' + selectedCarton.chop + 'MM '+ calcTram1() + '/' + calcTram2() + '/' + calcTram1() + ' ' + selectedCarton.grade + ' REF:'+ selectedCarton.ref +'BOARD'+ selectedCarton.color.charAt(0)}}</td>
+  <td class="data" colspan="7" style="">{{cartonJsDeckleSpec() + ' x ' + cartonJsDeckleLength() + 'MM '+ calcTram1() + '/' + calcTram2() + '/' + calcTram1() + ' ' + selectedCarton.grade + ' REF:'+ selectedCarton.ref +'BOARD'+ selectedCarton.color.charAt(0)}}</td>
 </tr>
 </table>
-
+<input type="text" ng-model="selectedCarton.flute">
+<select type="text" ng-model="selectedFlute" ng-options="x.flute for x in flutes" ng-init="selectedFlute = selectedCarton.flute">
 <input type="hidden" ng-model="width=selectedCarton.width" >
          <input type="hidden" ng-model="length=selectedCarton.length">
          <input type="hidden" ng-model="height=selectedCarton.height">
@@ -146,7 +145,7 @@ th {
         
         <tr ng-hide="selectedCarton.config == '4 Panel'">
         <th class="name">C) Deckle Slit (W)</th>
-        <td class="data"> {{calcJsDeckleWidth() - panelTrim}}* if required</td>
+        <td class="data"> {{calcJsDeckleWidth()}}* if required</td>
         </tr>
                
         <tr ng-show="selectedCarton.config == '4 Panel'">
@@ -159,10 +158,10 @@ th {
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th class="name">E) Deckle Chop (W)</th>
-        <td>{{calcJsDeckleWidth()-panelTrim}} * if required</td>
+        <td>{{calcJsDeckleWidth()}} * if required</td>
         </tr>
         <tr>
-          <th class="name" colspan="2" style="background-color: white">Boss Check Measurements</th>
+          <th class="name" colspan="2">Boss Check Measurements</th>
         </tr>
         <tr>
         <th class="name">Boss 1)</th>
@@ -206,7 +205,7 @@ th {
         <p>D) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
         <p>E) Deckle Chop (W) = {{calcJsDeckleWidth()}} * if required</p>
         </div>
-        <h3 style="background-color: white">Boss Check Measurements</h3>
+        <h3>Boss Check Measurements</h3>
         <p>1) {{((selectedCarton.glueFlap * 1) + machineTrim )}}</p>
         <p>2) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + machineTrim }}</p>
         <div ng-show="selectedCarton.config == '2 Panel'">
@@ -245,7 +244,7 @@ th {
         <td>{{calcTram1()}}</td>
         </tr>
         <tr>
-         <th colspan="2" style="background-color: white">Boss Check Measurements</th>
+         <th colspan="2">Boss Check Measurements</th>
          </tr>
          <tr>
          <th>Boss 1)</th>
@@ -280,7 +279,7 @@ th {
           <th colspan="2">Slotter</th>
           </tr>
           <tr>
-        <th colspan="2" style="background-color: white">Step 1</th>
+        <th colspan="2">Step 1</th>
         </tr>
         <tr>
         <th>A) Glue Flap Slot Depth:</th>
@@ -295,7 +294,7 @@ th {
          <td>{{calcTram1()}}</td>
          </tr>
          <tr>
-        <th colspan="2" style="background-color: white">Step 2</th>
+        <th colspan="2">Step 2</th>
         </tr>
         <tr>
         <th>A) Slot 1</th>
@@ -309,36 +308,37 @@ th {
         <th>C) Slot 3</th>
         <td>{{chopSlotL()}}</td>
         </tr>
-        <tr>
-        <th colspan="2" style="background-color: white">Slot Check</th>
-        <tr>
-        <th>A) Slot 1</th>
-        <td>{{chopSlotL()}}</td>
-        </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
-        <th>B) Slot 2</th>
-        <td>{{chopSlotL() + chopSlotW()}}</td>
-        </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
-        <th>C) Slot 3</th>
-        <td>{{chopSlotL() + chopSlotW() + chopSlotL()}}</td>
-        </tr>
-
         </table>
+
+         <div id='setup' style="display: none">
+        <h3>Slotter</h3>
+        <h4>Step 1</h4>
+        <p>A) Glue Flap Slot: {{calcTram1()}}</p>
+         <p ng-show="selectedCarton.config =='4 Panel'">B) 4th Slot: {{calcTram1()}}</p>
+         <p ng-hide="selectedCarton.config =='4 Panel'">B) 2nd Slot: {{calcTram1()}}</p>
+        <h4>Step 2</h4>
+        <p>A) Slot 1 = {{chopSlotL()}}
+         <div ng-show="selectedCarton.config == '4 Panel'">
+        <p>B) Slot 2 = {{chopSlotW()}}
+        <p>C) Slot 3 = {{chopSlotL()}}
        
         </div>
-      
+        </div>
+        <table style="margin-left: 5px">
+          <tr>
+            <th colspan="2">Step 4</th>
+          </tr>
+          <tr>
+          <th>Finish</th>
+          <td>{{selectedCarton.finish}}</td>
+          </tr>
+          </table>
+          </div>
+
                 </body>
-                </p>
-                </p>
-                </div>
-                </p>
-                </div>
-                </tr>
-                </table>
 
 </html>
 
 
-<script src="/restricted/cartonApp.js"></script>
+<script src="/restricted/cartonAppV2.js"></script>
 
