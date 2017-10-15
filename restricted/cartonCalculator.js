@@ -94,11 +94,10 @@ panelW: 2
       return res;
      };
      $scope.calcCostPerUnit = function(){
+      
       var res = $scope.colourSelect.cost / $scope.calcQtyPerSheet();
-      if (isNaN(res)){
-        return null;
-      }
       return res;
+    
      };
      $scope.totalSheets = function(){
       var res = $scope.qty / $scope.calcQtyPerSheet()
