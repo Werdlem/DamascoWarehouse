@@ -45,6 +45,14 @@ colour: 'Blue',
 {
   colour: 'Silver',
   cost: 3.32
+},
+{
+  colour: 'Yellow',
+  cost: 2.46
+},
+{
+  colour: 'Lime Green',
+  cost: 2.28
 }];
 $scope.ctnConfig =[{
 config: "4 Panel",
