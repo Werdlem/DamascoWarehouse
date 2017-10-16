@@ -16,15 +16,35 @@ app.controller('ctnController', function($scope, $http) {
 
  $scope.ctnColour = [{
   colour: 'Black',
-  cost: 4.50
+  cost: 2.23
 },
 {
   colour: 'Red',
-  cost: 5.00
+  cost: 2.37636
 },
 {
 colour: 'Blue',
-  cost: 7.25
+  cost: 2.28
+},
+{
+  colour: 'Gold',
+  cost: 2.72
+},
+{
+  colour: 'Green',
+  cost: 2.40
+},
+{
+  colour: 'Orange',
+  cost: 2.44
+},
+{
+  colour: 'Pink',
+  cost: 2.769
+},
+{
+  colour: 'Silver',
+  cost: 3.32
 }];
 $scope.ctnConfig =[{
 config: "4 Panel",
