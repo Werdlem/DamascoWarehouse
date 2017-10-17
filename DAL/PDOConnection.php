@@ -1092,9 +1092,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			where
 			p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
-			and not allocation_id = 29
-			and not allocation_id = 31
-			
+			and allocation_id not in (29,31)			
 			group by p.sku_id
 
 			');
