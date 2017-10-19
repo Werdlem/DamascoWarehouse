@@ -934,8 +934,8 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild, $a
 			or desc1sku like concat(nullif(:stmt4,""))
 			or desc1sku Rlike concat(nullif(:stmt3,"")))
 			having qty_delivered <> "0.00"
-			and due_date > "2016-01-01"
-			order by due_date desc 
+			
+			order by order_date desc 
 			limit 20
 				
 		');
