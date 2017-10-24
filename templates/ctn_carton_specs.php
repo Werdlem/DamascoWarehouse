@@ -114,7 +114,7 @@ button{
 <div id="material" style="">
 <h3>Production Specs</h3>
 
-<p><span ng-if="calcChopCrease1() !==null">Chop Crease 1: {{calcChopCrease1()}}</span></p>
+<p><span ng-if="calcChopCrease1() !==null" ng-style="checkChopCrease1()">Chop Crease 1: {{calcChopCrease1()}}</span></p>
 <p><span ng-if="calcChopCrease1() !==null">Chop Crease 2: {{calcChopCrease2()}}</span></p>
 <p><span ng-if="glueFlap() !==null">Deckle Glue Flap: {{glueFlap()}}</span></p>
 <p><span ng-if="calcDeckleLength() !==null">Deckle Crease Length (L): {{calcDeckleLength()}}</span></p>

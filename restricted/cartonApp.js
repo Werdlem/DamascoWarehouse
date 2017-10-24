@@ -407,7 +407,16 @@ $scope.calculateCostPerUnit = function(){
         return null;
       }
       return Math.ceil(res);
-    };
+      }
+    // check whether Chop Crease 1 is greater than 600mm
+
+    $scope.checkChopCrease1 = function(){
+        var res = $scope.calcChopCrease1();
+
+      if((res) > 600){
+        return{ color: "red"}
+      }
+    }
 
     $scope.calcChopCrease2 = function(){
       var res = (($scope.selectedFlute.width *2) +(+$scope.height));
