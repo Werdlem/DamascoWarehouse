@@ -18,6 +18,17 @@ class Database
 
 class products{	
 
+	//DELETE CARTON
+
+	public function deleteCarton($cartonId){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('delete 
+			from ctn_cartons
+			where id = :stmt');
+		$stmt->bindValue(':stmt', $cartonId);
+		$stmt->execute();
+	}
+
 	//ADD PRODUCED CARTONS INTO STOCK
 
 

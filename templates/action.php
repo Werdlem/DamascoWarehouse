@@ -6,6 +6,14 @@ require_once('DAL/PDOConnection.php');
 
 $productDal = new products();
 
+//DELETE CARTON
+if (isset($_GET['deleteCarton'])){
+
+	$cartonId = $_GET['id'];
+	$productDal->deleteCarton($cartonId);
+	header("location:?action=ctn_jobSheet");
+}
+
 //PRODUTION LOG ACTIVITY
 if (isset($_GET['production_Add'])) {
 		$sku_id = $_GET['sku_id'];

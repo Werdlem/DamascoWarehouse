@@ -3,7 +3,7 @@
 <div class="options">
 
 <h3>Carton Select</h3>
-<p>Carton: <select style="float: right; width: 174px; height: 26px;" name="" ng-model="selectedCarton" ng-init="selectedCarton = cartons[0]" ng-options="x.ref for x in cartons" ></select></p>
+<p>Carton: <select style="float: right; width: 174px; height: 26px;" name="" ng-model="selectedCarton" ng-init="selectedCarton = cartons[0]" ng-options="x.ref for x in cartons"></select></p>
 </div>
 </div>
 <div id="jobSheetContainer" style="margin: 0 auto;">
@@ -93,6 +93,7 @@ th {
 <tr>
 <td class="name">Carton Ref:</td>
 <td class="data" colspan="4">{{selectedCarton.ref}}</td>
+<td class="delete" style="text-align: center"><a href="?action=action&deleteCarton&id={{selectedCarton.id}}">Delete</a></td>
 </tr>
  <tr>
 <td class="name">Date:</td>
