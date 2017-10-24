@@ -24,8 +24,8 @@ app.controller('boardController', function($scope,$http) {
   },
   {
     	flute: 'EB',
-      score: 1012,
-      sheets: 300,
+      score: 620,
+      sheets: 154,
   }];
 
   $scope.boardCalc = function(){
