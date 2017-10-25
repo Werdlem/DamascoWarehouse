@@ -121,9 +121,14 @@ panelW: 2
       }
       return res;
      };
+
+     $scope.calcLabourPerUnit = function(){
+      var res = $scope.calcLabour() / $scope.qty
+      return res;
+     }
      $scope.calcCostPerUnit = function(){
       
-      var res = $scope.colourSelect.cost / $scope.calcQtyPerSheet();
+      var res = ($scope.colourSelect.cost / $scope.calcQtyPerSheet())+ $scope.calcLabourPerUnit();
       return res;
     
      };
