@@ -8,7 +8,7 @@ if (isset($_GET['id'])){
 ?>
 <style>		
 	.ordered{background-color: rgba(0,255,0,0.2); }
-			.not_ordered{background-color: rgba(255,0,0,0.2); }
+			.not_ordered{}
 			
 </style>
 
@@ -68,25 +68,30 @@ if (isset($_GET['id'])){
     <td style="font-size:16px; text-align:center"><strong>Order</td>
   </tr>
   <?php
-foreach ($fetch as $result){ ?>
-  <tr style="">
-    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']).'&sku_id='.$result['sku_id'];?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
-   <td style="text-align:center"><?php if ($result['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($result['last_order_date']));} ?></td>
-    <?php
-$selection =$result['sku'];
+foreach ($fetch as $fetchResult){ 
+	$selection =$fetchResult['sku'];
 
 // assign (null) to empty wild card string returned should alias wild be and empty string
-		if ($result['alias_wild']==''){
+		if ($fetchResult['alias_wild']==''){
 		$sku_wildcard = '(null)';
 	}
 	else{
-		$sku_wildcard = $result['alias_wild'];
+		$sku_wildcard = $fetchResult['alias_wild'];
 	}
 	// end
-	$sku_id=$result['sku_id'];
+	$sku_id=$fetchResult['sku_id'];
 $goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard,$sku_id);
 
 foreach ($goods_total as $result){
+
+		$status = $fetchResult['last_order_date'] > $result['date_rec']? 'ordered': 'not_ordered';
+
+  echo "<tr class='$status'>";
+  ?>
+    <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($fetchResult['sku']).'&sku_id='.$fetchResult['sku_id'];?>"><?php echo htmlspecialchars($fetchResult['sku']); ?></a></td>
+   <td style="text-align:center"><?php if ($fetchResult['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($fetchResult['last_order_date']));} ?></td>
+    <?php
+
 
 	
 	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
