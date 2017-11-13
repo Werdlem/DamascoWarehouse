@@ -33,11 +33,11 @@ $sku = $productDal->GetProducts($sku_id);
 			</div>
 			<div style="width:50%; float: left;">
 				<label for="alias_1">Alias 1</label>
-				<input id="alias_1" name="alias_1" type="text" class="form-control"  value="<?php echo $productDetail['alias_1']; ?>"/>
+				<input id="alias_1" name="alias_1" type="text" class="form-control"  value="<?php echo htmlspecialchars($productDetail['alias_1']); ?>"/>
 			</div>
 			<div style="width:50%; margin-left:auto">
 				<label for="alias_2">Alias 2</label>
-				<input id="alias_2" name="alias_2" type="text" class="form-control" value="<?php echo $productDetail['alias_2'];?>" />
+				<input id="alias_2" name="alias_2" type="text" class="form-control" value="<?php echo htmlspecialchars($productDetail['alias_2']);?>" />
 			</div>
 			<div style="width:50%; float: left;">
 				<label for="alias_3">Goods In Alias SKU</label>
