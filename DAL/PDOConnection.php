@@ -945,11 +945,9 @@ public function get_Goods_Out_Sku($search_sku, $alias1, $alias2, $alias_wild, $a
 			or desc1sku like concat(nullif(:stmt4,""))
 			or desc1sku Rlike concat(nullif(:stmt3,"")))
 			having qty_delivered <> "0.00"
-			
 			order by order_date desc 
 			limit 20
-				
-		');
+			');
 		$stmt->bindValue(':stmt', $search_sku);
 		$stmt->bindValue(':stmt1', $alias1);
 		$stmt->bindValue(':stmt2', $alias2);
@@ -1103,7 +1101,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			where
 			p.stock_qty <= p.buffer_qty
 			and allocation_id > 0
-			and allocation_id not in (29,31)			
+			and allocation_id not in (29,31,9)			
 			group by p.sku_id
 
 			');
