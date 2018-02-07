@@ -92,7 +92,7 @@ app.controller('styleController', function($scope, $http) {
       }];  
     $scope.machineTrim = 100;
     $scope.today = new Date();
-    $scope.panelTrim = 7;
+    $scope.panelTrim = 3;
     $scope.glueFlap = 40;
     $scope.labour = 10;
     $scope.date = new Date();
