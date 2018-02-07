@@ -142,25 +142,25 @@ th {
         </tr>
         <tr>
         <th class="name">B) Deckle Crease (L)</th>
-        <td class="data"> {{calcJsDeckleLength()}}</td>
+        <td class="data"> {{calcJsDeckleWidth()}}</td>
         </tr>
         
         <tr ng-hide="selectedCarton.config == '4 Panel'">
         <th class="name">C) Deckle Slit (W)</th>
-        <td class="data"> {{calcJsDeckleWidth() - panelTrim}}* if required</td>
+        <td class="data"> {{calcJsDeckleLength() - panelTrim}}* if required</td>
         </tr>
                
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th class="name">C) Deckle Crease (W)</th>
-        <td>{{calcJsDeckleWidth()}}</td>
-        </tr>
-        <tr ng-show="selectedCarton.config == '4 Panel'">
-        <th class="name">D) Deckle Crease (L)</th>
         <td>{{calcJsDeckleLength()}}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
+        <th class="name">D) Deckle Crease (L)</th>
+        <td>{{calcJsDeckleWidth()}}</td>
+        </tr>
+        <tr ng-show="selectedCarton.config == '4 Panel'">
         <th class="name">E) Deckle Chop (W)</th>
-        <td>{{calcJsDeckleWidth()-panelTrim}} * if required</td>
+        <td>{{calcJsDeckleLength()-panelTrim}} * if required</td>
         </tr>
         <tr>
           <th class="name" colspan="2" style="background-color: white">Boss Check Measurements</th>
@@ -171,23 +171,23 @@ th {
         </tr>
         <tr>
         <th class="name">Boss 2)</th>
-        <td> {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + machineTrim }}</td>
+        <td> {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleWidth() *1) + machineTrim }}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '2 Panel'">
         <th class="name">Boss 3)</th>
-        <td> {{machineTrim + (((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1)- panelTrim}}</td>
+        <td> {{machineTrim + (((selectedCarton.glueFlap * 1) )+ (calcJsDeckleWidth() *1) + calcJsDeckleLength()*1)- panelTrim}}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th class="name">Boss 3)</th>
-        <td> {{machineTrim +(((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1)}}</td>
+        <td> {{machineTrim +(((selectedCarton.glueFlap * 1) )+ (calcJsDeckleWidth() *1) + calcJsDeckleLength()*1)}}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th class="name">Boss 4)</th>
-        <td>{{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) }}</td>
+        <td>{{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleWidth() *1) + (calcJsDeckleLength()*1) + (calcJsDeckleWidth() * 1) }}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th class="name">Boss 5)</th>
-        <td> {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) + (calcJsDeckleWidth() *1)-panelTrim}}</td>
+        <td> {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleWidth() *1) + (calcJsDeckleLength()*1) + (calcJsDeckleWidth() * 1) + (calcJsDeckleLength() *1)-panelTrim}}</td>
         </tr>
          
         </table>
@@ -300,29 +300,29 @@ th {
         </tr>
         <tr>
         <th>A) Slot 1</th>
-        <td>{{chopSlotL()}}</td>
+        <td>{{chopSlotW()}}</td>
         </tr>
          <tr ng-show="selectedCarton.config == '4 Panel'">
         <th>B) Slot 2</th>
-        <td>{{chopSlotW()}}</td>
+        <td>{{chopSlotL()}}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th>C) Slot 3</th>
-        <td>{{chopSlotL()}}</td>
+        <td>{{chopSlotW()}}</td>
         </tr>
         <tr>
         <th colspan="2" style="background-color: white">Slot Check</th>
         <tr>
         <th>A) Slot 1</th>
-        <td>{{chopSlotL()}}</td>
+        <td>{{chopSlotW()}}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th>B) Slot 2</th>
-        <td>{{chopSlotL() + chopSlotW()}}</td>
+        <td>{{chopSlotW() + chopSlotL()}}</td>
         </tr>
         <tr ng-show="selectedCarton.config == '4 Panel'">
         <th>C) Slot 3</th>
-        <td>{{chopSlotL() + chopSlotW() + chopSlotL()}}</td>
+        <td>{{chopSlotW() + chopSlotL() + chopSlotW()}}</td>
         </tr>
 
         </table>
