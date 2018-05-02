@@ -43,28 +43,13 @@ $sku = $productDal->GetProducts($sku_id);
 				<label for="alias_3">Goods In Alias SKU</label>
 				<input id="alias_3" name="alias_3" type="text" class="form-control" value="<?php echo $productDetail['alias_3'];?>" />
 			</div>
-			<!--Wild card alias entry for multi coloured products-->
-			 <?php 
-			 // disable the 'wildcard' text box for non logged in users
-		  if (!isset($_COOKIE['password'])){ echo '
-		  	<div style="width:50%; margin-left: auto; color: red; visibility: hidden">
-				<label for="sku_wildcard">Wild Card</label>
-				<input id="sku_wildcard" name="sku_wildcard" type="text" class="form-control" style="border: 1px solid red;" disabled value="'.
-				$productDetail['alias_wild'].'" />
-			</div>';
-		  }
-		  else{
-
-		  	// enable 'wildcard' text box for logged in users
-		  	echo '
+			
 		  	<div style="width:50%; margin-left: auto; color: red">
 				<label for="sku_wildcard">Wild Card</label>
-				<input id="sku_wildcard" name="sku_wildcard" type="text" class="form-control" style="border: 1px solid red;" value="'.
-				$productDetail['alias_wild'].'" />
-			</div>';
-		  }
-		  ?>
-			<!--END-->
+				<input id="sku_wildcard" name="sku_wildcard" type="text" class="form-control" style="border: 1px solid red;" value="<?php echo
+				$productDetail['alias_wild']?>" />
+			</div>
+		
 			<div style="width:32%; float:left">
 				<label for="pack_qty">Order Qty</label>
 				<input id="pack_qty" name="pack_qty" type="text" class="form-control" value="<?php echo $productDetail['pack_qty'];?>" />
