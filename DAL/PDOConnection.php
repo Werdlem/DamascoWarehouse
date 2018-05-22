@@ -1088,20 +1088,19 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			}
 		}
 		
-		// FETCH STOCK ORDER REPORT RESULTS FROM DB TABLE 'PRODUCTS' POPULATED WITH THE RESULTS CREATED WITH THE 'UPDATESTOCK' STORED PROCEDURE. THE STORED PROCEDURE NEEDS TO BE RUN WHEN EVER AN UPDATED LOW STOCK ORDER REPORT IS REQUIRED.
+		// LOW STOCK REPORT QUERY - FETCH STOCK ORDER REPORT RESULTS FROM DB TABLE 'PRODUCTS' POPULATED WITH THE RESULTS CREATED WITH THE 'UPDATESTOCK' STORED PROCEDURE. THE STORED PROCEDURE NEEDS TO BE RUN WHEN EVER AN UPDATED LOW STOCK ORDER REPORT IS REQUIRED. 
 		
 	public function get_stock_order_report(){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
 			p.*,
-			max(gi.delivery_date) as delivery_date
+			gi.delivery_date as delivery_date
 			from products p
-			  left join goods_in gi on gi.sku=p.sku
+			join _goods_in gi on gi.sku=p.sku
 			
 			where
-			p.stock_qty <= p.buffer_qty
-			and allocation_id > 0
-			and allocation_id not in (29,31,9)			
+			p.stock_qty <= p.buffer_qty			
+			and allocation_id not in (0, 29,31,9)			
 			group by p.sku_id
 
 			');
