@@ -16,11 +16,11 @@ app.controller('ctnController', function($scope, $http) {
 
  $scope.ctnColour = [{
   colour: 'Black',
-  cost: 2.23
+  cost: 2.80
 },
 {
   colour: 'Red',
-  cost: 2.37636
+  cost: 2.76
 },
 {
 colour: 'Blue',
@@ -48,7 +48,7 @@ colour: 'Blue',
 },
 {
   colour: 'Yellow',
-  cost: 2.46
+  cost: 2.70
 },
 {
   colour: 'Lime Green',
