@@ -38,7 +38,7 @@ if(isset($_POST['doSearch'])){
         <option>Drayton</option>
         <option>Sansetsu</option>
         <option>Smurfit Kappa</option>
-         <option> </option>
+        <option>Corrboard</option>
       </select>
       <input class="suppliers" name="date-from" value="<?php echo $dateFrom ?>" type="text" onfocus="(this.type='date')" />
       <input class="suppliers" name="date-to" value="<?php echo $dateTo ?>" type="text" onfocus="(this.type='date')" />
