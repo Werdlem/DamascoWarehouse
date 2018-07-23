@@ -34,7 +34,7 @@ app.controller('boardController', function($scope,$http) {
   		return 0;
   	}
   	return res;
-  }
+  };
 
   $http({
       method:'GET',
