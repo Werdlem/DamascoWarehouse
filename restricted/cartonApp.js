@@ -96,7 +96,7 @@ app.controller('styleController', function($scope, $http) {
     $scope.glueFlap = 40;
     $scope.labour = 10;
     $scope.date = new Date();
-    $scope.delivery = .45;
+    $scope.delivery = .60;
     $scope.math = window.Math;
     $scope.company=[{
                 name: "Postpack",
@@ -189,7 +189,7 @@ app.controller('styleController', function($scope, $http) {
     //CALCULATE DECKLE
 
       $scope.boardDeckle = function(){
-      var res =($scope.calcChopCrease1()* 2 +(+$scope.height) + (+$scope.selectedFlute.width * $scope.selectedStyle.creaseDeckle));      
+      var res =($scope.calcChopCrease1()* $scope.selectedStyle.creaseDeckle) +(+$scope.height) + (+$scope.selectedFlute.width * $scope.selectedStyle.creaseDeckle);      
       if(isNaN(res)){
         return null;
       }
