@@ -155,7 +155,11 @@ class products{
 				FROM    goods_out
 					WHERE   due_date BETWEEN CURDATE() - INTERVAL :days DAY AND CURDATE() and (sku = :sku 
 							or desc1sku = :sku))					
-							as ave
+							as ave,
+		(SELECT  sum((qty_delivered)) 
+				FROM    goods_out
+					WHERE   due_date BETWEEN CURDATE() - INTERVAL :days DAY AND CURDATE() and (sku = :sku 
+							or desc1sku = :sku)) as sold
 		from goods_out
 		where 
 		sku = :sku

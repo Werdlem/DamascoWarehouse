@@ -31,7 +31,8 @@ if(isset($_POST['search_sku'])){
 echo '<h1> SKU: '.strtoupper($search_sku).'</h1>';
 foreach ($sku as $result){ 
 	$ave = floor($result['ave']);
-	$total = number_format((float)$ave*($days/30));
+	//$total = number_format((float)$ave*($days/30));
+	$total = floor($result['sold']);
 }
 
 echo'
