@@ -121,22 +121,59 @@ th {
 </tr>
 </table>
 
+
+
 <input type="hidden" ng-model="width=selectedCarton.width" >
          <input type="hidden" ng-model="length=selectedCarton.length">
          <input type="hidden" ng-model="height=selectedCarton.height">
          <input type="hidden" ng-model="flute=selectedCarton.fluteWidth">
 
         <img src="{{selectedCarton.image}}" style="width: 100%; height: 80%; padding-bottom: 15px; padding-top: 10px">
+<div>
+<tr><th><select ng-model="selection">
+            <option value="leetex">Leetex</option>
+            <option value="autobox">Autobox</option>
+          </select>
+          </th></tr>
+        </div>
+        <br/>
 
-        
-        <table width="330px" style="margin-bottom: 20px; margin-right: 5px">
+          <!--AUTOBOX SETUP-->
+          <table width="330px" style="margin-bottom: 20px; margin-right: 5px" ng-show="selection=='autobox'">
+       <tr>
+       <th colspan="2" class="name">Autobox Manual Setup</th></tr>
+                 
+            
+        <th class="name">Panel 1</th>
+        <td class="data"> {{calcJsDeckleLength()}}</td>
+        </tr>
+        <tr>
+        <th class="name">Panel 2</th>
+        <td class="data"> {{calcJsDeckleWidth()}}</td>
+        </tr>
+
+        <th class="name">Panel 3</th>
+        <td class="data"> {{calcJsDeckleLength()}}</td>
+        </tr>
+
+        <tr>
+        <th class="name">Panel 4</th>
+        <td class="data"> {{calcJsDeckleWidth()-6}}</td>
+        </tr>
+        </table>
+
+
+        <!--LEETEX CARTON PRODUCTION SETUP-->
+        <table width="330px" style="margin-bottom: 20px; margin-right: 5px" ng-hide="selection=='autobox'">
        <tr>
        <th colspan="2" class="name">Slitter Creaser
         (Deckle Crease)</th></tr>
-        <tr>
+                 
+        <tr>         
         <th class="name">Feed Direction</th>
         <td><img src="css/images/deckleDirection.png" style="width: 50%; height: 21.5%; float: left;"></td>
         </tr>
+        
         <th class="name">A) Glue Flap Crease</th>
         <td class="data"> {{(selectedCarton.glueFlap * 1) + machineTrim }}</td>
         </tr>
@@ -162,6 +199,7 @@ th {
         <th class="name">E) Deckle Chop (W)</th>
         <td>{{calcJsDeckleLength()-panelTrim}} * if required</td>
         </tr>
+      
         <tr>
           <th class="name" colspan="2" style="background-color: white">Boss Check Measurements</th>
         </tr>
@@ -189,38 +227,10 @@ th {
         <th class="name">Boss 5)</th>
         <td> {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleWidth() *1) + (calcJsDeckleLength()*1) + (calcJsDeckleWidth() * 1) + (calcJsDeckleLength() *1)-panelTrim}}</td>
         </tr>
-         
-        </table>
-       
-<div id='setup' style="display: none">
-
-        <h3>Slitter Creaser</h3>
-        <div><img src="css/images/deckleDirection.png" style="width: 20%; height: 20%; float: right;"></div>
-        <p>(Deckle Crease)</p>
         
-        <p>A) Glue Flap Crease = {{(selectedCarton.glueFlap * 1) + machineTrim }} </p>
-        <p>B) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
-        <div ng-hide="selectedCarton.config == '4 Panel'">
-        <p>C) Deckle Slit (W) = {{calcJsDeckleWidth()}}</p>  </div>
-        <div ng-show="selectedCarton.config == '4 Panel'">
-        <p>C) Deckle Crease (W) = {{calcJsDeckleWidth()}}</p>        
-        <p>D) Deckle Crease (L) = {{calcJsDeckleLength()}}</p>
-        <p>E) Deckle Chop (W) = {{calcJsDeckleWidth()}} * if required</p>
-        </div>
-        <h3 style="background-color: white">Boss Check Measurements</h3>
-        <p>1) {{((selectedCarton.glueFlap * 1) + machineTrim )}}</p>
-        <p>2) {{((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + machineTrim }}</p>
-        <div ng-show="selectedCarton.config == '2 Panel'">
-        <p>3) {{machineTrim + (((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1)- panelTrim}}</p>
-        </div>
-        <div ng-show="selectedCarton.config == '4 Panel'">
-        <p>3) {{machineTrim +(((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + calcJsDeckleWidth()*1)}}</p>
-        <p>4) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) }}</p>
-        <p>5) {{machineTrim + ((selectedCarton.glueFlap * 1) )+ (calcJsDeckleLength() *1) + (calcJsDeckleWidth()*1) + (calcJsDeckleLength() * 1) + (calcJsDeckleWidth() *1)-panelTrim}}</p>
-        </div>
-        </div>
-
-        <table width="330px" style="margin-right: 5px">
+        </table>
+      
+        <table width="330px" style="margin-right: 5px" ng-hide="selection=='autobox'">
        <tr>
        <th colspan="2" class="name">Slitter Creaser
         (Tram Crease)</th>
@@ -276,7 +286,7 @@ th {
          <p>2) {{((calcTram1() *1))+(calcTram2()*1)+ machineTrim}}</p>
          <p>3) {{((calcTram1() *1))+(calcTram2()*1)+(calcTram1() *1)+ machineTrim}}</p>
         </div>
-        <table style="width: 280px" style="margin-right: 5px">
+        <table style="width: 280px" style="margin-right: 5px" ng-hide="selection=='autobox'">
         <tr>
           <th colspan="2">Slotter</th>
           </tr>
