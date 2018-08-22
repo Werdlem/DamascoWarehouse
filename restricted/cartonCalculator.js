@@ -68,7 +68,7 @@ panelW: 2
 }];
 
        $scope.calcBoardWidth = function(){
-      var res = (($scope.width * $scope.styleSelect.panelW) + ($scope.height *1)+12); 
+      var res = (($scope.width * $scope.styleSelect.panelW) + ($scope.height *1)+10); 
       if(isNaN(res)){
         return null;
       } 
@@ -80,7 +80,7 @@ panelW: 2
      };
 
      $scope.calcBoardLength = function(){
-      var res = (($scope.width * $scope.configSelect.panelW) + ($scope.length * $scope.configSelect.panelL) + 40+13);
+      var res = (($scope.width * $scope.configSelect.panelW) + ($scope.length * $scope.configSelect.panelL) + 40+9);
       if(isNaN(res)){
         return null;
       } 
