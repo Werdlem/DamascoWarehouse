@@ -31,9 +31,9 @@ $dates = $suppliers->getScheduledDates($date);
       ;
 			foreach ($dates as $result) {
 echo"<tr class='table' style=' border-bottom: thin dashed #CCC'>";
-echo "<td><a href='//damasco.web/goods-in/po/".$result['pop_id']."'>". $result['pop_id']."</a></td>";
+echo "<td><a href='//damasco.web/goods-in/po/".$result['order_id']."'>". $result['order_id']."</a></td>";
 	echo "<td>". $result['name']."</td>";
-	echo "<td>". date('H:i', strtotime($result['schedule_date']))."</td></tr>";
+	echo "<td>". date('H:i', strtotime($result['scheduledDate']))."</td></tr>";
 	
 }
 }?>

@@ -868,11 +868,11 @@ class products{
 	public function getScheduledDates($date){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('select *
-			from supplier_performance
+			from scheduled_deliveries
 			where
-			schedule_date like :date
-			group by pop_id
-			order by schedule_date asc');
+			scheduledDate like :date
+			group by order_id
+			order by scheduledDate asc');
 		$stmt->bindValue(':date', $date.'%');
 		$stmt->execute();
 		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
