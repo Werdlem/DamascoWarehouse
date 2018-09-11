@@ -154,22 +154,22 @@ class products{
 		(SELECT  sum((qty_delivered) / (:days/ 30)) 
 				FROM    goods_out
 					WHERE   due_date BETWEEN CURDATE() - INTERVAL :days DAY AND CURDATE() and (sku = :sku 
-							or desc1sku = :sku))					
+							or desc1sku like :sku))					
 							as ave,
 		(SELECT  sum((qty_delivered)) 
 				FROM    goods_out
 					WHERE   due_date BETWEEN CURDATE() - INTERVAL :days DAY AND CURDATE() and (sku = :sku 
-							or desc1sku = :sku)) as sold
+							or desc1sku like :sku)) as sold
 		from goods_out
 		where 
-		sku = :sku
-		or desc1sku = :sku
+		sku like :sku
+		or desc1sku like :sku
 		having qty_delivered <> 0.00
 		order by due_date desc
-		limit 20
+		
 		
 		');
-	$stmt->bindValue(':sku', $sku);
+	$stmt->bindValue(':sku',$sku.'%');
 	$stmt->bindValue(':days', $days);
 	$stmt->execute();
 	if($stmt->rowCount()>0){
@@ -858,6 +858,24 @@ class products{
 			//$stmt->bindValue(2, $sku);				
 			$stmt->execute();
 		$results = $stmt->fetch(PDO::FETCH_ASSOC);
+		{
+			return $results;		
+		}
+			}
+
+////Fetch scheduled deliveries for given date///
+
+	public function getScheduledDates($date){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('select *
+			from supplier_performance
+			where
+			schedule_date like :date
+			group by pop_id
+			order by schedule_date asc');
+		$stmt->bindValue(':date', $date.'%');
+		$stmt->execute();
+		$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 		{
 			return $results;		
 		}
