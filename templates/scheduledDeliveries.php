@@ -23,6 +23,7 @@ $dates = $suppliers->getScheduledDates($date);
         <tr class="heading" style="text-align:center">
         	<th>Order No</th>
         <th>Supplier</th>
+        <th>Due Date</th>
         <th>Scheduled Time</th>          
         </tr>
       </thead>
@@ -33,6 +34,7 @@ $dates = $suppliers->getScheduledDates($date);
 echo"<tr class='table' style=' border-bottom: thin dashed #CCC'>";
 echo "<td><a href='//damasco.web/goods-in/po/".$result['order_id']."'>". $result['order_id']."</a></td>";
 	echo "<td>". $result['name']."</td>";
+	echo "<td>". date('d-m-Y', strtotime($result['due_date']))."</td>";
 	echo "<td>". date('H:i', strtotime($result['scheduledDate']))."</td></tr>";
 	
 }
