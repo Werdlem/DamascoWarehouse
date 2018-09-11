@@ -871,7 +871,7 @@ class products{
 			from scheduled_deliveries
 			where
 			scheduledDate like :date
-			or due_date like :date
+			
 			group by order_id
 			order by scheduledDate asc');
 		$stmt->bindValue(':date', $date.'%');

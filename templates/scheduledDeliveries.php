@@ -3,6 +3,7 @@
 require_once './DAL/PDOConnection.php';
 $suppliers = new products;
 ?>
+<h1>Scheduled Deliveries</h1>
 <form method="post" action="?action=scheduledDeliveries">
 <input class="suppliers" name="date" type="text" onfocus="(this.type='date')" />
 <button type="submit" class="btn btn-large btn-success" name="submit">Search</button>
@@ -17,7 +18,7 @@ $dates = $suppliers->getScheduledDates($date);
 
 
 ?>
-<h2>Scheduled Date: <?php echo date('d/m/Y', strtotime($date))?></h2>
+<h3>Scheduled Date: <?php echo date('d/m/Y', strtotime($date))?></h3>
 <table width="100%" class="listing_table" >
       <thead>
         <tr class="heading" style="text-align:center">
@@ -47,3 +48,5 @@ echo "<td><a href='//damasco.web/goods-in/po/".$result['order_id']."'>". $result
 }?>
 </tbody>
 </table>
+</div>
+</div>
