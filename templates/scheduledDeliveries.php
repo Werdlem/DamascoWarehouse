@@ -35,7 +35,13 @@ echo"<tr class='table' style=' border-bottom: thin dashed #CCC'>";
 echo "<td><a href='//damasco.web/goods-in/po/".$result['order_id']."'>". $result['order_id']."</a></td>";
 	echo "<td>". $result['name']."</td>";
 	echo "<td>". date('d-m-Y', strtotime($result['due_date']))."</td>";
-	echo "<td>". date('H:i', strtotime($result['scheduledDate']))."</td></tr>";
+ if ($result['scheduledDate'] == NULL){
+		echo "<td></td>";
+	}
+	else 
+		{ 
+			echo "<td>".date('H:i', strtotime($result['scheduledDate']))."</td></tr>";
+		}
 	
 }
 }?>
