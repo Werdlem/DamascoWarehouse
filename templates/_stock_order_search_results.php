@@ -29,7 +29,7 @@ if($_POST['doSearch']==2){
 else{
 	$search = $_POST['search_order'];
 	$productDal = new products();
-	$order = $productDal->get_Order($search);
+	$order = $productDal->_get_Order($search);
 }
 }
 if ($_POST['doSearch']==3){ 
@@ -87,7 +87,7 @@ echo 		'<tr>
 			<td>'.$results['desc1sku'].'</td>
 			<td>'.number_format($results['qty']) . '</td>';
 			
-			$fetch = $productDal->_get_products($sku1, $sku2);
+			$fetch = $productDal->get_products($sku1, $sku2);
 
 			foreach ($fetch as $found){
 				 $status = $results['qty'] > $found['stock_qty']? 'low': 'ok';

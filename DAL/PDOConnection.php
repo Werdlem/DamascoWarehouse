@@ -18,6 +18,48 @@ class Database
 
 class products{	
 
+	//search current orders for stock shortages
+
+	public function get_products($sku1, $sku2){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('select * 
+		from products
+		where
+		sku = :sku
+		or alias_1 = :sku
+		or alias_2 = :sku
+		or sku = :sku2
+		or alias_1 = :sku2
+		or alias_2 = :sku2
+		');
+	$stmt->bindValue(':sku' , $sku1);
+	$stmt->bindValue(':sku2' , $sku2);
+	$stmt->execute();
+	if($stmt->rowCount()<0) {
+		echo '0';
+		}
+		else{
+			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+
+}
+
+public function _get_Order($search){
+		$pdo = Database::DB();
+		$stmt = $pdo->prepare('
+			select * from goods_out go 				
+				where order_id like :stmt
+		');
+		$stmt->bindValue(':stmt', "%".$search."%");
+		$stmt->execute();
+		if($stmt->rowCount()>0) {
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			die("<br/><div class='alert alert-danger' role='alert'>The order '".$search."' Could not be found. Please try again!</div></div></ br></br>");
+			}
+	}
+
 	//DELETE CARTON
 
 	public function deleteCarton($cartonId){
@@ -186,7 +228,7 @@ class products{
 	$stmt = $pdo->prepare('
 	select *
 	from goods_out
-	where order_date = (?)
+	where due_date = (?)
 	');
 	$stmt->bindValue(1, $date);
 	$stmt->execute();
@@ -235,6 +277,7 @@ class products{
 				and despatch_status <= 0.00
 				and qty_delivered >= 0.00
 				and due_date > "2017-01-01"
+				
 				order by due_date asc
 				
 		');
@@ -282,13 +325,9 @@ class products{
 	$stmt = $pdo->prepare('select * 
 		from products
 		where
-		( sku_id = :sku_id
-				
-		)
-		
+		sku_id = :sku_id
 		');
 	$stmt->bindValue(':sku_id' , $sku_id);
-	
 	$stmt->execute();
 	if($stmt->rowCount()<0) {
 		echo '0';
@@ -1122,7 +1161,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			left join _goods_in gi on gi.sku=p.sku			
 			where
 			p.stock_qty <= p.buffer_qty			
-			and allocation_id not in (0, 29,31,9)			
+			and allocation_id not in (0, 29,31)			
 			group by p.sku_id
 
 			');
