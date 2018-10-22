@@ -1161,7 +1161,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			left join _goods_in gi on gi.sku=p.sku			
 			where
 			p.stock_qty <= p.buffer_qty			
-			and allocation_id not in (0, 29,31)			
+			and allocation_id not in (0, 29,31,9)			
 			group by p.sku_id
 
 			');
