@@ -139,10 +139,9 @@ public function _get_Order($search){
 	public function getProductionList($carton, $board){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
-			p.*,
-			max(gi.delivery_date) as delivery_date
+			p.*
 			from products p
-			  left join goods_in gi on gi.sku=p.sku
+			  
 			
 			where
 			p.stock_qty <= p.buffer_qty
@@ -167,15 +166,14 @@ public function _get_Order($search){
 		public function getProductionStockList($board){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
-			p.*,
-			max(gi.delivery_date) as delivery_date
-			from products p
-			  left join goods_in gi on gi.sku=p.sku
+			*
+			from products p		 
 			
-			where allocation_id = :board
-
+			where (allocation_id = :board
+			or allocation_id = 29)
+			
 			and p.stock_qty > 0
-			
+
 			group by p.sku_id
 			order by p.sku
 			');
@@ -1161,7 +1159,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			left join _goods_in gi on gi.sku=p.sku			
 			where
 			p.stock_qty <= p.buffer_qty			
-			and allocation_id not in (0, 29,31,9)			
+			and allocation_id not in (0, 29,31,9,41)			
 			group by p.sku_id
 
 			');
