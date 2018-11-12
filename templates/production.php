@@ -35,13 +35,13 @@ $goods_total = $productDal->getProductionList($carton, $board);
   </td>
   <?php
   foreach ($goods_total as $result){
-	$status = $result['last_order_date'] > $result['delivery_date']? 'ordered': 'not_ordered';
+	//$status = $result['last_order_date'] > $result['delivery_date']? 'ordered': 'not_ordered';
   	
 			?>
       <form method="post" action="?action=action&production_Add&sku=<?php echo htmlspecialchars($result['sku'])?>&sku_id=<?php echo $result['sku_id'] ?>">
       <tr>
     <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']).'&sku_id='.$result['sku_id'];?>"><?php echo htmlspecialchars($result['sku']); ?></a></td>
-    <?php echo "<td class='$status'>";?>
+    <?php echo "<td>";?>
     <?php echo date('d-m-Y', strtotime($result['last_order_date']))?>
      </strong>
 		<?php 
