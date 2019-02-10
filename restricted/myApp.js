@@ -42,7 +42,83 @@ app.controller('boardController', function($scope,$http) {
     }).then(function(response){
       $scope.shredMaster=response.data;
     });
-
-
          
+});
+
+app.controller('autobox', function($scope){
+
+  $scope.styles=[{
+    style: '0201',
+    panel: 2
+
+  },
+  {
+    style: '0203',
+    panel: 1
+  }];
+
+  $scope.config=[{
+    config: '1 Piece',
+    panels: 4
+  },
+  {
+    config: '2 Piece',
+    panels: 2
+  }];
+
+  $scope.flutes=[{
+    flute: 'BC',
+    width: 6
+  },
+  {
+    flute: 'EB',
+    width: 4
+  },
+  {
+    flute: 'B',
+    width: 3
+  }];
+
+  $scope.blade1 = function(){
+    var b1 = ($scope.width/$scope.selectedStyle.panel)+$scope.selectedFlute.width;
+    return b1;
+  }
+
+  $scope.blade2 = function(){
+    var b2 = ($scope.height*1) + $scope.selectedFlute.width;
+    return b2;
+  }
+
+  $scope.panel1 = function(){
+    var p1 = (($scope.length*1) + ($scope.selectedFlute.width));
+    return p1
+  }
+
+   $scope.panel2 = function(){
+    var p2 = (($scope.width*1) + ($scope.selectedFlute.width));
+    return p2
+  }
+   
+   $scope.panel4 = function(){
+    var p4 = ($scope.width*1);
+    return p4
+  }
+
+  $scope.deckle = function(){
+    var dec = ($scope.blade1() *2)+$scope.blade2();
+    return dec;
+  }
+
+  $scope.chop = function(){
+    if($scope.selectedPanel.config == '2 Piece')
+    {
+    var chop = ($scope.panel1() + $scope.panel4())+30;
+    return chop;
+  }
+  else{
+    var chop = (($scope.panel1()*2) + ($scope.panel2() + $scope.panel4()))+30;
+    return chop;
+  }
+}
+
 });
