@@ -373,7 +373,7 @@ $scope.calculateCostPerUnit = function(){
     //calculate the labour * time taken for job
 
     $scope.calcLabour = function(){
-      var res = ($scope.labour * $scope.labourTime);
+      var res = ($scope.labour * $scope.calcTime());
       if(isNaN(res)){
         return res;
       }
@@ -383,7 +383,7 @@ $scope.calculateCostPerUnit = function(){
     //calculate labour per unit
 
      $scope.calcLabourPerUnit = function(){
-      var res = (($scope.labour * $scope.labourTime) / $scope.qty);
+      var res = (($scope.labour * $scope.calcTime()) / $scope.qty);
       if(isNaN(res)){
         return res;
       }

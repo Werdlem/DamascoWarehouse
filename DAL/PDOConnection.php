@@ -170,7 +170,7 @@ public function _get_Order($search){
 			from products p		 
 			
 			where (allocation_id = :board
-			or allocation_id = 29)
+			)
 			
 			and p.stock_qty > 0
 

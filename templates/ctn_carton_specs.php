@@ -95,7 +95,7 @@ button{
     <br />
 <h3>Costing</h3>
 <p>£ per KSqM: <input type="number" ng-model="cost" placeholder="pence"></p>
- <p>Labour: <input type="number" ng-model="labourTime" placeholder="hours"></p>
+ <p>Labour: <input type="number" ng-model="calcTime()" placeholder="hours">{{calcTime()}}</p>
 <p>Margin: <select style="float: right; width: 174px; height: 26px;" ng-model="selectedMargin" ng-options="x.ref for x in margin" ng-init="selectMargin = margin[0]" ></select></p>
 <p>Delivery: <input type="number" ng-model="miles" placeholder="Miles"></p>
 </div>
