@@ -1,4 +1,20 @@
 var app = angular.module('sheetBoard', []);
+
+app.controller('couriers', function($scope,$http){
+  $scope.search=()=>{
+  start = $scope.start;
+  end = $scope.end;
+$http({
+method: 'POST',
+url:'./jsonData/couriers.json.php',
+data:{start:start,end:end}
+}).then((response)=>{
+      this.getData=response.data;
+      });
+}
+});
+
+
 app.controller('boardController', function($scope,$http) {
     
         $scope.board =[{
@@ -120,5 +136,4 @@ app.controller('autobox', function($scope){
     return chop;
   }
 }
-
 });
