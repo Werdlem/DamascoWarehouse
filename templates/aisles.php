@@ -55,7 +55,7 @@ $productDal = new products;
             <td><?php echo htmlspecialchars($result['sku']);?></td>
             <td style="text-align: center; background-color:#d9edf7"><?php echo $result['stock_qty']; ?></td>
             <td>               
-            <a href="?action=update_product&sku=<?php echo htmlspecialchars($result['sku']); ?>&sku_id=<?php echo $result['sku_id'];?>">Details</a>
+            <a href="?action=activity&sku=<?php echo htmlspecialchars($result['sku']); ?>&sku_id=<?php echo $result['sku_id'];?>">Details</a>
             </td>
             
             <td>
