@@ -2,6 +2,7 @@
 			<p style="background-color: rgba(255,0,0,0.1);border: 1px solid rgba(255,0,0,0.3); border-radius: 4px">Below Buffer </p>
 			<p style="background-color: rgba(0,255,0,0.1);border: 1px solid rgba(0,255,0,0.3); border-radius: 4px ">On Order</p>
 			<p style="background-color: rgba(0,0,255,0.1);border: 1px solid rgba(0,0,255,0.3); border-radius: 4px ">In Stock</p>
+			<p style="border: 1px solid black; border-radius: 4px ">No Action</p>
 		</div>
 <?php require_once './DAL/PDOConnection.php';
 $productDal = new products();
