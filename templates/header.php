@@ -58,7 +58,7 @@
               <li><a href="?action=bespoke">Bespoke Carton</a></li>
              <li><a href="?action=ctn_calculator">Carton Calculator</a></li>
               <li><a href="?action=ctn_jobSheet">Job Sheets</a></li>
-               <li><a href="?action=production">Low Stock Production</a></li>
+               <li><a href="?action=_productionBoard">Low Stock Production</a></li>
                <li><a href="?action=production_stock_board">Production Board</a></li>
                 <li><a href="?action=customer_quote">Quotes</a></li>
         </ul>
