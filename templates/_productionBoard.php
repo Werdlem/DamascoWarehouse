@@ -1,4 +1,4 @@
-<div id="colourKey" style="width: 8%; padding-left: 5px; text-align: center; font-size: 1.5em;position: fixed; margin-left: -170px; font-weight: bold">
+<div id="colourKey" style="width: 8%; padding-left: 5px; text-align: center; font-size: 1.5em;position: fixed;font-weight: bold">
 			<p style="background-color: rgba(255,0,0,0.1);border: 1px solid rgba(255,0,0,0.3); border-radius: 4px">Below Buffer </p>
 			<p style="background-color: rgba(0,255,0,0.1);border: 1px solid rgba(0,255,0,0.3); border-radius: 4px ">On Order</p>
 			<p style="background-color: rgba(0,0,255,0.1);border: 1px solid rgba(0,0,255,0.3); border-radius: 4px ">In Stock</p>
@@ -36,7 +36,7 @@ else{
 			
 			</style>
 
-            <div class="panel panel-primary" style="width:100%; float:left;">
+            <div class="panel panel-primary" style="width:85%; float:right;">
 <div class="panel-heading" style="text-align:center;">
   <h3>Low Stock Report</h3>
 </div>
