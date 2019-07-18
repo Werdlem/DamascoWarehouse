@@ -1,7 +1,7 @@
 <div id="colourKey" style="width: 8%; padding-left: 5px; text-align: center; font-size: 1.5em;position: fixed; margin-left: -200px; font-weight: bold">
-			<p style="background-color: rgba(255,0,0,0.1)">Below Buffer </p>
-			<p style="background-color: rgba(0,255,0,0.1) ">On Order</p>
-			<p style="background-color: rgba(0,0,255,0.1) ">In Stock</p>
+			<p style="background-color: rgba(255,0,0,0.1);border: 1px solid rgba(255,0,0,0.3); border-radius: 4px">Below Buffer </p>
+			<p style="background-color: rgba(0,255,0,0.1);border: 1px solid rgba(0,255,0,0.3); border-radius: 4px ">On Order</p>
+			<p style="background-color: rgba(0,0,255,0.1);border: 1px solid rgba(0,0,255,0.3); border-radius: 4px ">In Stock</p>
 		</div>
 <?php require_once './DAL/PDOConnection.php';
 $productDal = new products();
