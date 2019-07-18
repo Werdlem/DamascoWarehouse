@@ -1,21 +1,24 @@
-<div id="colourKey" style="width: 8%; padding-left: 5px; text-align: center; font-size: 1.5em;position: fixed; margin-left: -200px; font-weight: bold">
+<div id="colourKey" style="width: 8%; padding-left: 5px; text-align: center; font-size: 1.5em;position: fixed; margin-left: -170px; font-weight: bold">
 			<p style="background-color: rgba(255,0,0,0.1);border: 1px solid rgba(255,0,0,0.3); border-radius: 4px">Below Buffer </p>
 			<p style="background-color: rgba(0,255,0,0.1);border: 1px solid rgba(0,255,0,0.3); border-radius: 4px ">On Order</p>
 			<p style="background-color: rgba(0,0,255,0.1);border: 1px solid rgba(0,0,255,0.3); border-radius: 4px ">In Stock</p>
 			<p style="border: 1px solid black; border-radius: 4px ">No Action</p>
+			<form action="?action=_productionBoard" method="post" location_id="Search">
+<input type="submit" class="btn btn-large btn-success" name="Submit" value="Update" />
+<input type="hidden" name="update" value="1">
 		</div>
 <?php require_once './DAL/PDOConnection.php';
 $productDal = new products();
-$goods_total = $productDal->getProductionBoard();
+$goods_total = $productDal->getProductionBoard();?>
 
-// check to see if the page is posted back via the "Update button" then continue to load the rest of the page
 
+<?php
 if(isset($_POST['update'])){
 	
 	if($_POST['update']==1)
 		{
 			$update = $productDal->sku_qty_update();
-			header("location:?action=_stock_order_report");
+			header("location:?action=_productionBoard");
 		}
 }
 else{
