@@ -12,7 +12,8 @@
 </head>
 
 <body>
-<script src="Jquery/jquery-ui.min.js"></script> 
+<script src="Jquery/jquery.min.js" type="text/javascript"></script> 
+<script src="Jquery/jquery-ui.min.js" type="text/javascript"></script> 
 <script src="js/bootstrap.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <style>
