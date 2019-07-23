@@ -107,10 +107,21 @@ foreach ($goods_total as $result){
 			 }
 			 </script> 
 			</div>
+						<!--auto fill materials relationship relationship -->
+
+						<script type="text/javascript">   
+	$(document).ready
+	(function(){ var ac_config = { source: "autoSelectRelationship.php", select: function(event, ui){ 
+	$("#relationship").val(ui.item.sku); 
+	$("#relation_id").val(ui.item.sku_id); },
+	minLength:1 }; 
+	$("#relationship").autocomplete(ac_config);}); 
+    </script>
 
 			<div style="width:50%; margin-left:auto">
-				<label for="supplier_name">Supplier</label>
-				<input id="supplier_name" name="supplier_name" type="text" class="form-control" value="<?php echo $productDetail['supplier_name']; ?>"/>
+				<label for="relationship">Relation</label>
+				<input id="relationship" name="relationship" class="form-control" type="text" value=""/>
+            <input id="id" name="id" class="auto" type="" value=""/></p>
 			</div>
 			<div>
 				<label for="notes">Notes</label>

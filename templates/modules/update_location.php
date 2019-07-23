@@ -20,8 +20,7 @@ foreach($id as $productDetail){
 
 ?>
 
-<script src="./Jquery/jquery.min.js" type="text/javascript"></script> 
-<script src="./Jquery/jquery-ui.min.js" type="text/javascript"></script>  
+ 
     <title>Product Update</title>
     </head>
     
