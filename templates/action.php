@@ -61,7 +61,7 @@ if(isset($_POST['updates'])){
 	$sku_wildcard = strtoupper($_POST['sku_wildcard']);
 	$pack_qty = $_POST['pack_qty'];
 	$stock_qty = $_POST['stock_qty'];
-	$ave = $_POST['ave'];
+	$ave = null;
 	$relation = $_POST['relationship'];
 	
 	$productDal->UpdateProduct($sku_id, $sku,$notes,$buffer_qty, $allocation_id, $supplier_name,$description, $alias_1, $alias_2, $alias_3,
