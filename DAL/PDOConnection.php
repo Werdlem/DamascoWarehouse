@@ -364,6 +364,7 @@ public function _get_Order($search){
 			left join stock_allocation on products.allocation_id=stock_allocation.allocation_id
 			where sku_id = :stmt');
 		$stmt->bindValue(':stmt', $sku_id);
+
 		$stmt->execute();
 		if($stmt->rowCount()>0) {
 		return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -425,7 +426,7 @@ public function _get_Order($search){
 			$sku_wildcard, $pack_qty, $stock_qty, $ave, $relation){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, alias_wild = :sku_wild, pack_qty = :pack_qty, stock_qty = :stock_qty, ave = :ave
+		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, alias_wild = :sku_wild, pack_qty = :pack_qty, stock_qty = :stock_qty, ave = :ave, relation = :relation
 		where sku_id = :sku_id');		
 		$stmt->bindValue(':sku', $sku);
 		$stmt->bindValue(':notes', $notes);
@@ -441,7 +442,7 @@ public function _get_Order($search){
 		$stmt->bindValue(':stock_qty', $stock_qty);
 		$stmt->bindValue(':sku_id', $sku_id);
 		$stmt->bindValue(':ave', $ave);
-		//$stmt->bindValue(':relation', $relation);
+		$stmt->bindValue(':relation', $relation);
 		$stmt->execute();
 		
 		}
@@ -1181,7 +1182,8 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			left join _goods_in gi on gi.sku=p.sku			
 			where
 			p.stock_qty <= p.buffer_qty			
-			and allocation_id = 29 or allocation_id = 31		
+			and allocation_id = 29
+			or p.sku = p.relation		
 			order by p.sku
 
 			');

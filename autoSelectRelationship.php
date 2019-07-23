@@ -14,7 +14,7 @@ if(isset($_GET['term'])){
 		$stmt->execute(array('term' => '%'.$_GET['term'].'%'));
 		foreach ($stmt as $result)
 		{
-			$result['value'] = $result['sku_id'];
+			$result['value'] = $result['sku'];
 			$result['label'] = "{$result['sku']}";
 			$matches[] = $result;
 			}

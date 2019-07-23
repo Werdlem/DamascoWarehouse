@@ -120,8 +120,8 @@ foreach ($goods_total as $result){
 
 			<div style="width:50%; margin-left:auto">
 				<label for="relationship">Relation</label>
-				<input id="relationship" name="relationship" class="form-control" type="text" value=""/>
-            <input id="id" name="id" class="auto" type="" value=""/></p>
+				<input id="relationship" name="relationship" class="form-control" type="text" value="<?php echo $productDetail['relation'] ?>"/><a href="?action=action&saveRelation&sku_id=<?php echo $productDetail['sku_id']?>">save</a>
+            <input id="id" name="id" class="auto" type="" hidden value=""/></p>
 			</div>
 			<div>
 				<label for="notes">Notes</label>

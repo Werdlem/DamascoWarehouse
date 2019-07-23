@@ -6,6 +6,13 @@ require_once('DAL/PDOConnection.php');
 
 $productDal = new products();
 
+if (isset($_GET['saveRelation'])){
+	echo 'add Save relation logic here';
+	$sku_id = $_GET['sku_id'];
+
+	echo $sku_id;
+}
+
 //DELETE CARTON
 if (isset($_GET['deleteCarton'])){
 
@@ -53,7 +60,7 @@ if(isset($_POST['updates'])){
     $notes = nl2br($_POST['notes']);
 	$buffer_qty = $_POST['buffer_qty'];
 	$allocation_id = $_POST['allocation_id'];
-	$supplier_name = $_POST['supplier_name'];
+	$supplier_name = null;
 	$description = nl2br($_POST['description']);
 	$alias_1 = strtoupper($_POST['alias_1']);
 	$alias_2 = strtoupper($_POST['alias_2']);
