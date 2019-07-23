@@ -140,8 +140,7 @@ public function _get_Order($search){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
 			p.*
-			from products p
-			  
+			from products p		  
 			
 			where
 			p.stock_qty <= p.buffer_qty
@@ -1161,6 +1160,28 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			p.stock_qty <= p.buffer_qty			
 			and allocation_id not in (0, 29,31,9,41)			
 			group by p.sku_id
+
+			');
+			$stmt->execute();			
+		if($stmt->rowCount()>0){				
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			echo 'No Results to show';
+			}
+		}
+
+		public function getProductionBoard(){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select
+			p.*,
+			gi.delivery_date as delivery_date
+			from products p
+			left join _goods_in gi on gi.sku=p.sku			
+			where
+			p.stock_qty <= p.buffer_qty			
+			and allocation_id = 29 or allocation_id = 31		
+			order by p.sku
 
 			');
 			$stmt->execute();			
