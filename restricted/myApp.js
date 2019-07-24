@@ -2,8 +2,10 @@ var app = angular.module('sheetBoard', []);
 
 app.controller('couriers', function($scope,$http){
   $scope.search=()=>{
-  start = $scope.start;
+
+    start = $scope.start;
   end = $scope.end;
+ // newDateStart = 
 $http({
 method: 'POST',
 url:'./jsonData/couriers.json.php',
@@ -65,13 +67,20 @@ app.controller('autobox', function($scope){
 
   $scope.styles=[{
     style: '0201',
-    panel: 2
+    panel: 2,
+    nPanel:1
 
   },
   {
     style: '0203',
-    panel: 1
-  }];
+    panel: 1,
+    nPanel:2
+  },
+  {
+  style: '0200',
+  panel: 2,
+  nPanel:0.5
+}];
 
   $scope.config=[{
     config: '1 Piece',
@@ -95,6 +104,10 @@ app.controller('autobox', function($scope){
     width: 3
   }];
 
+$scope.newDeckle = function(){
+  var dec = ($scope.width / $scope.selectedStyle.panel+($scope.height*1)+ ($scope.selectedFlute.width*2));
+  return dec;
+}
   $scope.blade1 = function(){
     var b1 = ($scope.width/$scope.selectedStyle.panel)+$scope.selectedFlute.width;
     return b1;
