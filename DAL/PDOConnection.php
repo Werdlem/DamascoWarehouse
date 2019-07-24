@@ -1183,7 +1183,8 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			where
 			p.stock_qty <= p.buffer_qty			
 			and allocation_id = 29
-			or p.sku = p.relation		
+			or allocation_id = 31
+			
 			order by p.sku
 
 			');
