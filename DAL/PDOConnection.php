@@ -704,7 +704,7 @@ public function _get_Order($search){
 			where stock_adjustment.sku_id like(?)
 			having date <> "0000-00-00"
 			order by date DESC
-			limit 10
+			
 			
 		');
 		$stmt->bindValue(1, $sku_id);
