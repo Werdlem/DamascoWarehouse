@@ -208,7 +208,7 @@ public function _get_Order($search){
 		
 		
 		');
-	$stmt->bindValue(':sku',$sku.'%');
+	$stmt->bindValue(':sku',$sku);
 	$stmt->bindValue(':days', $days);
 	$stmt->execute();
 	if($stmt->rowCount()>0){
@@ -1160,7 +1160,7 @@ public function Get_Sku_Total($selection, $sku_wildcard, $sku_id){
 			left join _goods_in gi on gi.sku=p.sku			
 			where
 			p.stock_qty <= p.buffer_qty			
-			and allocation_id not in (0, 29,31,9,41)			
+			and allocation_id not in (0, 29,31,9,41,48)			
 			group by p.sku_id
 
 			');
