@@ -162,6 +162,24 @@ public function _get_Order($search){
 			}
 		}
 
+		//GET SHEETBOARD SKU'S AND SIZES......FOR GARY!!!/////
+
+		public function getSheetboardList(){
+			$pdo = Database::DB();
+			$stmt = $pdo->prepare('select sku, description, supplier from goods_in
+where supplier like "DS%" or supplier like "%weedon%" and sku like "%board%"
+group by sku
+			');
+			//$stmt->bindValue(':board', $board);
+			$stmt->execute();			
+		if($stmt->rowCount()>0){				
+		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		}
+		else{
+			die("<div class='alert alert-danger' role='alert' style='text-align: center'>Nothing to see here, all stock is gone!</div></div>");
+			}
+		}
+
 		public function getProductionStockList($board){
 			$pdo = Database::DB();
 			$stmt = $pdo->prepare('select
