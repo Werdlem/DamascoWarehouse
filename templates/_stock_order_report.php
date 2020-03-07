@@ -61,6 +61,7 @@ else{
 
 ?>
   </tr>
+  <p> <strong>* NB: TO SET PRODUCT ORDER PRIORITY, PLEASE USE THE 'UPDATE PRODUCTS' PAGE BY CLICKING ON THE SKU AND THEN CLICKING EDIT!!</strong></p>
 </table>
 </div>
 </div>
