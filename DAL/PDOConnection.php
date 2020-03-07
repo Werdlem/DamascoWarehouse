@@ -18,6 +18,21 @@ class Database
 
 class products{	
 
+	//set parent id
+
+	public function setParent($parentId, $sku){
+	$pdo = Database::DB();
+	$stmt = $pdo->prepare('update products		
+		set parentId = :parentId
+		where
+		sku = :sku		
+		');
+	$stmt->bindValue(':parentId', $parentId);
+	$stmt->bindValue(':sku', $sku);
+	$stmt->execute();
+}
+
+
 	//search current orders for stock shortages
 
 	public function get_products($sku1, $sku2){

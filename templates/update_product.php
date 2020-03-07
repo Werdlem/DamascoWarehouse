@@ -2,7 +2,7 @@
 
 include 'search.php';
 
-require_once('DAL/PDOConnection.php');
+
 
 $productDal = new products();
 
@@ -14,6 +14,28 @@ $sku = $productDal->GetProducts($sku_id);
 	foreach($sku as $productDetail){
 		
 ?>
+<h3>Set Parent Product</h2>
+<script type="text/javascript">   
+	$(document).ready
+	(function(){ var ac_config = { source: "autoSelect.php", select: function(event, ui){ 
+	$("#sku").val(ui.item.sku); 
+	$("#sku_id").val(ui.item.sku_id); },
+	minLength:1 }; 
+	$("#sku").autocomplete(ac_config);}); 
+	
+	$(function() {
+  $("#sku").focus();
+});
+    </script>
+<form action="?action=action&setParent" method="post">
+  <input type="text" placeholder="Search SKU" id="sku" name="search_sku" width="200px" autocomplete="off"/>
+   <input type="text" hidden placeholder="" id="sku_id" name="sku_id" width="200px" autocomplete="off"/>
+    <button type="submit" value="Search">Set Parent</button>
+    <input type="text" id="sku" hidden name="sku" width="200px" value="<?php echo  htmlspecialchars($productDetail['sku']);?>">
+    <input type="text" id="skuId" hidden name="skuId" width="200px" value="<?php echo  htmlspecialchars($productDetail['sku_id']);?>">
+  <input type="hidden" name="doSearch" value="1">
+</form>
+    <br>
 
 <div class="panel panel-primary" style="width:49%; float:left">
 	<div class="panel-heading" style="text-align:center;">
@@ -24,9 +46,10 @@ $sku = $productDal->GetProducts($sku_id);
 			<div>
 				<label for="sku">Product</label>
 				<input id="sku" name="sku" type="text" class="form-control" value="<?php echo htmlspecialchars($productDetail['sku']); ?>"/>
-				<a href="?action=sku_details&sku=<?php echo $productDetail['sku']?>"> follow </a>
-				<input id="sku_id" name="sku_id" type="hidden" value="<?php echo $productDetail['sku_id']; ?> "
-				<span id="notesInfo"></span> </div>
+			</div>
+			<div>
+				</div>
+
 			<div>
 				<label for="description">Description</label>
 				<textarea id="description" name="description" type="text" class="form-control" rows="1"><?php echo  str_replace('<br />','',$productDetail['description']); ?></textarea>
@@ -110,16 +133,7 @@ foreach ($goods_total as $result){
 			</div>
 						<!--auto fill materials relationship relationship -->
 
-						<script type="text/javascript">   
-	$(document).ready
-	(function(){ var ac_config = { source: "autoSelectRelationship.php", select: function(event, ui){ 
-	$("#relationship").val(ui.item.sku); 
-	$("#relation_id").val(ui.item.sku_id); },
-	minLength:1 }; 
-	$("#relationship").autocomplete(ac_config);}); 
-    </script>
-
-			<div style="width:50%; margin-left:auto">
+		<div style="width:50%; margin-left:auto">
 				<label for="priority">Priority</label>
 				
 				<select ng-model="selectPriority">
@@ -145,6 +159,7 @@ foreach ($goods_total as $result){
 	<?php }?>
 </div>
 <?php
+require_once('DAL/PDOConnection.php');
 include 'modules/location_list.php';
 include 'modules/update_location.php';
 

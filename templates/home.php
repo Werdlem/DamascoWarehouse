@@ -10,14 +10,13 @@
 <script src="./Jquery/jquery-ui.min.js" type="text/javascript"></script>  
 
 <title>Damasco Warehouse Control</title>
-</head>
-<body>
-<div id="wrapper">
+
 <script src="Jquery/jquery-ui.min.js"></script> 
 <script src="js/bootstrap.js"></script>
 <title>Untitled Document</title>
 </head>
-
+<body>
+	<div id="wrapper">
 <script type="text/javascript">   
 	$(document).ready
 	(function(){ var ac_config = { source: "autoSelect.php", select: function(event, ui){ 
@@ -37,3 +36,5 @@
     <button type="submit" value="Search">Search</button>
   <input type="hidden" name="doSearch" value="1">
 </form>
+</div>
+</body>

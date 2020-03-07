@@ -6,6 +6,19 @@ require_once('DAL/PDOConnection.php');
 
 $productDal = new products();
 
+//SET PRODUCT PARENT
+
+if (isset($_GET['setParent'])) {
+	$parentId = $_POST['sku_id'];
+	$sku = $_POST['sku'];
+	$skuId = $_POST['skuId'];
+
+	echo $parentId;
+	echo $sku;
+	$productDal->setParent($parentId,$sku);
+	header("location:?action=update_product&sku=".$sku."&sku_id=".$skuId);
+}
+
 if (isset($_GET['saveRelation'])){
 	echo 'add Save relation logic here';
 	$sku_id = $_GET['sku_id'];
