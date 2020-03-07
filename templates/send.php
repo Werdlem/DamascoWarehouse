@@ -26,6 +26,7 @@
 	 $product = $_GET['sku_order'];
 	 $qty = $_GET['qty']; 
 	 $sku_id = $_GET['id'];
+	 $priority = $_GET['priority'];
 	 date_default_timezone_set('UTC');
 	 $today = date('Y-m-d');
 
@@ -64,7 +65,7 @@
 			$transport = Swift_MailTransport::newInstance('smtp.gmail.com', 465);
 			$mailer = Swift_Mailer::newInstance($transport);			
 			$message = Swift_Message::newInstance('Please Order')
-			->setSubject('Product Order: ' .$product)
+			->setSubject('Product Order: ' .$product.'-'.$priority)
 			->setFrom($EMAIL_ORDERS_PU)
 			->setCc($EMAIL_ORDERS_PU)
 			->setTo($EMAIL_ORDERS_TO)
@@ -93,7 +94,7 @@
 				echo "<div class='panel panel-success'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Success!</h3></div>
 <div class='panel-body'>
-				Your order of ".$product . " has been successfully sent, have a nice day :-D"
+				Your order of ".$product .'-'.$priority." has been successfully sent, have a nice day :-D"
 				?>
 				
 				<button onclick='goBack()'>Go Back</button>
@@ -111,7 +112,7 @@
 				echo "<div class='panel panel-danger'>
 <div class='panel-heading' style='text-align:center;'><h3>Order Failure</h3></div>
 <div class='panel-body'>
-				<p>Your order of <strong style='red'><a href='?action=activity&sku=". $product ."&sku_id=".$sku_id."'> ".$product." </strong> was not sent, please call the office with your order.</p>
+				<p>Your order of <strong style='red'><a href='?action=activity&sku=". $product ."&sku_id=".$sku_id."'> ".$product.'-'.$priority." </a></strong> was not sent, please call the office with your order.</p>
 				</div></div>";
 				
 				}

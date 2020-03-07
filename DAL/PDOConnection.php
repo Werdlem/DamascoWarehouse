@@ -363,6 +363,7 @@ group by sku
 			left join location 
 			on location.sku_id=products.sku_id
 			where (sku like :stmt) or (alias_1 like :stmt) or (alias_2 like :stmt)
+			
 		');
 		$stmt->bindValue(':stmt', "%".$fetch."%");		
 		$stmt->execute();

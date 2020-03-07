@@ -105,6 +105,7 @@ foreach ($goods_total as $result){
 			 var x = document.getElementById("allocation_id").value;
 			 
 			 }
+			
 			 </script> 
 			</div>
 						<!--auto fill materials relationship relationship -->
@@ -119,8 +120,16 @@ foreach ($goods_total as $result){
     </script>
 
 			<div style="width:50%; margin-left:auto">
-				<label for="relationship">Relation</label>
-				<input id="relationship" name="relationship" class="form-control" type="text" value="<?php echo $productDetail['relation'] ?>"/><a href="?action=action&saveRelation&sku_id=<?php echo $productDetail['sku_id']?>">save</a>
+				<label for="priority">Priority</label>
+				
+				<select ng-model="selectPriority">
+				<option id='pri' value="NORMAL">Normal</option>
+				<option id='pri' value="HIGH">High</option>
+			</select>
+			<?php 
+					$pri = '{{selectPriority}}';
+			?>
+			
             <input id="id" name="id" class="auto" type="" hidden value=""/></p>
 			</div>
 			<div>
@@ -129,7 +138,7 @@ foreach ($goods_total as $result){
 			</div>
 			<br/>
 			<button id="updates" class="btn btn-large btn-primary" name="updates" type="submit">Update</button>
-			<a href="?action=send&sku_order=<?php echo htmlspecialchars($productDetail['sku']);?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>" class="btn btn-large btn-primary">Order</a>
+			<a href="?action=send&sku_order=<?php echo htmlspecialchars($productDetail['sku']);?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>&priority=<?php echo $pri ?>" class="btn btn-large btn-primary" ng-show="selectPriority">Order</a>
 		</form>
 		<a href="?action=activity&sku=<?php echo urlencode($productDetail['sku']).'&sku_id='.$productDetail['sku_id'] ?>">Activity</a>
 	</div>

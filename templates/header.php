@@ -10,7 +10,7 @@
 
 <title>Damasco Warehouse Control</title>
 </head>
-
+<div ng-controller="boardController as board" ng-app="sheetBoard">
 <body>
 <script src="Jquery/jquery.min.js" type="text/javascript"></script> 
 <script src="Jquery/jquery-ui.min.js" type="text/javascript"></script> 
