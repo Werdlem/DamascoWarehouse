@@ -1,5 +1,9 @@
 var app = angular.module('sheetBoard', []);
 
+app.controller('productSearch', function($scope,$http){
+  
+})
+
 app.controller('couriers', function($scope,$http){
   $scope.search=()=>{
 
