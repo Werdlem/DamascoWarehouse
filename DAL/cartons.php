@@ -18,6 +18,28 @@ class Database
 
 class carton{ 
 
+  //search for sku using angular
+
+  public function getSku($sku){
+     $pdo = Database::DB();
+  $stmt = $pdo->prepare('select *
+    from products p
+    left join
+    location l on
+    p.sku_id = l.sku_id
+    where 
+    p.sku like :sku
+    group by p.sku
+    ');
+  $stmt->bindValue(':sku', '%'.$sku.'%');
+   $stmt->execute();
+  $results =  $stmt->fetchAll(PDO::FETCH_ASSOC); 
+  {
+    return $results;
+  }
+}
+
+
   //search the goods out table for products not saved on the products table
   public function getStyles(){
   $pdo = Database::DB();

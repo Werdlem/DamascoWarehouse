@@ -10,7 +10,7 @@
 
 <title>Damasco Warehouse Control</title>
 </head>
-<div ng-controller="boardController as board" ng-app="sheetBoard">
+
 <body>
 <script src="Jquery/jquery.min.js" type="text/javascript"></script> 
 <script src="Jquery/jquery-ui.min.js" type="text/javascript"></script> 
@@ -62,7 +62,7 @@
               <li><a href="?action=ctn_jobSheet">Job Sheets</a></li>
                <li><a href="?action=_productionBoard">Low Stock Production</a></li>
                <li><a href="?action=production_stock_board">Production Board</a></li>
-                <li><a href="?action=customer_quote">Quotes</a></li>
+                <li><a href="?action=_search">Search</a></li>
         </ul>
         <?php }?>
       </div>

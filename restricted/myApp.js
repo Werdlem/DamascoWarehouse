@@ -1,8 +1,18 @@
 var app = angular.module('sheetBoard', []);
 
 app.controller('productSearch', function($scope,$http){
-  
-})
+
+$scope.search=()=>{
+  $http({
+    method:'POST',
+    url:'./jsonData/searchSku.json.php',
+    data:{sku: $scope.searchSku}
+  }).then((response)=>{
+    this.getSku=response.data
+  });
+}
+
+});
 
 app.controller('couriers', function($scope,$http){
   $scope.search=()=>{

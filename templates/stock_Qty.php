@@ -80,42 +80,33 @@ foreach ($fetch as $fetchResult){
 	}
 	// end
 	$sku_id=$fetchResult['sku_id'];
-$goods_total = $productDal->Get_Sku_Total($selection, $sku_wildcard,$sku_id);
 
-foreach ($goods_total as $result){
+		//$status = $fetchResult['last_order_date'] > $result['date_rec']? 'ordered': 'not_ordered';
 
-		$status = $fetchResult['last_order_date'] > $result['date_rec']? 'ordered': 'not_ordered';
-
-  echo "<tr class='$status'>";
+  //echo "<tr class='$status'>";
+	echo "<tr>";
   ?>
     <td style=""><a href="?action=activity&sku=<?php echo htmlspecialchars($fetchResult['sku']).'&sku_id='.$fetchResult['sku_id'];?>"><?php echo htmlspecialchars($fetchResult['sku']); ?></a></td>
    <td style="text-align:center"><?php if ($fetchResult['last_order_date'] < '(NULL)') { echo '';} else{ echo date('d-m-Y',strtotime($fetchResult['last_order_date']));} ?></td>
     <?php
-
-
 	
-	$sku_total = $result['total_rec']+$result['total_alloc']-$result['total_del_desc1'];
-	
-	echo '<td style="text-align:center">'. date('d-m-Y', strtotime($result['date_rec'])).'</td>';
-	if($sku_total <= $result['buffer_qty']){
+	echo '<td>'.date('d-m-Y',strtotime($fetchResult['date_rec'])).'</td>';
+	if($fetchResult['stock_qty']<= $fetchResult['buffer_qty']){
 		
-		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.2);*/"><strong style="color: red; ">'. $sku_total;
+		echo '<td style="text-align:center; background-color: rgba(255,0,0,0.2);*/"><strong style="color: red; ">'. $fetchResult['stock_qty'].'</td>';
 			
 		}
 		else{
-	echo '<td style="text-align:center">'. $sku_total .'</td>';
+	echo '<td style="text-align:center">'. $fetchResult['stock_qty'].'</td>';
 		
 		}
 		
-	echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); "><strong>'. $result['buffer_qty'] .'</td>';
-	echo '<td style="text-align:center;"><a href="?action=send&sku_order='.htmlspecialchars($result['sku']).'&qty='.$result['pack_qty'].'" class="btn btn-default btn-primary">Order</a></td>';
-			
-}
+	echo '<td style="text-align:center; color:#06F; background-color: rgba(0,0,255,0.2); "><strong>'. $fetchResult['buffer_qty'] .'</td>';
+	echo '<td><button></td>';		
+
 }
 	}
-	
-
-?>
+	?>
 
   </tr>
   </form>

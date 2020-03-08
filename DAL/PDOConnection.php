@@ -864,9 +864,15 @@ group by sku
 	
 	public function Get_Allocation_Sku ($fetch){
 		$pdo = Database::DB();
-		$stmt = $pdo->prepare('select *
-		from products
+		$stmt = $pdo->prepare('select *,
+			(select delivery_date from goods_in where sku LIKE p.sku order by delivery_date desc LIMIT 1) as date_rec
+			
+			from products p
+
 		where allocation_id=(?)
+
+
+
 		order by sku asc');
 		$stmt->bindValue(1 ,$fetch);
 	$stmt->execute();
