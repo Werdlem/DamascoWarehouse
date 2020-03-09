@@ -82,10 +82,10 @@ if(isset($_POST['updates'])){
 	$pack_qty = $_POST['pack_qty'];
 	$stock_qty = $_POST['stock_qty'];
 	$ave = null;
-	$relation = $_POST['relationship'];
+	//$relation = $_POST['relationship'];
 	
 	$productDal->UpdateProduct($sku_id, $sku,$notes,$buffer_qty, $allocation_id, $supplier_name,$description, $alias_1, $alias_2, $alias_3,
-		$sku_wildcard,$pack_qty, $stock_qty, $ave, $relation);
+		$sku_wildcard,$pack_qty, $stock_qty, $ave);
 	header("location:?action=update_product&sku=".urlencode($sku)."&sku_id=".$sku_id);
 }
 

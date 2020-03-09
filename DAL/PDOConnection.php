@@ -457,10 +457,10 @@ group by sku
 		}
 		
 		public function UpdateProduct($sku_id, $sku, $notes, $buffer_qty, $allocation_id, $supplier_name, $description, $alias_1, $alias_2, $alias_3,
-			$sku_wildcard, $pack_qty, $stock_qty, $ave, $relation){
+			$sku_wildcard, $pack_qty, $stock_qty, $ave){
 		$pdo = Database::DB();
 		$stmt = $pdo->prepare('update products
-		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, alias_wild = :sku_wild, pack_qty = :pack_qty, stock_qty = :stock_qty, ave = :ave, relation = :relation
+		set sku = :sku, notes = :notes, buffer_qty = :buffer_qty, allocation_id = :allocation_id, supplier_name = :supplier_name, description = :description, alias_1 = :alias_1, alias_2 = :alias_2, alias_3 = :alias_3, alias_wild = :sku_wild, pack_qty = :pack_qty, stock_qty = :stock_qty, ave = :ave
 		where sku_id = :sku_id');		
 		$stmt->bindValue(':sku', $sku);
 		$stmt->bindValue(':notes', $notes);
@@ -476,7 +476,6 @@ group by sku
 		$stmt->bindValue(':stock_qty', $stock_qty);
 		$stmt->bindValue(':sku_id', $sku_id);
 		$stmt->bindValue(':ave', $ave);
-		$stmt->bindValue(':relation', $relation);
 		$stmt->execute();
 		
 		}
