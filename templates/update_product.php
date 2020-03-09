@@ -138,7 +138,7 @@ foreach ($goods_total as $result){
 				
 				<select ng-model="selectPriority">
 				<option id='pri' value="NORMAL">Normal</option>
-				<option id='pri' value="HIGH">High</option>
+				<option id='pri' value="PRIORITY">Priority</option>
 			</select>
 			<?php 
 					$pri = '{{selectPriority}}';
