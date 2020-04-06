@@ -1,5 +1,5 @@
 
-
+<div ng-controller="boardController as board" ng-app="sheetBoard">
 <?php 
 require_once './DAL/PDOConnection.php';
 //require_once '../DAL/sheetboard_PDOConnection.php';
