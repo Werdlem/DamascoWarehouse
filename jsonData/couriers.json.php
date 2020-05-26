@@ -6,14 +6,9 @@ $end = $value->end;
 
 $start = new DateTime($value->start);
 $end = new DateTime($value->end);
-$start->setTimezone(new DateTimeZone('Europe/London'));
-$end->setTimezone(new DateTimeZone('Europe/London'));
+$scheduleDate->setTimezone(new DateTimeZone('Europe/London'));
 $start = $start ->format('Y-m-d H:i:s');
-$end = $end ->format('Y-m-d H:i:s');
-
-echo $start;
-
-echo $end;
+$end = $start ->format('Y-m-d H:i:s');
 
 $results = json_decode(file_get_contents("http://postpack.web/reports/couriers.php?start=".$start."&end=".$end));
 
