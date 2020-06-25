@@ -27,6 +27,7 @@
 	 $qty = $_GET['qty']; 
 	 $sku_id = $_GET['id'];
 	 $priority = $_GET['priority'];
+	 $notes = $_GET['notes'];
 	 date_default_timezone_set('UTC');
 	 $today = date('Y-m-d');
 
@@ -76,7 +77,7 @@
                 '<head>Hello<br /><br /></head>'.
                 '<body>'.
                 'Please will you kindly order '. $qty . '(qty) <a href="http://postpackstock.web/index.php?action=activity&sku=' .$product.'&sku_id='.$sku_id.
-                '">'.$product.'</a><br /><br />Kind Regards<br /><br />'.
+                '">'.$product.'</a><br /><br />Further Details: '.$notes.'<br/><br/>Kind Regards<br /><br />'.
                 'PostPack'.
                 '</body>' .
                 '</html>',

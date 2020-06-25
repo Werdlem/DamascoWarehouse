@@ -154,7 +154,7 @@ foreach ($goods_total as $result){
 			</div>
 			<br/>
 			<button id="updates" class="btn btn-large btn-primary" name="updates" type="submit">Update</button>
-			<a href="?action=send&sku_order=<?php echo htmlspecialchars($productDetail['sku']);?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>&priority=<?php echo $pri ?>" class="btn btn-large btn-primary" ng-show="selectPriority">Order</a>
+			<a href="?action=send&sku_order=<?php echo htmlspecialchars($productDetail['sku']);?>&id=<?php echo $productDetail['sku_id']?>&qty=<?php echo $productDetail['pack_qty'];?>&notes=<?php echo $productDetail['notes']?>&priority=<?php echo $pri ?>" class="btn btn-large btn-primary" ng-show="selectPriority">Order</a>
 		</form>
 		<a href="?action=activity&sku=<?php echo urlencode($productDetail['sku']).'&sku_id='.$productDetail['sku_id'] ?>">Activity</a>
 	</div>
