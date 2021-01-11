@@ -4,18 +4,18 @@
 	<p>Date from: <input type="date" ng-model="start">
 	Date to: <input type="date" ng-model="end">
 	
-	<button ng-click="searchCourier()" class="btn btn-large btn-success">Search</button>
+	<button ng-click="searchDespatch()" class="btn btn-large btn-success">Search</button>
 
 
 <div>
 <table class="table" style="width: 50%">
 	<tr>
-		<th>Courier</th>
+		<th>Operative</th>
 		<th>Consignments</th>
 		<th>Boxes</th>
 	</tr>
 	<tr ng-repeat="x in c.getData">
-		<td>{{x.courier | uppercase}}</td>
+		<td>{{x.latestStatus | uppercase}}</td>
 		<td>{{x.count}}</td>
 		<td>{{x.labels | number: 0}}</td>
 	</tr>

@@ -15,7 +15,7 @@ $scope.search=()=>{
 });
 
 app.controller('couriers', function($scope,$http){
-  $scope.search=()=>{
+  $scope.searchCourier=()=>{
 
     start = $scope.start;
   end = $scope.end;
@@ -23,6 +23,18 @@ app.controller('couriers', function($scope,$http){
 $http({
 method: 'POST',
 url:'./jsonData/couriers.json.php',
+data:{start:start,end:end}
+}).then((response)=>{
+      this.getData=response.data;
+      });
+}
+ $scope.searchDespatch=()=>{
+
+    start = $scope.start;
+  end = $scope.end;
+$http({
+method: 'POST',
+url:'./jsonData/despatch.json.php',
 data:{start:start,end:end}
 }).then((response)=>{
       this.getData=response.data;
