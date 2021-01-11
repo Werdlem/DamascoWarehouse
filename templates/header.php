@@ -21,6 +21,7 @@
    </style>
 <div class="container">
 <div class="page-header" style="text-align:center"><img src="./css/images/postpack.png" style="margin-left:0">
+
   <text style="font-size:24px">Postpack & Damasco Stock Control</text>
   <img src="./css/images/dam.png" style="text-align:right"> </div>
 <div class="navbar" style="font-size:16px">

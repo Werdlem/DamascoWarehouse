@@ -1,6 +1,6 @@
 
 <div ng-controller="couriers as c" ng-app="sheetBoard">
-	<h1>Couriers</h1>
+	<h1>Despatch</h1>
 	<p>Date from: <input type="date" ng-model="start">
 	Date to: <input type="date" ng-model="end">
 	
