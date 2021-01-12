@@ -14,7 +14,8 @@ $scope.search=()=>{
 
 });
 
-app.controller('couriers', function($scope,$http){
+app.controller('couriers', function($scope,$http, $location){
+
   $scope.searchCourier=()=>{
 
     start = $scope.start;
@@ -40,7 +41,17 @@ data:{start:start,end:end}
       this.getData=response.data;
       });
 }
+$scope.getOpDetails = (x)=>{
+$http({
+method: 'POST',
+url:'./jsonData/operative.json.php',
+data: {op: x.latestStatus,start:start,end:end}
+}).then((response)=>{
+      this.getResults=response.data;
+      });
+}
 });
+
 
 
 app.controller('boardController', function($scope,$http) {
