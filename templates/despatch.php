@@ -21,11 +21,11 @@
 	</tr>
 	</table>
 </div>
-<div>
+<div ng-show="c.getResults">
 	<br>
 
 <h1> Results</h1>
-	<table class="table" style="width: 50%">
+	<table class="table" style="width: 50%" >
 	<tr>
 		<th>Order ID</th>
 		<th>Courier</th>
